@@ -26,5 +26,11 @@ namespace smms
         {
             this.InitializeComponent();
         }
+
+        private ViewModel View
+        {
+            set;
+            get;
+        }=new ViewModel();
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿// lindexi
+// 20:54
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,11 +13,10 @@ using smms.Model;
 
 namespace smms
 {
-    public class ViewModel:NotifyProperty
+    public class ViewModel : NotifyProperty
     {
         public ViewModel()
         {
-
         }
 
         public string Reminder
@@ -30,48 +32,43 @@ namespace smms
             }
         }
 
-        private string _reminder;
         public StorageFile File
         {
             set;
             get;
         }
+
         public async void UpLoad()
         {
             //判断文件不存在
-            //string name = "file.txt";
-            //StorageFile file;
-            //if (!await exist(name))
-            //{
-            //    int n = 100;
-            //    string str = RanStr(n);
-            //    file = await Write(name, str);
-            //}
-            //else
-            //{
-            //    file= await ApplicationData.Current.
-            //        LocalFolder.GetFileAsync(name);
-            //}
-
             if (File == null)
             {
                 FileOpenPicker picker = new FileOpenPicker()
                 {
-                    FileTypeFilter = { ".png", ".jpg" }
+                    FileTypeFilter =
+                    {
+                        ".png",
+                        ".jpg"
+                    }
                 };
 
-                File =await picker.PickSingleFileAsync();
+                File = await picker.PickSingleFileAsync();
             }
 
             Imageshack imageshack = new Imageshack()
             {
-                File=File,
+                File = File,
             };
-            imageshack.OnUploadedEventHandler += (sender, str) => Reminder = str.Replace("\\/","/");
+            //上传完成事件，其中str为sm.ms返回，一般为json
+            //Reminder是例子，可以根据具体修改，注意要同步CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync
+            imageshack.OnUploadedEventHandler += (sender, str) => Reminder = str.Replace("\\/", "/");
             imageshack.UpLoad();
         }
+
+        private string _reminder;
+
         /// <summary>
-        /// 文件存在
+        ///     文件存在
         /// </summary>
         /// <param name="name"></param>
         /// <returns>true 文件不存在 False文件存在</returns>
@@ -88,6 +85,7 @@ namespace smms
             }
             return true;
         }
+
         private async Task<StorageFile> Write(string name, string str)
         {
             StorageFile file = await ApplicationData.Current.
@@ -101,7 +99,7 @@ namespace smms
         }
 
         /// <summary>
-        /// 随机字符串
+        ///     随机字符串
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
@@ -114,7 +112,10 @@ namespace smms
         private string RanStr(int n, Random ran)
         {
             StringBuilder str = new StringBuilder();
-            int[] chinesecharacters = new int[2] { 19968, 40895 };
+            int[] chinesecharacters = new int[2]
+            {
+                19968, 40895
+            };
             for (int i = 0; i < n; i++)
             {
                 str.Append(Convert.ToChar(ran.Next(chinesecharacters[0], chinesecharacters[1])));

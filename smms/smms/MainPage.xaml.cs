@@ -47,28 +47,14 @@ namespace smms
             e.Handled = true;
         }
 
-        private async void Grid_OnDrop(object sender, DragEventArgs e)
+        private void Grid_OnDrop(object sender, DragEventArgs e)
         {
             var defer = e.GetDeferral();
 
             try
             {
-                DataPackageView dataView = e.DataView;
-                // 拖放类型为文件存储。
-                if (dataView.Contains(StandardDataFormats.StorageItems))
-                {
-                    var files = await dataView.GetStorageItemsAsync();
-                    StorageFile file = files.OfType<StorageFile>().First();
-                    if (file.FileType == ".png" || file.FileType == ".jpg"
-                        || file.FileType == ".gif")
-                    {
-                        // 拖放的是图片文件。
-                        BitmapImage bitmap = new BitmapImage();
-                        await bitmap.SetSourceAsync(await file.OpenAsync(FileAccessMode.Read));
-                        Image.Source = bitmap;
-                        View.File = file;
-                    }
-                }
+                View.FileDataPackageView(e.DataView);
+               
             }
             finally
             {

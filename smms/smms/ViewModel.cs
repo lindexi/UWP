@@ -7,8 +7,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 using smms.Model;
 
 namespace smms
@@ -17,6 +20,39 @@ namespace smms
     {
         public ViewModel()
         {
+        }
+
+        private BitmapImage _bitmap;
+
+        public BitmapImage Bitmap
+        {
+            set
+            {
+                _bitmap = value;
+                OnPropertyChanged();
+            }
+            get
+            {
+                return _bitmap;
+            }
+        }
+
+        public async void FileDataPackageView(DataPackageView dataView)
+        {
+            if (dataView.Contains(StandardDataFormats.StorageItems))
+            {
+                var files = await dataView.GetStorageItemsAsync();
+                StorageFile file = files.OfType<StorageFile>().First();
+                if (file.FileType == ".png" || file.FileType == ".jpg"
+                    || file.FileType == ".gif")
+                {
+                    // 拖放的是图片文件。
+                    BitmapImage bitmap = new BitmapImage();
+                    await bitmap.SetSourceAsync(await file.OpenAsync(FileAccessMode.Read));
+                    Bitmap = bitmap;
+                    File = file;
+                }
+            }
         }
 
         public string Reminder

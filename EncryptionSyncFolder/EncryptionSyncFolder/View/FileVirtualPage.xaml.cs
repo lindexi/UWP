@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using System.Xml;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -12,6 +18,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using EncryptionSyncFolder.Model;
+using EncryptionSyncFolder.ViewModel;
+using XmlNodeList = Windows.Data.Xml.Dom.XmlNodeList;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -25,6 +34,45 @@ namespace EncryptionSyncFolder.View
         public FileVirtualPage()
         {
             this.InitializeComponent();
+        }
+
+        private FileVirtualModel view
+        {
+            set;
+            get;
+        }=new FileVirtualModel();
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Action onNotAccount = e.Parameter as Action;
+            //如果没有登录
+            if (!Account.AccountVirtual.AreAccountConfirm)
+            {
+                new Task(async () =>
+                {
+                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    onNotAccount?.Invoke();
+                });
+                }).Start();
+
+                //提示
+                ToastText("用户没有登录");
+            }
+            base.OnNavigatedTo(e);
+        }
+
+        private void ToastText(string str)
+        {
+            var toastText = Windows.UI.Notifications.
+                    ToastTemplateType.ToastText01;
+            var content = Windows.UI.Notifications.
+                ToastNotificationManager.GetTemplateContent(toastText);
+            XmlNodeList xml = content.GetElementsByTagName("text");
+            xml[0].AppendChild(content.CreateTextNode(str));
+            ToastNotification toast = new ToastNotification(content);
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
     }
 }

@@ -64,5 +64,5 @@ namespace EncryptionSyncFolder
         {
             FileVirtualFrame.Navigate(typeof(FileVirtualPage),OnNotAccount);
         }
-    }
+    }  
 }

@@ -12,11 +12,11 @@ namespace EncryptionSyncFolder.Model
     /// <summary>
     ///     虚拟文件夹
     /// </summary>
-    public class VirtualFolder : NotifyProperty
+    public class VirtualFolder : VirtualStorage
     {
         public VirtualFolder()
         {
-
+            VirtualFileFolder = VirtualFileFolderEnum.Folder;
         }
 
         public StorageFolder FolderStorage
@@ -29,32 +29,6 @@ namespace EncryptionSyncFolder.Model
             get
             {
                 return _folderStorage;
-            }
-        }
-
-        public string Name
-        {
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return _name;
-            }
-        }
-
-        public string Path
-        {
-            set
-            {
-                _path = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return _path;
             }
         }
 
@@ -94,33 +68,38 @@ namespace EncryptionSyncFolder.Model
 
         public void NewFolder()
         {
-            
+
         }
 
         public void RenameFile()
         {
-            
+
         }
 
         public void RenameFolder()
         {
-            
+
+        }
+        /// <summary>
+        /// 删除
+        /// </summary>
+        public void Delete()
+        {
+
         }
 
         public void DeleteFile()
         {
-            
+
         }
 
         public void DeleteFolder()
         {
-            
+
         }
 
         private List<VirtualFile> _file = new List<VirtualFile>();
         private List<VirtualFolder> _folder = new List<VirtualFolder>();
         private StorageFolder _folderStorage;
-        private string _name;
-        private string _path;
     }
 }

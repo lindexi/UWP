@@ -8,6 +8,35 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="499*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition ></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--当前用户-->
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="10,10,10,10" Text="当前用户"></TextBlock>
+                <TextBlock Margin="10,10,10,10" Text="{x:Bind view.AccountVirtual.Name,Mode=OneWay}"></TextBlock>
+            </StackPanel>
+            <!--目录-->
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="目录"></TextBlock>
+                <TextBlock Text="{x:Bind view.Folder.Path,Mode=OneWay}"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <Button Margin="10,10,10,10" Content="新建文件夹"></Button>
+                <Button Margin="10,10,10,10" Content="新建文件"></Button>
+                <Button Margin="10,10,10,10" Content="删除"></Button>
+                <Button Margin="10,10,10,10" Content="刷新"></Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
 
+        </Grid>
     </Grid>
 </Page>

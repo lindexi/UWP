@@ -1,0 +1,82 @@
+﻿<Page
+    x:Class="EncryptionSyncFolder.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EncryptionSyncFolder"
+    xmlns:view="using:EncryptionSyncFolder.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <ToggleButton x:Name="SplitToggleButton" Content="确定"></ToggleButton>
+        </Grid>
+        <SplitView Grid.Row="1" IsPaneOpen="{Binding ElementName=SplitToggleButton,Path=IsChecked,Mode=TwoWay}"
+                   DisplayMode="CompactOverlay" OpenPaneLength="100"
+                    CompactPaneLength="50" >
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="774*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical">
+                        <Button Click="Account_OnClick">
+                            <Button.Content>
+                                <view:SplitViewItem IconString="&#xE77B;"
+                                                    Text="登录"></view:SplitViewItem>
+                            </Button.Content>
+                        </Button>
+                        <Button Click="FileVirtual_OnClick">
+                            <Button.Content>
+                                <view:SplitViewItem IconString="&#xE8A5;"
+                                                    Text="文件"></view:SplitViewItem>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                    <!--<ListView >
+                        <ListViewItem >
+                            <ListViewItem.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="10,10,10,10" FontFamily="Segoe MDL2 Assets"
+                                         Text="&#xE77B;"></TextBlock>
+                                    <TextBlock Margin="10,10,10,10" Text="登录"></TextBlock>
+                                </StackPanel>
+                            </ListViewItem.Content>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <ListViewItem.Content>
+                                <view:SplitViewItem IconString="&#xE8A5;" Text="文件"></view:SplitViewItem>
+                            </ListViewItem.Content>
+                        </ListViewItem>
+                    </ListView>-->
+                    <ListView Grid.Row="1">
+                        <ListViewItem>
+                            <ListViewItem.Content>
+                                    <view:SplitViewItem IconString="&#xE713;" Text="设置"></view:SplitViewItem>
+                            </ListViewItem.Content>
+                        </ListViewItem>
+                        <ListViewItem >
+                            <ListViewItem.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="10,10,10,10" FontFamily="Segoe MDL2 Assets"
+                                         Text="&#xE7E8;"></TextBlock>
+                                </StackPanel>
+                            </ListViewItem.Content>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid>
+                    <Frame x:Name="FileVirtualFrame"></Frame>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+</Page>

@@ -215,6 +215,7 @@ namespace EncryptionSyncFolder.Model
                     OnConfirmEventHandler?.Invoke(this, ConfirmEnum.KeyError);
                     return;
                 }
+                AreAccountConfirm = true;
                 OnConfirmEventHandler?.Invoke(this, ConfirmEnum.Success);
                 Folder = new VirtualFolder()
                 {
@@ -222,7 +223,6 @@ namespace EncryptionSyncFolder.Model
                     Path = "~",
                     FolderStorage = folder
                 };
-                AreAccountConfirm = true;
             }
             catch (FileNotFoundException)
             {

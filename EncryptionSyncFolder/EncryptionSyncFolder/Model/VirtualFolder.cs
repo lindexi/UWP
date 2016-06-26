@@ -3,6 +3,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
 using EncryptionSyncFolder.ViewModel;
@@ -17,6 +19,8 @@ namespace EncryptionSyncFolder.Model
         public VirtualFolder()
         {
             VirtualFileFolder = VirtualFileFolderEnum.Folder;
+            Folder=new List<VirtualFolder>();
+            File=new List<VirtualFile>();
         }
 
         public StorageFolder FolderStorage
@@ -60,10 +64,33 @@ namespace EncryptionSyncFolder.Model
         /// <summary>
         /// 新建文件
         /// </summary>
-        public void NewFile()
+        public async Task NewFile(VirtualFile file)
         {
             //文件存在
+            string str= ".file";
+            if (!file.Name.EndsWith(str))
+            {
+                file.Name += str;
+            }
 
+            //foreach (var temp in File)
+            //{
+            //    if (temp.Name == file.Name)
+            //    {
+            //        throw new Exception("文件存在");
+            //    }
+            //}
+
+            if (File.Any(temp => temp.Name == file.Name))
+            {
+                throw new Exception("文件存在");
+            }
+
+            file.Path = Path + "/" + file.Name;
+            file.NewTime = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            file.File = await FolderStorage.CreateFileAsync(file.Name);
+
+            File.Add(file);
         }
 
         public void NewFolder()

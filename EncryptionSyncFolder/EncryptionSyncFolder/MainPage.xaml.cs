@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using EncryptionSyncFolder.Model;
 using EncryptionSyncFolder.View;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
@@ -26,6 +27,15 @@ namespace EncryptionSyncFolder
         public MainPage()
         {
             this.InitializeComponent();
+
+            //debug
+            Account.AccountVirtual=new Account()
+            {
+                Name = "root",
+                Key="root"
+            };
+            Account.AccountVirtual.Confirm();
+            //end
 
             OnAccountConfim = () =>
             {

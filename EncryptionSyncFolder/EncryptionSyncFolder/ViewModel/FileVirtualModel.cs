@@ -4,9 +4,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using EncryptionSyncFolder.Model;
 using EncryptionSyncFolder.View;
@@ -67,18 +71,22 @@ namespace EncryptionSyncFolder.ViewModel
         /// <summary>
         /// 列出
         /// </summary>
-        public void ListVirtualStorage()
+        public async void ListVirtualStorage()
         {
-            FileFolder.Clear();
-            foreach (var temp in Folder.Folder)
-            {
-                FileFolder.Add(temp);
-            }
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+             () =>
+             {
+                 FileFolder.Clear();
+                 foreach (var temp in Folder.Folder)
+                 {
+                     FileFolder.Add(temp);
+                 }
 
-            foreach (var temp in Folder.File)
-            {
-                FileFolder.Add(temp);
-            }
+                 foreach (var temp in Folder.File)
+                 {
+                     FileFolder.Add(temp);
+                 }
+             });
         }
 
 
@@ -90,8 +98,10 @@ namespace EncryptionSyncFolder.ViewModel
         {
             NewFileDialog newFileDialog = new NewFileDialog()
             {
-                PrimaryButtonText = "确定",
-                SecondaryButtonText = "取消"
+                //PrimaryButtonText = "确定",
+                //SecondaryButtonText = "取消"
+                PrimaryButtonVisibility = Visibility.Collapsed,
+                SecondaryButtonVisibility = Visibility.Collapsed
             };
 
             var contentDialog = new ContentDialog()
@@ -99,13 +109,13 @@ namespace EncryptionSyncFolder.ViewModel
                 Title = "新建文件",
                 Content = newFileDialog,
 
-                //PrimaryButtonText = "确定",
-                //SecondaryButtonText = "取消"
+                PrimaryButtonText = "确定",
+                SecondaryButtonText = "取消"
             };
 
 
 
-            newFileDialog.PrimaryButtonClick += (sender, e) =>
+            contentDialog.PrimaryButtonClick += async (sender, e) =>
             {
                 bool strNull = false;
                 string str = "";
@@ -113,6 +123,11 @@ namespace EncryptionSyncFolder.ViewModel
                 if (string.IsNullOrEmpty(newFileDialog.FileName))
                 {
                     str = "文件名为空";
+                    strNull = true;
+                }
+                else if (!VirtualFile.AreFileName(newFileDialog.FileName))
+                {
+                    str = "文件名不能存在\\/*:?\"<>|";
                     strNull = true;
                 }
                 else if (string.IsNullOrEmpty(newFileDialog.Size))
@@ -141,9 +156,11 @@ namespace EncryptionSyncFolder.ViewModel
 
                 try
                 {
-                 
-                    Folder.NewFile(newFile);
-                    contentDialog.Hide();
+
+                    await Folder.NewFile(newFile);
+                    //contentDialog.Hide();
+                    ListVirtualStorage();
+                    newFileDialog.Complete = true;
                 }
                 catch (Exception)
                 {
@@ -153,7 +170,15 @@ namespace EncryptionSyncFolder.ViewModel
                 }
             };
 
-            await contentDialog.ShowAsync();
+            contentDialog.SecondaryButtonClick += (sender, e) =>
+            {
+                newFileDialog.Complete = true;
+            };
+
+            while (!newFileDialog.Complete)
+            {
+                await contentDialog.ShowAsync();
+            }
         }
 
         public void NewFolder()

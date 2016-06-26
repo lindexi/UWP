@@ -112,6 +112,12 @@
     <Compile Include="View\FileVirtualPage.xaml.cs">
       <DependentUpon>FileVirtualPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NewFileDialog.xaml.cs">
+      <DependentUpon>NewFileDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewFolderDialog.xaml.cs">
+      <DependentUpon>NewFolderDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SplitViewItem.xaml.cs">
       <DependentUpon>SplitViewItem.xaml</DependentUpon>
     </Compile>
@@ -146,6 +152,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FileVirtualPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewFileDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewFolderDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

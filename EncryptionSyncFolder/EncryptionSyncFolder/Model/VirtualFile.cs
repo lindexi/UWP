@@ -1,9 +1,11 @@
 // lindexi
 // 21:07
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.Storage;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace EncryptionSyncFolder.Model
 {
@@ -15,7 +17,18 @@ namespace EncryptionSyncFolder.Model
         public VirtualFile()
         {
             VirtualFileFolder=VirtualFileFolderEnum.File;
+            Bitmap = FileBitmap;
         }
+
+        /// <summary>
+        /// ´ÓStorageFile×ªVirtualFile
+        /// </summary>
+        /// <param name="file"></param>
+        private void StorageFileVirtualFile(StorageFile file)
+        {
+            
+        }
+        
 
         public StorageFile File
         {
@@ -58,7 +71,11 @@ namespace EncryptionSyncFolder.Model
             //return true;
             return notStr.All(temp => str.IndexOf(temp) <= -1);
         }
-
+        private static  BitmapImage FileBitmap
+        {
+            set;
+            get;
+        }=new BitmapImage(new Uri("ms-appx:///Assets/file_140px_1201060_easyicon.net.png"));
         private StorageFile _file;
        
     }

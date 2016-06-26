@@ -68,6 +68,12 @@ namespace EncryptionSyncFolder.ViewModel
         {
 
         }
+
+        public void Delete()
+        {
+            
+        }
+
         /// <summary>
         /// 列出
         /// </summary>

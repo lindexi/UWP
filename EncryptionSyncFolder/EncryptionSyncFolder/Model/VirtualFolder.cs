@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Xaml.Media.Imaging;
 using EncryptionSyncFolder.ViewModel;
 
 namespace EncryptionSyncFolder.Model
@@ -19,9 +20,16 @@ namespace EncryptionSyncFolder.Model
         public VirtualFolder()
         {
             VirtualFileFolder = VirtualFileFolderEnum.Folder;
+            Bitmap = FolderBitmap;
             Folder=new List<VirtualFolder>();
             File=new List<VirtualFile>();
         }
+
+        private static BitmapImage FolderBitmap
+        {
+            set;
+            get;
+        } = new BitmapImage(new Uri("ms-appx:///Assets/folder_178px_1201076_easyicon.net.png"));
 
         public StorageFolder FolderStorage
         {
@@ -61,6 +69,25 @@ namespace EncryptionSyncFolder.Model
                 return _folder;
             }
         }
+        /// <summary>
+        /// 列出所有文件、文件夹
+        /// </summary>
+        public async void AllFileFolder()
+        {
+            var fileFolder = await FolderStorage.GetItemsAsync();
+            foreach (var temp in fileFolder)
+            {
+                if (temp.IsOfType(StorageItemTypes.File))
+                {
+                    
+                }
+                else if(temp.IsOfType(StorageItemTypes.Folder))
+                {
+                    
+                }
+            }
+        }
+
         /// <summary>
         /// 新建文件
         /// </summary>
@@ -107,6 +134,7 @@ namespace EncryptionSyncFolder.Model
         {
 
         }
+
         /// <summary>
         /// 删除
         /// </summary>

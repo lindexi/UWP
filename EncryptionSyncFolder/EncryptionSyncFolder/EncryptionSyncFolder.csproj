@@ -129,6 +129,8 @@
     <None Include="EncryptionSyncFolder_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\file_140px_1201060_easyicon.net.png" />
+    <Content Include="Assets\folder_178px_1201076_easyicon.net.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

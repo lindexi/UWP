@@ -167,6 +167,14 @@ namespace EncryptionSyncFolder.Model
             }
         }
 
+        /// <summary>
+        /// 保存用户文件和文件夹
+        /// </summary>
+        public void Storage()
+        {
+            
+        }
+
         public async void Confirm()
         {
             if (string.IsNullOrEmpty(Name))

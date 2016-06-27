@@ -1,5 +1,5 @@
 ﻿// lindexi
-// 16:13
+// 16:47
 
 using System;
 using System.Collections.Generic;
@@ -61,42 +61,96 @@ namespace EncryptionSyncFolder.ViewModel
             get;
         } = new ObservableCollection<VirtualStorage>();
 
+        public VirtualStorage FileFolderVirtualStorage
+        {
+            set
+            {
+                _fileFolderVirtualStorage = value;
+                OnPropertyChanged();
+            }
+            get
+            {
+                return _fileFolderVirtualStorage;
+            }
+        }
+
+        private VirtualStorage _fileFolderVirtualStorage;
+
         /// <summary>
-        /// 进入文件夹
+        ///     进入文件夹
         /// </summary>
         public void ToFolder()
         {
+        }
 
+        public void Rename()
+        {
+            var newFileDialog=new NewFolderDialog();
+            ContentDialog contentDialog=new ContentDialog()
+            {
+                Title = "重命名",
+                Content = newFileDialog,
+                PrimaryButtonText = "确定",
+                SecondaryButtonText = "取消"
+            };
+            if (FileFolderVirtualStorage == null)
+            {
+                
+            }
+            
         }
 
         public void Delete()
         {
-
         }
 
         /// <summary>
-        /// 列出
+        ///     列出
         /// </summary>
         public async void ListVirtualStorage()
         {
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-             () =>
-             {
-                 FileFolder.Clear();
-                 foreach (var temp in Folder.Folder)
-                 {
-                     FileFolder.Add(temp);
-                 }
+                () =>
+                {
+                    FileFolder.Clear();
+                    foreach (var temp in Folder.Folder)
+                    {
+                        FileFolder.Add(temp);
+                    }
 
-                 foreach (var temp in Folder.File)
-                 {
-                     FileFolder.Add(temp);
-                 }
-             });
+                    foreach (var temp in Folder.File)
+                    {
+                        FileFolder.Add(temp);
+                    }
+                });
+        }
+
+        private string AreFileName(NewFileDialog newFileDialog)
+        {
+            string str = "";
+            int size;
+            if (string.IsNullOrEmpty(newFileDialog.FileName))
+            {
+                str = "文件名为空";
+            }
+            else if (!VirtualFile.AreFileName(newFileDialog.FileName))
+            {
+                str = "文件名不能存在\\/*:?\"<>|";
+            }
+            else if (string.IsNullOrEmpty(newFileDialog.Size))
+            {
+                str = "文件大小为空";
+            }
+            else if (!int.TryParse(newFileDialog.Size, out size))
+            {
+                newFileDialog.Size = "";
+                str = "输入文件大小不是数字";
+            }
+            return str;
         }
 
         /// <summary>
-        /// 新建文件
+        ///     新建文件
         /// </summary>
         public async void NewFile()
         {
@@ -112,41 +166,17 @@ namespace EncryptionSyncFolder.ViewModel
             {
                 Title = "新建文件",
                 Content = newFileDialog,
-
                 PrimaryButtonText = "确定",
                 SecondaryButtonText = "取消"
             };
 
             contentDialog.PrimaryButtonClick += (sender, e) =>
             {
-                bool strNull = false;
-                string str = "";
-                int size = 0;
-                if (string.IsNullOrEmpty(newFileDialog.FileName))
-                {
-                    str = "文件名为空";
-                    strNull = true;
-                }
-                else if (!VirtualFile.AreFileName(newFileDialog.FileName))
-                {
-                    str = "文件名不能存在\\/*:?\"<>|";
-                    strNull = true;
-                }
-                else if (string.IsNullOrEmpty(newFileDialog.Size))
-                {
-                    str = "文件大小为空";
-                    strNull = true;
-                }
-                else if (!int.TryParse(newFileDialog.Size, out size))
-                {
-                    newFileDialog.Size = "";
-                    str = "输入文件大小不是数字";
-                    strNull = true;
-                }
-                if (strNull)
+                string str = AreFileName(newFileDialog);
+
+                if (!string.IsNullOrEmpty(str))
                 {
                     newFileDialog.Reminder = str;
-                    //await contentDialog.ShowAsync();
                     return;
                 }
 
@@ -158,7 +188,6 @@ namespace EncryptionSyncFolder.ViewModel
 
                 try
                 {
-
                     Folder.NewFile(newFile);
                     //contentDialog.Hide();
                     ListVirtualStorage();
@@ -168,7 +197,6 @@ namespace EncryptionSyncFolder.ViewModel
                 {
                     str = "文件存在";
                     newFileDialog.Reminder = str;
-
                 }
             };
 
@@ -181,19 +209,6 @@ namespace EncryptionSyncFolder.ViewModel
             {
                 await contentDialog.ShowAsync();
             }
-        }
-
-        private string AreFolderName(string str)
-        {
-            if (string.IsNullOrEmpty(str))
-            {
-                return "文件名为空";
-            }
-            if (!VirtualFile.AreFileName(str))
-            {
-                return "文件名不能存在\\/*:?\"<>|";
-            }
-            return "";
         }
 
         public async void NewFolder()
@@ -242,6 +257,19 @@ namespace EncryptionSyncFolder.ViewModel
 
         private Account _accountVirtual;
         private VirtualFolder _folder;
+
+        private string AreFolderName(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return "文件名为空";
+            }
+            if (!VirtualFile.AreFileName(str))
+            {
+                return "文件名不能存在\\/*:?\"<>|";
+            }
+            return "";
+        }
     }
 
     public class NewContentDialog : ContentDialog
@@ -255,14 +283,12 @@ namespace EncryptionSyncFolder.ViewModel
         }
 
         /// <summary>
-        /// 对话完成，如果没有完成会继续显示
+        ///     对话完成，如果没有完成会继续显示
         /// </summary>
         public bool Complete
         {
             set;
             get;
         }
-
-
     }
 }

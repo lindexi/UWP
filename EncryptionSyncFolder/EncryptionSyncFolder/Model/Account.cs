@@ -1,5 +1,5 @@
 ﻿// lindexi
-// 21:10
+// 17:07
 
 using System;
 using System.Collections.Generic;
@@ -48,9 +48,8 @@ namespace EncryptionSyncFolder.Model
             }
         }
 
-        private bool _areAccountConfirm;
         /// <summary>
-        /// 账户登录
+        ///     账户登录
         /// </summary>
         public bool AreAccountConfirm
         {
@@ -104,6 +103,18 @@ namespace EncryptionSyncFolder.Model
         {
             set;
             get;
+        }
+
+        public static Account AccountVirtual
+        {
+            set
+            {
+                _accountVirtual = value;
+            }
+            get
+            {
+                return _accountVirtual ?? (_accountVirtual = new Account());
+            }
         }
 
         public enum ConfirmEnum
@@ -170,7 +181,7 @@ namespace EncryptionSyncFolder.Model
         }
 
         /// <summary>
-        /// 保存用户文件和文件夹
+        ///     保存用户文件和文件夹
         /// </summary>
         public async void Storage()
         {
@@ -190,29 +201,10 @@ namespace EncryptionSyncFolder.Model
             }
             catch (FileNotFoundException)
             {
-
             }
 
             await file.MoveAsync(Folder.FolderStorage, "file",
                 NameCollisionOption.ReplaceExisting);
-        }
-
-        private async Task Read()
-        {
-            try
-            {
-                var file = await Folder.FolderStorage.GetFileAsync("file");
-                var json = JsonSerializer.Create();
-                var folder = Folder.FolderStorage;
-                Folder = json.Deserialize<VirtualFolder>(
-                     new JsonTextReader(
-                         new StreamReader(await file.OpenStreamForReadAsync())));
-                Folder.FolderStorage = folder;
-            }
-            catch (FileNotFoundException)
-            {
-
-            }
         }
 
         public async void Confirm()
@@ -287,11 +279,30 @@ namespace EncryptionSyncFolder.Model
             return str.ToString();
         }
 
+        private bool _areAccountConfirm;
+
         private VirtualFolder _folder;
 
         private string _key;
 
         private string _name;
+
+        private async Task Read()
+        {
+            try
+            {
+                var file = await Folder.FolderStorage.GetFileAsync("file");
+                var json = JsonSerializer.Create();
+                var folder = Folder.FolderStorage;
+                Folder = json.Deserialize<VirtualFolder>(
+                    new JsonTextReader(
+                        new StreamReader(await file.OpenStreamForReadAsync())));
+                Folder.FolderStorage = folder;
+            }
+            catch (FileNotFoundException)
+            {
+            }
+        }
 
         private async void Write(StorageFile file, string str)
         {
@@ -318,17 +329,5 @@ namespace EncryptionSyncFolder.Model
         }
 
         private static Account _accountVirtual;
-
-        public static Account AccountVirtual
-        {
-            set
-            {
-                _accountVirtual = value;
-            }
-            get
-            {
-                return _accountVirtual ?? (_accountVirtual = new Account());
-            }
-        }
     }
 }

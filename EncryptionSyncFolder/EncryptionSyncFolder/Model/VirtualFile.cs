@@ -21,6 +21,16 @@ namespace EncryptionSyncFolder.Model
             Bitmap = FileBitmap;
         }
 
+        public override void Rename()
+        {
+            
+        }
+
+        public override void ToFolder()
+        {
+            
+        }
+
         ///// <summary>
         ///// ´ÓStorageFile×ªVirtualFile
         ///// </summary>

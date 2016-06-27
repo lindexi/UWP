@@ -26,6 +26,17 @@ namespace EncryptionSyncFolder.Model
             File = new List<VirtualFile>();
         }
 
+        public override void Rename()
+        {
+            
+        }
+
+
+        public override void ToFolder()
+        {
+            
+        }
+
         private static BitmapImage FolderBitmap
         {
             set;

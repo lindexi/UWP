@@ -34,9 +34,10 @@ namespace EncryptionSyncFolder.View
         public FileVirtualPage()
         {
             this.InitializeComponent();
+            DataContext = View;
         }
 
-        private FileVirtualModel view
+        private FileVirtualModel View
         {
             set;
             get;
@@ -73,6 +74,16 @@ namespace EncryptionSyncFolder.View
             xml[0].AppendChild(content.CreateTextNode(str));
             ToastNotification toast = new ToastNotification(content);
             ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
+
+        private void Rename_OnClick(object sender, RoutedEventArgs e)
+        {
+            View.Rename();
+        }
+
+        private void ToFolder_OnClick(object sender, RoutedEventArgs e)
+        {
+            View.ToFolder();
         }
     }
 }

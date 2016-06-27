@@ -3,7 +3,7 @@ using EncryptionSyncFolder.ViewModel;
 
 namespace EncryptionSyncFolder.Model
 {
-    public class VirtualStorage : NotifyProperty
+    public abstract class VirtualStorage : NotifyProperty
     {
         public VirtualStorage()
         {
@@ -39,6 +39,10 @@ namespace EncryptionSyncFolder.Model
                 return _bitmap;
             }
         }
+
+        public abstract void Rename();
+        public abstract void ToFolder();
+        
 
         /// <summary>
         ///     ÎÄ¼þÃû

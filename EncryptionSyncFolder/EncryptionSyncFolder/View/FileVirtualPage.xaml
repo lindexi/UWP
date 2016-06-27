@@ -66,23 +66,25 @@
             <!--当前用户-->
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="10,10,10,10" Text="当前用户"></TextBlock>
-                <TextBlock Margin="10,10,10,10" Text="{x:Bind view.AccountVirtual.Name,Mode=OneWay}"></TextBlock>
+                <TextBlock Margin="10,10,10,10" Text="{x:Bind View.AccountVirtual.Name,Mode=OneWay}"></TextBlock>
             </StackPanel>
             <!--目录-->
             <StackPanel Grid.Column="1" Orientation="Horizontal">
                 <TextBlock Margin="10,10,10,10" Text="目录"></TextBlock>
-                <TextBlock Margin="10,10,10,10" Text="{x:Bind view.Folder.Path,Mode=OneWay}"></TextBlock>
+                <TextBlock Margin="10,10,10,10" Text="{x:Bind View.Folder.Path,Mode=OneWay}"></TextBlock>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <Button Margin="10,10,10,10" Content="新建文件夹" Click="{x:Bind view.NewFolder}"></Button>
-                <Button Margin="10,10,10,10" Content="新建文件" Click="{x:Bind view.NewFile}"></Button>
-                <Button Margin="10,10,10,10" Content="删除" Click="{x:Bind view.Delete}"></Button>
+                <Button Margin="10,10,10,10" Content="新建文件夹" Click="{x:Bind View.NewFolder}"></Button>
+                <Button Margin="10,10,10,10" Content="新建文件" Click="{x:Bind View.NewFile}"></Button>
+                <Button Margin="10,10,10,10" Content="删除" Click="{x:Bind View.Delete}"></Button>
                 <Button Margin="10,10,10,10" Content="刷新" ></Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
             <ListView Style="{StaticResource ListViewVirtual}"
-                      ItemsSource="{x:Bind view.FileFolder}">
+                      ItemsSource="{x:Bind View.FileFolder}"
+                      SelectedItem="{Binding Path=FileFolderVirtualStorage,Mode=TwoWay}"
+                      >
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" 
@@ -91,21 +93,42 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <CheckBox IsChecked="{Binding Path=Check}" Content=""></CheckBox>
-                            <Image Grid.Column="1" Height="20" Width="20" Source="{Binding Path=Bitmap}"></Image>
-                            <TextBlock Grid.Column="2" Text="{Binding Path=Name}"></TextBlock>
-                            <TextBlock Grid.Column="3" Text="{Binding Path=Size}"></TextBlock>
+                        <Grid >
+                            <CheckBox IsChecked="{Binding Path=Check,Mode=TwoWay}" 
+                                      Margin="10,10,10,10"
+                                      HorizontalContentAlignment="Stretch"  
+                                      HorizontalAlignment="Stretch">
+                                <CheckBox.Content>
+                                    <!--<Button x:Name="Button" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">-->
+                                        <!--<Button.Content>-->
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="1" Height="20" Width="20" Source="{Binding Path=Bitmap}"></Image>
+                                                <TextBlock Grid.Column="2" Text="{Binding Path=Name}"></TextBlock>
+                                                <TextBlock Grid.Column="3" Text="{Binding Path=Size}"></TextBlock>
+                                            </Grid>
+                                        <!--</Button.Content>-->
+                                        <!--<Button.Flyout>
+                                            <MenuFlyout Placement="Bottom" >
+                                                
+                                                <MenuFlyoutItem Text="重命名" Click="Rename_OnClick"></MenuFlyoutItem>
+                                                <MenuFlyoutItem Text="打开" Click="ToFolder_OnClick"></MenuFlyoutItem>
+                                                <MenuFlyoutItem Text="打开" ></MenuFlyoutItem>
+                                            </MenuFlyout>
+                                            
+                                        </Button.Flyout>
+                                        
+                                    </Button>-->
+                                </CheckBox.Content>
+                            </CheckBox>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
             </ListView>
 
         </Grid>

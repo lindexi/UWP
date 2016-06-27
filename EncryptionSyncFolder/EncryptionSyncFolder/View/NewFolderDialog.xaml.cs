@@ -23,5 +23,40 @@ namespace EncryptionSyncFolder.View
         {
             this.InitializeComponent();
         }
+
+        public static readonly DependencyProperty FolderNameProperty = DependencyProperty.Register(
+            "FolderName", typeof(string), typeof(NewFolderDialog), new PropertyMetadata(default(string)));
+
+        public static readonly DependencyProperty ReminderProperty = DependencyProperty.Register(
+            "Reminder", typeof(string), typeof(NewFolderDialog), new PropertyMetadata(default(string)));
+
+        public string Reminder
+        {
+            set
+            {
+                SetValue(ReminderProperty, value);
+            }
+            get
+            {
+                return (string) GetValue(ReminderProperty);
+            }
+        }
+        public string FolderName
+        {
+            set
+            {
+                SetValue(FolderNameProperty, value);
+            }
+            get
+            {
+                return (string)GetValue(FolderNameProperty);
+            }
+        }
+
+        public bool Complete
+        {
+            set;
+            get;
+        }
     }
 }

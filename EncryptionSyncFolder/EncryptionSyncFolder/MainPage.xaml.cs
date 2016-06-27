@@ -29,10 +29,10 @@ namespace EncryptionSyncFolder
             this.InitializeComponent();
 
             //debug
-            Account.AccountVirtual=new Account()
+            Account.AccountVirtual = new Account()
             {
                 Name = "root",
-                Key="root"
+                Key = "root"
             };
             Account.AccountVirtual.Confirm();
             //end

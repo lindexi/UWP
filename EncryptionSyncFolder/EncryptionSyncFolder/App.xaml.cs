@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using EncryptionSyncFolder.Model;
 
 namespace EncryptionSyncFolder
 {
@@ -99,7 +100,7 @@ namespace EncryptionSyncFolder
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: 保存应用程序状态并停止任何后台活动
+            Account.AccountVirtual?.Storage();
             deferral.Complete();
         }
     }

@@ -13,6 +13,7 @@ using Windows.Security.Cryptography.Core;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using EncryptionSyncFolder.ViewModel;
+using Newtonsoft.Json;
 
 namespace EncryptionSyncFolder.Model
 {
@@ -126,7 +127,7 @@ namespace EncryptionSyncFolder.Model
         {
             if (string.IsNullOrEmpty(Name))
             {
-                OnNewAccountEventHandler?.Invoke(this,NewAccountEnum.AccountAreNull);
+                OnNewAccountEventHandler?.Invoke(this, NewAccountEnum.AccountAreNull);
                 return;
             }
 
@@ -140,7 +141,6 @@ namespace EncryptionSyncFolder.Model
                 await folder.CreateFolderAsync("folder");
                 var file = await folder.CreateFileAsync("account");
                 Write(file, ToString());
-                OnNewAccountEventHandler?.Invoke(this,NewAccountEnum.Success);
                 Folder = new VirtualFolder()
                 {
                     Name = Name,
@@ -148,6 +148,8 @@ namespace EncryptionSyncFolder.Model
                     FolderStorage = folder
                 };
                 AreAccountConfirm = true;
+                //await Read();
+                OnNewAccountEventHandler?.Invoke(this, NewAccountEnum.Success);
             }
             catch (Exception)
             {
@@ -170,16 +172,54 @@ namespace EncryptionSyncFolder.Model
         /// <summary>
         /// 保存用户文件和文件夹
         /// </summary>
-        public void Storage()
+        public async void Storage()
         {
-            
+            JsonSerializer json = JsonSerializer.Create();
+            var file = await Folder.FolderStorage.CreateFileAsync("file1",
+                CreationCollisionOption.ReplaceExisting);
+            using (TextWriter stream = new StreamWriter(await file.OpenStreamForWriteAsync()))
+            {
+                json.Serialize(stream, Folder);
+            }
+
+            try
+            {
+                var last = await Folder.FolderStorage.GetFileAsync("file");
+                await last.MoveAsync(Folder.FolderStorage, "last",
+                    NameCollisionOption.ReplaceExisting);
+            }
+            catch (FileNotFoundException)
+            {
+
+            }
+
+            await file.MoveAsync(Folder.FolderStorage, "file",
+                NameCollisionOption.ReplaceExisting);
+        }
+
+        private async Task Read()
+        {
+            try
+            {
+                var file = await Folder.FolderStorage.GetFileAsync("file");
+                var json = JsonSerializer.Create();
+                var folder = Folder.FolderStorage;
+                Folder = json.Deserialize<VirtualFolder>(
+                     new JsonTextReader(
+                         new StreamReader(await file.OpenStreamForReadAsync())));
+                Folder.FolderStorage = folder;
+            }
+            catch (FileNotFoundException)
+            {
+
+            }
         }
 
         public async void Confirm()
         {
             if (string.IsNullOrEmpty(Name))
             {
-                OnConfirmEventHandler?.Invoke(this,ConfirmEnum.AccountNotExist);
+                OnConfirmEventHandler?.Invoke(this, ConfirmEnum.AccountNotExist);
                 return;
             }
 
@@ -230,8 +270,8 @@ namespace EncryptionSyncFolder.Model
                     Path = "~",
                     FolderStorage = folder
                 };
+                await Read();
                 OnConfirmEventHandler?.Invoke(this, ConfirmEnum.Success);
-              
             }
             catch (FileNotFoundException)
             {

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 using EncryptionSyncFolder.ViewModel;
+using Newtonsoft.Json;
 
 namespace EncryptionSyncFolder.Model
 {
@@ -21,8 +22,8 @@ namespace EncryptionSyncFolder.Model
         {
             VirtualFileFolder = VirtualFileFolderEnum.Folder;
             Bitmap = FolderBitmap;
-            Folder=new List<VirtualFolder>();
-            File=new List<VirtualFile>();
+            Folder = new List<VirtualFolder>();
+            File = new List<VirtualFile>();
         }
 
         private static BitmapImage FolderBitmap
@@ -30,7 +31,7 @@ namespace EncryptionSyncFolder.Model
             set;
             get;
         } = new BitmapImage(new Uri("ms-appx:///Assets/folder_178px_1201076_easyicon.net.png"));
-
+        [JsonIgnore]
         public StorageFolder FolderStorage
         {
             set
@@ -79,11 +80,11 @@ namespace EncryptionSyncFolder.Model
             {
                 if (temp.IsOfType(StorageItemTypes.File))
                 {
-                    
+
                 }
-                else if(temp.IsOfType(StorageItemTypes.Folder))
+                else if (temp.IsOfType(StorageItemTypes.Folder))
                 {
-                    
+
                 }
             }
         }
@@ -91,10 +92,10 @@ namespace EncryptionSyncFolder.Model
         /// <summary>
         /// 新建文件
         /// </summary>
-        public async Task NewFile(VirtualFile file)
+        public void NewFile(VirtualFile file)
         {
             //文件存在
-            string str= ".file";
+            string str = ".file";
             if (!file.Name.EndsWith(str))
             {
                 file.Name += str;
@@ -115,14 +116,29 @@ namespace EncryptionSyncFolder.Model
 
             file.Path = Path + "/" + file.Name;
             file.NewTime = DateTime.Now.ToString(CultureInfo.InvariantCulture);
-            file.File = await FolderStorage.CreateFileAsync(file.Name);
+            //file.File = await FolderStorage.CreateFileAsync(file.Name);
 
             File.Add(file);
         }
-
-        public void NewFolder()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str">文件夹名</param>
+        public void NewFolder(string str)
         {
-
+            //存在
+            string name = str.Trim();
+            if (Folder.Any(temp => temp.Name == str))
+            {
+                throw new Exception("文件夹存在");
+            }
+            VirtualFolder folder=new VirtualFolder()
+            {
+                Name = name,
+                NewTime = DateTime.Now.ToString(CultureInfo.InvariantCulture),
+                Path = Path+"/"+name
+            };
+            Folder.Add(folder);
         }
 
         public void RenameFile()

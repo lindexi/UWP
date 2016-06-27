@@ -10,6 +10,9 @@
     d:DesignWidth="400">
 
     <Grid>
-
+        <StackPanel>
+            <TextBox Margin="10,10,10,10" Header="请输入文件夹名" Text="{x:Bind FolderName,Mode=TwoWay}"></TextBox>
+            <TextBlock Text="{x:Bind Reminder,Mode=OneWay}"></TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>

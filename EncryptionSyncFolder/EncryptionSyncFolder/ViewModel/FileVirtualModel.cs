@@ -71,7 +71,7 @@ namespace EncryptionSyncFolder.ViewModel
 
         public void Delete()
         {
-            
+
         }
 
         /// <summary>
@@ -95,8 +95,6 @@ namespace EncryptionSyncFolder.ViewModel
              });
         }
 
-
-
         /// <summary>
         /// 新建文件
         /// </summary>
@@ -119,9 +117,7 @@ namespace EncryptionSyncFolder.ViewModel
                 SecondaryButtonText = "取消"
             };
 
-
-
-            contentDialog.PrimaryButtonClick += async (sender, e) =>
+            contentDialog.PrimaryButtonClick += (sender, e) =>
             {
                 bool strNull = false;
                 string str = "";
@@ -163,7 +159,7 @@ namespace EncryptionSyncFolder.ViewModel
                 try
                 {
 
-                    await Folder.NewFile(newFile);
+                    Folder.NewFile(newFile);
                     //contentDialog.Hide();
                     ListVirtualStorage();
                     newFileDialog.Complete = true;
@@ -187,9 +183,61 @@ namespace EncryptionSyncFolder.ViewModel
             }
         }
 
-        public void NewFolder()
+        private string AreFolderName(string str)
         {
+            if (string.IsNullOrEmpty(str))
+            {
+                return "文件名为空";
+            }
+            if (!VirtualFile.AreFileName(str))
+            {
+                return "文件名不能存在\\/*:?\"<>|";
+            }
+            return "";
+        }
 
+        public async void NewFolder()
+        {
+            NewFolderDialog newFolderDialog = new NewFolderDialog();
+
+            ContentDialog contentDialog = new ContentDialog()
+            {
+                Content = newFolderDialog,
+                PrimaryButtonText = "确定",
+                SecondaryButtonText = "取消"
+            };
+
+            contentDialog.PrimaryButtonClick += (sender, e) =>
+            {
+                string str = AreFolderName(newFolderDialog.FolderName).Trim();
+                if (!string.IsNullOrEmpty(str))
+                {
+                    newFolderDialog.Reminder = str;
+                }
+                else
+                {
+                    try
+                    {
+                        Folder.NewFolder(newFolderDialog.FolderName);
+                        ListVirtualStorage();
+                        newFolderDialog.Complete = true;
+                    }
+                    catch (Exception)
+                    {
+                        newFolderDialog.Reminder = "文件夹存在";
+                    }
+                }
+            };
+
+            contentDialog.SecondaryButtonClick += (sender, e) =>
+            {
+                newFolderDialog.Complete = true;
+            };
+
+            while (!newFolderDialog.Complete)
+            {
+                await contentDialog.ShowAsync();
+            }
         }
 
         private Account _accountVirtual;

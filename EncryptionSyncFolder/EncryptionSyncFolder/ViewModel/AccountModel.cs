@@ -148,6 +148,7 @@ namespace EncryptionSyncFolder.ViewModel
         public void AccountOut()
         {
             AreAccountConfirm = false;
+            AccountVirtual.Storage();
             AccountVirtual = new Account()
             {
                 OnConfirmEventHandler = OnConfirm,
@@ -186,7 +187,7 @@ namespace EncryptionSyncFolder.ViewModel
         private Visibility _newAccountVisibility;
 
         private string _reminder;
-
+         
         private void OnConfirm(object sender, Account.ConfirmEnum e)
         {
             switch (e)

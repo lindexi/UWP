@@ -54,26 +54,34 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="499*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition ></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <!--当前用户-->
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="10,10,10,10" Text="当前用户"></TextBlock>
-                <TextBlock Margin="10,10,10,10" Text="{x:Bind View.AccountVirtual.Name,Mode=OneWay}"></TextBlock>
-            </StackPanel>
-            <!--目录-->
-            <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <TextBlock Margin="10,10,10,10" Text="目录"></TextBlock>
-                <TextBlock Margin="10,10,10,10" Text="{x:Bind View.Folder.Path,Mode=OneWay}"></TextBlock>
-            </StackPanel>
-            <StackPanel Grid.Column="2" Orientation="Horizontal">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!--当前用户-->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="10,10,10,10" Text="当前用户"></TextBlock>
+                    <TextBlock Margin="10,10,10,10" Text="{x:Bind View.AccountVirtual.Name,Mode=OneWay}"></TextBlock>
+                </StackPanel>
+                <!--目录-->
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Margin="10,10,10,10" Text="目录"></TextBlock>
+                    <TextBlock Margin="10,10,10,10" Text="{x:Bind View.Folder.Path,Mode=OneWay}"></TextBlock>
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Margin="10,10,10,10" Content="打开" Click="{x:Bind View.ToFolder}"></Button>
                 <Button Margin="10,10,10,10" Content="新建文件夹" Click="{x:Bind View.NewFolder}"></Button>
                 <Button Margin="10,10,10,10" Content="新建文件" Click="{x:Bind View.NewFile}"></Button>
                 <Button Margin="10,10,10,10" Content="删除" Click="{x:Bind View.Delete}"></Button>
@@ -94,13 +102,24 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid >
-                            <CheckBox IsChecked="{Binding Path=Check,Mode=TwoWay}" 
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="1" Height="20" Width="20" Source="{Binding Path=Bitmap}"></Image>
+                                <TextBlock Grid.Column="2" Text="{Binding Path=Name}"></TextBlock>
+                                <TextBlock Grid.Column="3" Text="{Binding Path=Size}"></TextBlock>
+                            </Grid>
+                            <!--<CheckBox IsChecked="{Binding Path=Check,Mode=TwoWay}" 
                                       Margin="10,10,10,10"
                                       HorizontalContentAlignment="Stretch"  
                                       HorizontalAlignment="Stretch">
                                 <CheckBox.Content>
-                                    <!--<Button x:Name="Button" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">-->
-                                        <!--<Button.Content>-->
+                                    <Button x:Name="Button" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                                        <Button.Content>
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -112,8 +131,8 @@
                                                 <TextBlock Grid.Column="2" Text="{Binding Path=Name}"></TextBlock>
                                                 <TextBlock Grid.Column="3" Text="{Binding Path=Size}"></TextBlock>
                                             </Grid>
-                                        <!--</Button.Content>-->
-                                        <!--<Button.Flyout>
+                                        </Button.Content>
+                                        <Button.Flyout>
                                             <MenuFlyout Placement="Bottom" >
                                                 
                                                 <MenuFlyoutItem Text="重命名" Click="Rename_OnClick"></MenuFlyoutItem>
@@ -123,9 +142,9 @@
                                             
                                         </Button.Flyout>
                                         
-                                    </Button>-->
+                                    </Button>
                                 </CheckBox.Content>
-                            </CheckBox>
+                            </CheckBox>-->
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

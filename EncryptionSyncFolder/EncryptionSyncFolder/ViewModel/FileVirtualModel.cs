@@ -9,7 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
+using Windows.Data.Xml.Dom;
 using Windows.UI.Core;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using EncryptionSyncFolder.Model;
@@ -81,7 +83,41 @@ namespace EncryptionSyncFolder.ViewModel
         /// </summary>
         public void ToFolder()
         {
+            if (FileFolderVirtualStorage == null)
+            {
+                ToastText("没有选择文件夹");
+                return;
+            }
+            if (!(FileFolderVirtualStorage is VirtualFolder))
+            {
+                ToastText("没有选择文件夹");
+                return;
+            }
+
+            //Folder.ToFolder();
+            Folder=(VirtualFolder) FileFolderVirtualStorage;
+            ListVirtualStorage();
         }
+
+        private Stack<VirtualFolder> BackFolder
+        {
+            set;
+            get;
+        }=new Stack<VirtualFolder>();
+
+
+        private void ToastText(string str)
+        {
+            var toastText = Windows.UI.Notifications.
+                    ToastTemplateType.ToastText01;
+            var content = Windows.UI.Notifications.
+                ToastNotificationManager.GetTemplateContent(toastText);
+            XmlNodeList xml = content.GetElementsByTagName("text");
+            xml[0].AppendChild(content.CreateTextNode(str));
+            ToastNotification toast = new ToastNotification(content);
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
+
 
         public void Rename()
         {

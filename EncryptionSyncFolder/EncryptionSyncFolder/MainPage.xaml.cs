@@ -53,8 +53,6 @@ namespace EncryptionSyncFolder
             FileVirtualFrame.Navigate(typeof(AccountPage),OnAccountConfim);
         }
 
-
-
         /// <summary>
         /// 没有登录
         /// </summary>

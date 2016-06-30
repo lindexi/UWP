@@ -1,5 +1,5 @@
 ﻿// lindexi
-// 16:47
+// 16:46
 
 using System;
 using System.Collections.Generic;
@@ -76,8 +76,6 @@ namespace EncryptionSyncFolder.ViewModel
             }
         }
 
-        private VirtualStorage _fileFolderVirtualStorage;
-
         /// <summary>
         ///     进入文件夹
         /// </summary>
@@ -95,34 +93,27 @@ namespace EncryptionSyncFolder.ViewModel
             }
 
             //Folder.ToFolder();
-            Folder=(VirtualFolder) FileFolderVirtualStorage;
+            BackFolder.Push(Folder);
+            Folder = (VirtualFolder) FileFolderVirtualStorage;
             ListVirtualStorage();
         }
 
-        private Stack<VirtualFolder> BackFolder
+        public void BackVirtualFolder()
         {
-            set;
-            get;
-        }=new Stack<VirtualFolder>();
-
-
-        private void ToastText(string str)
-        {
-            var toastText = Windows.UI.Notifications.
-                    ToastTemplateType.ToastText01;
-            var content = Windows.UI.Notifications.
-                ToastNotificationManager.GetTemplateContent(toastText);
-            XmlNodeList xml = content.GetElementsByTagName("text");
-            xml[0].AppendChild(content.CreateTextNode(str));
-            ToastNotification toast = new ToastNotification(content);
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
+            if (BackFolder.Count == 0)
+            {
+                ToastText("没有进入文件夹");
+                return;
+            }
+            Folder = BackFolder.Pop();
+            ListVirtualStorage();
         }
 
 
         public void Rename()
         {
-            var newFileDialog=new NewFolderDialog();
-            ContentDialog contentDialog=new ContentDialog()
+            var newFileDialog = new NewFolderDialog();
+            ContentDialog contentDialog = new ContentDialog()
             {
                 Title = "重命名",
                 Content = newFileDialog,
@@ -131,9 +122,7 @@ namespace EncryptionSyncFolder.ViewModel
             };
             if (FileFolderVirtualStorage == null)
             {
-                
             }
-            
         }
 
         public void Delete()
@@ -159,30 +148,6 @@ namespace EncryptionSyncFolder.ViewModel
                         FileFolder.Add(temp);
                     }
                 });
-        }
-
-        private string AreFileName(NewFileDialog newFileDialog)
-        {
-            string str = "";
-            int size;
-            if (string.IsNullOrEmpty(newFileDialog.FileName))
-            {
-                str = "文件名为空";
-            }
-            else if (!VirtualFile.AreFileName(newFileDialog.FileName))
-            {
-                str = "文件名不能存在\\/*:?\"<>|";
-            }
-            else if (string.IsNullOrEmpty(newFileDialog.Size))
-            {
-                str = "文件大小为空";
-            }
-            else if (!int.TryParse(newFileDialog.Size, out size))
-            {
-                newFileDialog.Size = "";
-                str = "输入文件大小不是数字";
-            }
-            return str;
         }
 
         /// <summary>
@@ -292,7 +257,49 @@ namespace EncryptionSyncFolder.ViewModel
         }
 
         private Account _accountVirtual;
+
+        private VirtualStorage _fileFolderVirtualStorage;
         private VirtualFolder _folder;
+
+        private Stack<VirtualFolder> BackFolder
+        {
+            set;
+            get;
+        } = new Stack<VirtualFolder>();
+
+        private void ToastText(string str)
+        {
+            var toastText = ToastTemplateType.ToastText01;
+            var content = ToastNotificationManager.GetTemplateContent(toastText);
+            XmlNodeList xml = content.GetElementsByTagName("text");
+            xml[0].AppendChild(content.CreateTextNode(str));
+            ToastNotification toast = new ToastNotification(content);
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
+
+        private string AreFileName(NewFileDialog newFileDialog)
+        {
+            string str = "";
+            int size;
+            if (string.IsNullOrEmpty(newFileDialog.FileName))
+            {
+                str = "文件名为空";
+            }
+            else if (!VirtualFile.AreFileName(newFileDialog.FileName))
+            {
+                str = "文件名不能存在\\/*:?\"<>|";
+            }
+            else if (string.IsNullOrEmpty(newFileDialog.Size))
+            {
+                str = "文件大小为空";
+            }
+            else if (!int.TryParse(newFileDialog.Size, out size))
+            {
+                newFileDialog.Size = "";
+                str = "输入文件大小不是数字";
+            }
+            return str;
+        }
 
         private string AreFolderName(string str)
         {

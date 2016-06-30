@@ -1,5 +1,5 @@
 ﻿// lindexi
-// 16:46
+// 17:02
 
 using System;
 using System.Collections.Generic;
@@ -76,6 +76,11 @@ namespace EncryptionSyncFolder.ViewModel
             }
         }
 
+        //public void WriteFile()
+        //{
+            
+        //}
+
         /// <summary>
         ///     进入文件夹
         /// </summary>
@@ -120,13 +125,20 @@ namespace EncryptionSyncFolder.ViewModel
                 PrimaryButtonText = "确定",
                 SecondaryButtonText = "取消"
             };
-            if (FileFolderVirtualStorage == null)
-            {
-            }
+           
         }
 
         public void Delete()
         {
+            if (FileFolderVirtualStorage is VirtualFile)
+            {
+                Folder.File.Remove(FileFolderVirtualStorage as VirtualFile);
+            }
+            if (FileFolderVirtualStorage is VirtualFolder)
+            {
+                Folder.Folder.Remove(FileFolderVirtualStorage as VirtualFolder);
+            }
+            ListVirtualStorage();
         }
 
         /// <summary>

@@ -86,6 +86,7 @@
                 <Button Margin="10,10,10,10" Content="新建文件夹" Click="{x:Bind View.NewFolder}"></Button>
                 <Button Margin="10,10,10,10" Content="新建文件" Click="{x:Bind View.NewFile}"></Button>
                 <Button Margin="10,10,10,10" Content="删除" Click="{x:Bind View.Delete}"></Button>
+                <!--<Button Margin="10,10,10,10" Content="读写" Click="{x:Bind View.WriteFile}"></Button>-->
                 <Button Margin="10,10,10,10" Content="刷新" ></Button>
             </StackPanel>
         </Grid>
@@ -118,7 +119,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </Grid>
     </Grid>
 </Page>

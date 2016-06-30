@@ -28,14 +28,14 @@ namespace EncryptionSyncFolder
         {
             this.InitializeComponent();
 
-            //debug
-            Account.AccountVirtual = new Account()
-            {
-                Name = "root",
-                Key = "root"
-            };
-            Account.AccountVirtual.Confirm();
-            //end
+            ////debug
+            //Account.AccountVirtual = new Account()
+            //{
+            //    Name = "root",
+            //    Key = "root"
+            //};
+            //Account.AccountVirtual.Confirm();
+            ////end
 
             OnAccountConfim = () =>
             {

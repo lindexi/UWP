@@ -46,8 +46,9 @@ namespace EncryptionSyncFolder
             {
                 Account_OnClick(this,null);
             };
-        }
 
+            FileVirtualFrame.Navigate(typeof(EncryptionFolderPage));
+        }
         private void Account_OnClick(object sender, RoutedEventArgs e)
         {
             FileVirtualFrame.Navigate(typeof(AccountPage),OnAccountConfim);

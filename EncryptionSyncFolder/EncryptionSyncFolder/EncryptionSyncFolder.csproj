@@ -109,6 +109,9 @@
     <Compile Include="View\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EncryptionFolderPage.xaml.cs">
+      <DependentUpon>EncryptionFolderPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\FileVirtualPage.xaml.cs">
       <DependentUpon>FileVirtualPage.xaml</DependentUpon>
     </Compile>
@@ -150,6 +153,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EncryptionFolderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

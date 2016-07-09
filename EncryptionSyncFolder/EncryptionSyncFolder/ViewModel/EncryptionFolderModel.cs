@@ -10,7 +10,12 @@ namespace EncryptionSyncFolder.ViewModel
     {
         public EncryptionFolderModel()
         {
-
+            Account = Model.Account.AccountVirtual;
+        }
+        public Model.Account Account
+        {
+            set;
+            get;
         }
     }
 }

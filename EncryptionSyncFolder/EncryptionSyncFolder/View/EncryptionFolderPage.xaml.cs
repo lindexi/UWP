@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EncryptionSyncFolder.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,7 +25,13 @@ namespace EncryptionSyncFolder.View
     {
         public EncryptionFolderPage()
         {
+            View = new EncryptionFolderModel();
             this.InitializeComponent();
+        }
+        private EncryptionFolderModel View
+        {
+            set;
+            get;
         }
     }
 }

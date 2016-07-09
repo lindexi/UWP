@@ -43,22 +43,6 @@
                             </Button.Content>
                         </Button>
                     </StackPanel>
-                    <!--<ListView >
-                        <ListViewItem >
-                            <ListViewItem.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="10,10,10,10" FontFamily="Segoe MDL2 Assets"
-                                         Text="&#xE77B;"></TextBlock>
-                                    <TextBlock Margin="10,10,10,10" Text="登录"></TextBlock>
-                                </StackPanel>
-                            </ListViewItem.Content>
-                        </ListViewItem>
-                        <ListViewItem>
-                            <ListViewItem.Content>
-                                <view:SplitViewItem IconString="&#xE8A5;" Text="文件"></view:SplitViewItem>
-                            </ListViewItem.Content>
-                        </ListViewItem>
-                    </ListView>-->
                     <ListView Grid.Row="1">
                         <ListViewItem>
                             <ListViewItem.Content>

@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Data.Xml.Dom;
+using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
+using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
@@ -78,7 +81,7 @@ namespace EncryptionSyncFolder.ViewModel
 
         //public void WriteFile()
         //{
-            
+
         //}
 
         /// <summary>
@@ -99,7 +102,7 @@ namespace EncryptionSyncFolder.ViewModel
 
             //Folder.ToFolder();
             BackFolder.Push(Folder);
-            Folder = (VirtualFolder) FileFolderVirtualStorage;
+            Folder = (VirtualFolder)FileFolderVirtualStorage;
             ListVirtualStorage();
         }
 
@@ -114,9 +117,38 @@ namespace EncryptionSyncFolder.ViewModel
             ListVirtualStorage();
         }
 
+        public void Des()
+        {
+            //测试
+            //md5
+            //string str = "lindexi";
+            //str = Cryptography.Md5ToBase64String(str);
+            //    //+"\r\n"+
+            ////    cryptography.Md5ToHexString(str);
+            //str = "md5\r\n" + str;
+            //ToastText(str);
+
+            //str = "lindexi";
+            //str = "md5\r\n" + Cryptography.Md5ToHexString(str);
+            //ToastText(str);
+
+            //des
+            string str = "lindexi";
+            string key = "qq123456";
+            string plaintext = Cryptography.DesEncryption(key, str);
+            plaintext = Cryptography.DesDecryption(key, plaintext);
+            if (str == plaintext)
+            {
+                ToastText("密文和明文相同");
+            }
+        }
 
         public void Rename()
         {
+            if (FileFolderVirtualStorage == null)
+            {
+                return;
+            }
             var newFileDialog = new NewFolderDialog();
             ContentDialog contentDialog = new ContentDialog()
             {
@@ -125,7 +157,7 @@ namespace EncryptionSyncFolder.ViewModel
                 PrimaryButtonText = "确定",
                 SecondaryButtonText = "取消"
             };
-           
+
         }
 
         public void Delete()
@@ -327,23 +359,106 @@ namespace EncryptionSyncFolder.ViewModel
         }
     }
 
-    public class NewContentDialog : ContentDialog
+    //public class NewContentDialog : ContentDialog
+    //{
+    //    public NewContentDialog()
+    //    {
+    //        Closing += (sender, e) =>
+    //        {
+    //            e.Cancel = !Complete;
+    //        };
+    //    }
+
+    //    /// <summary>
+    //    ///     对话完成，如果没有完成会继续显示
+    //    /// </summary>
+    //    public bool Complete
+    //    {
+    //        set;
+    //        get;
+    //    }
+    //}
+
+    public static class Cryptography
     {
-        public NewContentDialog()
+        /// <summary>
+        /// des加密
+        /// </summary>
+        /// <param name="key">密码</param>
+        /// <param name="plaintext">明文</param>
+        /// <returns></returns>
+        public static string DesEncryption(string key, string plaintext)
         {
-            Closing += (sender, e) =>
-            {
-                e.Cancel = !Complete;
-            };
+            SymmetricKeyAlgorithmProvider des = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithmNames.DesEcbPkcs7);
+            IBuffer keyMaterial = CryptographicBuffer.ConvertStringToBinary(key, BinaryStringEncoding.Utf8);
+            CryptographicKey symmetricKey = des.CreateSymmetricKey(keyMaterial);
+
+            IBuffer plainBuffer = CryptographicBuffer.ConvertStringToBinary(plaintext, BinaryStringEncoding.Utf8);
+
+            IBuffer cipherBuffer = CryptographicEngine.Encrypt(symmetricKey, plainBuffer, null);
+            return CryptographicBuffer.EncodeToHexString(cipherBuffer);
+        }
+        /// <summary>
+        /// des解密
+        /// </summary>
+        /// <param name="key">密码</param>
+        /// <param name="ciphertext">密文</param>
+        /// <returns></returns>
+        public static string DesDecryption(string key, string ciphertext)
+        {
+            SymmetricKeyAlgorithmProvider des = SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithmNames.DesEcbPkcs7);
+            IBuffer keyMaterial = CryptographicBuffer.ConvertStringToBinary(key, BinaryStringEncoding.Utf8);
+            CryptographicKey symmetricKey = des.CreateSymmetricKey(keyMaterial);
+
+            IBuffer cipherBuffer = CryptographicBuffer.DecodeFromHexString(ciphertext);
+
+            IBuffer plainBuffer = CryptographicEngine.Decrypt(symmetricKey, cipherBuffer, null);
+            return CryptographicBuffer.ConvertBinaryToString(BinaryStringEncoding.Utf8, plainBuffer);
+        }
+
+        public static string Md5ToBase64String(string str)
+        {
+            IBuffer buffer = Md5(str);
+            return EncodeToBase64String(buffer);
         }
 
         /// <summary>
-        ///     对话完成，如果没有完成会继续显示
+        /// Md5
         /// </summary>
-        public bool Complete
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string Md5ToHexString(string str)
         {
-            set;
-            get;
+            IBuffer buffer = Md5(str);
+            return EncodeToHexString(buffer);
         }
+
+        private static IBuffer Md5(string str)
+        {
+            IBuffer buffer =
+                CryptographicBuffer.ConvertStringToBinary(str,
+                    BinaryStringEncoding.Utf8);
+            return Md5(buffer);
+        }
+
+        private static IBuffer Md5(IBuffer buffer)
+        {
+            HashAlgorithmProvider md5 =
+                HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5);
+            return md5.HashData(buffer);
+        }
+
+        private static string EncodeToHexString(IBuffer buffer)
+        {
+            return CryptographicBuffer.EncodeToHexString(buffer);
+        }
+
+
+        private static string EncodeToBase64String(IBuffer buffer)
+        {
+            return CryptographicBuffer.EncodeToBase64String(buffer);
+        }
+
+
     }
 }

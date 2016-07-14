@@ -1,0 +1,95 @@
+﻿<Page
+    x:Class="EncryptionSyncFolder.View.EncryptionFolderPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EncryptionSyncFolder.View"
+    xmlns:view="using:EncryptionSyncFolder.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                        Background="{x:Null}" 
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch">
+                    <Button.Content>
+                        <Grid>
+                            <Viewbox>
+                                <Grid>
+                                    <Rectangle Fill="Gray" RadiusX="20" RadiusY="20">
+
+                                    </Rectangle>
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--<TextBlock Text="同步"/>-->
+                                        <view:SplitViewItem IconString="&#xE895;" Text="同步"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Viewbox>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    Background="{x:Null}">
+                    <Button.Content>
+                        <!--<TextBlock Text="新建"/>-->
+                        <view:SplitViewItem HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IconString="&#xE710;"/>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="0" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Button.Content>
+                        <!--<view:SplitViewItem/>-->
+                        <!--<Image Source="ms-appx:///Assets/list_bullets_black_64px_1098928_easyicon.net.png"/>-->
+                        <!--<TextBlock Text="列表"/>-->
+                        <Grid>
+                            <view:SplitViewItem IconString="&#xE700;"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        </Grid>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="0"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        Background="{x:Null}" >
+                    <Button.Content>
+                        <view:SplitViewItem IconString="&#xE77B;"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <!--<TextBlock Text="打开"/>-->
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="1"
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch">
+                    <Button.Content>
+                        <!--<Image Source="ms-appx:///Assets/Folder_open_246px_1198271_easyicon.net.png"
+                               HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
+                        <Grid>
+                            <view:SplitViewItem IconString="&#xE8B7;"
+                                            HorizontalAlignment="Stretch" 
+                                            VerticalAlignment="Stretch"/>
+                        </Grid>
+                        <!--<TextBlock Text=""></TextBlock>-->
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

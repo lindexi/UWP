@@ -1,7 +1,4 @@
-﻿// lindexi
-// 15:45
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,7 +20,7 @@ using EncryptionSyncFolder.View;
 namespace EncryptionSyncFolder
 {
     /// <summary>
-    ///     可用于自身或导航至 Frame 内部的空白页。
+    /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
     public sealed partial class MainPage : Page
     {
@@ -47,12 +44,18 @@ namespace EncryptionSyncFolder
 
             OnNotAccount = () =>
             {
-                Account_OnClick(this, null);
+                Account_OnClick(this,null);
             };
+
+            FileVirtualFrame.Navigate(typeof(EncryptionFolderPage));
+        }
+        private void Account_OnClick(object sender, RoutedEventArgs e)
+        {
+            FileVirtualFrame.Navigate(typeof(AccountPage),OnAccountConfim);
         }
 
         /// <summary>
-        ///     没有登录
+        /// 没有登录
         /// </summary>
         private Action OnNotAccount
         {
@@ -66,14 +69,9 @@ namespace EncryptionSyncFolder
             get;
         }
 
-        private void Account_OnClick(object sender, RoutedEventArgs e)
-        {
-            FileVirtualFrame.Navigate(typeof(AccountPage), OnAccountConfim);
-        }
-
         private void FileVirtual_OnClick(object sender, RoutedEventArgs e)
         {
-            FileVirtualFrame.Navigate(typeof(FileVirtualPage), OnNotAccount);
+            FileVirtualFrame.Navigate(typeof(FileVirtualPage),OnNotAccount);
         }
-    }
+    }  
 }

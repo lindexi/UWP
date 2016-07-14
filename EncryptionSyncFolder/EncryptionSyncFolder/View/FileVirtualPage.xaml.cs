@@ -1,7 +1,4 @@
-﻿// lindexi
-// 15:58
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -30,7 +27,7 @@ using XmlNodeList = Windows.Data.Xml.Dom.XmlNodeList;
 namespace EncryptionSyncFolder.View
 {
     /// <summary>
-    ///     可用于自身或导航至 Frame 内部的空白页。
+    /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
     public sealed partial class FileVirtualPage : Page
     {
@@ -39,6 +36,12 @@ namespace EncryptionSyncFolder.View
             this.InitializeComponent();
             DataContext = View;
         }
+
+        private FileVirtualModel View
+        {
+            set;
+            get;
+        }=new FileVirtualModel();
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -49,10 +52,10 @@ namespace EncryptionSyncFolder.View
                 new Task(async () =>
                 {
                     await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                        () =>
-                        {
-                            onNotAccount?.Invoke();
-                        });
+                () =>
+                {
+                    onNotAccount?.Invoke();
+                });
                 }).Start();
 
                 //提示
@@ -61,16 +64,12 @@ namespace EncryptionSyncFolder.View
             base.OnNavigatedTo(e);
         }
 
-        private FileVirtualModel View
-        {
-            set;
-            get;
-        } = new FileVirtualModel();
-
         private void ToastText(string str)
         {
-            var toastText = ToastTemplateType.ToastText01;
-            var content = ToastNotificationManager.GetTemplateContent(toastText);
+            var toastText = Windows.UI.Notifications.
+                    ToastTemplateType.ToastText01;
+            var content = Windows.UI.Notifications.
+                ToastNotificationManager.GetTemplateContent(toastText);
             XmlNodeList xml = content.GetElementsByTagName("text");
             xml[0].AppendChild(content.CreateTextNode(str));
             ToastNotification toast = new ToastNotification(content);

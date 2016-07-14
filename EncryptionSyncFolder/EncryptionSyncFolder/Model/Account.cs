@@ -14,6 +14,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using EncryptionSyncFolder.ViewModel;
 using Newtonsoft.Json;
+using Windows.Security.Credentials;
 
 namespace EncryptionSyncFolder.Model
 {
@@ -21,6 +22,63 @@ namespace EncryptionSyncFolder.Model
     {
         public Account()
         {
+            //用户凭据
+
+        }
+
+        /// <summary>
+        /// 从凭据保险箱拿到用户密码
+        /// </summary>
+        private async void AccountCredential()
+        {
+            PasswordVault passwordVault =
+                new PasswordVault();
+            var credential = passwordVault.RetrieveAll();
+            var folder = Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList;
+            foreach (var temp in credential)
+            {
+                var account = new Account();
+
+                try
+                {
+                    account.Key = passwordVault.Retrieve(temp.Resource, temp.UserName).Password;
+                }
+                catch
+                {
+
+                }
+                try
+                {
+                    account.OriginFolder = new VirtualFolder()
+                    {
+                        FolderStorage = await folder.GetFolderAsync(temp.Resource)
+                    };
+                }
+                catch (System.ArgumentException)
+                {
+
+
+                }
+
+                try
+                {
+                    account.Folder = new VirtualFolder()
+                    {
+                        FolderStorage =
+                        await folder.GetFolderAsync(temp.UserName)
+                    };
+                }
+                catch (System.ArgumentException)
+                {
+
+
+                }
+                if (account.Folder != null &&
+                    account.OriginFolder != null)
+                {
+                    FileVirtualAccount.Add(account);
+                }
+            }
         }
 
         /// <summary>
@@ -113,7 +171,13 @@ namespace EncryptionSyncFolder.Model
             }
             get
             {
-                return _accountVirtual ?? (_accountVirtual = new Account());
+                if (_accountVirtual == null)
+                {
+                    _accountVirtual = new Account();
+                    _accountVirtual.AccountCredential();
+                }
+
+                return _accountVirtual;
             }
         }
 
@@ -183,28 +247,29 @@ namespace EncryptionSyncFolder.Model
         /// <summary>
         ///     保存用户文件和文件夹
         /// </summary>
-        public async void Storage()
+        public void Storage()
         {
-            JsonSerializer json = JsonSerializer.Create();
-            var file = await Folder.FolderStorage.CreateFileAsync("file1",
-                CreationCollisionOption.ReplaceExisting);
-            using (TextWriter stream = new StreamWriter(await file.OpenStreamForWriteAsync()))
-            {
-                json.Serialize(stream, Folder);
-            }
 
-            try
-            {
-                var last = await Folder.FolderStorage.GetFileAsync("file");
-                await last.MoveAsync(Folder.FolderStorage, "last",
-                    NameCollisionOption.ReplaceExisting);
-            }
-            catch (FileNotFoundException)
-            {
-            }
+            //JsonSerializer json = JsonSerializer.Create();
+            //var file = await Folder.FolderStorage.CreateFileAsync("file1",
+            //    CreationCollisionOption.ReplaceExisting);
+            //using (TextWriter stream = new StreamWriter(await file.OpenStreamForWriteAsync()))
+            //{
+            //    json.Serialize(stream, Folder);
+            //}
 
-            await file.MoveAsync(Folder.FolderStorage, "file",
-                NameCollisionOption.ReplaceExisting);
+            //try
+            //{
+            //    var last = await Folder.FolderStorage.GetFileAsync("file");
+            //    await last.MoveAsync(Folder.FolderStorage, "last",
+            //        NameCollisionOption.ReplaceExisting);
+            //}
+            //catch (FileNotFoundException)
+            //{
+            //}
+
+            //await file.MoveAsync(Folder.FolderStorage, "file",
+            //    NameCollisionOption.ReplaceExisting);
         }
 
         public async void Confirm()
@@ -282,6 +347,21 @@ namespace EncryptionSyncFolder.Model
         private bool _areAccountConfirm;
 
         private VirtualFolder _folder;
+
+        private VirtualFolder _originFolder;
+
+        public VirtualFolder OriginFolder
+        {
+            set
+            {
+                _originFolder = value;
+                OnPropertyChanged();
+            }
+            get
+            {
+                return _originFolder;
+            }
+        }
 
         private string _key;
 

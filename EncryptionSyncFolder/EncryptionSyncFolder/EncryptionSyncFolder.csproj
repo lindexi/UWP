@@ -104,10 +104,14 @@
     <Compile Include="Model\VirtualStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AccountModel.cs" />
+    <Compile Include="ViewModel\EncryptionFolderModel.cs" />
     <Compile Include="ViewModel\FileVirtualModel.cs" />
     <Compile Include="ViewModel\NotifyProperty.cs" />
     <Compile Include="View\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EncryptionFolderPage.xaml.cs">
+      <DependentUpon>EncryptionFolderPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\FileVirtualPage.xaml.cs">
       <DependentUpon>FileVirtualPage.xaml</DependentUpon>
@@ -131,6 +135,8 @@
   <ItemGroup>
     <Content Include="Assets\file_140px_1201060_easyicon.net.png" />
     <Content Include="Assets\folder_178px_1201076_easyicon.net.png" />
+    <Content Include="Assets\Folder_open_246px_1198271_easyicon.net.png" />
+    <Content Include="Assets\list_bullets_black_64px_1098928_easyicon.net.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -150,6 +156,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EncryptionFolderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

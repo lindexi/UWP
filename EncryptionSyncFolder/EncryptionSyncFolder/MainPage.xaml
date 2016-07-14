@@ -21,7 +21,7 @@
             </ToggleButton>
         </Grid> 
         <SplitView Grid.Row="1" IsPaneOpen="{Binding ElementName=SplitToggleButton,Path=IsChecked,Mode=TwoWay}"
-                   DisplayMode="CompactOverlay" OpenPaneLength="100"
+                   DisplayMode="Overlay" OpenPaneLength="100"
                     CompactPaneLength="50" >
             <SplitView.Pane>
                 <Grid>

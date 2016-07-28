@@ -30,10 +30,11 @@ namespace NightDayThemeToggleButton
 
         private ViewModel.ViewModel View { set; get; }
 
-        private void ToggleSwitch_OnToggled(object sender, RoutedEventArgs e)
-        {
-            View.Theme = View.Theme == ElementTheme.Light ? ElementTheme.Dark :
-                ElementTheme.Light;
-        }
+        //private void ToggleSwitch_OnToggled(object sender, RoutedEventArgs e)
+        //{
+        //    View.Theme = View.Theme == ElementTheme.Light ? ElementTheme.Dark :
+        //       ElementTheme.Light; 
+        //}
+        
     }
 }

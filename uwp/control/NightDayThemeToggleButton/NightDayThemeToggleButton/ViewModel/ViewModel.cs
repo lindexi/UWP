@@ -26,6 +26,21 @@ namespace NightDayThemeToggleButton.ViewModel
             }
         }
 
+        public bool? AreChecked
+        {
+            set
+            {
+                _areChecked = value;
+                Theme = value == false ? ElementTheme.Light : ElementTheme.Dark;
+                OnPropertyChanged();
+            }
+            get
+            {
+                return _areChecked;
+            }
+        }
+        private bool? _areChecked = true;
+
         private ElementTheme _theme = ElementTheme.Light;
     }
 }

@@ -19,7 +19,8 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Background="{ThemeResource SystemBackgroundAltHighBrush}"> 
-           <ToggleSwitch HorizontalAlignment="Center" Toggled="ToggleSwitch_OnToggled"></ToggleSwitch>
+           <!--<ToggleSwitch HorizontalAlignment="Center" Toggled="ToggleSwitch_OnToggled"></ToggleSwitch>-->
+            <local:NightDayThemeToggleButton AreChecked="{x:Bind View.AreChecked,Mode=TwoWay}"></local:NightDayThemeToggleButton>
        </Grid>
     </Grid>
 </Page>

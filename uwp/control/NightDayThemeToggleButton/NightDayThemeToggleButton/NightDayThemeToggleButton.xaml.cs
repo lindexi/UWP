@@ -23,5 +23,20 @@ namespace NightDayThemeToggleButton
         {
             this.InitializeComponent();
         }
+
+        public static readonly DependencyProperty AreCheckedProperty = DependencyProperty.Register(
+            "AreChecked", typeof(bool?), typeof(NightDayThemeToggleButton), new PropertyMetadata(default(Nullable<bool>)));
+
+        public bool? AreChecked
+        {
+            get
+            {
+                return (bool?) GetValue(AreCheckedProperty);
+            }
+            set
+            {
+                SetValue(AreCheckedProperty, value);
+            }
+        }
     }
 }

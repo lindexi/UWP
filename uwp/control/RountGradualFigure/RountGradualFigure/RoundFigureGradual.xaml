@@ -1,0 +1,26 @@
+﻿<UserControl
+    x:Class="RountGradualFigure.RoundFigureGradual"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RountGradualFigure"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <x:Double x:Key="Height"> 200 </x:Double>
+        <local:IntBrushConverter x:Name="IntBrushConverter"></local:IntBrushConverter>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid Width="{StaticResource Height}" Height="{StaticResource Height}">
+            <Ellipse Fill="{x:Bind N,Converter={StaticResource IntBrushConverter},Mode=OneWay}"></Ellipse>
+            <Viewbox
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <TextBlock Margin="1,1,1,1" Text="{x:Bind N,Mode=OneWay}"></TextBlock>
+            </Viewbox>
+        </Grid>
+    </Grid>
+</UserControl>

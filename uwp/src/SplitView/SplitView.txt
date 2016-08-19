@@ -1,0 +1,27 @@
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <ToggleButton x:Name="SplitToggleButton" >
+                    <ToggleButton.Content>
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE700;"></TextBlock>
+                    </ToggleButton.Content>
+                </ToggleButton>
+            </Grid>
+            <SplitView Grid.Row="1" IsPaneOpen="{Binding ElementName=SplitToggleButton,Path=IsChecked,Mode=TwoWay}"
+                   DisplayMode="CompactOverlay" OpenPaneLength="100"
+                    CompactPaneLength="50" >
+                <SplitView.Pane>
+                    <Grid>
+
+                    </Grid>
+                </SplitView.Pane>
+                <SplitView.Content>
+                    <Grid>
+                        <Frame ></Frame>
+                    </Grid>
+                </SplitView.Content>
+            </SplitView>
+        </Grid>

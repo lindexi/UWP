@@ -301,6 +301,8 @@ NightDayThemeToggleButton
 
 上面用到两张图片，一张是白天，一张是夜晚
 
+![](NightDayThemeToggleButton/Assets/NightDayThemeToggleButton.gif)
+
 首先我们是编辑副本，不知道这个在哪的可以去看我的入门http://blog.csdn.net/lindexi_gd/article/details/52041944，里面有很多连接
 
 然后我们可以看到

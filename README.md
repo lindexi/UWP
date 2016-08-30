@@ -11,6 +11,8 @@
 
  - [白天黑夜按钮](uwp/control/NightDayThemeToggleButton)
 
+ ![](uwp/control/NightDayThemeToggleButton/NightDayThemeToggleButton/Assets/NightDayThemeToggleButton.gif)
+
  - [进度条](uwp/control/Progress)
 
  - [变大数字颜色按钮](uwp/control/RountGradualFigure)
@@ -35,6 +37,9 @@
    
    汉堡菜单
 
+ - [ViewModel](uwp/src/ViewModel)
+
+ - 隐私策略
 
 #English
 

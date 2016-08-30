@@ -15,7 +15,11 @@
 
  - [进度条](uwp/control/Progress)
 
+ ![](http://img.blog.csdn.net/20160815151046014)
+
  - [变大数字颜色按钮](uwp/control/RountGradualFigure)
+
+ ![](uwp/control/RountGradualFigure/RountGradualFigure/Assets/RountGradual.gif)
 
 ### 图
 

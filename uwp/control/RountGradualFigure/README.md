@@ -29,6 +29,8 @@
         <local:RoundFigureGradual N="{x:Bind N,Mode=OneWay}"></local:RoundFigureGradual>
 ```
 
+![](RountGradualFigure/Assets/RountGradual.gif)
+
 转换的代码
 
 

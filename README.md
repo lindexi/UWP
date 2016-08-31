@@ -47,6 +47,7 @@
 
 #English
 
-Some control and usually code
+Some controls and common codes
+
 
 

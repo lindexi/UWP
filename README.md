@@ -45,6 +45,8 @@
 
  - 隐私策略
 
+ - [径向规](uwp/src/RadialGauge)
+
 #English
 
 Some controls and common codes

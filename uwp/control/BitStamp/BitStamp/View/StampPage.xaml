@@ -1,0 +1,78 @@
+﻿<UserControl
+    x:Class="BitStamp.View.StampPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BitStamp.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+   <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Width="10" Height="10"
+            VerticalScrollBarVisibility="Visible"
+                      HorizontalScrollBarVisibility="Visible">
+                <Grid x:Name="Stamp">
+                    <Image x:Name="image" HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="10,10,10,10" />
+                    <TextBlock Text="{x:Bind View.Str,Mode=OneWay}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" >
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="Black"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                </Grid>
+            </ScrollViewer>
+            <Grid Grid.Row="0" AllowDrop="True"
+              DragOver="Grid_OnDragOver"
+              Drop="Grid_Drop">
+                <Image Source="{x:Bind View.Image,Mode=OneWay}"></Image>
+            </Grid>
+
+            <StackPanel Grid.Row="1">
+                <TextBox Margin="10,10,10,10" Header="水印"
+                     Text="{x:Bind View.Str,Mode=TwoWay}"
+                     PlaceholderText="可以粘贴图片"
+                     TextWrapping="Wrap"
+                     Paste="TextBox_Clipboard"></TextBox>
+                <Grid>
+                    <Button Margin="10,10,10,10"
+                        Content="选图片" 
+                        Click="ImageStorage_OnClick" />
+                    <Button Margin="100,10,10,10"
+                        Content="上传" 
+                        Click="Storage_OnClick" />
+                    <TextBlock Margin="200,10,10,10"
+                           Text="{x:Bind View.Address,Mode=OneWay}"></TextBlock>
+                </Grid>
+            </StackPanel>
+            <Grid Grid.Row="2">
+                <TextBox Margin="10,10,100,10"
+                     Text="{x:Bind View.LinkReminder,Mode=OneWay}"></TextBox>
+                <Button Margin="10,10,10,10"
+                    Content="复制"
+                    HorizontalAlignment="Right"
+                    Click="StrClipboard"></Button>
+            </Grid>
+        </Grid>
+       
+       <ProgressRing Margin="10,10,10,10"
+                     IsActive="True"
+                     Visibility="{x:Bind View.Visibility,Mode=OneWay}"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Stretch"></ProgressRing>
+    </Grid>
+</UserControl>

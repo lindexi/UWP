@@ -1,4 +1,26 @@
-        <Grid>
+﻿<Page.Resources>
+  <x:Double x:Key="SplitWidth">38</x:Double>
+
+  <Style x:Key="SplitStackPanel" TargetType="StackPanel">
+    <Setter Property="Orientation" Value="Horizontal" />
+    <Setter Property="Margin" Value="0,0,0,0" />
+  </Style>
+
+  <Style x:Key="SplitFe" TargetType="TextBlock">
+    <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+    <Setter Property="Width" Value="{StaticResource SplitWidth}" />
+  </Style>
+
+  <Style x:Key="SplitButton" TargetType="Button">
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+  </Style>
+
+</Page.Resources>    
+
+
+
+      <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="15*"/>
@@ -15,7 +37,32 @@
                     CompactPaneLength="50" >
                 <SplitView.Pane>
                     <Grid>
+                      <StackPanel>
+                        <Button Style="{StaticResource SplitButton}">
+                          <Button.Content>
+                            <Grid>
+                              <StackPanel Style="{StaticResource SplitStackPanel}">
+                                <TextBlock Style="{StaticResource SplitFe}"
+                                           Text="&#xE224;" />
+                                <TextBlock Text="极客头条" />
+                              </StackPanel>
+                            </Grid>
+                          </Button.Content>
+                        </Button>
 
+                      
+                      </StackPanel>
+                      <StackPanel VerticalAlignment="Bottom">
+                           <Button Style="{StaticResource SplitButton}">
+                                <Button.Content>
+                                    <StackPanel Style="{StaticResource SplitStackPanel}">
+                                       <TextBlock Style="{StaticResource SplitFe}"
+                                                  Text="&#xE783;"></TextBlock>
+                                        <TextBlock Text="信息"></TextBlock>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                      </StackPanel>
                     </Grid>
                 </SplitView.Pane>
                 <SplitView.Content>

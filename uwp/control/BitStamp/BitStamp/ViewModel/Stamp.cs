@@ -15,7 +15,10 @@ namespace BitStamp.ViewModel
         public Stamp()
         {
             Image = new BitmapImage(new Uri("ms-appx:///assets/QQ截图20160926151822.png"));
+#if DEBUG
             Str = "blog.csdn.net/lindexi_gd";
+#endif
+
             Visibility = Visibility.Collapsed;
         }
 
@@ -124,5 +127,14 @@ namespace BitStamp.ViewModel
         private string _str;
 
         private Visibility _visibility;
+    }
+
+    public class Account
+    {
+        public Account()
+        {
+
+        }
+
     }
 }

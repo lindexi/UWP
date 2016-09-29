@@ -11,7 +11,6 @@ namespace BitStamp.Model
         {
         }
 
-        //private List<UploadImageTask> _uploadImageTask;
         public JyUploadImage(StorageFile file)
             : base(file)
         {

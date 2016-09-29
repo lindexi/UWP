@@ -8,8 +8,12 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-
-   <Grid>
+    <UserControl.Resources>
+        <Style x:Key="SplitFe" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="33*" />
@@ -39,7 +43,7 @@
             <Grid Grid.Row="0" AllowDrop="True"
               DragOver="Grid_OnDragOver"
               Drop="Grid_Drop">
-                <Image Source="{x:Bind View.Image,Mode=OneWay}"></Image>
+                <Image Source="{x:Bind View.Image,Mode=OneWay}" />
             </Grid>
 
             <StackPanel Grid.Row="1">
@@ -47,32 +51,58 @@
                      Text="{x:Bind View.Str,Mode=TwoWay}"
                      PlaceholderText="可以粘贴图片"
                      TextWrapping="Wrap"
-                     Paste="TextBox_Clipboard"></TextBox>
+                     Paste="TextBox_Clipboard" />
                 <Grid>
                     <Button Margin="10,10,10,10"
-                        Content="选图片" 
-                        Click="ImageStorage_OnClick" />
+                        
+                        Click="ImageStorage_OnClick" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource SplitFe}"
+                                           Text="&#xE890;"></TextBlock>
+                                <TextBlock Text="选图片"></TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
                     <Button Margin="100,10,10,10"
-                        Content="上传" 
-                        Click="Storage_OnClick" />
+                        
+                        Click="Storage_OnClick" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="15" Height="15"
+                                       Source="ms-appx:///Assets/cloud_197.09665653495px_1193803_easyicon.png"></Image>
+                                <TextBlock Text="上传"></TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
                     <TextBlock Margin="200,10,10,10"
-                           Text="{x:Bind View.Address,Mode=OneWay}"></TextBlock>
+                           Text="{x:Bind View.Address,Mode=OneWay}" />
                 </Grid>
             </StackPanel>
             <Grid Grid.Row="2">
                 <TextBox Margin="10,10,100,10"
-                     Text="{x:Bind View.LinkReminder,Mode=OneWay}"></TextBox>
+                     Text="{x:Bind View.LinkReminder,Mode=OneWay}" />
                 <Button Margin="10,10,10,10"
-                    Content="复制"
+                    
                     HorizontalAlignment="Right"
-                    Click="StrClipboard"></Button>
+                    Click="StrClipboard" >
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource SplitFe}"
+                                       Text="&#xE8C8;"></TextBlock>
+                            <TextBlock Text="复制"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                        
             </Grid>
         </Grid>
-       
-       <ProgressRing Margin="10,10,10,10"
+
+        <ProgressRing Margin="10,10,10,10"
                      IsActive="True"
                      Visibility="{x:Bind View.Visibility,Mode=OneWay}"
                      HorizontalAlignment="Stretch"
-                     VerticalAlignment="Stretch"></ProgressRing>
+                     VerticalAlignment="Stretch" />
+
     </Grid>
 </UserControl>

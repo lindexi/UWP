@@ -12,6 +12,7 @@ namespace BitStamp.ViewModel
     {
         public AssBjModel()
         {
+            Account = AccoutGoverment.AccountModel;
         }
 
         public void NavigateStamp()
@@ -19,6 +20,12 @@ namespace BitStamp.ViewModel
             //StampPage 是用户控件
             //FrameAccount.Navigate(typeof(View.StampPage));
             FrameVisibility=Visibility.Visible;
+        }
+
+        public AccoutGoverment Account
+        {
+            set;
+            get;
         }
 
         public void NavigateAccount()

@@ -1,0 +1,9 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BitStamp.View">
+    <SolidColorBrush x:Key="BitBackgroundAltHighBrush" Color="#FF1A1C37"/>
+    <SolidColorBrush x:Key="BitBackgroundBaseHighBrush" Color="#FFDFDFDF"/>
+    <Color x:Key="BitTranslucentBaseHighColor">#FFFFFFFF</Color>
+    <Color x:Key="BitThemeMainColor">#FF0074CE</Color>
+</ResourceDictionary>

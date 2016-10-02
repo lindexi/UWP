@@ -102,6 +102,7 @@
     <Compile Include="Model\JyUploadImage.cs" />
     <Compile Include="Model\UploadImageTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\Account.cs" />
     <Compile Include="ViewModel\AccoutGoverment.cs" />
     <Compile Include="ViewModel\AssBjModel.cs" />
     <Compile Include="ViewModel\NotifyProperty.cs" />
@@ -150,6 +151,16 @@
     <Page Include="View\AssBjPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DarkThemeDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="View\LightThemeDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="View\StampPage.xaml">
       <SubType>Designer</SubType>

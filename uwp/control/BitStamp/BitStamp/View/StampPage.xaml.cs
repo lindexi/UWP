@@ -35,7 +35,7 @@ namespace BitStamp.View
         {
             View = new Stamp();
             this.InitializeComponent();
-            Folder = KnownFolders.PicturesLibrary;
+            //Folder = KnownFolders.PicturesLibrary;
         }
 
         private string _name;
@@ -46,11 +46,7 @@ namespace BitStamp.View
             get;
         }
 
-        private StorageFolder Folder
-        {
-            set;
-            get;
-        }
+        private StorageFolder Folder => AccoutGoverment.AccountModel.Account.Folder;
 
         private async void ImageStorage_OnClick(object sender, RoutedEventArgs e)
         {

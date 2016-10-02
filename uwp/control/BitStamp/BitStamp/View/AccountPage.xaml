@@ -5,18 +5,64 @@
     xmlns:local="using:BitStamp.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    RequestedTheme="{x:Bind View.Theme,Mode=OneWay}">
+    <Page.Resources>
+        <Style x:Key="SplitFe" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        </Style>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel>
+        <StackPanel
+            Margin="10,10,10,10">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="主题"></TextBlock>
-                <ToggleSwitch OffContent="夜间" OnContent="白天"></ToggleSwitch>
+                <TextBlock Text="主题" Margin="0,0,10,0"
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"/>
+                <ToggleSwitch IsOn="{x:Bind View.ThemeDay,Mode=TwoWay}" OffContent="夜间" OnContent="白天"/>
             </StackPanel>
             <TextBlock Text="默认图床"></TextBlock>
-            <RadioButton Content="sm.ms"></RadioButton>
-            <RadioButton Content="九幽图床"></RadioButton>
-            <RadioButton IsEnabled="False" Content="骑牛"></RadioButton>
+            <RadioButton IsChecked="{x:Bind View.SmmsImageShack,Mode=TwoWay}" Content="sm.ms"></RadioButton>
+            <RadioButton IsChecked="{x:Bind View.JiuYouImageShack,Mode=TwoWay}" Content="九幽图床"></RadioButton>
+            <RadioButton IsChecked="{x:Bind View.QinImageShack,Mode=TwoWay}" IsEnabled="False" Content="骑牛"></RadioButton>
+            <Grid Height="1" Background="Gray"></Grid>
+            <Grid>
+                <TextBox Margin="10,10,10,10"
+                         Text="{x:Bind View.Str,Mode=TwoWay}" Header="水印"></TextBox>
+            </Grid>
+            <Grid Height="1" Background="Gray"></Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="本地存储路径"></TextBlock>
+                        <TextBlock FontSize="10" Foreground="Gray" 
+                                   Text="本地存储图片加水印所放位置，默认为用户图片区"
+                                   VerticalAlignment="Bottom" Margin="0,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBlock Text="{x:Bind View.Address,Mode=OneWay}"
+                               Margin="10,10,100,0"
+                               VerticalAlignment="Center"></TextBlock>
+                    <Button Margin="0,10,10,0"
+                            HorizontalAlignment="Right"
+                            Click="{x:Bind View.OpenPicesrFolder}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource SplitFe}"
+                                           Text="&#xE890;"></TextBlock>
+                                <TextBlock Text="选择"></TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+
+                </Grid>
+            </Grid>
         </StackPanel>
     </Grid>
 </Page>

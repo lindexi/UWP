@@ -15,11 +15,21 @@ namespace BitStamp.ViewModel
         public Stamp()
         {
             Image = new BitmapImage(new Uri("ms-appx:///assets/QQ截图20160926151822.png"));
-#if DEBUG
-            Str = "blog.csdn.net/lindexi_gd";
-#endif
+            //#if DEBUG
+            //            Str = "blog.csdn.net/lindexi_gd";
+            //#endif
+
+            Account = AccoutGoverment.AccountModel;
+
+            Str = Account.Account.Str;
 
             Visibility = Visibility.Collapsed;
+        }
+
+        public AccoutGoverment Account
+        {
+            set;
+            get;
         }
 
         public BitmapImage Image
@@ -72,6 +82,7 @@ namespace BitStamp.ViewModel
             set
             {
                 _str = value;
+                AccoutGoverment.AccountModel.Account.Str = value;
                 OnPropertyChanged();
             }
             get
@@ -93,10 +104,27 @@ namespace BitStamp.ViewModel
             }
         }
 
+        private UploadImageTask NewUploadImageTask(ImageShackEnum imageShack, StorageFile file)
+        {
+            switch (imageShack)
+            {
+                case ImageShackEnum.Jiuyou:
+                    return new JyUploadImage(file);
+                case ImageShackEnum.Smms:
+                    break;
+                case ImageShackEnum.Qin:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(imageShack), imageShack, null);
+            }
+            return new JyUploadImage(file);
+        }
+
         public void Jcloud()
         {
-            JyUploadImage jyUploadImage = new JyUploadImage(File);
-            jyUploadImage.OnUploaded += (s, e) =>
+            UploadImageTask uploadImageTask = NewUploadImageTask(
+                AccoutGoverment.AccountModel.Account.ImageShack, File);
+            uploadImageTask.OnUploaded += (s, e) =>
             {
                 UploadImageTask uploadImage = s as UploadImageTask;
                 Visibility = Visibility.Collapsed;
@@ -116,7 +144,7 @@ namespace BitStamp.ViewModel
                 }
             };
             Visibility = Visibility.Visible;
-            jyUploadImage.UploadImage();
+            uploadImageTask.UploadImage();
         }
 
         private string _address;
@@ -127,14 +155,5 @@ namespace BitStamp.ViewModel
         private string _str;
 
         private Visibility _visibility;
-    }
-
-    public class Account
-    {
-        public Account()
-        {
-
-        }
-
     }
 }

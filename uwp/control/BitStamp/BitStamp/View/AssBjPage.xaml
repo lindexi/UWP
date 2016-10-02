@@ -26,7 +26,6 @@
 
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <!--<local:StampPage ></local:StampPage>-->
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -58,14 +57,12 @@
                                     </Grid>
                                 </Button.Content>
                             </Button>
-
-
                         </StackPanel>
                         <StackPanel VerticalAlignment="Bottom">
                             <Button Style="{StaticResource SplitButton}">
                                 <Button.Content>
                                     <StackPanel Style="{StaticResource SplitStackPanel}">
-                                       <TextBlock Style="{StaticResource SplitFe}"
+                                        <TextBlock Style="{StaticResource SplitFe}"
                                                   Text="&#xE783;"></TextBlock>
                                         <TextBlock Text="信息"></TextBlock>
                                     </StackPanel>
@@ -87,7 +84,9 @@
                 <SplitView.Content>
                     <Grid>
                         <Frame x:Name="frame"></Frame>
-                        <local:StampPage Visibility="{x:Bind View.FrameVisibility,Mode=OneWay}"></local:StampPage>
+                        <Grid>
+                            <local:StampPage Visibility="{x:Bind View.FrameVisibility,Mode=OneWay}"></local:StampPage>
+                        </Grid>
                     </Grid>
                 </SplitView.Content>
             </SplitView>

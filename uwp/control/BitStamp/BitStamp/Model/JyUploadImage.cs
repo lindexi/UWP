@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Windows.Storage;
+using BitStamp.ViewModel;
 using JyCloudTool.JsonModel;
 
 namespace BitStamp.Model
@@ -25,6 +26,17 @@ namespace BitStamp.Model
         {
             //Appid 为静态，有_appid 应用的appid
             //_secretId 九幽的
+            var account = AccoutGoverment.AccountModel;
+            if (!string.IsNullOrEmpty(account.Account.JiuYouId))
+            {
+                AppId._appId = account.Account.JiuYouId;
+            }
+
+            if (!string.IsNullOrEmpty(account.Account.JiuYouSecretId))
+            {
+                AppId._secretId = account.Account.JiuYouSecretId;
+            }
+
             ResponseInfo responseInfo;
             if (uploadImageTask.Scale > 0)
             {

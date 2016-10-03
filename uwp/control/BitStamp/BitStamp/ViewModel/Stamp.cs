@@ -24,6 +24,8 @@ namespace BitStamp.ViewModel
             Str = Account.Account.Str;
 
             Visibility = Visibility.Collapsed;
+
+         
         }
 
         public AccoutGoverment Account
@@ -111,7 +113,7 @@ namespace BitStamp.ViewModel
                 case ImageShackEnum.Jiuyou:
                     return new JyUploadImage(file);
                 case ImageShackEnum.Smms:
-                    break;
+                    return new SmmsUploadImage(file);
                 case ImageShackEnum.Qin:
                     break;
                 default:

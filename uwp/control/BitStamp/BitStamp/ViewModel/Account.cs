@@ -154,6 +154,18 @@ namespace BitStamp.ViewModel
             }
         }
 
+        public string JiuYouId
+        {
+            set;
+            get;
+        }
+
+        public string JiuYouSecretId
+        {
+            set;
+            get;
+        }
+
         private string _address;
 
         private bool _day;

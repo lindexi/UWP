@@ -24,7 +24,16 @@
             </StackPanel>
             <TextBlock Text="默认图床"></TextBlock>
             <RadioButton IsChecked="{x:Bind View.SmmsImageShack,Mode=TwoWay}" Content="sm.ms"></RadioButton>
-            <RadioButton IsChecked="{x:Bind View.JiuYouImageShack,Mode=TwoWay}" Content="九幽图床"></RadioButton>
+            <RadioButton IsChecked="{x:Bind View.JiuYouImageShack,Mode=TwoWay}" >
+                <RadioButton.Content>
+                    <Grid>
+                        <TextBlock Text="九幽图床"></TextBlock>
+                    </Grid>
+                </RadioButton.Content>
+            </RadioButton>
+            <Grid Margin="20,0,0,0">
+                <TextBox Header="九幽云存储key" Text="{x:Bind View.JiuYouSecretId,Mode=TwoWay}"></TextBox>
+            </Grid>
             <RadioButton IsChecked="{x:Bind View.QinImageShack,Mode=TwoWay}" IsEnabled="False" Content="骑牛"></RadioButton>
             <Grid Height="1" Background="Gray"></Grid>
             <Grid>

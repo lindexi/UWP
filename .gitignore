@@ -244,3 +244,5 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /2.sh
+*.appx
+/uwp/control/BitStamp/BitStamp/_pkginfo.txt

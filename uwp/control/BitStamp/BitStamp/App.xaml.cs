@@ -48,6 +48,11 @@ namespace BitStamp
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
 
+            if (e.PrelaunchActivated == true)
+            {
+                return;
+            }
+
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
             if (rootFrame == null)
@@ -61,6 +66,8 @@ namespace BitStamp
                 {
                     //TODO: 从之前挂起的应用程序加载状态
                 }
+
+                
 
                 // 将框架放在当前窗口中
                 Window.Current.Content = rootFrame;

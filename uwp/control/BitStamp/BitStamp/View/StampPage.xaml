@@ -67,7 +67,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button Margin="100,10,10,10"
+                        <Button Margin="200,10,10,10"
 
                                 Click="Storage_OnClick">
                             <Button.Content>
@@ -79,7 +79,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <TextBlock Margin="200,10,10,10"
+                        <TextBlock Margin="300,10,10,10"
                                    Text="{x:Bind View.Address,Mode=OneWay}" />
                     </Grid>
                 </StackPanel>

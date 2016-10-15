@@ -1,4 +1,7 @@
-﻿using System;
+﻿// lindexi
+// 10:47
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +28,60 @@ namespace BitStamp.ViewModel
             //    await Storage();
             //    deferral.Complete();
             //};
+        }
+
+
+        public Account Account
+        {
+            set;
+            get;
+        }
+
+        public static AccoutGoverment AccountModel
+        {
+            set
+            {
+                _accountModel = value;
+            }
+            get
+            {
+                return _accountModel ?? (_accountModel = new AccoutGoverment());
+            }
+        }
+
+        public async Task Storage()
+        {
+            string folderStr = "account";
+            StorageFolder folder = ApplicationData.Current.LocalFolder;
+            try
+            {
+                folder = await folder.GetFolderAsync(folderStr);
+            }
+            catch (FileNotFoundException)
+            {
+                folder = await folder.CreateFolderAsync(folderStr);
+            }
+
+            StorageFile file = await folder.CreateFileAsync(
+                folderStr + ".json", CreationCollisionOption.ReplaceExisting);
+            var json = JsonSerializer.Create();
+
+            //json.Serialize(new JsonTextWriter(
+            //    new StreamWriter(await file.OpenStreamForWriteAsync())), Account);
+
+            StringBuilder str = new StringBuilder();
+            StringWriter stream = new StringWriter(str);
+            json.Serialize(new JsonTextWriter(
+                stream), Account);
+            using (StorageStreamTransaction transaction = await file.OpenTransactedWriteAsync())
+            {
+                using (DataWriter dataWriter = new DataWriter(transaction.Stream))
+                {
+                    dataWriter.WriteString(str.ToString());
+                    transaction.Stream.Size = await dataWriter.StoreAsync();
+                    await transaction.CommitAsync();
+                }
+            }
         }
 
         private async void Read()
@@ -54,7 +111,7 @@ namespace BitStamp.ViewModel
                         try
                         {
                             Account.Folder = await
-                                Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
+                                StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
                                     Account.Token);
                         }
                         catch (ArgumentNullException)
@@ -90,65 +147,10 @@ namespace BitStamp.ViewModel
                     Str = "",
                     ImageShack = ImageShackEnum.Jiuyou,
                     JiuYouImageShack = true,
-                    QinImageShack=false,
+                    QinImageShack = false,
                     SmmsImageShack = false,
                 };
                 await Storage();
-            }
-        }
-
-        public async Task Storage()
-        {
-            string folderStr = "account";
-            StorageFolder folder = ApplicationData.Current.LocalFolder;
-            try
-            {
-                folder = await folder.GetFolderAsync(folderStr);
-            }
-            catch (FileNotFoundException)
-            {
-                folder = await folder.CreateFolderAsync(folderStr);
-            }
-
-            StorageFile file = await folder.CreateFileAsync(
-                folderStr+".json", CreationCollisionOption.ReplaceExisting);
-            var json = JsonSerializer.Create();
-
-            //json.Serialize(new JsonTextWriter(
-            //    new StreamWriter(await file.OpenStreamForWriteAsync())), Account);
-
-            StringBuilder str = new StringBuilder();
-            StringWriter stream=new StringWriter(str);
-            json.Serialize(new JsonTextWriter(
-               stream ), Account);
-            using (StorageStreamTransaction transaction = await file.OpenTransactedWriteAsync())
-            {
-                using (DataWriter dataWriter = new DataWriter(transaction.Stream))
-                {
-                    dataWriter.WriteString(str.ToString());
-                    transaction.Stream.Size = await dataWriter.StoreAsync();
-                    await transaction.CommitAsync();
-                }
-            }
-        }
-
-
-
-        public Account Account
-        {
-            set;
-            get;
-        }
-
-        public static AccoutGoverment AccountModel
-        {
-            set
-            {
-                _accountModel = value;
-            }
-            get
-            {
-                return _accountModel ?? (_accountModel = new AccoutGoverment());
             }
         }
 

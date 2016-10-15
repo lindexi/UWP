@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace BitStamp.Model
 {
-    class SmmsUploadImage: UploadImageTask
+    public class SmmsUploadImage : UploadImageTask
     {
         public SmmsUploadImage(StorageFile file)
             : base(file)
@@ -46,16 +46,16 @@ namespace BitStamp.Model
                 if (smms.code == "success")
                 {
                     Url = smms.data.url;
-                    OnUploaded?.Invoke(this,true);
+                    OnUploaded?.Invoke(this, true);
                 }
                 else
                 {
-                    OnUploaded?.Invoke(this,false);
+                    OnUploaded?.Invoke(this, false);
                 }
             }
             else
             {
-                OnUploaded?.Invoke(this,false);
+                OnUploaded?.Invoke(this, false);
             }
         }
 

@@ -47,6 +47,11 @@ namespace smms
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
 
+            if (e.PrelaunchActivated)
+            {
+                return;
+            }
+
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
             if (rootFrame == null)

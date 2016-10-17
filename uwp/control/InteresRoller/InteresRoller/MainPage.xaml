@@ -9,6 +9,16 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ListView ItemsSource="{x:Bind View.Str}">
+
+            <ListView.Resources>
+                <!--<x:Double x:Key="LeftListWidth">100</x:Double>-->
+                <GridLength x:Key="LeftListWidth" >100</GridLength>
+                <x:Double x:Key="RectangleWidth">6</x:Double>
+                <SolidColorBrush x:Key="RectangleColor" Color="#FFDA3E3E"></SolidColorBrush>
+                <!--<SolidColorBrush x:Key="VerticalRectangleColor"  ></SolidColorBrush>-->
+                <x:Double x:Key="EllipseWidth">30</x:Double>
+            </ListView.Resources>
+
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment"

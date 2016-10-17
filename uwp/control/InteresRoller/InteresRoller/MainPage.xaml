@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="InteresRoller.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:InteresRoller"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView ItemsSource="{x:Bind View.Str}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                                        Value="Stretch" />
+                    <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="#FFda2a5c" RightTapped="GridColection_OnRightTapped">
+                        <TextBlock Text="{Binding}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBlock Text="http://blog.csdn.net/lindexi_gd" 
+                   Margin="0,300"></TextBlock>
+    </Grid>
+   
+</Page>

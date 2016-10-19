@@ -30,6 +30,12 @@ namespace BitStamp.ViewModel
             //};
         }
 
+        public EventHandler OnReadEventHandler
+        {
+            set;
+            get;
+        }
+
 
         public Account Account
         {
@@ -152,6 +158,8 @@ namespace BitStamp.ViewModel
                 };
                 await Storage();
             }
+
+            OnReadEventHandler?.Invoke(this,null);
         }
 
         private static AccoutGoverment _accountModel;

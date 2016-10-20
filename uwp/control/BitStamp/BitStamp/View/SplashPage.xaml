@@ -7,13 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="Blue">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
          <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
          </Grid.RowDefinitions>
         <Image Width="50" Height="50" Source="../Assets/cloud_197.09665653495px_1193803_easyicon.png"></Image>
-        <ProgressRing Grid.Row="1" Margin="0,0,0,0"
+        <ProgressRing Grid.Row="1" Margin="10,10,10,10"
                       IsActive="True"
                       
                       HorizontalAlignment="Stretch"

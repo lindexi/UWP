@@ -92,6 +92,7 @@ namespace BitStamp.ViewModel
 
         private async void Read()
         {
+            await Task.Delay(100);
             string folderStr = "account";
             StorageFolder folder = ApplicationData.Current.LocalFolder;
             bool first = false;

@@ -36,29 +36,6 @@ namespace BitStamp.View
         public SplashPage()
         {
             this.InitializeComponent();
-
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                // 需要引用Windows Mobile Extensions for the UWP
-                StatusBar sb = StatusBar.GetForCurrentView();
-                // 背景色设置为需要颜色
-                sb.BackgroundColor = Color.FromArgb(255, 100, 149, 237);
-                sb.BackgroundOpacity = 1;
-            }
-
-            // 针对desktop
-            ApplicationView appView = ApplicationView.GetForCurrentView();
-            ApplicationViewTitleBar titleBar = appView.TitleBar;
-            // 背景色设置为需要颜色
-            Color bc = Color.FromArgb(255, 100, 149, 237);
-            titleBar.BackgroundColor = bc;
-            titleBar.InactiveBackgroundColor = bc;
-            // 按钮背景色按需进行设置
-            titleBar.ButtonBackgroundColor = bc;
-            titleBar.ButtonHoverBackgroundColor = bc;
-            titleBar.ButtonPressedBackgroundColor = bc;
-            titleBar.ButtonInactiveBackgroundColor = bc;
-
             AccoutGoverment.AccountModel.OnReadEventHandler += async (s, e) =>
             {
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
@@ -70,32 +47,5 @@ namespace BitStamp.View
                     });
             };
         }
-
-        //void PositionImage()
-        //{
-        //    // desktop
-        //    if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily.Equals("windows.desktop", StringComparison.CurrentCultureIgnoreCase))
-        //    {
-        //        extendedSplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X);
-        //        extendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y);
-        //        extendedSplashImage.Height = splashImageRect.Height;
-        //        extendedSplashImage.Width = splashImageRect.Width;
-        //    }
-        //    // mobile
-        //    else if (Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily.Equals("windows.mobile", StringComparison.CurrentCultureIgnoreCase))
-        //    {
-        //        // 获取一个值，该值表示每个视图（布局）像素的原始（物理）像素数。
-        //        double density = Windows.Graphics.Display.DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
-
-        //        extendedSplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X / density);
-        //        extendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y / density);
-        //        extendedSplashImage.Height = splashImageRect.Height / density;
-        //        extendedSplashImage.Width = splashImageRect.Width / density;
-        //    }
-        //    // xbox等没试过，编不出来
-        //    else
-        //    {
-        //    }
-        //}
     }
 }

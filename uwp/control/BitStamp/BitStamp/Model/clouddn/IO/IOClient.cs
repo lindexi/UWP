@@ -6,6 +6,10 @@ using Qiniu.Auth;
 using Qiniu.RPC;
 using Qiniu.Util;
 using System.Collections.Specialized;
+using Windows.Storage;
+using Windows.Web.Http;
+using Qiniu.Auth.digest;
+using Qiniu.RS;
 
 namespace Qiniu.IO
 {
@@ -127,6 +131,33 @@ namespace Qiniu.IO
             {
                 PutFinished(this, ret);
             }
+        }
+
+        /// <summary>
+        /// 上传文件
+        /// </summary>
+        /// <param name="accessKey"></param>
+        /// <param name="secretKey"></param>
+        /// <param name="bucket"></param>
+        /// <param name="file"></param>
+        /// <param name="name">文件名</param>
+        /// <returns></returns>
+        public async Task<PutRet> UploadFile(string accessKey,
+            string secretKey,
+            string bucket,
+            StorageFile file,
+            string name = null)
+        {
+            Mac mac = new Mac(accessKey, Qiniu.Conf.Config.Encoding.GetBytes(secretKey));
+            PutPolicy putPolicy = new PutPolicy();
+            putPolicy.Scope = bucket;
+            putPolicy.SetExpires(3600);
+
+            string uploadToken = mac.CreateUploadToken(putPolicy);
+
+            Stream stream = await file.OpenStreamForReadAsync();
+
+            return await new Qiniu.IO.IOClient().Put(uploadToken, name, stream, new PutExtra());
         }
     }
 }

@@ -157,7 +157,11 @@ namespace Qiniu.IO
 
             Stream stream = await file.OpenStreamForReadAsync();
 
-            return await new Qiniu.IO.IOClient().Put(uploadToken, name, stream, new PutExtra());
+            var ret= await new Qiniu.IO.IOClient().Put(uploadToken, name, stream, new PutExtra());
+
+            stream.Dispose();
+
+            return ret;
         }
     }
 }

@@ -10,190 +10,195 @@ using System.Diagnostics;
 
 namespace Qiniu.IO
 {
-	static class MultiPart
-	{
-		public static Encoding encoding = Config.Encoding;
+    static class MultiPart
+    {
+        public static Encoding encoding = Config.Encoding;
 
-		public static string RandomBoundary ()
-		{
-			return String.Format ("----------{0:N}", Guid.NewGuid ());
-		}
+        public static string RandomBoundary()
+        {
+            return String.Format("----------{0:N}", Guid.NewGuid());
+        }
 
-		public static string FormDataContentType (string boundary)
-		{
-			return "multipart/form-data; boundary=" + boundary;
-		}
+        public static string FormDataContentType(string boundary)
+        {
+            return "multipart/form-data; boundary=" + boundary;
+        }
 
-		private static Stream GetPostStream (Stream putStream, string fileName, NameValueCollection formData, string boundary)
-		{
-			Stream postDataStream = new System.IO.MemoryStream ();
+        //System.Collections.Specialized.
+        private static Stream GetPostStream(Stream putStream, string fileName, /*NameValueCollection*/WebHeaderCollection formData, string boundary)
+        {
+            Stream postDataStream = new System.IO.MemoryStream();
+            //System.Net.WebHeaderCollection wb;
+            //adding form data
 
-			//adding form data
+            string formDataHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
+                "Content-Disposition: form-data; name=\"{0}\";" + Environment.NewLine + Environment.NewLine + "{1}";
 
-			string formDataHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
-				"Content-Disposition: form-data; name=\"{0}\";" + Environment.NewLine + Environment.NewLine + "{1}";
+            foreach (string key in formData.AllKeys/*Keys*/)
+            {
+                byte[] formItemBytes = System.Text.Encoding.UTF8.GetBytes(string.Format(formDataHeaderTemplate,
+                                                                                                    key, formData[key]));
+                postDataStream.Write(formItemBytes, 0, formItemBytes.Length);
+            }
 
-			foreach (string key in formData.Keys) {
-				byte[] formItemBytes = System.Text.Encoding.UTF8.GetBytes (string.Format (formDataHeaderTemplate,
-				                                                                                    key, formData [key]));
-				postDataStream.Write (formItemBytes, 0, formItemBytes.Length);
-			}
+            //adding file,Stream data
+            #region adding file data
 
-			//adding file,Stream data
-			#region adding file data
-           
-			string fileHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
-				"Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"" +
-				Environment.NewLine + "Content-Type: application/octet-stream" + Environment.NewLine + Environment.NewLine;
-			byte[] fileHeaderBytes = System.Text.Encoding.UTF8.GetBytes (string.Format (fileHeaderTemplate,
-			                                                                                   "file", fileName));
-			postDataStream.Write (fileHeaderBytes, 0, fileHeaderBytes.Length);
-           
-			byte[] buffer = new byte[1024];
-			int bytesRead = 0;
-			while ((bytesRead = putStream.Read(buffer, 0, buffer.Length)) != 0) {
-				postDataStream.Write (buffer, 0, bytesRead);
-			}
-			putStream.Dispose ();
-			#endregion
+            string fileHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
+                "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"" +
+                Environment.NewLine + "Content-Type: application/octet-stream" + Environment.NewLine + Environment.NewLine;
+            byte[] fileHeaderBytes = System.Text.Encoding.UTF8.GetBytes(string.Format(fileHeaderTemplate,
+                                                                                               "file", fileName));
+            postDataStream.Write(fileHeaderBytes, 0, fileHeaderBytes.Length);
 
-			#region adding end
-			byte[] endBoundaryBytes = System.Text.Encoding.UTF8.GetBytes (Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
-			postDataStream.Write (endBoundaryBytes, 0, endBoundaryBytes.Length);
-			#endregion
+            byte[] buffer = new byte[1024];
+            int bytesRead = 0;
+            while ((bytesRead = putStream.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                postDataStream.Write(buffer, 0, bytesRead);
+            }
+            putStream.Dispose();
+            #endregion
 
-			return postDataStream;
- 
-		}
+            #region adding end
+            byte[] endBoundaryBytes = System.Text.Encoding.UTF8.GetBytes(Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
+            postDataStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
+            #endregion
 
-		private static Stream GetPostStream (string filePath, NameValueCollection formData, string boundary)
-		{
-			Stream postDataStream = new System.IO.MemoryStream ();
+            return postDataStream;
 
-			//adding form data
+        }
 
-			string formDataHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
-				"Content-Disposition: form-data; name=\"{0}\";" + Environment.NewLine + Environment.NewLine + "{1}";
+        private static Stream GetPostStream(string filePath, WebHeaderCollection/*NameValueCollection*/ formData, string boundary)
+        {
+            Stream postDataStream = new System.IO.MemoryStream();
 
-			foreach (string key in formData.Keys) {
-				byte[] formItemBytes = System.Text.Encoding.UTF8.GetBytes (string.Format (formDataHeaderTemplate,
-				                                                                                    key, formData [key]));
-				postDataStream.Write (formItemBytes, 0, formItemBytes.Length);
-			}
+            //adding form data
 
-			//adding file data
-			#region adding file data
-			FileInfo fileInfo = new FileInfo (filePath);
-			string fileHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
-				"Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"" +
-				Environment.NewLine + "Content-Type: application/octet-stream" + Environment.NewLine + Environment.NewLine;
-			byte[] fileHeaderBytes = System.Text.Encoding.UTF8.GetBytes (string.Format (fileHeaderTemplate,
-			                                                                                   "file", fileInfo.FullName));
-			postDataStream.Write (fileHeaderBytes, 0, fileHeaderBytes.Length);
-			FileStream fileStream = fileInfo.OpenRead ();
-			byte[] buffer = new byte[1024];
-			int bytesRead = 0;
-			while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0) {
-				postDataStream.Write (buffer, 0, bytesRead);
-			}
-			fileStream.Dispose ();
-			#endregion
+            string formDataHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
+                "Content-Disposition: form-data; name=\"{0}\";" + Environment.NewLine + Environment.NewLine + "{1}";
 
-			#region adding end
-			byte[] endBoundaryBytes = System.Text.Encoding.UTF8.GetBytes (Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
-			postDataStream.Write (endBoundaryBytes, 0, endBoundaryBytes.Length);
-			#endregion
+            foreach (string key in formData.AllKeys/*Keys*/)
+            {
+                byte[] formItemBytes = System.Text.Encoding.UTF8.GetBytes(string.Format(formDataHeaderTemplate,
+                                                                                                    key, formData[key]));
+                postDataStream.Write(formItemBytes, 0, formItemBytes.Length);
+            }
 
-			return postDataStream;
-		}
+            //adding file data
+            #region adding file data
+            FileInfo fileInfo = new FileInfo(filePath);
+            string fileHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
+                "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"" +
+                Environment.NewLine + "Content-Type: application/octet-stream" + Environment.NewLine + Environment.NewLine;
+            byte[] fileHeaderBytes = System.Text.Encoding.UTF8.GetBytes(string.Format(fileHeaderTemplate,
+                                                                                               "file", fileInfo.FullName));
+            postDataStream.Write(fileHeaderBytes, 0, fileHeaderBytes.Length);
+            FileStream fileStream = fileInfo.OpenRead();
+            byte[] buffer = new byte[1024];
+            int bytesRead = 0;
+            while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                postDataStream.Write(buffer, 0, bytesRead);
+            }
+            fileStream.Dispose();
+            #endregion
 
-		public static async System.Threading.Tasks.Task<CallRet> MultiPost(string url, NameValueCollection formData, string fileName, IWebProxy proxy = null)
-		{
-			string boundary = RandomBoundary();
-			WebRequest webRequest = WebRequest.Create(url);
+            #region adding end
+            byte[] endBoundaryBytes = System.Text.Encoding.UTF8.GetBytes(Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
+            postDataStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
+            #endregion
 
-			webRequest.Method = "POST";
-			if (proxy != null)
-			{
-				webRequest.Proxy = proxy;
-			}
-			webRequest.ContentType = "multipart/form-data; boundary=" + boundary;
-			FileInfo fileInfo = new FileInfo(fileName);
+            return postDataStream;
+        }
 
-			using (FileStream fileStream = fileInfo.OpenRead())
-			{
+        public static async System.Threading.Tasks.Task<CallRet> MultiPost(string url, WebHeaderCollection/*NameValueCollection*/ formData, string fileName, IWebProxy proxy = null)
+        {
+            string boundary = RandomBoundary();
+            WebRequest webRequest = WebRequest.Create(url);
 
-				Stream postDataStream = GetPostStream(fileStream, fileName, formData, boundary);
-				webRequest.Headers["Content-Length"] = postDataStream.Length.ToString();
-				Stream reqStream = await webRequest.GetRequestStreamAsync();
-				postDataStream.Position = 0;
+            webRequest.Method = "POST";
+            if (proxy != null)
+            {
+                webRequest.Proxy = proxy;
+            }
+            webRequest.ContentType = "multipart/form-data; boundary=" + boundary;
+            FileInfo fileInfo = new FileInfo(fileName);
 
-				byte[] buffer = new byte[1024];
-				int bytesRead = 0;
+            using (FileStream fileStream = fileInfo.OpenRead())
+            {
 
-				while ((bytesRead = postDataStream.Read(buffer, 0, buffer.Length)) != 0)
-				{
-					reqStream.Write(buffer, 0, bytesRead);
-				}
-				postDataStream.Dispose();
-				reqStream.Dispose();
-			}
-			try
-			{
-				using (HttpWebResponse response =(await webRequest.GetResponseAsync()) as HttpWebResponse)
-				{
-					return RPC.Client.HandleResult(response);
-				}
+                Stream postDataStream = GetPostStream(fileStream, fileName, formData, boundary);
+                webRequest.Headers["Content-Length"] = postDataStream.Length.ToString();
+                Stream reqStream = await webRequest.GetRequestStreamAsync();
+                postDataStream.Position = 0;
 
-			}
-			catch (Exception e)
-			{
-				Debug.WriteLine(e.ToString());
-				return new CallRet(HttpStatusCode.BadRequest, e);
-			}
-		}
+                byte[] buffer = new byte[1024];
+                int bytesRead = 0;
 
-		public static async System.Threading.Tasks.Task<CallRet> MultiPost(string url, NameValueCollection formData, System.IO.Stream inputStream, IWebProxy proxy = null)
-		{
-			string boundary = RandomBoundary();
-			WebRequest webRequest = WebRequest.Create(url);
+                while ((bytesRead = postDataStream.Read(buffer, 0, buffer.Length)) != 0)
+                {
+                    reqStream.Write(buffer, 0, bytesRead);
+                }
+                postDataStream.Dispose();
+                reqStream.Dispose();
+            }
+            try
+            {
+                using (HttpWebResponse response = (await webRequest.GetResponseAsync()) as HttpWebResponse)
+                {
+                    return RPC.Client.HandleResult(response);
+                }
 
-			if (proxy != null)
-			{
-				webRequest.Proxy = proxy;
-			}
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                return new CallRet(HttpStatusCode.BadRequest, e);
+            }
+        }
 
-			webRequest.Method = "POST";
-			webRequest.ContentType = "multipart/form-data; boundary=" + boundary;
+        public static async System.Threading.Tasks.Task<CallRet> MultiPost(string url, /*NameValueCollection*/WebHeaderCollection formData, System.IO.Stream inputStream, IWebProxy proxy = null)
+        {
+            string boundary = RandomBoundary();
+            WebRequest webRequest = WebRequest.Create(url);
 
-			Stream postDataStream = GetPostStream(inputStream, formData["key"], formData, boundary);
-			webRequest.Headers["Content-Length"] = postDataStream.Length.ToString();
-			Stream reqStream = await webRequest.GetRequestStreamAsync();
-			postDataStream.Position = 0;
+            if (proxy != null)
+            {
+                webRequest.Proxy = proxy;
+            }
 
-			byte[] buffer = new byte[1024];
-			int bytesRead = 0;
+            webRequest.Method = "POST";
+            webRequest.ContentType = "multipart/form-data; boundary=" + boundary;
 
-			while ((bytesRead = postDataStream.Read(buffer, 0, buffer.Length)) != 0)
-			{
-				reqStream.Write(buffer, 0, bytesRead);
-			}
-			postDataStream.Dispose();
-			reqStream.Dispose();
+            Stream postDataStream = GetPostStream(inputStream, formData["key"], formData, boundary);
+            webRequest.Headers["Content-Length"] = postDataStream.Length.ToString();
+            Stream reqStream = await webRequest.GetRequestStreamAsync();
+            postDataStream.Position = 0;
 
-			try
-			{
-				using (HttpWebResponse response = (await webRequest.GetResponseAsync()) as HttpWebResponse)
-				{
-					return RPC.Client.HandleResult(response);
-				}
+            byte[] buffer = new byte[1024];
+            int bytesRead = 0;
 
-			}
-			catch (Exception e)
-			{
-				Debug.WriteLine(e.ToString());
-				return new CallRet(HttpStatusCode.BadRequest, e);
-			}
-		}
-	}
+            while ((bytesRead = postDataStream.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                reqStream.Write(buffer, 0, bytesRead);
+            }
+            postDataStream.Dispose();
+            reqStream.Dispose();
+
+            try
+            {
+                using (HttpWebResponse response = (await webRequest.GetResponseAsync()) as HttpWebResponse)
+                {
+                    return RPC.Client.HandleResult(response);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                return new CallRet(HttpStatusCode.BadRequest, e);
+            }
+        }
+    }
 }

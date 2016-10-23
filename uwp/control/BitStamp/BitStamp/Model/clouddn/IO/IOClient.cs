@@ -6,6 +6,8 @@ using Qiniu.Auth;
 using Qiniu.RPC;
 using Qiniu.Util;
 using System.Collections.Specialized;
+using System.IO;
+using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Web.Http;
 using Qiniu.Auth.digest;
@@ -23,28 +25,37 @@ namespace Qiniu.IO
         /// </summary>
         public event EventHandler<PutRet> PutFinished;
 
-        private static NameValueCollection getFormData(string upToken, string key, PutExtra extra)
+        private static WebHeaderCollection /*NameValueCollection*/ getFormData(string upToken, string key, PutExtra extra)
         {
-            NameValueCollection formData = new NameValueCollection();
-            formData["token"] = upToken;
-            if (key!=null) {
-                formData["key"] = key;
+            //System.Collections.Specialized
+            WebHeaderCollection webHeader=new WebHeaderCollection();
+            //NameValueCollection formData = new NameValueCollection();
+            webHeader["token"] = upToken;
+            //formData["token"] = upToken;
+
+            if (key!=null)
+            {
+                webHeader["key"] = key;
+                //formData["key"] = key;
             }
             if (extra != null)
             {
                 if (extra.CheckCrc == CheckCrcType.CHECK_AUTO)
                 {
-                    formData["crc32"] = extra.Crc32.ToString();
+                    webHeader["crc32"]= extra.Crc32.ToString();
+                    //formData["crc32"] = extra.Crc32.ToString();
                 }
                 if (extra.Params != null)
                 {
                     foreach (KeyValuePair<string, string> pair in extra.Params)
                     {
-                        formData[pair.Key] = pair.Value;
+                        webHeader[pair.Key] = pair.Value;
+                        //formData[pair.Key] = pair.Value;
                     }
                 }
             }
-            return formData;
+            return webHeader;
+            //return formData;
         }
 
         /// <summary>
@@ -68,7 +79,8 @@ namespace Qiniu.IO
 			}
 			PutRet ret;
 
-			NameValueCollection formData = getFormData(upToken, key, extra);
+            /*NameValueCollection*/
+            WebHeaderCollection formData = getFormData(upToken, key, extra);
 			try
 			{
 				CallRet callRet = await MultiPart.MultiPost(Config.UP_HOST, formData, localFile, this.Proxy);
@@ -78,7 +90,7 @@ namespace Qiniu.IO
 			}
 			catch (Exception e)
 			{
-				ret = new PutRet(new CallRet(HttpStatusCode.BadRequest, e));
+				ret = new PutRet(new CallRet(System.Net.HttpStatusCode.BadRequest, e));
 				onPutFinished(ret);
 				return ret;
 			}
@@ -109,7 +121,8 @@ namespace Qiniu.IO
 				throw new Exception("read put Stream error");
 			}
 			PutRet ret;
-			NameValueCollection formData = getFormData(upToken, key, extra);
+            /*NameValueCollection*/
+            WebHeaderCollection formData = getFormData(upToken, key, extra);
 			try
 			{
 				CallRet callRet = await MultiPart.MultiPost(Config.UP_HOST, formData, putStream);
@@ -119,7 +132,7 @@ namespace Qiniu.IO
 			}
 			catch (Exception e)
 			{
-				ret = new PutRet(new CallRet(HttpStatusCode.BadRequest, e));
+				ret = new PutRet(new CallRet(System.Net.HttpStatusCode.BadRequest, e));
 				onPutFinished(ret);
 				return ret;
 			}

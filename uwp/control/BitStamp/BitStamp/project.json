@@ -2,7 +2,8 @@
   "dependencies": {
     "JyCloud": "1.0.5",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
-    "Newtonsoft.Json": "8.0.3"
+    "Newtonsoft.Json": "8.0.3",
+    "PCLCrypto": "2.0.147"
   },
   "frameworks": {
     "uap10.0": {}

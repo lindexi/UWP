@@ -195,7 +195,7 @@ namespace Qiniu.IO.Resumable
 			if (extra.CallbackParams != null && extra.CallbackParams.Count > 0)
 			{
 				StringBuilder sb = new StringBuilder();
-				foreach (string _key in extra.CallbackParams.Keys)
+				foreach (string _key in extra.CallbackParams.AllKeys/*Keys*/)
 				{
 					sb.AppendFormat("/{0}/{1}", _key, Base64URLSafe.ToBase64URLSafe(extra.CallbackParams[_key]));
 				}

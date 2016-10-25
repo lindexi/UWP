@@ -54,20 +54,23 @@ namespace Qiniu.IO.Resumable
         /// <summary>
         ///     上传完成事件
         /// </summary>
-        public event EventHandler<CallRet> PutFinished;
+        public event EventHandler<CallRet> OnPutFinished;
 
         /// <summary>
         ///     上传Failure事件
         /// </summary>
-        public event EventHandler<CallRet> PutFailure;
+        public event EventHandler<CallRet> OnPutFailure;
 
         /// <summary>
         ///     上传文件
+        /// todo:修改文件
         /// </summary>
         /// <param name="upToken">上传Token</param>
         /// <param name="key">key</param>
-        /// <param name="localFile">本地文件名</param>
-        public async Task<CallRet> PutFile(string upToken, string localFile, string key)
+        /// <param name="localFile">本地文件名 todo:不使用 </param>
+        public async Task<CallRet> PutFile(string upToken, 
+            string localFile, 
+            string key)
         {
             if (!File.Exists(localFile))
             {
@@ -105,16 +108,18 @@ namespace Qiniu.IO.Resumable
             }
             if (ret.OK)
             {
-                PutFinished?.Invoke(this, ret);
+                OnPutFinished?.Invoke(this, ret);
             }
             else
             {
-                PutFailure?.Invoke(this, ret);
+                OnPutFailure?.Invoke(this, ret);
             }
             return ret;
         }
 
-        private async Task<BlkputRet> ResumableBlockPut(Client client, byte[] body, int blkIdex, int blkSize)
+        private async Task<BlkputRet> ResumableBlockPut(Client client, 
+            byte[] body, int blkIdex, 
+            int blkSize)
         {
             #region Mkblock
 

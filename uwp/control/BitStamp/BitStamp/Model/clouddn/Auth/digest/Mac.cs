@@ -1,5 +1,9 @@
-﻿using System;
+﻿// lindexi
+// 15:43
+
+using System;
 using System.IO;
+using System.Net;
 using Qiniu.Conf;
 using Qiniu.Util;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -11,11 +15,39 @@ using Qiniu.RS;
 
 namespace Qiniu.Auth.digest
 {
-	/// <summary>
-	/// 七牛消息认证(Message Authentication)
-	/// </summary>
-	public class Mac
-	{
+    /// <summary>
+    ///     七牛消息认证(Message Authentication)
+    /// </summary>
+    public class Mac
+    {
+        public Mac()
+        {
+            this.AccessKey = Config.ACCESS_KEY;
+            this._secretKey = Config.Encoding.GetBytes(Config.SECRET_KEY);
+        }
+
+        public Mac(string access, byte[] secretKey)
+        {
+            this.AccessKey = access;
+            this._secretKey = secretKey;
+        }
+
+        /// <summary>
+        ///     Gets or sets the access key.
+        /// </summary>
+        /// <value>The access key.</value>
+        public string AccessKey
+        {
+            set;
+            get;
+        }
+
+        /// <summary>
+        ///     Gets the secret key.
+        /// </summary>
+        /// <value>The secret key.</value>
+        public byte[] SecretKey => _secretKey;
+
         public string CreateUploadToken(PutPolicy putPolicy)
         {
             return CreateUploadToken(putPolicy, this);
@@ -51,60 +83,16 @@ namespace Qiniu.Auth.digest
         {
             return mac.Sign(Encoding.UTF8.GetBytes(rawUrl));
         }
-        private string accessKey;
 
-		/// <summary>
-		/// Gets or sets the access key.
-		/// </summary>
-		/// <value>The access key.</value>
-		public string AccessKey
-		{
-			get { return accessKey; }
-			set { accessKey = value; }
-		}
-
-		private byte[] secretKey;
-
-		/// <summary>
-		/// Gets the secret key.
-		/// </summary>
-		/// <value>The secret key.</value>
-		public byte[] SecretKey
-		{
-			get { return secretKey; }
-		}
-
-		public Mac()
-		{
-			this.accessKey = Conf.Config.ACCESS_KEY;
-			this.secretKey = Config.Encoding.GetBytes(Config.SECRET_KEY);
-		}
-
-		public Mac(string access, byte[] secretKey)
-		{
-			this.accessKey = access;
-			this.secretKey = secretKey;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="data"></param>
-		/// <returns></returns>
-		private string _sign(byte[] data)
-		{
-			return GetSHA1Key(SecretKey, Config.Encoding.GetString(data));
-		}
-
-		/// <summary>
-		/// Sign
-		/// </summary>
-		/// <param name="b"></param>
-		/// <returns></returns>
-		public string Sign(byte[] b)
-		{
-			return string.Format("{0}:{1}", this.accessKey, _sign(b));
-		}
+        /// <summary>
+        ///     Sign
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public string Sign(byte[] b)
+        {
+            return string.Format("{0}:{1}", this.AccessKey, _sign(b));
+        }
 
         //public string SignRequest(string url, byte[] reqBody)
         //{
@@ -129,47 +117,58 @@ namespace Qiniu.Auth.digest
         //}
 
         /// <summary>
-        /// SignWithData
+        ///     SignWithData
         /// </summary>
         /// <param name="b"></param>
         /// <returns></returns>
         public string SignWithData(byte[] b)
-		{
-			string data = Base64URLSafe.Encode(b);
-			return string.Format("{0}:{1}:{2}", this.accessKey, _sign(Config.Encoding.GetBytes(data)), data);
-		}
+        {
+            string data = Base64URLSafe.Encode(b);
+            return string.Format("{0}:{1}:{2}", this.AccessKey, _sign(Config.Encoding.GetBytes(data)), data);
+        }
 
-		/// <summary>
-		/// SignRequest
-		/// </summary>
-		/// <param name="request"></param>
-		/// <param name="body"></param>
-		/// <returns></returns>
-		public string SignRequest(System.Net.HttpWebRequest request, byte[] body)
-		{
-			Uri u = request.RequestUri;
+        /// <summary>
+        ///     SignRequest
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        public string SignRequest(HttpWebRequest request, byte[] body)
+        {
+            Uri u = request.RequestUri;
 
-			string pathAndQuery = request.RequestUri.PathAndQuery;
-			byte[] pathAndQueryBytes = Config.Encoding.GetBytes(pathAndQuery);
-			using (MemoryStream buffer = new MemoryStream())
-			{
-				buffer.Write(pathAndQueryBytes, 0, pathAndQueryBytes.Length);
-				buffer.WriteByte((byte)'\n');
-				if (body.Length > 0)
-				{
-					buffer.Write(body, 0, body.Length);
-				}
-				string digestBase64 = GetSHA1Key(SecretKey, buffer.ToString());
-				return this.accessKey + ":" + digestBase64;
-			}
-		}
+            string pathAndQuery = request.RequestUri.PathAndQuery;
+            byte[] pathAndQueryBytes = Config.Encoding.GetBytes(pathAndQuery);
+            using (MemoryStream buffer = new MemoryStream())
+            {
+                buffer.Write(pathAndQueryBytes, 0, pathAndQueryBytes.Length);
+                buffer.WriteByte((byte) '\n');
+                if (body.Length > 0)
+                {
+                    buffer.Write(body, 0, body.Length);
+                }
+                string digestBase64 = GetSHA1Key(SecretKey, buffer.ToString());
+                return this.AccessKey + ":" + digestBase64;
+            }
+        }
 
-		private string GetSHA1Key(byte[] secretKey, string value)
-		{
-			var objMacProv = MacAlgorithmProvider.OpenAlgorithm(MacAlgorithmNames.HmacSha1);
-			var hash = objMacProv.CreateHash(secretKey.AsBuffer());
-			hash.Append(CryptographicBuffer.ConvertStringToBinary(value, BinaryStringEncoding.Utf8));
-			return CryptographicBuffer.EncodeToBase64String(hash.GetValueAndReset()).Replace('+', '-').Replace('/', '_');
-		}
-	}
+        private byte[] _secretKey;
+
+        /// <summary>
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private string _sign(byte[] data)
+        {
+            return GetSHA1Key(SecretKey, Config.Encoding.GetString(data));
+        }
+
+        private string GetSHA1Key(byte[] secretKey, string value)
+        {
+            var objMacProv = MacAlgorithmProvider.OpenAlgorithm(MacAlgorithmNames.HmacSha1);
+            var hash = objMacProv.CreateHash(secretKey.AsBuffer());
+            hash.Append(CryptographicBuffer.ConvertStringToBinary(value, BinaryStringEncoding.Utf8));
+            return CryptographicBuffer.EncodeToBase64String(hash.GetValueAndReset()).Replace('+', '-').Replace('/', '_');
+        }
+    }
 }

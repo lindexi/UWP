@@ -1,97 +1,116 @@
-﻿using System;
+﻿// lindexi
+// 15:46
+
+using System;
 using System.Collections.Specialized;
 using System.Net;
 
 namespace Qiniu.IO.Resumable
 {
-	/// <summary>
-	/// Block上传成功事件参数
-	/// </summary>
-	public class PutNotifyEvent:EventArgs
-	{
-		int blkIdx;
+    /// <summary>
+    ///     Block上传成功事件参数
+    /// </summary>
+    public class PutNotifyEvent : EventArgs
+    {
+        public PutNotifyEvent(int blkIdx, int blkSize, BlkputRet ret)
+        {
+            BlkIdx = blkIdx;
+            BlkSize = blkSize;
+            Ret = ret;
+        }
 
-		public int BlkIdx {
-			get { return blkIdx; }
-		}
+        public int BlkIdx
+        {
+            get;
+        }
 
-		int blkSize;
+        public int BlkSize
+        {
+            get;
+        }
 
-		public int BlkSize {
-			get { return blkSize; }
-		}
+        public BlkputRet Ret
+        {
+            get;
+        }
+    }
 
-		BlkputRet ret;
+    /// <summary>
+    ///     上传错误事件参数
+    /// </summary>
+    public class PutNotifyErrorEvent : EventArgs
+    {
+        public PutNotifyErrorEvent(int blkIdx, int blkSize, string error)
+        {
+            BlkIdx = blkIdx;
+            BlkSize = blkSize;
+            Error = error;
+        }
 
-		public BlkputRet Ret {
-			get { return ret; }           
-		}
+        public int BlkIdx
+        {
+            get;
+        }
 
-		public PutNotifyEvent (int blkIdx, int blkSize, BlkputRet ret)
-		{         
-			this.blkIdx = blkIdx;
-			this.blkSize = blkSize;
-			this.ret = ret; 
-		}
-	}
+        public int BlkSize
+        {
+            get;
+        }
 
-	/// <summary>
-	/// 上传错误事件参数
-	/// </summary>
-	public class PutNotifyErrorEvent:EventArgs
-	{
-		int blkIdx;
+        public string Error
+        {
+            get;
+        }
+    }
 
-		public int BlkIdx {
-			get { return blkIdx; }
-		}
+    /// <summary>
+    /// </summary>
+    public class ResumablePutExtra
+    {
+        public event EventHandler<PutNotifyEvent> OnNotify;
 
-		int blkSize;
+        public event EventHandler<PutNotifyErrorEvent> OnNotifyErr;
 
-		public int BlkSize {
-			get { return blkSize; }
-		}
+        public void Notify(PutNotifyEvent arg)
+        {
+            OnNotify?.Invoke(this, arg);
+        }
 
-		string error;
+        public void NotifyErr(PutNotifyErrorEvent arg)
+        {
+            OnNotifyErr?.Invoke(this, arg);
+        }
 
-		public string Error {
-			get { return error; }           
-		}
-
-		public PutNotifyErrorEvent (int blkIdx, int blkSize, string error)
-		{
-			this.blkIdx = blkIdx;
-			this.blkSize = blkSize;
-			this.error = error; 
-		}
-	}
-
-	/// <summary>
-	/// 
-	/// </summary>
-	public class ResumablePutExtra
-	{
-		//key format as: "x:var"
-		public /*NameValueCollection*/WebHeaderCollection CallbackParams;
-		public string CustomMeta;
-		public string MimeType;
-		public int chunkSize;
-		public int tryTimes;
-		public BlkputRet[] Progresses;
-
-		public event EventHandler<PutNotifyEvent> Notify;
-		public event EventHandler<PutNotifyErrorEvent> NotifyErr;
-
-		public void OnNotify (PutNotifyEvent arg)
-		{
-			if (Notify != null)
-				Notify (this, arg);
-		}
-
-		public void OnNotifyErr (PutNotifyErrorEvent arg)
-		{
-			if (NotifyErr != null)
-				NotifyErr (this, arg);
-		}
-	}
+        //key format as: "x:var"
+        public /*NameValueCollection*/ WebHeaderCollection CallbackParams
+        {
+            set;
+            get;
+        }
+        public int ChunkSize
+        {
+            set;
+            get;
+        }
+        public string CustomMeta
+        {
+            set;
+            get;
+        }
+        public string MimeType
+        {
+            set;
+            get;
+        }
+        public BlkputRet[] Progresses
+        {
+            set;
+            get;
+        }
+        public int TryTimes
+        {
+            set;
+            get;
+        }
+    }
 }

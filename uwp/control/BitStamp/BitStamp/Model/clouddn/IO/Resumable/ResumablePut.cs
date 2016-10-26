@@ -97,11 +97,11 @@ namespace Qiniu.IO.Resumable
                     BlkputRet blkRet = await ResumableBlockPut(client, byteBuf, i, readLen);
                     if (blkRet == null)
                     {
-                        Extra.OnNotifyErr(new PutNotifyErrorEvent(i, readLen, "Make Block Error"));
+                        Extra.NotifyErr(new PutNotifyErrorEvent(i, readLen, "Make Block Error"));
                     }
                     else
                     {
-                        Extra.OnNotify(new PutNotifyEvent(i, readLen, Extra.Progresses[i]));
+                        Extra.Notify(new PutNotifyEvent(i, readLen, Extra.Progresses[i]));
                     }
                 }
                 ret = await Mkfile(client, key, fsize);

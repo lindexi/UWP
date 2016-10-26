@@ -47,8 +47,8 @@ namespace Qiniu.IO.Resumable
         /// </summary>
         public ResumablePutExtra Extra
         {
-            get;
             set;
+            get;
         }
 
         /// <summary>

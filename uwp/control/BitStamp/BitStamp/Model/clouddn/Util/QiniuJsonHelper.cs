@@ -7,9 +7,11 @@ namespace Qiniu.Util
 	{
 		public static string JsonEncode (object obj)
 		{
-			JsonSerializerSettings setting = new JsonSerializerSettings ();
-			setting.NullValueHandling = NullValueHandling.Ignore;
-			return JsonConvert.SerializeObject (obj, setting);
+		    JsonSerializerSettings setting = new JsonSerializerSettings
+		    {
+		        NullValueHandling = NullValueHandling.Ignore
+		    };
+		    return JsonConvert.SerializeObject (obj, setting);
 		}
 
 		public static T ToObject<T> (string value)

@@ -7,7 +7,7 @@ namespace Qiniu.Util
 	{
 		public static string Encode (string text)
 		{
-			if (String.IsNullOrEmpty (text))
+			if (string.IsNullOrEmpty (text))
 				return "";
 			byte[] bs = Encoding.UTF8.GetBytes (text);
 			string encodedStr = Convert.ToBase64String (bs);

@@ -147,6 +147,7 @@
     <Compile Include="Model\clouddn\Util\QiniuJsonHelper.cs" />
     <Compile Include="Model\clouddn\Util\StreamEx.cs" />
     <Compile Include="Model\clouddn\Util\StringEx.cs" />
+    <Compile Include="Model\ConvertBooleanNull.cs" />
     <Compile Include="Model\JyUploadImage.cs" />
     <Compile Include="Model\SmmsUploadImage.cs" />
     <Compile Include="Model\UploadImageTask.cs" />

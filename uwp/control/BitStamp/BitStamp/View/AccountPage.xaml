@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BitStamp.View"
+    xmlns:view="using:BitStamp.Model"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -11,6 +12,7 @@
         <Style x:Key="SplitFe" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
         </Style>
+        <view:ConvertBooleanNull x:Key="ConvertBooleanNull"></view:ConvertBooleanNull>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -32,7 +34,8 @@
                 </RadioButton.Content>
             </RadioButton>
             <Grid Margin="20,0,0,0">
-                <TextBox Header="九幽云存储key" Text="{x:Bind View.JiuYouSecretId,Mode=TwoWay}"></TextBox>
+                <TextBox Header="九幽云存储key" Text="{x:Bind View.JiuYouSecretId,Mode=TwoWay}"
+                         IsEnabled="{x:Bind View.JiuYouImageShack,Mode=OneWay,Converter={StaticResource ConvertBooleanNull}}"></TextBox>
             </Grid>
             <RadioButton IsChecked="{x:Bind View.QinImageShack,Mode=TwoWay}" IsEnabled="False" Content="骑牛"></RadioButton>
             <Grid Height="1" Background="Gray"></Grid>

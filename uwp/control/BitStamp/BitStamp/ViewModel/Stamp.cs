@@ -21,7 +21,7 @@ namespace BitStamp.ViewModel
 
             Account = AccoutGoverment.AccountModel;
 
-            Str = Account.Account.Str;
+            //Str = Account.Account.Str;
 
             Visibility = Visibility.Collapsed;
 

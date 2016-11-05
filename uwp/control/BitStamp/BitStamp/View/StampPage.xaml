@@ -50,7 +50,7 @@
 
                 <StackPanel Grid.Row="1">
                     <TextBox Margin="10,10,10,10" Header="水印"
-                             Text="{x:Bind View.Str,Mode=TwoWay}"
+                             Text="{x:Bind View.Account.Account.Str,Mode=TwoWay}"
                              PlaceholderText="可以粘贴图片"
                              TextWrapping="Wrap"
                              Paste="TextBox_Clipboard" />

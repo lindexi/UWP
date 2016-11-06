@@ -14,3 +14,6 @@
             //上传
             imageshack.UpLoad();
 ```
+
+##七牛图床
+

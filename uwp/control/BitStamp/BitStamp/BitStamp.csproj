@@ -19,7 +19,7 @@
     <PackageCertificateKeyFile>BitStamp_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>4B79E13E2683672C3E19D37D300C0DC30BB47004</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>Y:\AppPackages\</AppxPackageDir>
+    <AppxPackageDir>Y:\BitStamp\AppPackages\</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>

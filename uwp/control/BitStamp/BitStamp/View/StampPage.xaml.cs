@@ -55,6 +55,10 @@ namespace BitStamp.View
             pick.FileTypeFilter.Add(".png");
             BitmapImage bitmap = new BitmapImage();
             StorageFile file = await pick.PickSingleFileAsync();
+            if (file == null)
+            {
+                return;
+            }
             using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read))
             {
                 bitmap.SetSource(stream);
@@ -73,22 +77,29 @@ namespace BitStamp.View
                 CreationCollisionOption.GenerateUniqueName);
             await bitmap.RenderAsync(Stamp);
             var buffer = await bitmap.GetPixelsAsync();
-            using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+            try
             {
-                var encod = await BitmapEncoder.CreateAsync(
-                    BitmapEncoder.JpegEncoderId, stream);
-                encod.SetPixelData(BitmapPixelFormat.Bgra8,
-                    BitmapAlphaMode.Ignore,
-                    (uint) bitmap.PixelWidth,
-                    (uint) bitmap.PixelHeight,
-                    DisplayInformation.GetForCurrentView().LogicalDpi,
-                    DisplayInformation.GetForCurrentView().LogicalDpi,
-                    buffer.ToArray()
-                );
-                await encod.FlushAsync();
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    var encod = await BitmapEncoder.CreateAsync(
+                        BitmapEncoder.JpegEncoderId, stream);
+                    encod.SetPixelData(BitmapPixelFormat.Bgra8,
+                        BitmapAlphaMode.Ignore,
+                        (uint)bitmap.PixelWidth,
+                        (uint)bitmap.PixelHeight,
+                        DisplayInformation.GetForCurrentView().LogicalDpi,
+                        DisplayInformation.GetForCurrentView().LogicalDpi,
+                        buffer.ToArray()
+                    );
+                    await encod.FlushAsync();
+                }
+                View.File = file;
+                View.Jcloud();
             }
-            View.File = file;
-            View.Jcloud();
+            catch (ArgumentException)
+            {
+                View.Address = "没有选择图片";
+            }
         }
 
         private void Grid_OnDragOver(object sender, DragEventArgs e)

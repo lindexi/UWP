@@ -86,13 +86,42 @@ namespace cloundes.Model
                 //默认
                 Accound = AppId.Accound;
             }
+            string name = null;
+            if (string.IsNullOrEmpty(Name))
+            {
+                if (Accound.UploadFileName)
+                {
+                    name = File.Name;
+                }
+            }
+            else
+            {
+                name = Name;
+            }
 
-            IOClient upload = new IOClient();
-            PutRet temp = await upload.UploadFile(
-                Accound.AccessKey,
-                Accound.SecretKey,
-                Accound.Bucket,
-                File);
+            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(Accound.Pname))
+            {
+                name = Accound.Pname + name;
+            }
+
+            try
+            {
+                IOClient upload = new IOClient();
+
+                PutRet temp = await upload.UploadFile(
+                    Accound.AccessKey,
+                    Accound.SecretKey,
+                    Accound.Bucket,
+                    File, name);
+
+                Url = Accound.Url + temp.key;
+
+                OnUploaded?.Invoke(this, true);
+            }
+            catch (Exception)
+            {
+                OnUploaded?.Invoke(this, false);
+            }
         }
 
         public CloundesAccound Accound

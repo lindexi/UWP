@@ -8,6 +8,21 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid VerticalAlignment="Center">
+            <StackPanel Margin="10,10,10,10">
+                <TextBox Header="AK"
+                         Text="{x:Bind View.Accound.AccessKey,Mode=TwoWay}"></TextBox>
+                <TextBox Header="SK"
+                         Text="{x:Bind View.Accound.SecretKey,Mode=TwoWay}"></TextBox>
+                <TextBox Header="域名"
+                         Text="{x:Bind View.Accound.Url,Mode=TwoWay}"></TextBox>
+                <TextBox Header="Bk"
+                         Text="{x:Bind View.Accound.Bucket,Mode=TwoWay}"></TextBox>
+                <TextBox Header="URL"
+                         Text="{x:Bind View.Address,Mode=OneWay}"></TextBox>
+                <Button Margin="10,10,10,10" Content="上传" HorizontalAlignment="Stretch"
+                        Click="{x:Bind View.UploadFile}"></Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

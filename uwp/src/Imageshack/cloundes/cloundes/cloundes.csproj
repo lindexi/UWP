@@ -7,7 +7,7 @@
     <ProjectGuid>{398F7C9C-9140-4136-81D9-6F2A18BE8F33}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>cloundes</RootNamespace>
+    <RootNamespace>lindexi.uwp.ImageShack</RootNamespace>
     <AssemblyName>cloundes</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>

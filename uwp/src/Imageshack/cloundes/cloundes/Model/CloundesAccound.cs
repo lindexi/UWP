@@ -1,9 +1,12 @@
-﻿namespace cloundes.Model
+﻿// lindexi
+// 16:34
+
+namespace cloundes.Model
 {
     /// <summary>
-    /// 配置
+    ///     配置
     /// </summary>
-    public class CloundesAccound:NotifyProperty
+    public class CloundesAccound : NotifyProperty
     {
         public CloundesAccound()
         {
@@ -20,16 +23,18 @@
             set;
             get;
         }
+
         /// <summary>
-        /// 空间
+        ///     空间
         /// </summary>
         public string Bucket
         {
             set;
             get;
         }
+
         /// <summary>
-        /// 域名
+        ///     域名
         /// </summary>
         public string Url
         {
@@ -44,7 +49,7 @@
         }
 
         /// <summary>
-        /// 前缀
+        ///     前缀
         /// </summary>
         public string Pname
         {

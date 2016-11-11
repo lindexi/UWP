@@ -1,4 +1,7 @@
-﻿using System;
+﻿// lindexi
+// 16:34
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,6 +27,11 @@ namespace cloundes.Model
         {
         }
 
+        public CloundesAccound Accound
+        {
+            set;
+            get;
+        }
 
 
         public override async void UploadImage()
@@ -33,6 +41,7 @@ namespace cloundes.Model
                 //默认
                 Accound = AppId.Accound;
             }
+            //判断域名最后存在“/”不存在就加，不然会看不到域名和图片
             if (!Accound.Url.EndsWith("/"))
             {
                 Accound.Url += "/";
@@ -75,16 +84,11 @@ namespace cloundes.Model
             }
         }
 
-        public CloundesAccound Accound
-        {
-            set;
-            get;
-        }
+        ///// <param name="accessKey"></param>
+        ///// </summary>
+        ///// 上传文件
 
         ///// <summary>
-        ///// 上传文件
-        ///// </summary>
-        ///// <param name="accessKey"></param>
         ///// <param name="secretKey"></param>
         ///// <param name="bucket"></param>
         ///// <param name="file"></param>

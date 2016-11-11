@@ -11,18 +11,81 @@
         <Grid VerticalAlignment="Center">
             <StackPanel Margin="10,10,10,10">
                 <TextBox Header="AK"
-                         Text="{x:Bind View.Accound.AccessKey,Mode=TwoWay}"></TextBox>
+                         Text="{x:Bind View.Accound.AccessKey,Mode=TwoWay}" />
                 <TextBox Header="SK"
-                         Text="{x:Bind View.Accound.SecretKey,Mode=TwoWay}"></TextBox>
+                         Text="{x:Bind View.Accound.SecretKey,Mode=TwoWay}" />
                 <TextBox Header="域名"
-                         Text="{x:Bind View.Accound.Url,Mode=TwoWay}"></TextBox>
+                         Text="{x:Bind View.Accound.Url,Mode=TwoWay}" />
                 <TextBox Header="Bk"
-                         Text="{x:Bind View.Accound.Bucket,Mode=TwoWay}"></TextBox>
+                         Text="{x:Bind View.Accound.Bucket,Mode=TwoWay}" />
                 <TextBox Header="URL"
-                         Text="{x:Bind View.Address,Mode=OneWay}"></TextBox>
+                         Text="{x:Bind View.Address,Mode=OneWay}" />
                 <Button Margin="10,10,10,10" Content="上传" HorizontalAlignment="Stretch"
-                        Click="{x:Bind View.UploadFile}"></Button>
+                        Click="{x:Bind View.UploadFile}" />
             </StackPanel>
         </Grid>
     </Grid>
 </Page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

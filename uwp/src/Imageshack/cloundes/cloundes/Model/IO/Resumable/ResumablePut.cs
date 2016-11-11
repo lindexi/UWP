@@ -1,5 +1,5 @@
 ﻿// lindexi
-// 15:38
+// 16:34
 
 using System;
 using System.Collections.Generic;
@@ -63,13 +63,13 @@ namespace Qiniu.IO.Resumable
 
         /// <summary>
         ///     上传文件
-        /// todo:修改文件
+        ///     todo:修改文件
         /// </summary>
         /// <param name="upToken">上传Token</param>
         /// <param name="key">key</param>
         /// <param name="localFile">本地文件名 todo:不使用 </param>
-        public async Task<CallRet> PutFile(string upToken, 
-            string localFile, 
+        public async Task<CallRet> PutFile(string upToken,
+            string localFile,
             string key)
         {
             if (!File.Exists(localFile))
@@ -117,8 +117,8 @@ namespace Qiniu.IO.Resumable
             return ret;
         }
 
-        private async Task<BlkputRet> ResumableBlockPut(Client client, 
-            byte[] body, int blkIdex, 
+        private async Task<BlkputRet> ResumableBlockPut(Client client,
+            byte[] body, int blkIdex,
             int blkSize)
         {
             #region Mkblock
@@ -160,8 +160,8 @@ namespace Qiniu.IO.Resumable
             return Extra.Progresses[blkIdex];
         }
 
-        private static async Task<BlkputRet> Mkblock(Client client, 
-            byte[] firstChunk, 
+        private static async Task<BlkputRet> Mkblock(Client client,
+            byte[] firstChunk,
             int blkSize)
         {
             string url = string.Format("{0}/mkblk/{1}", Config.UP_HOST, blkSize);

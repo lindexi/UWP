@@ -1,5 +1,5 @@
 ﻿// lindexi
-// 15:44
+// 16:34
 
 using System;
 using System.Text;
@@ -29,7 +29,7 @@ namespace Qiniu.Auth
             using (MemoryStream buffer = new MemoryStream())
             {
                 string digestBase64 = null;
-                if ((request.ContentType == "application/x-www-form-urlencoded") 
+                if ((request.ContentType == "application/x-www-form-urlencoded")
                     && (body != null))
                 {
                     if (!body.CanSeek)

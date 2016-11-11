@@ -1,5 +1,5 @@
-// lindexi
-// 15:59
+﻿// lindexi
+// 16:34
 
 using System;
 using System.Collections.Generic;
@@ -92,13 +92,13 @@ namespace Qiniu.RSF
         /// <param name='limitFetch'>
         ///     Limit.
         /// </param>
-        public async Task<DumpRet> ListPrefix(string bucket, 
-            string prefix = "", 
-            string markerIn = "", 
+        public async Task<DumpRet> ListPrefix(string bucket,
+            string prefix = "",
+            string markerIn = "",
             int limitFetch = 0)
         {
-            string url = Config.RSF_HOST + 
-                string.Format("/list?bucket={0}", bucket); // + bucketName + 
+            string url = Config.RSF_HOST +
+                         string.Format("/list?bucket={0}", bucket); // + bucketName + 
             if (!string.IsNullOrEmpty(markerIn))
             {
                 url += string.Format("&marker={0}", markerIn);
@@ -156,9 +156,9 @@ namespace Qiniu.RSF
             {
                 return null;
             }
-            DumpRet ret = await ListPrefix(_bucketName, 
+            DumpRet ret = await ListPrefix(_bucketName,
                 Prefix,
-                Marker, 
+                Marker,
                 _limit);
             if (ret.Items.Count == 0)
             {

@@ -1,5 +1,5 @@
 ﻿// lindexi
-// 15:50
+// 16:34
 
 namespace Qiniu.IO.Resumable
 {

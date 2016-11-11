@@ -1,4 +1,7 @@
-﻿using System;
+﻿// lindexi
+// 16:34
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,15 +37,14 @@ namespace cloundes.ViewModel
             {
                 return _address;
             }
-
         }
 
         public async void UploadFile()
         {
             FileOpenPicker pick = new FileOpenPicker();
             pick.FileTypeFilter.Add(".jpg");
-            StorageFile file=await pick.PickSingleFileAsync();
-            QnUploadImage uploadImage=new QnUploadImage(file);
+            StorageFile file = await pick.PickSingleFileAsync();
+            QnUploadImage uploadImage = new QnUploadImage(file);
             uploadImage.OnUploaded += (s, e) =>
             {
                 if (e)

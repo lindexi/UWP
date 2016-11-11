@@ -1,5 +1,5 @@
 ﻿// lindexi
-// 15:55
+// 16:34
 
 using System;
 using System.Collections.Specialized;
@@ -16,6 +16,8 @@ namespace Qiniu.IO
 {
     internal static class MultiPart
     {
+        public static Encoding Encoding => Config.Encoding;
+
         public static string RandomBoundary()
         {
             return string.Format("----------{0:N}", Guid.NewGuid());
@@ -217,7 +219,5 @@ namespace Qiniu.IO
 
             return postDataStream;
         }
-
-        public static Encoding Encoding => Config.Encoding;
     }
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿// lindexi
+// 16:34
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,13 +21,13 @@ using Windows.UI.Xaml.Navigation;
 namespace cloundes
 {
     /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
+    ///     可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
     public sealed partial class MainPage : Page
     {
         public MainPage()
         {
-            View=new ViewModel.ViewModel();
+            View = new ViewModel.ViewModel();
             this.InitializeComponent();
         }
 

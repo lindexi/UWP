@@ -1,5 +1,5 @@
 ﻿// lindexi
-// 16:03
+// 16:34
 
 using System;
 using System.IO;
@@ -26,7 +26,7 @@ namespace Qiniu.Util
             return _value;
         }
 
-        public static uint Update(uint crc, uint[] table, byte[] p, 
+        public static uint Update(uint crc, uint[] table, byte[] p,
             int offset, int count)
         {
             crc = ~crc;

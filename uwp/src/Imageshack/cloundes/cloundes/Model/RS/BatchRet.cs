@@ -1,117 +1,138 @@
-﻿using System;
+﻿// lindexi
+// 16:34
+
+using System;
 using Newtonsoft.Json;
 
 namespace Qiniu.RS
 {
-	public class BatchRetItem
-	{
-		public int code;
-		public BatchRetData data;
-	}
+    public class BatchRetItem
+    {
+        public int code;
+        public BatchRetData data;
+    }
 
-	[JsonObject(MemberSerialization.OptIn)]
-	public class BatchRetData
-	{
-		Int64 fSize;
+    [JsonObject(MemberSerialization.OptIn)]
+    public class BatchRetData
+    {
+        /// <summary>
+        ///     文件大小.
+        /// </summary>
+        [JsonProperty("fsize")]
+        public Int64 FSize
+        {
+            get
+            {
+                return fSize;
+            }
+            set
+            {
+                fSize = value;
+            }
+        }
 
-		/// <summary>
-		/// 文件大小.
-		/// </summary>
-		[JsonProperty("fsize")]
-		public Int64 FSize {
-			get {
-				return fSize;
-			}
-			set {
-				fSize = value;
-			}
-		}
+        /// <summary>
+        ///     修改时间.
+        /// </summary>
+        [JsonProperty("putTime")]
+        public Int64 PutTime
+        {
+            get
+            {
+                return putTime;
+            }
+            set
+            {
+                putTime = value;
+            }
+        }
 
-		Int64 putTime;
+        /// <summary>
+        ///     文件名.
+        /// </summary>
+        [JsonProperty("key")]
+        public string Key
+        {
+            get
+            {
+                return key;
+            }
+            set
+            {
+                key = value;
+            }
+        }
 
-		/// <summary>
-		/// 修改时间.
-		/// </summary>
-		[JsonProperty("putTime")]
-		public Int64 PutTime {
-			get {
-				return putTime;
-			}
-			set {
-				putTime = value;
-			}
-		}
+        /// <summary>
+        ///     Gets a value indicating whether this instance hash.
+        /// </summary>
+        [JsonProperty("hash")]
+        public string Hash
+        {
+            get
+            {
+                return hash;
+            }
+            set
+            {
+                hash = value;
+            }
+        }
 
-		string key;
+        /// <summary>
+        ///     Gets the MIME.
+        /// </summary>
+        [JsonProperty("mimeType")]
+        public string Mime
+        {
+            get
+            {
+                return mime;
+            }
+            set
+            {
+                mime = value;
+            }
+        }
 
-		/// <summary>
-		/// 文件名.
-		/// </summary>
-		[JsonProperty("key")]
-		public string Key {
-			get {
-				return key;
-			}
-			set {
-				key = value;
-			}
-		}
+        public string EndUser
+        {
+            get
+            {
+                return endUser;
+            }
+            set
+            {
+                endUser = value;
+            }
+        }
 
-		string hash;
+        /// <summary>
+        /// </summary>
+        [JsonProperty("error")]
+        public string Error
+        {
+            get
+            {
+                return error;
+            }
+            set
+            {
+                error = value;
+            }
+        }
 
-		/// <summary>
-		/// Gets a value indicating whether this instance hash.
-		/// </summary>
-		[JsonProperty("hash")]
-		public string Hash {
-			get {
-				return hash;
-			}
-			set {
-				hash = value;
-			}
-		}
+        private string endUser;
 
-		string mime;
+        private string error;
+        private Int64 fSize;
 
-		/// <summary>
-		/// Gets the MIME.
-		/// </summary>
-		[JsonProperty("mimeType")]
-		public string Mime {
-			get {
-				return mime;
-			}
-			set {
-				mime = value;
-			}
-		}
+        private string hash;
 
-		string endUser;
+        private string key;
 
-		public string EndUser {
-			get {
-				return endUser;
-			}
-			set {
-				endUser = value;
-			}
-		}
+        private string mime;
 
-		string error;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		[JsonProperty("error")]
-		public string Error {
-			get {
-				return error;
-			}
-			set {
-				error = value;
-			}
- 
-		}
-	}
+        private Int64 putTime;
+    }
 }

@@ -33,6 +33,10 @@ namespace cloundes.Model
                 //默认
                 Accound = AppId.Accound;
             }
+            if (!Accound.Url.EndsWith("/"))
+            {
+                Accound.Url += "/";
+            }
             string name = null;
             if (string.IsNullOrEmpty(Name))
             {

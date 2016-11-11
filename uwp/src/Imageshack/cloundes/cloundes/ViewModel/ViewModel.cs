@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using BitStamp.Model;
 using cloundes.Model;
+using lindexi.uwp.ImageShack.Model;
 
 namespace cloundes.ViewModel
 {

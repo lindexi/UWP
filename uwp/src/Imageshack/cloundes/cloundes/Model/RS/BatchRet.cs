@@ -4,7 +4,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace Qiniu.RS
+namespace lindexi.uwp.ImageShack.Model.RS
 {
     public class BatchRetItem
     {

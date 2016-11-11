@@ -4,16 +4,16 @@
 using System;
 using System.IO;
 using System.Net;
-using Qiniu.Conf;
-using Qiniu.Util;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
+using lindexi.uwp.ImageShack.Model.RS;
+using lindexi.uwp.ImageShack.Model.Util;
 using Newtonsoft.Json;
-using Qiniu.RS;
+using Qiniu.Conf;
 
-namespace Qiniu.Auth.digest
+namespace lindexi.uwp.ImageShack.Model.Auth.digest
 {
     /// <summary>
     ///     七牛消息认证(Message Authentication)

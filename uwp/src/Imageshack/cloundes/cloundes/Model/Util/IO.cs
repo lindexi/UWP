@@ -2,10 +2,9 @@
 // 16:34
 
 using System;
-using System.Text;
 using System.IO;
 
-namespace Qiniu.Util
+namespace lindexi.uwp.ImageShack.Model.Util
 {
     public static class IO
     {

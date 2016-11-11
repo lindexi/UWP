@@ -4,14 +4,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using lindexi.uwp.ImageShack.Model.Auth;
+using lindexi.uwp.ImageShack.Model.Auth.digest;
+using lindexi.uwp.ImageShack.Model.RPC;
+using lindexi.uwp.ImageShack.Model.Util;
 using Newtonsoft.Json;
-using Qiniu.Auth;
-using Qiniu.Auth.digest;
 using Qiniu.Conf;
-using Qiniu.RPC;
-using Qiniu.Util;
 
-namespace Qiniu.RS
+namespace lindexi.uwp.ImageShack.Model.RS
 {
     /// <summary>
     ///     文件管理操作

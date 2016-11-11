@@ -2,12 +2,9 @@
 // 16:34
 
 using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace BitStamp.Model
+namespace lindexi.uwp.ImageShack.Model
 {
     public abstract class UploadImageTask
     {

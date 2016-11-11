@@ -4,7 +4,7 @@
 using System;
 using System.Text;
 
-namespace Qiniu.Util
+namespace lindexi.uwp.ImageShack.Model.Util
 {
     public static class Base64URLSafe
     {

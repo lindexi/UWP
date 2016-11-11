@@ -2,17 +2,15 @@
 // 16:34
 
 using System;
-using System.Collections.Specialized;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
-using Qiniu.Conf;
-using Qiniu.RPC;
-using System.Diagnostics;
 using System.Threading.Tasks;
+using lindexi.uwp.ImageShack.Model.RPC;
+using Qiniu.Conf;
 
-namespace Qiniu.IO
+namespace lindexi.uwp.ImageShack.Model.IO
 {
     internal static class MultiPart
     {

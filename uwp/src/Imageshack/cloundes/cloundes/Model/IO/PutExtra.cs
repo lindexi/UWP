@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Qiniu.IO
+namespace lindexi.uwp.ImageShack.Model.IO
 {
     public enum CheckCrcType
     {

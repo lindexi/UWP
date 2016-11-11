@@ -4,7 +4,7 @@
 using System;
 using System.Net;
 
-namespace Qiniu.RPC
+namespace lindexi.uwp.ImageShack.Model.RPC
 {
     public class CallRet : EventArgs
     {

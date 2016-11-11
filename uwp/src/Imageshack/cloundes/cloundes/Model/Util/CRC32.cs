@@ -1,10 +1,9 @@
 ﻿// lindexi
 // 16:34
 
-using System;
 using System.IO;
 
-namespace Qiniu.Util
+namespace lindexi.uwp.ImageShack.Model.Util
 {
     public class CRC32
     {

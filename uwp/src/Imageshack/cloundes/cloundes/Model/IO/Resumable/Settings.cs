@@ -1,7 +1,7 @@
 ﻿// lindexi
 // 16:34
 
-namespace Qiniu.IO.Resumable
+namespace lindexi.uwp.ImageShack.Model.IO.Resumable
 {
     /// <summary>
     ///     断点续传上传参数设置

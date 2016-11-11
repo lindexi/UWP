@@ -3,21 +3,17 @@
 
 using System;
 using System.Collections.Generic;
-using System.Net;
-using Qiniu.Conf;
-using Qiniu.Auth;
-using Qiniu.RPC;
-using Qiniu.Util;
-using System.Collections.Specialized;
 using System.IO;
+using System.Net;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Web.Http;
-using Qiniu.Auth.digest;
-using Qiniu.RS;
+using lindexi.uwp.ImageShack.Model.Auth.digest;
+using lindexi.uwp.ImageShack.Model.RPC;
+using lindexi.uwp.ImageShack.Model.RS;
+using Qiniu.Conf;
 using HttpStatusCode = System.Net.HttpStatusCode;
 
-namespace Qiniu.IO
+namespace lindexi.uwp.ImageShack.Model.IO
 {
     /// <summary>
     ///     上传客户端

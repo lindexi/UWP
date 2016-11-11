@@ -3,9 +3,9 @@
 
 using System;
 using System.Text;
-using Qiniu.Util;
+using lindexi.uwp.ImageShack.Model.Util;
 
-namespace Qiniu.FileOp
+namespace lindexi.uwp.ImageShack.Model.FileOp
 {
     public class ImageWaterMarker : WaterMarker
     {

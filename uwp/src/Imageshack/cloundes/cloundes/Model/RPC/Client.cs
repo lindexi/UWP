@@ -8,7 +8,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Qiniu.Conf;
 
-namespace Qiniu.RPC
+namespace lindexi.uwp.ImageShack.Model.RPC
 {
     public class Client
     {

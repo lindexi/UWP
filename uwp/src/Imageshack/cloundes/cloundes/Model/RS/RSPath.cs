@@ -1,9 +1,9 @@
 ﻿// lindexi
 // 16:34
 
-using Qiniu.Util;
+using lindexi.uwp.ImageShack.Model.Util;
 
-namespace Qiniu.RS
+namespace lindexi.uwp.ImageShack.Model.RS
 {
     /// <summary>
     ///     bucket+   ":"+ key
@@ -71,7 +71,7 @@ namespace Qiniu.RS
     public class EntryPathPair
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Qiniu.RS.EntryPathPair" /> class.
+        ///     Initializes a new instance of the <see cref="EntryPathPair" /> class.
         /// </summary>
         public EntryPathPair(EntryPath src, EntryPath des)
         {

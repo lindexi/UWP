@@ -2,18 +2,16 @@
 // 16:34
 
 using System;
-using System.Text;
-using System.Net;
 using System.IO;
-using Qiniu.Util;
-using Qiniu.RPC;
-using Qiniu.Conf;
-using Qiniu.Auth.digest;
+using System.Net;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
+using lindexi.uwp.ImageShack.Model.Auth.digest;
+using lindexi.uwp.ImageShack.Model.RPC;
+using Qiniu.Conf;
 
-namespace Qiniu.Auth
+namespace lindexi.uwp.ImageShack.Model.Auth
 {
     public class QiniuAuthClient : Client
     {

@@ -2,9 +2,9 @@
 // 16:34
 
 using System.Threading.Tasks;
-using Qiniu.RPC;
+using lindexi.uwp.ImageShack.Model.RPC;
 
-namespace Qiniu.FileOp
+namespace lindexi.uwp.ImageShack.Model.FileOp
 {
     public enum MarkerGravity
     {

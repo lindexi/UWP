@@ -2,18 +2,11 @@
 // 16:34
 
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
-using BitStamp.Model;
-using Qiniu.Auth.digest;
-using Qiniu.IO;
-using Qiniu.RS;
+using cloundes.Model;
+using lindexi.uwp.ImageShack.Model.IO;
 
-namespace cloundes.Model
+namespace lindexi.uwp.ImageShack.Model
 {
     public class QnUploadImage : UploadImageTask
     {

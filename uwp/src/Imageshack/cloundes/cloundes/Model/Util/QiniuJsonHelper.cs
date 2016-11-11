@@ -3,8 +3,7 @@
 
 using Newtonsoft.Json;
 
-
-namespace Qiniu.Util
+namespace lindexi.uwp.ImageShack.Model.Util
 {
     public static class QiniuJsonHelper
     {

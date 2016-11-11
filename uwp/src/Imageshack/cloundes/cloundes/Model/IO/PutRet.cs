@@ -3,18 +3,18 @@
 
 using System;
 using System.Collections.Generic;
-using Qiniu.RPC;
-using Newtonsoft.Json;
 using System.Diagnostics;
+using lindexi.uwp.ImageShack.Model.RPC;
+using Newtonsoft.Json;
 
-namespace Qiniu.IO
+namespace lindexi.uwp.ImageShack.Model.IO
 {
     public class PutRet : CallRet
     {
         public PutRet(CallRet ret)
             : base(ret)
         {
-            if (!String.IsNullOrEmpty(Response))
+            if (!string.IsNullOrEmpty(Response))
             {
                 try
                 {

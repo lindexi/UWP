@@ -2,12 +2,10 @@
 // 16:34
 
 using System;
+using lindexi.uwp.ImageShack.Model.Util;
 using Newtonsoft.Json;
-using Qiniu.Auth.digest;
-using Qiniu.Conf;
-using Qiniu.Util;
 
-namespace Qiniu.RS
+namespace lindexi.uwp.ImageShack.Model.RS
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class PutPolicy

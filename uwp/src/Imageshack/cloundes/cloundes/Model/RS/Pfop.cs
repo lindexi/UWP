@@ -4,13 +4,13 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using lindexi.uwp.ImageShack.Model.Auth;
+using lindexi.uwp.ImageShack.Model.RPC;
+using lindexi.uwp.ImageShack.Model.Util;
 using Newtonsoft.Json;
-using Qiniu.Auth;
 using Qiniu.Conf;
-using Qiniu.RPC;
-using Qiniu.Util;
 
-namespace Qiniu.RS
+namespace lindexi.uwp.ImageShack.Model.RS
 {
     /// <summary>
     ///     Persistent identifier.
@@ -70,8 +70,8 @@ namespace Qiniu.RS
         /// <returns></returns>
         public async Task<string> Do(EntryPath entry, string[] fops, Uri notifyURL, string pipleline, int force = 0)
         {
-            if ((fops.Length < 1) || (entry == null) || string.IsNullOrEmpty(entry.Bucket) || (notifyURL == null) ||
-                !notifyURL.IsAbsoluteUri)
+            if ((fops.Length < 1) || string.IsNullOrEmpty(entry?.Bucket)
+                || (notifyURL == null) || !notifyURL.IsAbsoluteUri)
             {
                 throw new Exception("params error");
             }

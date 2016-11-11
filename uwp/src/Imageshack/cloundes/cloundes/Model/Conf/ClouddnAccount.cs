@@ -1,13 +1,7 @@
 ﻿// lindexi
 // 16:34
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BitStamp.Model.clouddn.Conf
+namespace lindexi.uwp.ImageShack.Model.Conf
 {
     public class ClouddnAccount
     {

@@ -3,11 +3,11 @@
 
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Qiniu.RPC;
 using System.Diagnostics;
+using lindexi.uwp.ImageShack.Model.RPC;
+using Newtonsoft.Json;
 
-namespace Qiniu.RS
+namespace lindexi.uwp.ImageShack.Model.RS
 {
     public class Entry : CallRet
     {

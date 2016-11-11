@@ -1,13 +1,9 @@
 ﻿// lindexi
 // 16:34
 
-using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Qiniu.IO
+namespace lindexi.uwp.ImageShack.Model.IO
 {
     internal class PutParameter
     {

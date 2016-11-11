@@ -1,12 +1,11 @@
 ﻿// lindexi
 // 16:34
 
-using System;
-using System.Net;
 using System.IO;
-using Qiniu.RPC;
+using System.Net;
+using lindexi.uwp.ImageShack.Model.RPC;
 
-namespace Qiniu.Auth
+namespace lindexi.uwp.ImageShack.Model.Auth
 {
     public class PutAuthClient : Client
     {

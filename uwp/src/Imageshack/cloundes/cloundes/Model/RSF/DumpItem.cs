@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Qiniu.RSF
+namespace lindexi.uwp.ImageShack.Model.RSF
 {
     /// <summary>
     ///     Dump item文件信息.

@@ -1,15 +1,14 @@
 ﻿// lindexi
 // 16:34
 
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using lindexi.uwp.ImageShack.Model.Auth;
+using lindexi.uwp.ImageShack.Model.RPC;
 using Newtonsoft.Json;
-using Qiniu.Auth;
 using Qiniu.Conf;
-using Qiniu.RPC;
 
-namespace Qiniu.RSF
+namespace lindexi.uwp.ImageShack.Model.RSF
 {
     /// <summary>
     ///     RS Fetch

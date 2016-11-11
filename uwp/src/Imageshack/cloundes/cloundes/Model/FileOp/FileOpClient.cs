@@ -2,14 +2,14 @@
 // 16:34
 
 using System;
-using System.Net;
-using System.IO;
-using Qiniu.RPC;
 using System.Diagnostics;
+using System.IO;
+using System.Net;
 using System.Threading.Tasks;
+using lindexi.uwp.ImageShack.Model.RPC;
 using Qiniu.Conf;
 
-namespace Qiniu.FileOp
+namespace lindexi.uwp.ImageShack.Model.FileOp
 {
     internal static class FileOpClient
     {

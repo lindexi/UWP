@@ -2,18 +2,17 @@
 // 16:34
 
 using System;
-using Qiniu.Auth.digest;
+using lindexi.uwp.ImageShack.Model.Auth.digest;
 using Qiniu.Conf;
-using System.Net;
 
-namespace Qiniu.RS
+namespace lindexi.uwp.ImageShack.Model.RS
 {
     /// <summary>
     ///     GetPolicy
     /// </summary>
     public class GetPolicy
     {
-        public static string MakeRequest(string baseUrl, UInt32 expires = 3600, Mac mac = null)
+        public static string MakeRequest(string baseUrl, uint expires = 3600, Mac mac = null)
         {
             if (mac == null)
             {

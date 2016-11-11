@@ -3,11 +3,11 @@
 
 using System;
 using System.Collections.Generic;
-using Qiniu.RPC;
-using Newtonsoft.Json;
 using System.Diagnostics;
+using lindexi.uwp.ImageShack.Model.RPC;
+using Newtonsoft.Json;
 
-namespace Qiniu.FileOp
+namespace lindexi.uwp.ImageShack.Model.FileOp
 {
     /// <summary>
     ///     Image Info

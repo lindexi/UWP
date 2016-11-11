@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Qiniu.FileOp
+namespace lindexi.uwp.ImageShack.Model.FileOp
 {
     public class ImageView
     {

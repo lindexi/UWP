@@ -2,11 +2,8 @@
 // 16:34
 
 using System;
-using System.Runtime;
-using System.Reflection;
-using System.Text;
 
-namespace Qiniu.FileOp
+namespace lindexi.uwp.ImageShack.Model.FileOp
 {
     public class ImageMogrify
     {

@@ -2,17 +2,15 @@
 // 16:34
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Qiniu.Auth;
-using Qiniu.Conf;
-using Qiniu.RPC;
-using Qiniu.RS;
-using Qiniu.Util;
 using System.Threading.Tasks;
+using lindexi.uwp.ImageShack.Model.Auth;
+using lindexi.uwp.ImageShack.Model.RPC;
+using lindexi.uwp.ImageShack.Model.Util;
+using Qiniu.Conf;
 
-namespace Qiniu.IO.Resumable
+namespace lindexi.uwp.ImageShack.Model.IO.Resumable
 {
     /// <summary>
     ///     异步并行断点上传类

@@ -1,12 +1,9 @@
 ﻿// lindexi
 // 16:34
 
-using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text;
 
-namespace Qiniu.Util
+namespace lindexi.uwp.ImageShack.Model.Util
 {
     /// <summary>
     ///     String辅助函数

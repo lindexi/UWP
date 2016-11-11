@@ -2,10 +2,9 @@
 // 16:34
 
 using System;
-using System.Collections.Specialized;
 using System.Net;
 
-namespace Qiniu.IO.Resumable
+namespace lindexi.uwp.ImageShack.Model.IO.Resumable
 {
     /// <summary>
     ///     Block上传成功事件参数

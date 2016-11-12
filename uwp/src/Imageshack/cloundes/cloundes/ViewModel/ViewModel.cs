@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using cloundes.Model;
 using lindexi.uwp.ImageShack.Model;
 
 namespace cloundes.ViewModel

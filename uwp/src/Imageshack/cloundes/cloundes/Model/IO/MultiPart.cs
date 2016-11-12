@@ -122,8 +122,9 @@ namespace lindexi.uwp.ImageShack.Model.IO
             //System.Net.WebHeaderCollection wb;
             //adding form data
 
-            string formDataHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
-                                            "Content-Disposition: form-data; name=\"{0}\";" + Environment.NewLine +
+            string formDataHeaderTemplate = Environment.NewLine +
+                "--" + boundary + Environment.NewLine +
+                "Content-Disposition: form-data; name=\"{0}\";" + Environment.NewLine +
                                             Environment.NewLine + "{1}";
 
             foreach (string key in formData.AllKeys /*Keys*/)
@@ -141,7 +142,8 @@ namespace lindexi.uwp.ImageShack.Model.IO
                                         "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"" +
                                         Environment.NewLine + "Content-Type: application/octet-stream" +
                                         Environment.NewLine + Environment.NewLine;
-            byte[] fileHeaderBytes = Encoding.UTF8.GetBytes(string.Format(fileHeaderTemplate,
+            byte[] fileHeaderBytes = Encoding.UTF8.GetBytes(
+                string.Format(fileHeaderTemplate,
                 "file", fileName));
             postDataStream.Write(fileHeaderBytes, 0, fileHeaderBytes.Length);
 
@@ -158,7 +160,8 @@ namespace lindexi.uwp.ImageShack.Model.IO
             #region adding end
 
             byte[] endBoundaryBytes =
-                Encoding.UTF8.GetBytes(Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
+                Encoding.UTF8.GetBytes(
+                    Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
             postDataStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
 
             #endregion
@@ -210,7 +213,8 @@ namespace lindexi.uwp.ImageShack.Model.IO
             #region adding end
 
             byte[] endBoundaryBytes =
-                Encoding.UTF8.GetBytes(Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
+                Encoding.UTF8.GetBytes(
+                    Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
             postDataStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
 
             #endregion

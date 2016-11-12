@@ -1,7 +1,9 @@
 ﻿// lindexi
 // 16:34
 
-namespace cloundes.Model
+using cloundes;
+
+namespace lindexi.uwp.ImageShack.Model
 {
     /// <summary>
     ///     配置

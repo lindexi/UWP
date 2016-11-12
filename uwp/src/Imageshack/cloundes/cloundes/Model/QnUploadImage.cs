@@ -3,7 +3,6 @@
 
 using System;
 using Windows.Storage;
-using cloundes.Model;
 using lindexi.uwp.ImageShack.Model.IO;
 
 namespace lindexi.uwp.ImageShack.Model

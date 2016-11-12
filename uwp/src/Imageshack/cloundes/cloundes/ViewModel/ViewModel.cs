@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using lindexi.uwp.ImageShack.Model;
@@ -17,6 +18,10 @@ namespace cloundes.ViewModel
         public ViewModel()
         {
             Accound = AppId.Accound;
+            Accound.UploadFileName = true;
+            //获取设备id
+             
+            Accound.Pname= new EasClientDeviceInformation().Id.ToString();
         }
 
         public CloundesAccound Accound
@@ -43,7 +48,10 @@ namespace cloundes.ViewModel
             FileOpenPicker pick = new FileOpenPicker();
             pick.FileTypeFilter.Add(".jpg");
             StorageFile file = await pick.PickSingleFileAsync();
-            QnUploadImage uploadImage = new QnUploadImage(file);
+            QnUploadImage uploadImage = new QnUploadImage(file)
+            {
+                Accound = Accound
+            };
             uploadImage.OnUploaded += (s, e) =>
             {
                 if (e)

@@ -87,9 +87,9 @@ namespace BitStamp
             {
                 if (rootFrame.Content == null)
                 {
-                    ApplicationView.PreferredLaunchWindowingMode=ApplicationViewWindowingMode.PreferredLaunchViewSize;
+                    //ApplicationView.PreferredLaunchWindowingMode=ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-                    ApplicationView.PreferredLaunchViewSize = new Size(200, 1000);
+                    //ApplicationView.PreferredLaunchViewSize = new Size(200, 1000);
 
                     //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 

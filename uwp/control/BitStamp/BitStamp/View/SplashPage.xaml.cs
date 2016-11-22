@@ -37,9 +37,9 @@ namespace BitStamp.View
         {
             this.InitializeComponent();
 
-            ApplicationView.PreferredLaunchViewSize = new Size(200, 1000);
+            //ApplicationView.PreferredLaunchViewSize = new Size(200, 1000);
 
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             AccoutGoverment.AccountModel.OnReadEventHandler += async (s, e) =>
             {

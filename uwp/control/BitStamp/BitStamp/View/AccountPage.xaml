@@ -39,6 +39,16 @@
                          IsEnabled="{x:Bind View.JiuYouImageShack,Mode=OneWay,Converter={StaticResource ConvertBooleanNull}}"></TextBox>
             </Grid>
             <RadioButton IsChecked="{x:Bind View.QinImageShack,Mode=TwoWay}" IsEnabled="False" Content="骑牛"></RadioButton>
+            <Grid Margin="20,0,0,0"
+                  Visibility="{x:Bind View.QinImageShackVisibility,Mode=TwoWay}">
+                <StackPanel>
+                    <TextBox Header="AK"></TextBox>
+                    <TextBox Header="SK"></TextBox>
+                    <TextBox Header="Bucket"></TextBox>
+                    <TextBox Header="域名"></TextBox>
+                    <TextBox Header="前缀"></TextBox>
+                </StackPanel>
+            </Grid>
             <Grid Height="1" Background="Gray"></Grid>
             <Grid>
                 <TextBox Margin="10,10,10,10"

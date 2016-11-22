@@ -16,6 +16,7 @@ namespace BitStamp.ViewModel
     {
         public Account()
         {
+            QinImageShack = false;
         }
 
         public ElementTheme Theme
@@ -103,7 +104,9 @@ namespace BitStamp.ViewModel
                 {
                     ImageShack = ImageShackEnum.Qin;
                 }
+                QinImageShackVisibility=value == true ? Visibility.Visible : Visibility.Collapsed;
                 OnPropertyChanged();
+                //OnPropertyChanged(nameof(QinImageShackVisibility));
             }
             get
             {
@@ -111,6 +114,20 @@ namespace BitStamp.ViewModel
             }
         }
 
+        public Visibility QinImageShackVisibility
+        {
+            set
+            {
+                _qinImageShackVisibility = value;
+                OnPropertyChanged();
+            }
+            get
+            {
+                return _qinImageShackVisibility;
+            }
+        }
+
+        private Visibility _qinImageShackVisibility;
         public bool? JiuYouImageShack
         {
             set

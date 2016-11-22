@@ -120,6 +120,8 @@ namespace BitStamp.ViewModel
                 {
                     ImageShack = ImageShackEnum.Jiuyou;
                 }
+                JiuYouImageShackVisibility = value == true ? Visibility.Visible :
+                Visibility.Collapsed;
                 OnPropertyChanged();
             }
             get
@@ -141,16 +143,18 @@ namespace BitStamp.ViewModel
             }
         }
 
+        private Visibility _jiuYouImageShackVisibility;
+
         public async void OpenPicesrFolder()
         {
-            FolderPicker pick=new FolderPicker();
+            FolderPicker pick = new FolderPicker();
             pick.FileTypeFilter.Add(".png");
-            var folder =await pick.PickSingleFolderAsync();
+            var folder = await pick.PickSingleFolderAsync();
             if (folder != null)
             {
                 Folder = folder;
                 Address = folder.Path;
-                Token=StorageApplicationPermissions.FutureAccessList.Add(folder);
+                Token = StorageApplicationPermissions.FutureAccessList.Add(folder);
             }
         }
 
@@ -164,6 +168,19 @@ namespace BitStamp.ViewModel
         {
             set;
             get;
+        }
+
+        public Visibility JiuYouImageShackVisibility
+        {
+            set
+            {
+                _jiuYouImageShackVisibility = value;
+                OnPropertyChanged();
+            }
+            get
+            {
+                return _jiuYouImageShackVisibility;
+            }
         }
 
         private string _address;

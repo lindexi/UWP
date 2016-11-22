@@ -33,7 +33,8 @@
                     </Grid>
                 </RadioButton.Content>
             </RadioButton>
-            <Grid Margin="20,0,0,0">
+            <Grid Margin="20,0,0,0"
+                  Visibility="{x:Bind View.JiuYouImageShackVisibility,Mode=TwoWay}">
                 <TextBox Header="九幽云存储key" Text="{x:Bind View.JiuYouSecretId,Mode=TwoWay}"
                          IsEnabled="{x:Bind View.JiuYouImageShack,Mode=OneWay,Converter={StaticResource ConvertBooleanNull}}"></TextBox>
             </Grid>

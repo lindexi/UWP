@@ -1,35 +1,56 @@
-﻿using System;
+﻿// lindexi
+// 16:34
+
+using System;
 using System.Net;
 
-namespace Qiniu.RPC
+namespace lindexi.uwp.ImageShack.Model.RPC
 {
-	public class CallRet : EventArgs
-	{
-		public HttpStatusCode StatusCode { get; protected set; }
+    public class CallRet : EventArgs
+    {
+        public CallRet(HttpStatusCode statusCode, string response)
+        {
+            StatusCode = statusCode;
+            Response = response;
+        }
 
-		public Exception Exception { get; protected set; }
+        public CallRet(HttpStatusCode statusCode, Exception e)
+        {
+            StatusCode = statusCode;
+            Exception = e;
+        }
 
-		public string Response { get; protected set; }
+        public CallRet(CallRet ret)
+        {
+            StatusCode = ret.StatusCode;
+            Exception = ret.Exception;
+            Response = ret.Response;
+        }
 
-		public bool OK { get { return (int)StatusCode / 100 == 2; } }
+        public HttpStatusCode StatusCode
+        {
+            get;
+            protected set;
+        }
 
-		public CallRet (HttpStatusCode statusCode, string response)
-		{
-			StatusCode = statusCode;
-			Response = response;
-		}
+        public Exception Exception
+        {
+            get;
+            protected set;
+        }
 
-		public CallRet (HttpStatusCode statusCode, Exception e)
-		{
-			StatusCode = statusCode;
-			Exception = e;
-		}
+        public string Response
+        {
+            get;
+            protected set;
+        }
 
-		public CallRet (CallRet ret)
-		{
-			StatusCode = ret.StatusCode;
-			Exception = ret.Exception;
-			Response = ret.Response;
-		}
-	}
+        public bool OK
+        {
+            get
+            {
+                return (int) StatusCode/100 == 2;
+            }
+        }
+    }
 }

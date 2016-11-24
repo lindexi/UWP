@@ -1,11 +1,10 @@
 ﻿// lindexi
-// 15:46
+// 16:34
 
 using System;
-using System.Collections.Specialized;
 using System.Net;
 
-namespace Qiniu.IO.Resumable
+namespace lindexi.uwp.ImageShack.Model.IO.Resumable
 {
     /// <summary>
     ///     Block上传成功事件参数
@@ -67,6 +66,43 @@ namespace Qiniu.IO.Resumable
     /// </summary>
     public class ResumablePutExtra
     {
+        //key format as: "x:var"
+        public /*NameValueCollection*/ WebHeaderCollection CallbackParams
+        {
+            set;
+            get;
+        }
+
+        public int ChunkSize
+        {
+            set;
+            get;
+        }
+
+        public string CustomMeta
+        {
+            set;
+            get;
+        }
+
+        public string MimeType
+        {
+            set;
+            get;
+        }
+
+        public BlkputRet[] Progresses
+        {
+            set;
+            get;
+        }
+
+        public int TryTimes
+        {
+            set;
+            get;
+        }
+
         public event EventHandler<PutNotifyEvent> OnNotify;
 
         public event EventHandler<PutNotifyErrorEvent> OnNotifyErr;
@@ -79,38 +115,6 @@ namespace Qiniu.IO.Resumable
         public void NotifyErr(PutNotifyErrorEvent arg)
         {
             OnNotifyErr?.Invoke(this, arg);
-        }
-
-        //key format as: "x:var"
-        public /*NameValueCollection*/ WebHeaderCollection CallbackParams
-        {
-            set;
-            get;
-        }
-        public int ChunkSize
-        {
-            set;
-            get;
-        }
-        public string CustomMeta
-        {
-            set;
-            get;
-        }
-        public string MimeType
-        {
-            set;
-            get;
-        }
-        public BlkputRet[] Progresses
-        {
-            set;
-            get;
-        }
-        public int TryTimes
-        {
-            set;
-            get;
         }
     }
 }

@@ -1,60 +1,83 @@
-﻿using System;
+﻿// lindexi
+// 16:34
+
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Qiniu.IO
+namespace lindexi.uwp.ImageShack.Model.IO
 {
-    class PutParameter
+    internal class PutParameter
     {
-        protected string mimeType;
-
-        public string MimeType
-        {
-            get { return mimeType; }
-            set { mimeType = value; }
-        }        
         public PutParameter(string mimeType)
         {
             this.mimeType = mimeType;
         }
+
+        public string MimeType
+        {
+            get
+            {
+                return mimeType;
+            }
+            set
+            {
+                mimeType = value;
+            }
+        }
+
         public virtual long CopyTo(Stream body)
         {
             return 0;
         }
-    }
-    class StreamParameter:PutParameter
-    {
-        private System.IO.StreamReader reader;
 
-        public System.IO.StreamReader Reader
+        protected string mimeType;
+    }
+
+    internal class StreamParameter : PutParameter
+    {
+        public StreamParameter(StreamReader reader, string mimeType)
+            : base(mimeType)
         {
-            get { return reader; }
-            set { reader = value; }
+            this.reader = reader;
         }
-        public StreamParameter(StreamReader reader, string mimeType):base(mimeType)
+
+        public StreamReader Reader
         {
-           this.reader = reader;
+            get
+            {
+                return reader;
+            }
+            set
+            {
+                reader = value;
+            }
         }
+
         public override long CopyTo(Stream body)
         {
             return 0;
         }
+
+        private StreamReader reader;
     }
-    class FileParameter : PutParameter
+
+    internal class FileParameter : PutParameter
     {
-        private string fileName;
+        public FileParameter(string fname, string mimeType)
+            : base(mimeType)
+        {
+            this.fileName = fname;
+        }
 
         public string FileName
         {
-            get { return fileName; }
-            set { fileName = value; }
-        }
-        
-        public FileParameter(string fname, string mimeType):base(mimeType)
-        {
-            this.fileName = fname;
+            get
+            {
+                return fileName;
+            }
+            set
+            {
+                fileName = value;
+            }
         }
 
         public override long CopyTo(Stream body)
@@ -63,7 +86,9 @@ namespace Qiniu.IO
             {
                 fs.CopyTo(body);
                 return fs.Length;
-            }           
+            }
         }
+
+        private string fileName;
     }
 }

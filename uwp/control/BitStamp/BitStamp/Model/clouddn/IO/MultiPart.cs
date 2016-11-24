@@ -1,21 +1,21 @@
 ﻿// lindexi
-// 15:55
+// 16:34
 
 using System;
-using System.Collections.Specialized;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
-using Qiniu.Conf;
-using Qiniu.RPC;
-using System.Diagnostics;
 using System.Threading.Tasks;
+using lindexi.uwp.ImageShack.Model.RPC;
+using Qiniu.Conf;
 
-namespace Qiniu.IO
+namespace lindexi.uwp.ImageShack.Model.IO
 {
     internal static class MultiPart
     {
+        public static Encoding Encoding => Config.Encoding;
+
         public static string RandomBoundary()
         {
             return string.Format("----------{0:N}", Guid.NewGuid());
@@ -122,8 +122,9 @@ namespace Qiniu.IO
             //System.Net.WebHeaderCollection wb;
             //adding form data
 
-            string formDataHeaderTemplate = Environment.NewLine + "--" + boundary + Environment.NewLine +
-                                            "Content-Disposition: form-data; name=\"{0}\";" + Environment.NewLine +
+            string formDataHeaderTemplate = Environment.NewLine +
+                "--" + boundary + Environment.NewLine +
+                "Content-Disposition: form-data; name=\"{0}\";" + Environment.NewLine +
                                             Environment.NewLine + "{1}";
 
             foreach (string key in formData.AllKeys /*Keys*/)
@@ -141,7 +142,8 @@ namespace Qiniu.IO
                                         "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"" +
                                         Environment.NewLine + "Content-Type: application/octet-stream" +
                                         Environment.NewLine + Environment.NewLine;
-            byte[] fileHeaderBytes = Encoding.UTF8.GetBytes(string.Format(fileHeaderTemplate,
+            byte[] fileHeaderBytes = Encoding.UTF8.GetBytes(
+                string.Format(fileHeaderTemplate,
                 "file", fileName));
             postDataStream.Write(fileHeaderBytes, 0, fileHeaderBytes.Length);
 
@@ -158,7 +160,8 @@ namespace Qiniu.IO
             #region adding end
 
             byte[] endBoundaryBytes =
-                Encoding.UTF8.GetBytes(Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
+                Encoding.UTF8.GetBytes(
+                    Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
             postDataStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
 
             #endregion
@@ -210,14 +213,13 @@ namespace Qiniu.IO
             #region adding end
 
             byte[] endBoundaryBytes =
-                Encoding.UTF8.GetBytes(Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
+                Encoding.UTF8.GetBytes(
+                    Environment.NewLine + "--" + boundary + "--" + Environment.NewLine);
             postDataStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
 
             #endregion
 
             return postDataStream;
         }
-
-        public static Encoding Encoding => Config.Encoding;
     }
 }

@@ -120,10 +120,7 @@ namespace BitStamp.View
                     StorageFile file = files.OfType<StorageFile>().First();
                     if ((file.FileType == ".png") || (file.FileType == ".jpg"))
                     {
-                        BitmapImage bitmap = new BitmapImage();
-                        await bitmap.SetSourceAsync(await file.OpenAsync(FileAccessMode.Read));
-                        image.Source = bitmap;
-                        View.Image = bitmap;
+                        await ImageStorageFile(file);
                     }
                     _name = file.DisplayName;
                 }
@@ -135,6 +132,18 @@ namespace BitStamp.View
             {
                 defer.Complete();
             }
+        }
+
+        private async System.Threading.Tasks.Task ImageStorageFile(StorageFile file)
+        {
+            if (file == null)
+            {
+                return;
+            }
+            BitmapImage bitmap = new BitmapImage();
+            await bitmap.SetSourceAsync(await file.OpenAsync(FileAccessMode.Read));
+            image.Source = bitmap;
+            View.Image = bitmap;
         }
 
         private async void TextBox_Clipboard(object sender, TextControlPasteEventArgs e)
@@ -149,6 +158,11 @@ namespace BitStamp.View
                     await image.SetSourceAsync(await file.OpenReadAsync());
                     this.image.Source = image;
                     View.Image = image;
+                }
+                else if (data.Contains(StandardDataFormats.StorageItems))
+                {
+                    StorageFile file = (await data.GetStorageItemsAsync()).First() as StorageFile;
+                    await ImageStorageFile(file);
                 }
             }
         }

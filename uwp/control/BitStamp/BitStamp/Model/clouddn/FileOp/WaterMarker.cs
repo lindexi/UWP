@@ -1,69 +1,86 @@
-﻿using Qiniu.RPC;
+﻿// lindexi
+// 16:34
 
-namespace Qiniu.FileOp
+using System.Threading.Tasks;
+using lindexi.uwp.ImageShack.Model.RPC;
+
+namespace lindexi.uwp.ImageShack.Model.FileOp
 {
-	public enum MarkerGravity
-	{
-		NorthWest = 0,
-		North,
-		NorthEast,
-		West,
-		Center,
-		East,
-		SouthWest,
-		South,
-		SouthEast
-	}
+    public enum MarkerGravity
+    {
+        NorthWest = 0,
+        North,
+        NorthEast,
+        West,
+        Center,
+        East,
+        SouthWest,
+        South,
+        SouthEast
+    }
 
-	public class WaterMarker
-	{
-		protected static string[] Gravitys = new string[9] {
-			"NorthWest",
-			"North",
-			"NorthEast",
-			"West",
-			"Center",
-			"East",
-			"SouthWest",
-			"South",
-			"SouthEast"
-		};
-		protected int dx;
-		protected int dy;
-		protected int dissolve;
+    public class WaterMarker
+    {
+        public WaterMarker(int dissolve = 50, MarkerGravity gravity = MarkerGravity.SouthEast, int dx = 10, int dy = 10)
+        {
+            Dissolve = dissolve;
+            this.dissolve = dissolve;
+            this.dx = dx;
+            this.dy = dy;
+            this.gravity = gravity;
+        }
 
-		public int Dissolve {
-			get { return dissolve; }
-			set {
-				if (value < 0)
-					dissolve = 0;
-				else if (value > 100)
-					dissolve = 100;
-				else
-					dissolve = value;
-			}
-		}
+        public int Dissolve
+        {
+            get
+            {
+                return dissolve;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    dissolve = 0;
+                }
+                else if (value > 100)
+                {
+                    dissolve = 100;
+                }
+                else
+                {
+                    dissolve = value;
+                }
+            }
+        }
 
-		public MarkerGravity gravity;
+        public virtual string MakeRequest(string url)
+        {
+            return null;
+        }
 
-		public WaterMarker (int dissolve = 50, MarkerGravity gravity = MarkerGravity.SouthEast, int dx = 10, int dy = 10)
-		{
-			Dissolve = dissolve;
-			this.dissolve = dissolve;
-			this.dx = dx;
-			this.dy = dy;
-			this.gravity = gravity;
-		}
+        public static async Task<ExifRet> Call(string url)
+        {
+            CallRet callRet = await FileOpClient.Get(url);
+            return new ExifRet(callRet);
+        }
 
-		public virtual string MakeRequest (string url)
-		{
-			return null;
-		}
+        protected int dissolve;
+        protected int dx;
+        protected int dy;
 
-		public static async System.Threading.Tasks.Task<ExifRet> Call(string url)
-		{
-			CallRet callRet = await FileOpClient.Get(url);
-			return new ExifRet(callRet);
-		}
-	}
+        public MarkerGravity gravity;
+
+        protected static string[] Gravitys = new string[9]
+        {
+            "NorthWest",
+            "North",
+            "NorthEast",
+            "West",
+            "Center",
+            "East",
+            "SouthWest",
+            "South",
+            "SouthEast"
+        };
+    }
 }

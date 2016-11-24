@@ -1,20 +1,18 @@
-﻿using System;
-using System.Text;
-using Qiniu.Util;
+﻿// lindexi
+// 16:34
 
-namespace Qiniu.FileOp
+using System;
+using System.Text;
+using lindexi.uwp.ImageShack.Model.Util;
+
+namespace lindexi.uwp.ImageShack.Model.FileOp
 {
     /// <summary>
-    /// 
     /// </summary>
     public class TextWaterMarker : WaterMarker
     {
-        private string text;
-        private string fontName;
-        private int fontSize;
-        private string color;
-
-        public TextWaterMarker(string text, string fontname = "", string color = "", int fontsize = 0, int dissolve = 50, MarkerGravity gravity = MarkerGravity.SouthEast, int dx = 10, int dy = 10)
+        public TextWaterMarker(string text, string fontname = "", string color = "", int fontsize = 0, int dissolve = 50,
+            MarkerGravity gravity = MarkerGravity.SouthEast, int dx = 10, int dy = 10)
             : base(dissolve, gravity, dx, dy)
         {
             this.text = text;
@@ -46,10 +44,15 @@ namespace Qiniu.FileOp
                 sb.Append("/fill/" + Base64URLSafe.ToBase64URLSafe(color));
             }
             sb.Append("/dissolve/" + dissolve);
-            sb.Append("/gravity/" + Gravitys[(int)gravity]);
+            sb.Append("/gravity/" + Gravitys[(int) gravity]);
             sb.Append("/dx/" + dx);
             sb.Append("/dy/" + dy);
             return sb.ToString();
         }
+
+        private string color;
+        private string fontName;
+        private int fontSize;
+        private string text;
     }
 }

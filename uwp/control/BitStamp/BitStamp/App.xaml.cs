@@ -50,12 +50,21 @@ namespace BitStamp
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
 
+            ApplicationView.PreferredLaunchWindowingMode =
+                ApplicationViewWindowingMode.Auto;
+
+            ApplicationView.PreferredLaunchViewSize = new Size(200, 1000);
+
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
+            
+
             //if (rootFrame == null)
             //{
             //    SplashPage page=new SplashPage();
             //    Window.Current.Content = page;
             //    Window.Current.Activate();
-                
+
             //}
 
             if (e.PrelaunchActivated == true)

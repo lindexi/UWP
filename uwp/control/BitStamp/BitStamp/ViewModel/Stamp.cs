@@ -7,6 +7,7 @@ using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 using BitStamp.Model;
+using lindexi.uwp.ImageShack.Model;
 
 namespace BitStamp.ViewModel
 {
@@ -14,7 +15,7 @@ namespace BitStamp.ViewModel
     {
         public Stamp()
         {
-            Image = new BitmapImage(new Uri("ms-appx:///assets/QQ截图20160926151822.png"));
+            //Image = new BitmapImage(new Uri("ms-appx:///assets/QQ截图20160926151822.png"));
             //#if DEBUG
             //            Str = "blog.csdn.net/lindexi_gd";
             //#endif
@@ -115,7 +116,10 @@ namespace BitStamp.ViewModel
                 case ImageShackEnum.Smms:
                     return new SmmsUploadImage(file);
                 case ImageShackEnum.Qin:
-                    break;
+                    return new QnUploadImage(file)
+                    {
+                        Accound = Account.Account.CloundAccound
+                    };
                 default:
                     throw new ArgumentOutOfRangeException(nameof(imageShack), imageShack, null);
             }

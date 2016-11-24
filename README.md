@@ -3,11 +3,11 @@
 [中文](#中文)
 [English](#English)
 
-#中文
+# 中文
 
 常用代码和控件
 
-##控件
+## 控件
 
  - [白天黑夜按钮](uwp/control/NightDayThemeToggleButton)
 
@@ -25,7 +25,15 @@
 
  - DataGrid（没做）
 
-##代码
+## 软件
+
+ - [win10 uwp 水印图床](uwp/control/BitStamp)
+
+   参见 ：[win10 uwp 水印图床](uwp/control/BitStamp/【广告】win10 uwp 水印图床 含代码.md)
+
+   [安装](ms-windows-store://pdp/?productid=9nblggh562r2) https://www.microsoft.com/store/apps/9nblggh562r2
+
+## 代码
 
  - [DetailMaster](uwp/src/DetailMaster)
 
@@ -33,7 +41,12 @@
 
  - [图床](uwp/src/Imageshack)
 
-  sm.ms
+  [sm.ms](https://sm.ms/)
+
+  [七牛图床](http://www.qiniu.com/)
+
+  [七牛sdk UWP](uwp/src/Imageshack/cloundes)
+
 
  - [显示svg](uwp/src/ScalableVectorGraphic)
 
@@ -47,7 +60,7 @@
 
  - [径向规](uwp/src/RadialGauge)
 
-#English
+# English
 
 Some controls and common codes
 

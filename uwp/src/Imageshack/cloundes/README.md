@@ -1,4 +1,4 @@
-#七牛图床
+# 七牛图床
 
 先写配置，配置是需要AK和SK，空间名，域名。
 
@@ -54,3 +54,10 @@ AK和SK可以在个人面板密钥获得
 
 ```
 
+## 感谢(按开发者名称排序)
+
+ - [Gemini2015](https://github.com/Gemini2015/QiniuSDK) 
+ 
+ - [JuniperPhoton](https://github.com/JuniperPhoton/QiniuUWP)
+
+ - [qiniu](https://github.com/qiniu/csharp-sdk)

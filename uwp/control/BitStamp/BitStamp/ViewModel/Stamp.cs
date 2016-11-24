@@ -14,7 +14,7 @@ namespace BitStamp.ViewModel
     {
         public Stamp()
         {
-            Image = new BitmapImage(new Uri("ms-appx:///assets/QQ截图20160926151822.png"));
+            //Image = new BitmapImage(new Uri("ms-appx:///assets/QQ截图20160926151822.png"));
             //#if DEBUG
             //            Str = "blog.csdn.net/lindexi_gd";
             //#endif

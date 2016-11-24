@@ -7,7 +7,6 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,10 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using BitStamp.View;
-using BitStamp.ViewModel;
 
-namespace BitStamp
+namespace Button
 {
     /// <summary>
     /// 提供特定于应用程序的行为，以补充默认的应用程序类。
@@ -50,28 +47,6 @@ namespace BitStamp
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
 
-            ApplicationView.PreferredLaunchWindowingMode =
-                ApplicationViewWindowingMode.Auto;
-
-            ApplicationView.PreferredLaunchViewSize = new Size(200, 1000);
-
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
-            
-
-            //if (rootFrame == null)
-            //{
-            //    SplashPage page=new SplashPage();
-            //    Window.Current.Content = page;
-            //    Window.Current.Activate();
-
-            //}
-
-            if (e.PrelaunchActivated == true)
-            {
-                return;
-            }
-
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
             if (rootFrame == null)
@@ -86,8 +61,6 @@ namespace BitStamp
                     //TODO: 从之前挂起的应用程序加载状态
                 }
 
-                
-
                 // 将框架放在当前窗口中
                 Window.Current.Content = rootFrame;
             }
@@ -96,16 +69,10 @@ namespace BitStamp
             {
                 if (rootFrame.Content == null)
                 {
-                    //ApplicationView.PreferredLaunchWindowingMode=ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
-                    //ApplicationView.PreferredLaunchViewSize = new Size(200, 1000);
-
-                    //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
                     // 当导航堆栈尚未还原时，导航到第一页，
                     // 并通过将所需信息作为导航参数传入来配置
                     // 参数
-                    rootFrame.Navigate(typeof(SplashPage), e.Arguments);
+                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // 确保当前窗口处于活动状态
                 Window.Current.Activate();
@@ -129,11 +96,10 @@ namespace BitStamp
         /// </summary>
         /// <param name="sender">挂起的请求的源。</param>
         /// <param name="e">有关挂起请求的详细信息。</param>
-        private async void OnSuspending(object sender, SuspendingEventArgs e)
+        private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: 保存应用程序状态并停止任何后台活动
-            await AccoutGoverment.AccountModel.Storage();
             deferral.Complete();
         }
     }

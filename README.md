@@ -41,11 +41,9 @@
 
  - [图床](uwp/src/Imageshack)
 
-  [sm.ms](https://sm.ms/)
-
-  [七牛图床](http://www.qiniu.com/)
-
-  [七牛sdk UWP](uwp/src/Imageshack/cloundes)
+   图床是把图片上传到云，然后获取图片链接的开发包，我将繁琐的过程写成一个简单的类。
+   上传的服务器现在有[sm.ms](https://sm.ms/)和[七牛图床](http://www.qiniu.com/)。其中[七牛sdk UWP](uwp/src/Imageshack/cloundes)，
+   我只有简单文件上传，好多还没写。代码是从其他大神改出
 
 
  - [显示svg](uwp/src/ScalableVectorGraphic)
@@ -56,7 +54,7 @@
 
  - [ViewModel](uwp/src/ViewModel)
 
- - 隐私策略
+ - [隐私策略](uwp/src/隐私策略)
 
  - [径向规](uwp/src/RadialGauge)
 

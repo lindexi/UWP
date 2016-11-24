@@ -45,7 +45,20 @@
                 <Grid Grid.Row="0" AllowDrop="True"
                       DragOver="Grid_OnDragOver"
                       Drop="Grid_Drop">
-                    <Image Source="{x:Bind View.Image,Mode=OneWay}" />
+                    <Rectangle Margin="10,10,10,10" AllowDrop="True"
+                               Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                               RadiusX="5"
+                               RadiusY="5"
+                               Stroke="{ThemeResource ApplicationForegroundThemeBrush}" StrokeThickness="10"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch">
+                    </Rectangle>
+                    <Grid Margin="20,20,20,20">
+                        <TextBlock Text="拖入图片到这里" AllowDrop="True"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"></TextBlock>
+                        <Image Source="{x:Bind View.Image,Mode=OneWay}" AllowDrop="True"/>
+                    </Grid>
                 </Grid>
 
                 <StackPanel Grid.Row="1">
@@ -56,7 +69,6 @@
                              Paste="TextBox_Clipboard" />
                     <Grid>
                         <Button Margin="10,10,10,10"
-
                                 Click="ImageStorage_OnClick">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">

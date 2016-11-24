@@ -8,6 +8,7 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
+using lindexi.uwp.ImageShack.Model;
 using Newtonsoft.Json;
 
 namespace BitStamp.ViewModel
@@ -16,8 +17,10 @@ namespace BitStamp.ViewModel
     {
         public Account()
         {
-            QinImageShack = false;
+           
         }
+
+        
 
         public ElementTheme Theme
         {
@@ -91,7 +94,7 @@ namespace BitStamp.ViewModel
             }
             get
             {
-                return _smmsImageShack;
+                return _smmsImageShack= ImageShack == ImageShackEnum.Smms;
             }
         }
 
@@ -110,7 +113,7 @@ namespace BitStamp.ViewModel
             }
             get
             {
-                return _qinImageShack;
+                return _qinImageShack = ImageShack == ImageShackEnum.Qin;
             }
         }
 
@@ -143,7 +146,7 @@ namespace BitStamp.ViewModel
             }
             get
             {
-                return _jiuYouImageShack;
+                return _jiuYouImageShack= ImageShack == ImageShackEnum.Jiuyou;
             }
         }
 
@@ -199,6 +202,12 @@ namespace BitStamp.ViewModel
                 return _jiuYouImageShackVisibility;
             }
         }
+
+        public CloundesAccound CloundAccound
+        {
+            set;
+            get;
+        }=new CloundesAccound();
 
         private string _address;
 

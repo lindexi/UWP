@@ -108,6 +108,7 @@
     <Compile Include="Model\clouddn\Auth\digest\Mac.cs" />
     <Compile Include="Model\clouddn\Auth\PutAuthClient.cs" />
     <Compile Include="Model\clouddn\Auth\QiniuAuthClient.cs" />
+    <Compile Include="Model\CloundesAccound.cs" />
     <Compile Include="Model\clouddn\Conf\ClouddnAccount.cs" />
     <Compile Include="Model\clouddn\Conf\Config.cs" />
     <Compile Include="Model\clouddn\FileOp\Exif.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Model\clouddn\IO\Resumable\ResumablePutRet.cs" />
     <Compile Include="Model\clouddn\IO\Resumable\Settings.cs" />
     <Compile Include="Model\clouddn\PreFetch\PreFetchClient.cs" />
+    <Compile Include="Model\QnUploadImage.cs" />
     <Compile Include="Model\clouddn\RPC\CallRet.cs" />
     <Compile Include="Model\clouddn\RPC\Client.cs" />
     <Compile Include="Model\clouddn\RSF\DumpItem.cs" />

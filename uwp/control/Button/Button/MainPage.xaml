@@ -8,6 +8,23 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid Margin="10,10,10,10">
+            <Canvas>
+                <Line X1="0" X2="200" Y1="10" Y2="200"
+                      Stroke="Black" StrokeThickness="5"></Line>
+                <!--<Line X2="500"
+                  Y2="300"
+                  Stroke="Red"
+                  StrokeThickness="170"
+                  StrokeDashArray="0.02 0.06">
+                    <Line.Clip>
+                        <RectangleGeometry Rect="0 0 500 200" />
+                    </Line.Clip>
+                    --><!--<Line.Clip>
+                        <RectangleGeometry Rect="0 0 400 200" />
+                    </Line.Clip>--><!--
+                </Line>-->
+            </Canvas>
+        </Grid>
     </Grid>
 </Page>

@@ -30,7 +30,7 @@
                         <Image x:Name="image" HorizontalAlignment="Left"
                                VerticalAlignment="Top"
                                Margin="10,10,10,10" />
-                        <TextBlock Text="{x:Bind View.Str,Mode=OneWay}"
+                        <TextBlock Text="{x:Bind View.Account.Account.Str,Mode=OneWay}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center">
                             <TextBlock.Foreground>

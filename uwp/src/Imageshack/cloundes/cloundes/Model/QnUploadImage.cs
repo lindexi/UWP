@@ -3,7 +3,6 @@
 
 using System;
 using Windows.Storage;
-using lindexi.uwp.ImageShack.Model;
 using lindexi.uwp.ImageShack.Thirdqiniucs.Model.IO;
 
 namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model

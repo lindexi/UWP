@@ -14,6 +14,28 @@ namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accessKey"></param>
+        /// <param name="secretKey"></param>
+        /// <param name="bucket">空间名</param>
+        /// <param name="url">域名</param>
+        /// <param name="uploadFileName">是否要上传文件名称，如果false，为随机名称</param>
+        /// <param name="pname">文件名前缀</param>
+        public CloundesAccound(string accessKey,
+            string secretKey,
+            string bucket, string url, 
+            bool uploadFileName=true, string pname=null)
+        {
+            AccessKey = accessKey;
+            SecretKey = secretKey;
+            Bucket = bucket;
+            Url = url;
+            UploadFileName = uploadFileName;
+            Pname = pname;
+        }
+
         public string AccessKey
         {
             set;

@@ -1,0 +1,91 @@
+﻿<Page
+    x:Class="cloundes.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:cloundes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid VerticalAlignment="Center">
+            <StackPanel Margin="10,10,10,10">
+                <TextBox Header="AK"
+                         Text="{x:Bind View.Accound.AccessKey,Mode=TwoWay}" />
+                <TextBox Header="SK"
+                         Text="{x:Bind View.Accound.SecretKey,Mode=TwoWay}" />
+                <TextBox Header="域名"
+                         Text="{x:Bind View.Accound.Url,Mode=TwoWay}" />
+                <TextBox Header="Bk"
+                         Text="{x:Bind View.Accound.Bucket,Mode=TwoWay}" />
+                <TextBox Header="URL"
+                         Text="{x:Bind View.Address,Mode=OneWay}" />
+                <Button Margin="10,10,10,10" Content="上传" HorizontalAlignment="Stretch"
+                        Click="{x:Bind View.UploadFile}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

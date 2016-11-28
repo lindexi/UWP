@@ -96,21 +96,46 @@
                     </Grid>
                 </StackPanel>
                 <Grid Grid.Row="2">
-                    <TextBox Margin="10,10,100,10"
-                             Text="{x:Bind View.LinkReminder,Mode=OneWay}" />
-                    <Button Margin="10,10,10,10"
-
-                            HorizontalAlignment="Right"
-                            Click="StrClipboard">
-                        <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource SplitFe}"
+                    <Pivot>
+                        <PivotItem Header="Markdown">
+                            <Grid>
+                                <TextBox Margin="10,10,100,10"
+                                         Text="{x:Bind View.LinkReminder,Mode=OneWay}" />
+                                <Button Margin="10,10,10,10"
+                                        HorizontalAlignment="Right"
+                                        Click="StrClipboard">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Style="{StaticResource SplitFe}"
                                            Text="&#xE8C8;">
-                                </TextBlock>
-                                <TextBlock Text="复制"></TextBlock>
-                            </StackPanel>
-                        </Button.Content>
-                    </Button>
+                                            </TextBlock>
+                                            <TextBlock Text="复制"></TextBlock>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </PivotItem>
+                        
+                        <PivotItem Header="BBCode">
+                            <Grid>
+                                <TextBox Margin="10,10,100,10"
+                                         Text="{x:Bind View.Bcode,Mode=OneWay}"></TextBox>
+                                <Button Margin="10,10,10,10"
+                                        HorizontalAlignment="Right"
+                                        Click="BcodeClipboard">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Style="{StaticResource SplitFe}"
+                                           Text="&#xE8C8;">
+                                            </TextBlock>
+                                            <TextBlock Text="复制"></TextBlock>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </PivotItem>
+                    </Pivot>
+
 
                 </Grid>
             </Grid>
@@ -120,6 +145,6 @@
                           Visibility="{x:Bind View.Visibility,Mode=OneWay}"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch" />
-            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

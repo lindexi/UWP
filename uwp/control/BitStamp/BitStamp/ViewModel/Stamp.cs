@@ -141,8 +141,10 @@ namespace BitStamp.ViewModel
                 }
                 if (e)
                 {
-                    LinkReminder = "![](" +
-                                   uploadImage.Url + ")";
+                    //LinkReminder = "![](" +
+                    //               uploadImage.Url + ")";
+                    //Bcode = $"[img]{uploadImage.Url}[/img]";
+                    Url = uploadImage.Url;
                 }
                 else
                 {
@@ -152,6 +154,37 @@ namespace BitStamp.ViewModel
             Visibility = Visibility.Visible;
             uploadImageTask.UploadImage();
         }
+
+        public string Bcode
+        {
+            set
+            {
+                _bcode = value;
+                OnPropertyChanged();
+            }
+            get
+            {
+                return _bcode;
+            }
+        }
+
+        public string Url
+        {
+            set
+            {
+                _url = value;
+                OnPropertyChanged();
+                LinkReminder = "![](" +
+                                  value + ")";
+                Bcode = $"[img]{value}[/img]";
+            }
+            get
+            {
+                return _url;
+            }
+        }
+        private string _url;
+        private string _bcode;
 
         private string _address;
         private BitmapImage _image;

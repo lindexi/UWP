@@ -174,5 +174,12 @@ namespace BitStamp.View
             data.SetText(View.LinkReminder);
             Clipboard.SetContent(data);
         }
+
+        private void BcodeClipboard(object sender, RoutedEventArgs e)
+        {
+            DataPackage data = new DataPackage();
+            data.SetText(View.Bcode);
+            Clipboard.SetContent(data);
+        }
     }
 }

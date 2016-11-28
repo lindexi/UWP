@@ -2,17 +2,17 @@
 // 16:34
 
 using System.Threading.Tasks;
-using lindexi.uwp.ImageShack.Model.Auth;
-using lindexi.uwp.ImageShack.Model.RPC;
-using lindexi.uwp.ImageShack.Model.RS;
-using Qiniu.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RS;
 
-namespace lindexi.uwp.ImageShack.Model.PreFetch
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.PreFetch
 {
     /// <summary>
     ///     RS Fetch
     /// </summary>
-    public class PreFetchClient : QiniuAuthClient
+    internal class PreFetchClient : QiniuAuthClient
     {
         /// <summary>
         ///     Pres the fetch.

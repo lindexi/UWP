@@ -4,7 +4,7 @@
 using System;
 using Windows.Storage;
 
-namespace lindexi.uwp.ImageShack.Model
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model
 {
     public abstract class UploadImageTask
     {

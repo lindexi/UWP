@@ -10,6 +10,7 @@ using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using lindexi.uwp.ImageShack.Model;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model;
 
 namespace cloundes.ViewModel
 {

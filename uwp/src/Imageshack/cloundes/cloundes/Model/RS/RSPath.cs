@@ -1,14 +1,14 @@
 ﻿// lindexi
 // 16:34
 
-using lindexi.uwp.ImageShack.Model.Util;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Util;
 
-namespace lindexi.uwp.ImageShack.Model.RS
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.RS
 {
     /// <summary>
     ///     bucket+   ":"+ key
     /// </summary>
-    public class EntryPath
+    internal class EntryPath
     {
         public EntryPath(string bucket, string key)
         {
@@ -68,7 +68,7 @@ namespace lindexi.uwp.ImageShack.Model.RS
     /// <summary>
     ///     二元操作路径
     /// </summary>
-    public class EntryPathPair
+    internal class EntryPathPair
     {
         /// <summary>
         ///     Initializes a new instance of the <see cref="EntryPathPair" /> class.

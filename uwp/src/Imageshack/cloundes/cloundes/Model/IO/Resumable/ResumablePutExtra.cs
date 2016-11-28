@@ -4,7 +4,7 @@
 using System;
 using System.Net;
 
-namespace lindexi.uwp.ImageShack.Model.IO.Resumable
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.IO.Resumable
 {
     /// <summary>
     ///     Block上传成功事件参数

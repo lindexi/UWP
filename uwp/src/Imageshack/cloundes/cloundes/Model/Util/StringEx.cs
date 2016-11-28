@@ -3,7 +3,7 @@
 
 using System.Net;
 
-namespace lindexi.uwp.ImageShack.Model.Util
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.Util
 {
     /// <summary>
     ///     String辅助函数

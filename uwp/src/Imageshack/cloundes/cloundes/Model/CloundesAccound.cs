@@ -3,7 +3,7 @@
 
 using cloundes;
 
-namespace lindexi.uwp.ImageShack.Model
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model
 {
     /// <summary>
     ///     配置

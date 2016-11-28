@@ -2,10 +2,10 @@
 // 16:34
 
 using System;
-using lindexi.uwp.ImageShack.Model.Util;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Util;
 using Newtonsoft.Json;
 
-namespace lindexi.uwp.ImageShack.Model.RS
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.RS
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class PutPolicy

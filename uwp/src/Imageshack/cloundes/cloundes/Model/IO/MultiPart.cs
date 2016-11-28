@@ -7,10 +7,10 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using lindexi.uwp.ImageShack.Model.RPC;
-using Qiniu.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
 
-namespace lindexi.uwp.ImageShack.Model.IO
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.IO
 {
     internal static class MultiPart
     {

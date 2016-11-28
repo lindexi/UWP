@@ -4,18 +4,18 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using lindexi.uwp.ImageShack.Model.Auth;
-using lindexi.uwp.ImageShack.Model.RPC;
-using lindexi.uwp.ImageShack.Model.Util;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Util;
 using Newtonsoft.Json;
-using Qiniu.Conf;
 
-namespace lindexi.uwp.ImageShack.Model.RS
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.RS
 {
     /// <summary>
     ///     Persistent identifier.
     /// </summary>
-    public class PersistentId
+    internal class PersistentId
     {
         public string persistentId;
     }
@@ -23,7 +23,7 @@ namespace lindexi.uwp.ImageShack.Model.RS
     /// <summary>
     ///     Persitent error.
     /// </summary>
-    public class PersitentError
+    internal class PersitentError
     {
         public int code;
         public string error;
@@ -32,7 +32,7 @@ namespace lindexi.uwp.ImageShack.Model.RS
     /// <summary>
     ///     Persistent exception.
     /// </summary>
-    public class PersistentException : Exception
+    internal class PersistentException : Exception
     {
         public PersistentException(PersitentError err)
         {
@@ -59,7 +59,7 @@ namespace lindexi.uwp.ImageShack.Model.RS
     ///     <AccessToken>
     ///         bucket=<bucket>&key=<key>&fops=<fop1>;<fop2>...<fopN>&notifyURL=<persistentNotifyUrl>
     /// </summary>
-    public class Pfop : QiniuAuthClient
+    internal class Pfop : QiniuAuthClient
     {
         /// <summary>
         ///     请求持久化

@@ -7,13 +7,13 @@ using System.Net;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
-using lindexi.uwp.ImageShack.Model.Auth.digest;
-using lindexi.uwp.ImageShack.Model.RPC;
-using Qiniu.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth.digest;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
 
-namespace lindexi.uwp.ImageShack.Model.Auth
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth
 {
-    public class QiniuAuthClient : Client
+    internal class QiniuAuthClient : Client
     {
         public QiniuAuthClient(Mac mac = null)
         {

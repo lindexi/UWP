@@ -1,12 +1,12 @@
 ﻿// lindexi
 // 16:34
 
-namespace lindexi.uwp.ImageShack.Model.IO.Resumable
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.IO.Resumable
 {
     /// <summary>
     ///     断点续传上传参数设置
     /// </summary>
-    public class Settings
+    internal class Settings
     {
         /// <summary>
         ///     构造函数

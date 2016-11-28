@@ -6,11 +6,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using Qiniu.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
 
-namespace lindexi.uwp.ImageShack.Model.RPC
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC
 {
-    public class Client
+    internal class Client
     {
         public virtual void SetAuth(HttpWebRequest request, Stream body)
         {

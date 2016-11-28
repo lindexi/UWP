@@ -3,7 +3,7 @@
 
 using System.IO;
 
-namespace lindexi.uwp.ImageShack.Model.Util
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.Util
 {
     public class CRC32
     {

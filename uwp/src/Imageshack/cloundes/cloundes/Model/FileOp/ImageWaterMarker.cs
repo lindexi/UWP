@@ -3,11 +3,11 @@
 
 using System;
 using System.Text;
-using lindexi.uwp.ImageShack.Model.Util;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Util;
 
-namespace lindexi.uwp.ImageShack.Model.FileOp
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.FileOp
 {
-    public class ImageWaterMarker : WaterMarker
+    internal class ImageWaterMarker : WaterMarker
     {
         public ImageWaterMarker(string imageUrl, int dissolve = 50, MarkerGravity gravity = MarkerGravity.SouthEast,
             int dx = 10, int dy = 10)

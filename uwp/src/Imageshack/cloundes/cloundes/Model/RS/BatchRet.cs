@@ -4,16 +4,16 @@
 using System;
 using Newtonsoft.Json;
 
-namespace lindexi.uwp.ImageShack.Model.RS
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.RS
 {
-    public class BatchRetItem
+    internal class BatchRetItem
     {
         public int code;
         public BatchRetData data;
     }
 
     [JsonObject(MemberSerialization.OptIn)]
-    public class BatchRetData
+    internal class BatchRetData
     {
         /// <summary>
         ///     文件大小.

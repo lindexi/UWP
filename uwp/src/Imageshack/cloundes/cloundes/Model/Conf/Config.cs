@@ -1,11 +1,10 @@
 ﻿// lindexi
 // 16:34
 
-using System;
 using System.Text;
 using Windows.System.Profile;
 
-namespace Qiniu.Conf
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf
 {
     public class Config
     {

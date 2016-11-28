@@ -3,7 +3,7 @@
 
 using System.IO;
 
-namespace lindexi.uwp.ImageShack.Model.IO
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.IO
 {
     internal class PutParameter
     {

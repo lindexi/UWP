@@ -3,17 +3,17 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using lindexi.uwp.ImageShack.Model.Auth;
-using lindexi.uwp.ImageShack.Model.RPC;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
 using Newtonsoft.Json;
-using Qiniu.Conf;
 
-namespace lindexi.uwp.ImageShack.Model.RSF
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.RSF
 {
     /// <summary>
     ///     RS Fetch
     /// </summary>
-    public class RSFClient : QiniuAuthClient
+    internal class RSFClient : QiniuAuthClient
     {
         /// <summary>
         ///     RS Fetch Client

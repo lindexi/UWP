@@ -2,9 +2,9 @@
 // 16:34
 
 using System.Threading.Tasks;
-using lindexi.uwp.ImageShack.Model.RPC;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
 
-namespace lindexi.uwp.ImageShack.Model.FileOp
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.FileOp
 {
     public enum MarkerGravity
     {
@@ -19,7 +19,7 @@ namespace lindexi.uwp.ImageShack.Model.FileOp
         SouthEast
     }
 
-    public class WaterMarker
+    internal class WaterMarker
     {
         public WaterMarker(int dissolve = 50, MarkerGravity gravity = MarkerGravity.SouthEast, int dx = 10, int dy = 10)
         {

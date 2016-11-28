@@ -2,11 +2,11 @@
 // 16:34
 
 using System.Threading.Tasks;
-using lindexi.uwp.ImageShack.Model.RPC;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
 
-namespace lindexi.uwp.ImageShack.Model.FileOp
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.FileOp
 {
-    public static class ImageInfo
+    internal static class ImageInfo
     {
         public static string MakeRequest(string url)
         {

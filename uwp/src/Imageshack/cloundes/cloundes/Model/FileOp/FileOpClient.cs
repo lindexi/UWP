@@ -6,10 +6,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using lindexi.uwp.ImageShack.Model.RPC;
-using Qiniu.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
 
-namespace lindexi.uwp.ImageShack.Model.FileOp
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.FileOp
 {
     internal static class FileOpClient
     {

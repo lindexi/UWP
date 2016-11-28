@@ -2,9 +2,9 @@
 // 16:34
 
 using System.IO;
-using Qiniu.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
 
-namespace lindexi.uwp.ImageShack.Model.Util
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.Util
 {
     public static class StreamEx
     {

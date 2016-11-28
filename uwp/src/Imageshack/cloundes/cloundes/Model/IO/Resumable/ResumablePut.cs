@@ -5,17 +5,17 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using lindexi.uwp.ImageShack.Model.Auth;
-using lindexi.uwp.ImageShack.Model.RPC;
-using lindexi.uwp.ImageShack.Model.Util;
-using Qiniu.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Util;
 
-namespace lindexi.uwp.ImageShack.Model.IO.Resumable
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.IO.Resumable
 {
     /// <summary>
     ///     异步并行断点上传类
     /// </summary>
-    public class ResumablePut
+    internal class ResumablePut
     {
         /// <summary>
         ///     断点续传类

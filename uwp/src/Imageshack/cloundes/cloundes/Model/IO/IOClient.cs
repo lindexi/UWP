@@ -1,5 +1,5 @@
 ﻿// lindexi
-// 16:34
+// 10:19
 
 using System;
 using System.Collections.Generic;
@@ -7,13 +7,13 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using Windows.Storage;
-using lindexi.uwp.ImageShack.Model.Auth.digest;
-using lindexi.uwp.ImageShack.Model.RPC;
-using lindexi.uwp.ImageShack.Model.RS;
-using Qiniu.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth.digest;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RS;
 using HttpStatusCode = System.Net.HttpStatusCode;
 
-namespace lindexi.uwp.ImageShack.Model.IO
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.IO
 {
     /// <summary>
     ///     上传客户端
@@ -25,94 +25,9 @@ namespace lindexi.uwp.ImageShack.Model.IO
         }
 
         /// <summary>
-        ///     设置连接代理
-        /// </summary>
-        public IWebProxy Proxy
-        {
-            set;
-            get;
-        }
-
-        /// <summary>
         ///     无论成功或失败，上传结束时触发的事件
         /// </summary>
         public event EventHandler<PutRet> OnPutFinished;
-
-
-        /// <summary>
-        ///     上传文件
-        /// </summary>
-        /// <param name="upToken"></param>
-        /// <param name="key"></param>
-        /// h
-        /// <param name="localFile"></param>
-        /// <param name="extra"></param>
-        public async Task<PutRet> PutFile(string upToken, string key, string localFile, PutExtra extra)
-        {
-            if (!File.Exists(localFile))
-            {
-                throw new Exception(string.Format("{0} does not exist", localFile));
-            }
-            //PutRet ret;
-
-            /*NameValueCollection*/
-            WebHeaderCollection formData = GetFormData(upToken, key, extra);
-            try
-            {
-                CallRet callRet = await MultiPart.MultiPost(Config.UP_HOST, formData, localFile, this.Proxy);
-                var ret = new PutRet(callRet);
-                PutFinished(ret);
-                return ret;
-            }
-            catch (Exception e)
-            {
-                var ret = new PutRet(new CallRet(HttpStatusCode.BadRequest, e));
-                PutFinished(ret);
-                return ret;
-            }
-        }
-
-        /// <summary>
-        ///     Puts the file without key.
-        /// </summary>
-        /// <returns>The file without key.</returns>
-        /// <param name="upToken">Up token.</param>
-        /// <param name="localFile">Local file.</param>
-        /// <param name="extra">Extra.</param>
-        public async Task<PutRet> PutFileWithoutKey(string upToken, string localFile, PutExtra extra)
-        {
-            return await PutFile(upToken, null, localFile, extra);
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="upToken">Up token.</param>
-        /// <param name="key">Key.</param>
-        /// <param name="putStream">Put stream.</param>
-        /// <param name="extra">Extra.</param>
-        public async Task<PutRet> Put(string upToken, string key, Stream putStream, PutExtra extra)
-        {
-            if (!putStream.CanRead)
-            {
-                throw new Exception("read put Stream error");
-            }
-            //PutRet ret;
-            /*NameValueCollection*/
-            WebHeaderCollection formData = GetFormData(upToken, key, extra);
-            try
-            {
-                CallRet callRet = await MultiPart.MultiPost(Config.UP_HOST, formData, putStream);
-                var ret = new PutRet(callRet);
-                PutFinished(ret);
-                return ret;
-            }
-            catch (Exception e)
-            {
-                var ret = new PutRet(new CallRet(HttpStatusCode.BadRequest, e));
-                PutFinished(ret);
-                return ret;
-            }
-        }
 
         protected void PutFinished(PutRet ret)
         {
@@ -148,6 +63,91 @@ namespace lindexi.uwp.ImageShack.Model.IO
             stream.Dispose();
 
             return ret;
+        }
+
+        /// <summary>
+        ///     设置连接代理
+        /// </summary>
+        private IWebProxy Proxy
+        {
+            set;
+            get;
+        }
+
+
+        /// <summary>
+        ///     上传文件
+        /// </summary>
+        /// <param name="upToken"></param>
+        /// <param name="key"></param>
+        /// h
+        /// <param name="localFile"></param>
+        /// <param name="extra"></param>
+        private async Task<PutRet> PutFile(string upToken, string key, string localFile, PutExtra extra)
+        {
+            if (!File.Exists(localFile))
+            {
+                throw new Exception(string.Format("{0} does not exist", localFile));
+            }
+            //PutRet ret;
+
+            /*NameValueCollection*/
+            WebHeaderCollection formData = GetFormData(upToken, key, extra);
+            try
+            {
+                CallRet callRet = await MultiPart.MultiPost(Config.UP_HOST, formData, localFile, this.Proxy);
+                var ret = new PutRet(callRet);
+                PutFinished(ret);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                var ret = new PutRet(new CallRet(HttpStatusCode.BadRequest, e));
+                PutFinished(ret);
+                return ret;
+            }
+        }
+
+        /// <summary>
+        ///     Puts the file without key.
+        /// </summary>
+        /// <returns>The file without key.</returns>
+        /// <param name="upToken">Up token.</param>
+        /// <param name="localFile">Local file.</param>
+        /// <param name="extra">Extra.</param>
+        private async Task<PutRet> PutFileWithoutKey(string upToken, string localFile, PutExtra extra)
+        {
+            return await PutFile(upToken, null, localFile, extra);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="upToken">Up token.</param>
+        /// <param name="key">Key.</param>
+        /// <param name="putStream">Put stream.</param>
+        /// <param name="extra">Extra.</param>
+        private async Task<PutRet> Put(string upToken, string key, Stream putStream, PutExtra extra)
+        {
+            if (!putStream.CanRead)
+            {
+                throw new Exception("read put Stream error");
+            }
+            //PutRet ret;
+            /*NameValueCollection*/
+            WebHeaderCollection formData = GetFormData(upToken, key, extra);
+            try
+            {
+                CallRet callRet = await MultiPart.MultiPost(Config.UP_HOST, formData, putStream);
+                var ret = new PutRet(callRet);
+                PutFinished(ret);
+                return ret;
+            }
+            catch (Exception e)
+            {
+                var ret = new PutRet(new CallRet(HttpStatusCode.BadRequest, e));
+                PutFinished(ret);
+                return ret;
+            }
         }
 
         private static WebHeaderCollection /*NameValueCollection*/ GetFormData(string upToken,

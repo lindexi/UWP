@@ -1,7 +1,7 @@
 ﻿// lindexi
 // 16:34
 
-namespace lindexi.uwp.ImageShack.Model.Conf
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf
 {
     public class ClouddnAccount
     {

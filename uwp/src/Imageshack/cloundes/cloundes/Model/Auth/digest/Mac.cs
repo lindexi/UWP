@@ -8,12 +8,12 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
-using lindexi.uwp.ImageShack.Model.RS;
-using lindexi.uwp.ImageShack.Model.Util;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RS;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Util;
 using Newtonsoft.Json;
-using Qiniu.Conf;
 
-namespace lindexi.uwp.ImageShack.Model.Auth.digest
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth.digest
 {
     /// <summary>
     ///     七牛消息认证(Message Authentication)

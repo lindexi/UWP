@@ -4,7 +4,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace lindexi.uwp.ImageShack.Model.IO.Resumable
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.IO.Resumable
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class BlkputRet

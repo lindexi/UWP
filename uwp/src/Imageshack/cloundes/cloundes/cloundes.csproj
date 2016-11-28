@@ -112,7 +112,6 @@
     <Compile Include="Model\Auth\PutAuthClient.cs" />
     <Compile Include="Model\Auth\QiniuAuthClient.cs" />
     <Compile Include="Model\CloundesAccound.cs" />
-    <Compile Include="Model\Conf\ClouddnAccount.cs" />
     <Compile Include="Model\Conf\Config.cs" />
     <Compile Include="Model\FileOp\Exif.cs" />
     <Compile Include="Model\FileOp\ExifRet.cs" />
@@ -157,9 +156,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\cloundes.rd.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

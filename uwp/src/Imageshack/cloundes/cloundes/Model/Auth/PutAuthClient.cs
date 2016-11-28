@@ -3,11 +3,11 @@
 
 using System.IO;
 using System.Net;
-using lindexi.uwp.ImageShack.Model.RPC;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
 
-namespace lindexi.uwp.ImageShack.Model.Auth
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth
 {
-    public class PutAuthClient : Client
+    internal class PutAuthClient : Client
     {
         public PutAuthClient(string upToken)
         {

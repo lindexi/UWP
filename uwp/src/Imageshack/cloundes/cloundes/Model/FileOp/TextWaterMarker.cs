@@ -3,13 +3,13 @@
 
 using System;
 using System.Text;
-using lindexi.uwp.ImageShack.Model.Util;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Util;
 
-namespace lindexi.uwp.ImageShack.Model.FileOp
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.FileOp
 {
     /// <summary>
     /// </summary>
-    public class TextWaterMarker : WaterMarker
+    internal class TextWaterMarker : WaterMarker
     {
         public TextWaterMarker(string text, string fontname = "", string color = "", int fontsize = 0, int dissolve = 50,
             MarkerGravity gravity = MarkerGravity.SouthEast, int dx = 10, int dy = 10)

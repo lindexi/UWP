@@ -4,19 +4,19 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using lindexi.uwp.ImageShack.Model.Auth;
-using lindexi.uwp.ImageShack.Model.Auth.digest;
-using lindexi.uwp.ImageShack.Model.RPC;
-using lindexi.uwp.ImageShack.Model.Util;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth.digest;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Util;
 using Newtonsoft.Json;
-using Qiniu.Conf;
 
-namespace lindexi.uwp.ImageShack.Model.RS
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.RS
 {
     /// <summary>
     ///     文件管理操作
     /// </summary>
-    public enum FileHandle
+    internal enum FileHandle
     {
         /// <summary>
         ///     查看
@@ -48,7 +48,7 @@ namespace lindexi.uwp.ImageShack.Model.RS
     ///     资源存储客户端，提供对文件的查看（stat），移动(move)，复制（copy）,删除（delete）, 抓取资源（fetch） 操作
     ///     以及与这些操作对应的批量操作
     /// </summary>
-    public class RSClient : QiniuAuthClient
+    internal class RSClient : QiniuAuthClient
     {
         public RSClient(Mac mac = null)
             : base(mac)

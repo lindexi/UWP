@@ -2,15 +2,15 @@
 // 16:34
 
 using System;
-using lindexi.uwp.ImageShack.Model.Auth.digest;
-using Qiniu.Conf;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth.digest;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
 
-namespace lindexi.uwp.ImageShack.Model.RS
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.RS
 {
     /// <summary>
     ///     GetPolicy
     /// </summary>
-    public class GetPolicy
+    internal class GetPolicy
     {
         public static string MakeRequest(string baseUrl, uint expires = 3600, Mac mac = null)
         {

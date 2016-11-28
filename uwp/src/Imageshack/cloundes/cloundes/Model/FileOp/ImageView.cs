@@ -3,9 +3,9 @@
 
 using System;
 
-namespace lindexi.uwp.ImageShack.Model.FileOp
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.FileOp
 {
-    public class ImageView
+    internal class ImageView
     {
         /// <summary>
         ///     缩略模式

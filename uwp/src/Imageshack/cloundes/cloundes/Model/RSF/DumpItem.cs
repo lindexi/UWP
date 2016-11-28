@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace lindexi.uwp.ImageShack.Model.RSF
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.RSF
 {
     /// <summary>
     ///     Dump item文件信息.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class DumpItem
+    internal class DumpItem
     {
         /// <summary>
         ///     文件大小.
@@ -74,7 +74,7 @@ namespace lindexi.uwp.ImageShack.Model.RSF
     ///     Fetch 返回结果.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class DumpRet
+    internal class DumpRet
     {
         /// <summary>
         ///     fetch 定位符

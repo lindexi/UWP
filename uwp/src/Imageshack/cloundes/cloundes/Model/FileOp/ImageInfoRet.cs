@@ -4,15 +4,15 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using lindexi.uwp.ImageShack.Model.RPC;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
 using Newtonsoft.Json;
 
-namespace lindexi.uwp.ImageShack.Model.FileOp
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.FileOp
 {
     /// <summary>
     ///     Image Info
     /// </summary>
-    public class ImageInfoRet : CallRet
+    internal class ImageInfoRet : CallRet
     {
         /// <summary>
         ///     construct

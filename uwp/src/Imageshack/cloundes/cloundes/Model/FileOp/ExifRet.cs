@@ -4,12 +4,12 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using lindexi.uwp.ImageShack.Model.RPC;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
 using Newtonsoft.Json;
 
-namespace lindexi.uwp.ImageShack.Model.FileOp
+namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.FileOp
 {
-    public class ExifValType
+    internal class ExifValType
     {
         public string val
         {
@@ -43,7 +43,7 @@ namespace lindexi.uwp.ImageShack.Model.FileOp
             }
         }
 
-        public ExifValType this[string key]
+        internal ExifValType this[string key]
         {
             get
             {

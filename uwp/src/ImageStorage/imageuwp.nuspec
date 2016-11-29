@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>lindexi.uwp.src.ImageStorage</id>
+    <version>1.0.0</version>
+    <title>ImageStorage</title>
+    <authors>lindexi</authors>
+    <owners>lindexi</owners>
+    <licenseUrl>https://github.com/lindexi/UWP/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/lindexi/UWP</projectUrl>
+    <iconUrl>http://7xqpl8.com1.z0.glb.clouddn.com/17da7145-d48c-4a70-8475-745458cf0f9520161127213629.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      缓存图片到本地，第一次打开用网络图片，第二次就可以在本地 
+      参见：https://lindexi_gd.gitbooks.io/uwp_introduction/content/win10-uwp-存放网络图片到本地.html
+    </description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Uwp Image</tags>
+  </metadata>
+</package>

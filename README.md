@@ -45,6 +45,9 @@
    上传的服务器现在有[sm.ms](https://sm.ms/)和[七牛图床](http://www.qiniu.com/)。其中[七牛sdk UWP](uwp/src/Imageshack/cloundes)，
    我只有简单文件上传，好多还没写。代码是从其他大神改出
 
+   七牛图床上传到Nuget，搜索`lindexi.uwp.ImageShack.Thirdqiniucs`或
+   控制台`Install-Package lindexi.uwp.ImageShack.Thirdqiniucs`
+
 
  - [显示svg](uwp/src/ScalableVectorGraphic)
 
@@ -57,6 +60,17 @@
  - [隐私策略](uwp/src/隐私策略)
 
  - [径向规](uwp/src/RadialGauge)
+
+ - 图片存放本地
+   
+   输入Uri打开，第一次从网络打开，之后在本地打开。
+
+   先判断本地存在图片，不存在就从网络下载
+
+   `BitmapImage img = await ImageStorage.GetImage(uri);`
+
+   上传到Nuget，可以搜索`lindexi.uwp.src.ImageStorage `或控制台
+   `Install-Package lindexi.uwp.src.ImageStorage`
 
 # English
 

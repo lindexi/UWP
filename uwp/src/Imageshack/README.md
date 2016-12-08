@@ -1,6 +1,13 @@
-##smms图床
+# win10 uwp 图床
 
-使用
+
+## smms图床
+
+### Nuget 安装
+
+搜索imageShack，打开`Imageshack.lindexi`
+
+### 使用
 
 ```
             //传入文件
@@ -15,7 +22,21 @@
             imageshack.UpLoad();
 ```
 
-##七牛图床
+## 七牛图床
+
+qiniu图床上从官方的qiniu sdk 修改的。
+
+功能：上传图片、获取外链
+
+实际功能可以上传文件。
+
+### Nuget安装
+
+![](http://7xqpl8.com1.z0.glb.clouddn.com/b16ecaae-ee31-47c8-9f80-8da6618f39e42016129152514.jpg)
+
+搜索`imageShack`，第一个`lindexi.uwp.ImageShack.Thirdqiniucs`
+
+### 使用
 
 图床在https://github.com/lindexi/UWP/tree/master/uwp/src/Imageshack/cloundes
 

@@ -1,5 +1,13 @@
 # 七牛图床
 
+### Nuget安装
+
+![](http://7xqpl8.com1.z0.glb.clouddn.com/b16ecaae-ee31-47c8-9f80-8da6618f39e42016129152514.jpg)
+
+搜索`imageShack`，第一个`lindexi.uwp.ImageShack.Thirdqiniucs`
+
+安装完成，如要使用需写必要参数。
+
 先写配置，配置是需要AK和SK，空间名，域名。
 
 配置是新建`lindexi.uwp.ImageShack.Model.CloundesAccound`，CloundesAccound需要

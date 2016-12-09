@@ -3,9 +3,10 @@
 
 using System;
 using Windows.Storage;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model;
 using lindexi.uwp.ImageShack.Thirdqiniucs.Model.IO;
 
-namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model
+namespace lindexi.uwp.ImageShack.Model
 {
     public class QnUploadImage : UploadImageTask
     {

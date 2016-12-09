@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>lindexi.uwp.ImageShack.Thirdqiniucs</id>
+    <version>$version$</version>
+    <title>lindexi.uwp.ImageShack.Thirdqiniucs</title>
+    <authors>lindexi</authors>
+    <owners>lindexi</owners>
+    <licenseUrl>https://github.com/lindexi/UWP/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Imageshack</projectUrl>
+    <iconUrl>http://7xqpl8.com1.z0.glb.clouddn.com/c083de44-bc31-4303-933e-aab88a4cf18120161127104241.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Help to easy upload image to Qiniu to get the URL.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>ImageShacks Uwp Win10 qiniu image</tags>
+  </metadata>
+</package>

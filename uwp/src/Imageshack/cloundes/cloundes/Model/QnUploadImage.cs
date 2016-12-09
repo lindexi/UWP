@@ -4,6 +4,7 @@
 using System;
 using Windows.Storage;
 using lindexi.uwp.ImageShack.Model.IO;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model;
 
 namespace lindexi.uwp.ImageShack.Model
 {

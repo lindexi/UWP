@@ -57,6 +57,13 @@ namespace Simulationq
                         Stroke = View.StrokeSolidColor,
                         Margin = new Thickness(width*j, height * i, 0,0)
                     };
+                    Binding bind = new Binding()
+                    {
+                        Path = new PropertyPath("Solid[" + i + "," + j + "].SolidColor"),
+                        Mode = BindingMode.OneWay
+                    };
+                    _rectangle[i, j].DataContext = View;
+                    _rectangle[i, j].SetBinding(Shape.FillProperty, bind);
                     Canvas.Children.Add(_rectangle[i, j]);
                 }
             }

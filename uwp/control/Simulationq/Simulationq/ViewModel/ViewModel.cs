@@ -18,6 +18,21 @@ namespace Simulationq.ViewModel
             Row = 20;
             Width = 10;
             Height = 10;
+
+            Solid=new Solid[Row,Col];
+            for (int i = 0; i < Row; i++)
+            {
+                for (int j = 0; j < Col; j++)
+                {
+                    Solid[i,j]=new Solid();
+                }
+            }
+            foreach (var temp in Solid)
+            {
+                temp.SolidColor = FillSolidColor;
+            }
+
+            Solid[2, 5].SolidColor = StrokeSolidColor;
         }
 
         public int Width
@@ -104,7 +119,11 @@ namespace Simulationq.ViewModel
             }
         }
 
-
+        public Solid[,] Solid
+        {
+            set;
+            get;
+        }
 
 
 
@@ -115,5 +134,25 @@ namespace Simulationq.ViewModel
         private int _row;
 
         private int _col;
+    }
+
+    public class Solid:NotifyProperty
+    {
+        public SolidColorBrush SolidColor
+        {
+            set
+            {
+                _solidColor = value;
+                OnPropertyChanged();
+            }
+            get
+            {
+                return _solidColor;
+            }
+        }
+
+        
+
+        private SolidColorBrush _solidColor;
     }
 }

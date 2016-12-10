@@ -59,7 +59,7 @@ namespace Simulationq
                     };
                     Binding bind = new Binding()
                     {
-                        Path = new PropertyPath("Solid[" + i + "," + j + "].SolidColor"),
+                        Path = new PropertyPath("Solid[" + (i * View.Col + j).ToString() + "].SolidColor"),
                         Mode = BindingMode.OneWay
                     };
                     _rectangle[i, j].DataContext = View;

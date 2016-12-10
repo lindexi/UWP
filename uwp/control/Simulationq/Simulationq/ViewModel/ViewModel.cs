@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
 namespace Simulationq.ViewModel
@@ -14,25 +15,31 @@ namespace Simulationq.ViewModel
         {
             FillSolidColor = new SolidColorBrush(Colors.Gray);
             StrokeSolidColor = new SolidColorBrush(Colors.LightCoral);
-            Col = 10;
-            Row = 20;
-            Width = 10;
-            Height = 10;
+           
+            Width = 20;
+            Height = 20;
 
-            Solid=new Solid[Row,Col];
-            for (int i = 0; i < Row; i++)
+            Col= (int) (Window.Current.Bounds.Width/Width) -10;
+            Row = (int) (Window.Current.Bounds.Height/Height) -10;
+           // Col = 50;
+//            Row = 60;
+
+            Solid =new Solid[Row*Col];
+            for (int i = 0; i < Row*Col; i++)
             {
-                for (int j = 0; j < Col; j++)
-                {
-                    Solid[i,j]=new Solid();
-                }
+                Solid[i] = new Solid();
+                //for (int j = 0; j < Col; j++)
+                //{
+                //    Solid[i,j]=new Solid();
+                //}
             }
             foreach (var temp in Solid)
             {
                 temp.SolidColor = FillSolidColor;
+                  // = new SolidColorBrush(Colors.Gray);
             }
 
-            Solid[2, 5].SolidColor = StrokeSolidColor;
+            Solid[15].SolidColor = StrokeSolidColor;
         }
 
         public int Width
@@ -119,7 +126,7 @@ namespace Simulationq.ViewModel
             }
         }
 
-        public Solid[,] Solid
+        public Solid[] Solid
         {
             set;
             get;

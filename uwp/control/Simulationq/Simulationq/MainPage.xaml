@@ -57,7 +57,7 @@
         </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView ItemTemplate="{StaticResource Template}" ItemsSource="{x:Bind Str}">
+        <!--<ListView ItemTemplate="{StaticResource Template}" ItemsSource="{x:Bind Str}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment"
@@ -65,6 +65,12 @@
                 </Style>
             </ListView.ItemContainerStyle>
 
-        </ListView>
+        </ListView>-->
+        
+        <Canvas x:Name="Canvas" Margin="10,10,10,10" 
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch">
+            
+        </Canvas>
     </Grid>
 </Page>

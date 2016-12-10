@@ -13,7 +13,8 @@ namespace Simulationq.ViewModel
     {
         public ViewModel()
         {
-            //bool d = true;
+            bool d = true;
+            d = false;
             FillSolidColor = new SolidColorBrush(Colors.Gray);
             StrokeSolidColor = new SolidColorBrush(Colors.LightCoral);
 
@@ -23,8 +24,11 @@ namespace Simulationq.ViewModel
             Col = (int)(Window.Current.Bounds.Width / Width) - 10;
             Row = (int)(Window.Current.Bounds.Height / Height) - 10;
 
-            //Col = 3;
-            //Row = 4;
+            if (d)
+            {
+                Col = 3;
+                Row = 4;
+            }
 
             Solid = new Solid[Row * Col];
             for (int i = 0; i < Row * Col; i++)
@@ -50,11 +54,25 @@ namespace Simulationq.ViewModel
                 G = 10
             });
 
-            // 1 1 0
-            // 0 0 0
-            // 1 1 0 
+            if (d)
+            {
+                // 1 1 0
+                // 0 0 0
+                // 1 1 0 
+                //List<int> temp=new List<int>()
+                //{
+                //    1,2,7,8
+                //};
+                foreach (var temp in new List<int>()
+                {
+                    1,2,7,8
+                })
+                {
+                    Solid[temp-1].SolidColor = solid;
+                }
+            }
 
-            
+
 
 
             new Task(async () =>
@@ -140,7 +158,7 @@ namespace Simulationq.ViewModel
             //1
             if (row - 1 >= 0 && col - 1 >= 0)
             {
-                n = (row - 1) * (col - 1);
+                n = (row - 1) *Col+ (col - 1);
                 if (Solid[n].SolidColor == solid)
                 {
                     s++;
@@ -150,7 +168,7 @@ namespace Simulationq.ViewModel
             //2
             if (row - 1 >= 0)
             {
-                n = (row - 1) * col;
+                n = (row - 1) *Col+ col;
                 if (Solid[n].SolidColor == solid)
                 {
                     s++;
@@ -160,7 +178,7 @@ namespace Simulationq.ViewModel
             //3
             if (row - 1 >= 0 && col + 1 < Col)
             {
-                n = (row - 1) * (col + 1);
+                n = (row - 1) *Col+ (col + 1);
                 if (Solid[n].SolidColor == solid)
                 {
                     s++;
@@ -170,7 +188,7 @@ namespace Simulationq.ViewModel
             //4
             if (row >= 0 && col - 1 >= 0)
             {
-                n = (row) * (col - 1);
+                n = (row) *Col+ (col - 1);
                 if (Solid[n].SolidColor == solid)
                 {
                     s++;
@@ -180,7 +198,7 @@ namespace Simulationq.ViewModel
             //6
             if (row >= 0 && col + 1 < Col)
             {
-                n = (row) * (col + 1);
+                n = (row) *Col+ (col + 1);
                 if (Solid[n].SolidColor == solid)
                 {
                     s++;
@@ -190,7 +208,7 @@ namespace Simulationq.ViewModel
             //7
             if (row + 1 < Row && col - 1 >= 0)
             {
-                n = (row + 1) * (col - 1);
+                n = (row + 1) *Col+ (col - 1);
                 if (Solid[n].SolidColor == solid)
                 {
                     s++;
@@ -200,7 +218,7 @@ namespace Simulationq.ViewModel
             //8
             if (row + 1 < Row && col >= 0)
             {
-                n = (row + 1) * (col);
+                n = (row + 1) *Col+ (col);
                 if (Solid[n].SolidColor == solid)
                 {
                     s++;
@@ -210,7 +228,7 @@ namespace Simulationq.ViewModel
             //9
             if (row + 1 < Row && col + 1 < Col)
             {
-                n = (row + 1) * (col + 1);
+                n = (row + 1) *Col+ (col + 1);
                 if (Solid[n].SolidColor == solid)
                 {
                     s++;

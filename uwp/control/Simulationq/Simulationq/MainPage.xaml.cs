@@ -1,17 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
+using Windows.Graphics.Imaging;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 
@@ -30,6 +38,37 @@ namespace Simulationq
             this.InitializeComponent();
             DataContext = View;
             NewRectangle();
+            View.Bjie += async () =>
+            {
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                    async () =>
+                    {
+                        var bitmap = new RenderTargetBitmap();
+                        DateTime time = DateTime.Now;
+                        Random ran = new Random();
+                        string str = time.Year + time.Month + time.Day + time.Hour.ToString() + time.Minute + ran.Next(1000);
+                        StorageFile file = await KnownFolders.PicturesLibrary.CreateFileAsync(str + ".jpg",
+                            CreationCollisionOption.GenerateUniqueName);
+                        await bitmap.RenderAsync(Canvas);
+                        var buffer = await bitmap.GetPixelsAsync();
+                        using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                        {
+                            var encod = await BitmapEncoder.CreateAsync(
+                                BitmapEncoder.JpegEncoderId, stream);
+                            encod.SetPixelData(BitmapPixelFormat.Bgra8,
+                                BitmapAlphaMode.Ignore,
+                                (uint)bitmap.PixelWidth,
+                                (uint)bitmap.PixelHeight,
+                                DisplayInformation.GetForCurrentView().LogicalDpi,
+                                DisplayInformation.GetForCurrentView().LogicalDpi,
+                                buffer.ToArray()
+                               );
+                            await encod.FlushAsync();
+                        }
+                    });
+
+               
+            };
         }
 
         private void NewRectangle()
@@ -39,8 +78,8 @@ namespace Simulationq
             Canvas.Width = View.Width*View.Col;
             Canvas.Height = View.Height*View.Row;
 
-            double width = Canvas.ActualWidth/View.Col;
-            double height = Canvas.ActualHeight/View.Row;
+            double width;
+            double height;
 
             width = View.Width;
             height = View.Height;

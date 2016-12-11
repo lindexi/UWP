@@ -30,8 +30,20 @@ namespace lindexi.wpf.ViewModel
         public void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChangedEventHandler handler = PropertyChanged;
-           
-            handler?.Invoke(this, new PropertyChangedEventArgs(name));
+            try
+            {
+                SynchronizationContext.SetSynchronizationContext(new
+                   DispatcherSynchronizationContext(Application.Current.Dispatcher));
+                SynchronizationContext.Current.Send(obj =>
+                {
+                    handler?.Invoke(this, new PropertyChangedEventArgs(name));
+                }, null);
+            }
+            catch (Exception)
+            {
+                handler?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+            //handler?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

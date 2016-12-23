@@ -77,6 +77,7 @@ namespace Simulationq
 
             Canvas.Width = View.Width*View.Col;
             Canvas.Height = View.Height*View.Row;
+            Canvas.Background=new SolidColorBrush(Colors.White);
 
             double width;
             double height;
@@ -84,26 +85,51 @@ namespace Simulationq
             width = View.Width;
             height = View.Height;
 
+            Button[,] _button=new Button[View.Row, View.Col];
+
+
             for (int i = 0; i < View.Row; i++)
             {
                 for (int j = 0; j < View.Col; j++)
                 {
-                    _rectangle[i,j]=new Rectangle()
+                    //_rectangle[i,j]=new Rectangle()
+                    //{
+                    //    Width = width,
+                    //    Height = height,
+                    //    Fill = View.FillSolidColor,
+                    //    Stroke = View.StrokeSolidColor,
+                    //    Margin = new Thickness(width*j, height * i, 0,0)
+                    //};
+                    //Binding bind = new Binding()
+                    //{
+                    //    Path = new PropertyPath("Solid[" + (i * View.Col + j).ToString() + "].SolidColor"),
+                    //    Mode = BindingMode.OneWay
+                    //};
+                    //_rectangle[i, j].DataContext = View;
+                    //_rectangle[i, j].SetBinding(Shape.FillProperty, bind);
+                    //Canvas.Children.Add(_rectangle[i, j]);
+
+                    _button[i,j]=new Button()
                     {
                         Width = width,
                         Height = height,
-                        Fill = View.FillSolidColor,
-                        Stroke = View.StrokeSolidColor,
-                        Margin = new Thickness(width*j, height * i, 0,0)
+                        Background =  View.FillSolidColor,
+                        Margin = new Thickness(width * j, height * i, 0, 0)
                     };
                     Binding bind = new Binding()
                     {
                         Path = new PropertyPath("Solid[" + (i * View.Col + j).ToString() + "].SolidColor"),
                         Mode = BindingMode.OneWay
                     };
-                    _rectangle[i, j].DataContext = View;
-                    _rectangle[i, j].SetBinding(Shape.FillProperty, bind);
-                    Canvas.Children.Add(_rectangle[i, j]);
+                    Canvas.Children.Add(_button[i, j]);
+                    _button[i, j].DataContext = View;
+                    _button[i,j].SetBinding(Button.BackgroundProperty,bind);
+                    var i1 = i;
+                    var j1 = j;
+                    _button[i, j].Click += (s, e) =>
+                    {
+                        View.Solid[i1 * View.Col+j1].Rsolid();
+                    };
                 }
             }
         }

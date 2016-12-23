@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
@@ -170,9 +171,12 @@ namespace BitStamp.View
 
         private void StrClipboard(object sender, RoutedEventArgs e)
         {
-            DataPackage data = new DataPackage();
-            data.SetText(View.LinkReminder);
-            Clipboard.SetContent(data);
+            if (!string.IsNullOrEmpty(View.LinkReminder))
+            {
+                DataPackage data = new DataPackage();
+                data.SetText(View.LinkReminder);
+                Clipboard.SetContent(data);
+            }
         }
 
         private void BcodeClipboard(object sender, RoutedEventArgs e)

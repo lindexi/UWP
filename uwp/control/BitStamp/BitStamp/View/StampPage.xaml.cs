@@ -86,8 +86,8 @@ namespace BitStamp.View
                         BitmapEncoder.JpegEncoderId, stream);
                     encod.SetPixelData(BitmapPixelFormat.Bgra8,
                         BitmapAlphaMode.Ignore,
-                        (uint)bitmap.PixelWidth,
-                        (uint)bitmap.PixelHeight,
+                        (uint) bitmap.PixelWidth,
+                        (uint) bitmap.PixelHeight,
                         DisplayInformation.GetForCurrentView().LogicalDpi,
                         DisplayInformation.GetForCurrentView().LogicalDpi,
                         buffer.ToArray()
@@ -141,10 +141,21 @@ namespace BitStamp.View
             {
                 return;
             }
-            BitmapImage bitmap = new BitmapImage();
-            await bitmap.SetSourceAsync(await file.OpenAsync(FileAccessMode.Read));
-            image.Source = bitmap;
-            View.Image = bitmap;
+            try
+            {
+                BitmapImage bitmap = new BitmapImage();
+                await bitmap.SetSourceAsync(await file.OpenAsync(FileAccessMode.Read));
+                image.Source = bitmap;
+                View.Image = bitmap;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                //
+            }
+            catch (IOException)
+            {
+                
+            }
         }
 
         private async void TextBox_Clipboard(object sender, TextControlPasteEventArgs e)

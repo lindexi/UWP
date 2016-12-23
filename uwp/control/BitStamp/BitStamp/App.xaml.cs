@@ -32,7 +32,15 @@ namespace BitStamp
         public App()
         {
             this.InitializeComponent();
+            UnhandledException += App_UnhandledException;
             this.Suspending += OnSuspending;
+        }
+
+        private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            //记录
+            e.Handled = true;
+
         }
 
         /// <summary>
@@ -96,13 +104,14 @@ namespace BitStamp
             {
                 if (rootFrame.Content == null)
                 {
-                    //ApplicationView.PreferredLaunchWindowingMode=ApplicationViewWindowingMode.PreferredLaunchViewSize;
+                    ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-                    //ApplicationView.PreferredLaunchViewSize = new Size(200, 1000);
+                    ApplicationView.PreferredLaunchViewSize = new Size(600, 700);
+                    ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(200,600));
 
-                    //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+                    ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-                    // 当导航堆栈尚未还原时，导航到第一页，
+                    //当导航堆栈尚未还原时，导航到第一页，
                     // 并通过将所需信息作为导航参数传入来配置
                     // 参数
                     rootFrame.Navigate(typeof(SplashPage), e.Arguments);

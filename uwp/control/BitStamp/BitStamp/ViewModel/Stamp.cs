@@ -26,7 +26,7 @@ namespace BitStamp.ViewModel
 
             Visibility = Visibility.Collapsed;
 
-         
+
         }
 
         public AccoutGoverment Account
@@ -123,13 +123,28 @@ namespace BitStamp.ViewModel
                 default:
                     throw new ArgumentOutOfRangeException(nameof(imageShack), imageShack, null);
             }
-            return new JyUploadImage(file);
+            //return new JyUploadImage(file);
         }
 
-        public void Jcloud()
+        public async Task Jcloud()
         {
+            ImageShackEnum imageShack = AccoutGoverment.AccountModel.Account.ImageShack;
+            if (File.FileType == ".gif" && imageShack == ImageShackEnum.Jiuyou)
+            {
+                imageShack = ImageShackEnum.Qin;
+            }
+            var size= (await File.GetBasicPropertiesAsync()).Size;
+            //1M
+            //1024k
+            //‪125000‬
+            if (size > 125000)
+            {
+                imageShack = ImageShackEnum.Smms;
+            }
+            //4326  24,447 
+
             UploadImageTask uploadImageTask = NewUploadImageTask(
-                AccoutGoverment.AccountModel.Account.ImageShack, File);
+               imageShack, File);
             uploadImageTask.OnUploaded += (s, e) =>
             {
                 UploadImageTask uploadImage = s as UploadImageTask;

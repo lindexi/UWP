@@ -54,6 +54,7 @@ namespace BitStamp.View
             FileOpenPicker pick = new FileOpenPicker();
             pick.FileTypeFilter.Add(".jpg");
             pick.FileTypeFilter.Add(".png");
+            pick.FileTypeFilter.Add(".gif");
             BitmapImage bitmap = new BitmapImage();
             StorageFile file = await pick.PickSingleFileAsync();
             if (file == null)
@@ -66,41 +67,61 @@ namespace BitStamp.View
             }
             image.Source = bitmap;
             View.Image = bitmap;
-        }
 
+            File = file;
+        }
+        private StorageFile File
+        {
+            set;
+            get;
+        }
         private async void Storage_OnClick(object sender, RoutedEventArgs e)
         {
-            DateTime time = DateTime.Now;
-            string name = _name + time.Year + time.Month + time.Day + time.Hour + time.Minute + time.Second;
-
-            var bitmap = new RenderTargetBitmap();
-            StorageFile file = await Folder.CreateFileAsync(name + ".jpg",
-                CreationCollisionOption.GenerateUniqueName);
-            await bitmap.RenderAsync(Stamp);
-            var buffer = await bitmap.GetPixelsAsync();
-            try
-            {
-                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
-                {
-                    var encod = await BitmapEncoder.CreateAsync(
-                        BitmapEncoder.JpegEncoderId, stream);
-                    encod.SetPixelData(BitmapPixelFormat.Bgra8,
-                        BitmapAlphaMode.Ignore,
-                        (uint) bitmap.PixelWidth,
-                        (uint) bitmap.PixelHeight,
-                        DisplayInformation.GetForCurrentView().LogicalDpi,
-                        DisplayInformation.GetForCurrentView().LogicalDpi,
-                        buffer.ToArray()
-                    );
-                    await encod.FlushAsync();
-                }
-                View.File = file;
-                View.Jcloud();
-            }
-            catch (ArgumentException)
+            if (File == null)
             {
                 View.Address = "没有选择图片";
+                return;
             }
+            if (File.FileType == ".gif")
+            {
+                View.File = File;
+            }
+            else
+            {
+                DateTime time = DateTime.Now;
+                string name = _name + time.Year + time.Month + time.Day + time.Hour + time.Minute + time.Second;
+
+                var bitmap = new RenderTargetBitmap();
+                StorageFile file = await Folder.CreateFileAsync(name + ".jpg",
+                    CreationCollisionOption.GenerateUniqueName);
+                await bitmap.RenderAsync(Stamp);
+                var buffer = await bitmap.GetPixelsAsync();
+                try
+                {
+                    using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        var encod = await BitmapEncoder.CreateAsync(
+                            BitmapEncoder.JpegEncoderId, stream);
+                        encod.SetPixelData(BitmapPixelFormat.Bgra8,
+                            BitmapAlphaMode.Ignore,
+                            (uint)bitmap.PixelWidth,
+                            (uint)bitmap.PixelHeight,
+                            DisplayInformation.GetForCurrentView().LogicalDpi,
+                            DisplayInformation.GetForCurrentView().LogicalDpi,
+                            buffer.ToArray()
+                        );
+                        await encod.FlushAsync();
+                    }
+                    View.File = file;
+                }
+                catch (ArgumentException)
+                {
+                    View.Address = "没有选择图片";
+                }
+            }
+
+            await View.Jcloud();
+            File = null;
         }
 
         private void Grid_OnDragOver(object sender, DragEventArgs e)
@@ -119,7 +140,8 @@ namespace BitStamp.View
                 {
                     var files = await dataView.GetStorageItemsAsync();
                     StorageFile file = files.OfType<StorageFile>().First();
-                    if ((file.FileType == ".png") || (file.FileType == ".jpg"))
+                    if ((file.FileType == ".png") || (file.FileType == ".jpg") 
+                        || (file.FileType == ".gif"))
                     {
                         await ImageStorageFile(file);
                     }
@@ -141,6 +163,7 @@ namespace BitStamp.View
             {
                 return;
             }
+            File = file;
             try
             {
                 BitmapImage bitmap = new BitmapImage();
@@ -154,7 +177,7 @@ namespace BitStamp.View
             }
             catch (IOException)
             {
-                
+
             }
         }
 

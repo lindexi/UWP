@@ -69,15 +69,18 @@ namespace BitStamp.View
             View.Image = bitmap;
 
             File = file;
+            _upload = true;
         }
         private StorageFile File
         {
             set;
             get;
         }
+
+        private bool _upload;
         private async void Storage_OnClick(object sender, RoutedEventArgs e)
         {
-            if (File == null)
+            if (!_upload)
             {
                 View.Address = "没有选择图片";
                 return;
@@ -121,7 +124,8 @@ namespace BitStamp.View
             }
 
             await View.Jcloud();
-            File = null;
+            //File = null;
+            _upload = false;
         }
 
         private void Grid_OnDragOver(object sender, DragEventArgs e)
@@ -164,6 +168,7 @@ namespace BitStamp.View
                 return;
             }
             File = file;
+            _upload = true;
             try
             {
                 BitmapImage bitmap = new BitmapImage();
@@ -193,6 +198,7 @@ namespace BitStamp.View
                     await image.SetSourceAsync(await file.OpenReadAsync());
                     this.image.Source = image;
                     View.Image = image;
+                    _upload = true;
                 }
                 else if (data.Contains(StandardDataFormats.StorageItems))
                 {

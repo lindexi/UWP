@@ -28,30 +28,48 @@ namespace Button
     {
         public MainPage()
         {
+            View=new ViewModel.ViewModel();
             this.InitializeComponent();
+
         }
 
-        private async void ProgressButton_OnClick(object sender, ProgressButton.ProgressButtonEventArgs e)
+        private ViewModel.ViewModel View
         {
-            await Task.Delay(1000);
-            e.OnFinished.Invoke();
+            set;
+            get;
         }
+
+        //private async void ProgressButton_OnClick(object sender, ProgressButton.ProgressButtonEventArgs e)
+        //{
+        //    await Task.Delay(1000);
+        //    e.OnFinished.Invoke();
+        //}
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-
-            Data data = new Data()
+            new Task(async () =>
             {
-                Name = "2"
-            };
+                //ProgressButton temp=sender as ProgressButton;
+                //if (temp == null)
+                //{
+                //    return;
+                //}
+                await Task.Delay(1000);
+                //temp.Complete = true;
+                View.Complete = true;
+            }).Start();
+            //Data data = new Data()
+            //{
+            //    Name = "2"
+            //};
 
-            var serializer = new DataContractJsonSerializer(typeof(Data));
+            //var serializer = new DataContractJsonSerializer(typeof(Data));
 
-            string str = null;
-            //StringBuilder str=new StringBuilder();
-            Stream stream = new MemoryStream();
-            serializer.WriteObject(stream, data);
-            str = new StreamReader(stream).ReadToEnd();
+            //string str = null;
+            ////StringBuilder str=new StringBuilder();
+            //Stream stream = new MemoryStream();
+            //serializer.WriteObject(stream, data);
+            //str = new StreamReader(stream).ReadToEnd();
             //StreamWriter stream=new StreamWriter();
         }
 

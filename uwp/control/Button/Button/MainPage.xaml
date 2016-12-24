@@ -7,12 +7,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary Source="Control/ProgressButton.xaml"></ResourceDictionary>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Margin="10,10,10,10">
             <!--<view:ProgressButton Margin="10,10,10,10" Width="50" Height="50"
                                  Text="确定" ProgressButtonClick="ProgressButton_OnClick"></view:ProgressButton>-->
-            <Button Content="确定" Click="ButtonBase_OnClick"></Button>
+            <!--<Button Content="确定" Click="ButtonBase_OnClick"></Button>-->
+            <view:ProgressButton Text="确定"
+                                 Complete="{x:Bind View.Complete,Mode=TwoWay}"
+                                 Click="ButtonBase_OnClick"></view:ProgressButton>
         </Grid>
     </Grid>
 </Page>

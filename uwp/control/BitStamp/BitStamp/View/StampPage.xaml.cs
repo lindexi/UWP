@@ -85,7 +85,7 @@ namespace BitStamp.View
                 View.Address = "没有选择图片";
                 return;
             }
-            if (File.FileType == ".gif")
+            if (File?.FileType == ".gif")
             {
                 View.File = File;
             }

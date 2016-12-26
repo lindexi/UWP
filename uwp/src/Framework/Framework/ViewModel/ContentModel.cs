@@ -1,4 +1,6 @@
-﻿namespace Framework.ViewModel
+﻿using Framework.Model;
+
+namespace Framework.ViewModel
 {
     public class ContentModel : ViewModelBase,IReceiveMessage
     {

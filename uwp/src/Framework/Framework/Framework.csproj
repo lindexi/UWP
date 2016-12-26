@@ -104,7 +104,7 @@
     <Compile Include="ViewModel\DetailMasterModel.cs" />
     <Compile Include="ViewModel\IReceiveMessage.cs" />
     <Compile Include="ViewModel\ISendMessage.cs" />
-    <Compile Include="ViewModel\KeySecret.cs" />
+    <Compile Include="Model\KeySecret.cs" />
     <Compile Include="ViewModel\ListModel.cs" />
     <Compile Include="ViewModel\MasterSendMessage.cs" />
     <Compile Include="ViewModel\Message.cs" />
@@ -171,9 +171,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

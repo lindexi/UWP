@@ -1,4 +1,4 @@
-namespace Framework.ViewModel
+namespace Framework.Model
 {
     public class KeySecret : NotifyProperty
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;
+using Framework.Model;
 
 namespace Framework.ViewModel
 {

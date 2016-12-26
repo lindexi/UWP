@@ -11,13 +11,13 @@ namespace Framework.ViewModel
 {
     public class ViewModelPage
     {
-        //public ViewModelPage()
-        //{
-        //    //if (ViewModel == null)
-        //    //{
-        //    //    //ViewModel=View.GetConstructor(null)
-        //    //}
-        //}
+        public ViewModelPage()
+        {
+            //if (ViewModel == null)
+            //{
+            //    //ViewModel=View.GetConstructor(null)
+            //}
+        }
 
         public ViewModelPage(Type viewModel, Type page)
         {
@@ -66,7 +66,7 @@ namespace Framework.ViewModel
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                 () =>
                 {
-                    content.Navigate(Page);
+                    content.Navigate(Page,ViewModel);
                 });
         }
 

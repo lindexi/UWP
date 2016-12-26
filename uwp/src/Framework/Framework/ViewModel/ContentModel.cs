@@ -2,6 +2,7 @@
 
 namespace Framework.ViewModel
 {
+    [CodeStorage]
     public class ContentModel : ViewModelBase,IReceiveMessage
     {
         public ContentModel()

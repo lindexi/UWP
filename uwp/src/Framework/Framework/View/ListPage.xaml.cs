@@ -34,5 +34,7 @@ namespace Framework.View
             set;
             get;
         }
+
+
     }
 }

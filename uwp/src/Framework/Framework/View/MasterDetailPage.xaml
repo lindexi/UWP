@@ -41,7 +41,6 @@
 
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                   Canvas.ZIndex="{x:Bind View.DetailMaster.ZListView,Mode=OneWay}">
-                <!--<Grid Background="Black"></Grid>-->
                 <TextBlock Text="List" HorizontalAlignment="Center"></TextBlock>
                 <Frame x:Name="List" SourcePageType="local:ListPage"></Frame>
             </Grid>
@@ -50,7 +49,6 @@
                 <Image Source="ms-appx:///Assets/Strawberry_Adult_content_easyicon.net.png"></Image>
                 <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Visibility="{x:Bind View.DetailMaster.Visibility,Mode=OneWay}">
                     <TextBlock Text="content" HorizontalAlignment="Center"></TextBlock>
-                    <!--<Grid Background="#FF565500"></Grid>-->
                     <Frame x:Name="Content" SourcePageType="local:ContentPage"></Frame>
                 </Grid>
             </Grid>

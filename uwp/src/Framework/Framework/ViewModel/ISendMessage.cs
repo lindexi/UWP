@@ -1,7 +1,13 @@
-﻿namespace Framework.ViewModel
+﻿using System;
+
+namespace Framework.ViewModel
 {
     public interface ISendMessage
     {
-        void SendMessage(Message message);
+        EventHandler<Message> SendMessageHandler
+        {
+            set;
+            get;
+        }
     }
 }

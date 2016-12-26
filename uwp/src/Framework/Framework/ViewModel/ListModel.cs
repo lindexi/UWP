@@ -1,10 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;
 using Framework.Model;
 
 namespace Framework.ViewModel
 {
-    public class ListModel : ViewModelBase
+    [CodeStorage]
+    public class ListModel : ViewModelBase,ISendMessage
     {
         public ListModel()
         {
@@ -35,14 +37,15 @@ namespace Framework.ViewModel
                 Source = this
             };
 
-            SendMessage?.SendMessage(temp);
+            //SendMessage?.SendMessage(temp);
+            SendMessageHandler?.Invoke(this,temp);
         }
 
-        public ISendMessage SendMessage
-        {
-            set;
-            get;
-        }
+        //public ISendMessage SendMessage
+        //{
+        //    set;
+        //    get;
+        //}
 
         private ObservableCollection<KeySecret> _keySecret;
 
@@ -72,6 +75,12 @@ namespace Framework.ViewModel
                 }
             };
 
+        }
+
+        public EventHandler<Message> SendMessageHandler
+        {
+            get;
+            set;
         }
     }
 }

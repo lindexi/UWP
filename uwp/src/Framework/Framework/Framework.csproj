@@ -99,6 +99,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CodeStorageAttribute.cs" />
     <Compile Include="ViewModel\CodeStorageModel.cs" />
     <Compile Include="ViewModel\ContentModel.cs" />
     <Compile Include="ViewModel\DetailMasterModel.cs" />

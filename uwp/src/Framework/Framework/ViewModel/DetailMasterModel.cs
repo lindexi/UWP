@@ -76,7 +76,11 @@ namespace Framework.ViewModel
             }
         }
 
-        public bool HasFrame { set; get; }
+        public bool HasFrame
+        {
+            set;
+            get;
+        }
 
         public Visibility Visibility
         {
@@ -91,42 +95,10 @@ namespace Framework.ViewModel
             }
         }
 
-        //public void MasterClick(object o, ItemClickEventArgs e)
-        //{
-        //    //AddressBook temp = e.ClickedItem as AddressBook;
-        //    //if (temp == null)
-        //    //{
-        //    //    return;
-        //    //}
-        //    HasFrame = true;
-        //    Visibility=Visibility.Visible;
-        //    //Detail.Navigate(typeof(DetailPage), temp.Str);
-        //    Narrow();
-        //}
-
         public void MasterClick()
         {
             HasFrame = true;
             Visibility = Visibility.Visible;
-            Narrow();
-        }
-
-        private Visibility _visibility = Visibility.Collapsed;
-
-        private int _zListView;
-
-        private GridLength _detailGrid;
-
-        private GridLength _masterGrid;
-
-        private int _zFrame;
-
-        private int _gridInt;
-
-        private void BackRequested(object sender, BackRequestedEventArgs e)
-        {
-            HasFrame = false;
-            Visibility = Visibility.Collapsed;
             Narrow();
         }
 
@@ -152,6 +124,25 @@ namespace Framework.ViewModel
                 DetailGrid = new GridLength(1, GridUnitType.Star);
                 GridInt = 1;
             }
+        }
+
+        private GridLength _detailGrid;
+
+        private int _gridInt;
+
+        private GridLength _masterGrid;
+
+        private Visibility _visibility = Visibility.Collapsed;
+
+        private int _zFrame;
+
+        private int _zListView;
+
+        private void BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            HasFrame = false;
+            Visibility = Visibility.Collapsed;
+            Narrow();
         }
     }
 }

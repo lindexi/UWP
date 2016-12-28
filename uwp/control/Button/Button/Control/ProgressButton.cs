@@ -10,10 +10,11 @@ namespace Button.Control
 {
     [TemplatePart(Name = "TextBlock", Type = typeof(TextBlock))]
     [TemplatePart(Name = "Progress", Type = typeof(Windows.UI.Xaml.Controls.ProgressRing))]
-    public partial class ProgressButton : Windows.UI.Xaml.Controls.Button
+    public class ProgressButton : Windows.UI.Xaml.Controls.Button
     {
         public ProgressButton()
         {
+            DefaultStyleKey = typeof(ProgressButton);
             Click += ProgressButton_Click;
         }
 

@@ -7,7 +7,7 @@
     <ProjectGuid>{CC436C14-1B4F-40D9-AAE1-14FB754868CC}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Button</RootNamespace>
+    <RootNamespace>lindexi.uwp.control.Button</RootNamespace>
     <AssemblyName>Button</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>

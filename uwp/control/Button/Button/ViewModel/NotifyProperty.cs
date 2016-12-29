@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 
-namespace Button
+namespace lindexi.uwp.control.Button.ViewModel
 {
     /// <summary>
     ///     提供继承通知UI改变值

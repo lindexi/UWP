@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Button.Control
+namespace lindexi.uwp.control.Button.Control
 {
     [TemplatePart(Name = "TextBlock", Type = typeof(TextBlock))]
     [TemplatePart(Name = "Progress", Type = typeof(Windows.UI.Xaml.Controls.ProgressRing))]
@@ -69,7 +64,7 @@ namespace Button.Control
             {
                 return;
             }
-
+            
             bool temp = (bool)e.NewValue;
 
 

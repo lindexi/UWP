@@ -1,9 +1,8 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    
-    xmlns:local="using:Button.Control">
-    <Style TargetType="local:ProgressButton">
+    xmlns:control="using:lindexi.uwp.control.Button.Control">
+    <Style TargetType="control:ProgressButton">
         <Setter Property="Background" Value="{ThemeResource ButtonBackground}"/>
         <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}"/>
         <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}"/>
@@ -18,7 +17,7 @@
         <Setter Property="FocusVisualMargin" Value="-3"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:ProgressButton">
+                <ControlTemplate TargetType="control:ProgressButton">
                     <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">

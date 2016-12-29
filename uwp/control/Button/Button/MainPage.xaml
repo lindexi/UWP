@@ -1,24 +1,23 @@
 ﻿<Page
-    x:Class="Button.MainPage"
+    x:Class="lindexi.uwp.control.Button.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Button"
-    xmlns:view="using:Button.Control"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="using:lindexi.uwp.control.Button.Control"
     mc:Ignorable="d">
-    <Page.Resources>
+    <!--<Page.Resources>
         <ResourceDictionary Source="Control/ProgressButton.xaml"></ResourceDictionary>
-    </Page.Resources>
+    </Page.Resources>-->
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Margin="10,10,10,10">
             <!--<view:ProgressButton Margin="10,10,10,10" Width="50" Height="50"
                                  Text="确定" ProgressButtonClick="ProgressButton_OnClick"></view:ProgressButton>-->
             <!--<Button Content="确定" Click="ButtonBase_OnClick"></Button>-->
-            <view:ProgressButton Text="确定"
+            <control:ProgressButton Text="确定"
                                  Complete="{x:Bind View.Complete,Mode=TwoWay}"
-                                 Click="ButtonBase_OnClick"></view:ProgressButton>
+                                 Click="ButtonBase_OnClick"></control:ProgressButton>
         </Grid>
     </Grid>
 </Page>

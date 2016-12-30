@@ -12,7 +12,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
          </Grid.RowDefinitions>
-        <Image Width="50" Height="50" Source="../Assets/cloud_197.09665653495px_1193803_easyicon.png"></Image>
+        <Image Margin="100,100,100,100" Source="ms-appx:///Assets/cloud_197.09665653495px_1193803_easyicon.png"></Image>
         <ProgressRing Grid.Row="1" Margin="10,10,10,10"
                       IsActive="True"
                       HorizontalAlignment="Stretch"

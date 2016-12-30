@@ -7,6 +7,8 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
+using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -43,6 +45,48 @@ namespace BitStamp
 
         }
 
+        private void ApplicationViewPreferred()
+        {
+            //窗口大小
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
+            ApplicationView.PreferredLaunchViewSize = new Size(600, 700);
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(200, 600));
+
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
+            //标题
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                var applicationView = ApplicationView.GetForCurrentView();
+                applicationView.SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                var statusbar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                statusbar.BackgroundColor = Colors.Beige;
+                statusbar.BackgroundOpacity = 0.2;
+                statusbar.ForegroundColor=Colors.Black;
+
+                
+
+
+
+            }
+            //if (ApiInformation::IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            //{
+            //    //设置全屏模式 
+            //    auto applicationView = ApplicationView::GetForCurrentView();
+            //    applicationView->SetDesiredBoundsMode(ApplicationViewBoundsMode::UseCoreWindow);
+            //    auto statusbar = ViewManagement::StatusBar::GetForCurrentView();
+            //    statusbar->BackgroundColor = Colors::Red; //背景色
+            //                                              //透明度0-1之间，0为全透明，	1为不透明  
+            //                                              //全透明时候可能 前景色与默认色一致导致 信号等信息显示不出来，可改不透明或者改前景色
+            //                                              //全屏模式下 与底色做透明运算。。可类似沉浸式状态栏
+            //    statusbar->BackgroundOpacity = 0;
+            //    statusbar->ForegroundColor = Colors::Blue; //信号 时间等绘制颜色
+            //                                               //statusbar->ProgressIndicator->Text = "test statusbar";  //显示提示字和 。。。
+            //                                               //statusbar->ProgressIndicator->ShowAsync();
+            //}
+        }
+
         /// <summary>
         /// 在应用程序由最终用户正常启动时进行调用。
         /// 将在启动应用程序以打开特定文件等情况下使用。
@@ -58,14 +102,8 @@ namespace BitStamp
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
 
-            ApplicationView.PreferredLaunchWindowingMode =
-                ApplicationViewWindowingMode.Auto;
-
-            ApplicationView.PreferredLaunchViewSize = new Size(200, 1000);
-
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
-            
+          
+            ApplicationViewPreferred();
 
             //if (rootFrame == null)
             //{
@@ -104,12 +142,12 @@ namespace BitStamp
             {
                 if (rootFrame.Content == null)
                 {
-                    ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+                    //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-                    ApplicationView.PreferredLaunchViewSize = new Size(600, 700);
-                    ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(200,600));
+                    //ApplicationView.PreferredLaunchViewSize = new Size(600, 700);
+                    //ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(200,600));
 
-                    ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+                    //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
                     //当导航堆栈尚未还原时，导航到第一页，
                     // 并通过将所需信息作为导航参数传入来配置

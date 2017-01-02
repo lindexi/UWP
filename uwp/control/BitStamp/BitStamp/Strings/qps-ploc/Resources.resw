@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="qiniu.Text" xml:space="preserve">
+    <value>qiniu</value>
+  </data>
+  <data name="sm.ms.Text" xml:space="preserve">
+    <value>sm.ms</value>
+  </data>
+  <data name="主题.Text" xml:space="preserve">
+    <value>[FA938][!!_主题_!!]</value>
+  </data>
+  <data name="九幽图床.Text" xml:space="preserve">
+    <value>[3F0F4][!!_九幽图床_!!]</value>
+  </data>
+  <data name="信息.Text" xml:space="preserve">
+    <value>[A14A6][!!_信息_!!]</value>
+  </data>
+  <data name="前缀.Header" xml:space="preserve">
+    <value>[924F9][!!_前缀_!!]</value>
+  </data>
+  <data name="可以粘贴图片.PlaceholderText" xml:space="preserve">
+    <value>[6D282][!!_可以粘贴图片_!!]</value>
+  </data>
+  <data name="可以输入自己图床配置.Text" xml:space="preserve">
+    <value>[D25F5][!!_可以输入自己图床配置
+如果没有输入，图床会使用默认配置_!!]</value>
+  </data>
+  <data name="图床.Text" xml:space="preserve">
+    <value>[E16D6][!!_图床_!!]</value>
+  </data>
+  <data name="域名.Header" xml:space="preserve">
+    <value>[7739A][!!_域名_!!]</value>
+  </data>
+  <data name="复制.Text" xml:space="preserve">
+    <value>[8733E][!!_复制_!!]</value>
+  </data>
+  <data name="夜晚.Text" xml:space="preserve">
+    <value>[2E707][!!_夜晚_!!]</value>
+  </data>
+  <data name="如果没有输入，图床会使用默认配置.Text" xml:space="preserve">
+    <value>[5C0DE][!!_如果没有输入，图床会使用默认配置_!!]</value>
+  </data>
+  <data name="拖入图片到这里.Text" xml:space="preserve">
+    <value>[D9BB7][!!_拖入图片到这里_!!]</value>
+  </data>
+  <data name="本地存储图片加水印所放位置，默认为用户图片.Text" xml:space="preserve">
+    <value>[18E9A][!!_本地存储图片加水印所放位置，默认为用户图片_!!]</value>
+  </data>
+  <data name="本地存储路径.Text" xml:space="preserve">
+    <value>[95963][!!_本地存储路径_!!]</value>
+  </data>
+  <data name="水印.Text" xml:space="preserve">
+    <value>[ACFEB][!!_水印_!!]</value>
+  </data>
+  <data name="水印Header.Header" xml:space="preserve">
+    <value>[4D5CB][!!_水印_!!]</value>
+  </data>
+  <data name="白天.Text" xml:space="preserve">
+    <value>[41FA9][!!_白天_!!]</value>
+  </data>
+  <data name="设置.Text" xml:space="preserve">
+    <value>[6F799][!!_设置_!!]</value>
+  </data>
+  <data name="选图片.Text" xml:space="preserve">
+    <value>[5A0DE][!!_选图片_!!]</value>
+  </data>
+  <data name="选择.Text" xml:space="preserve">
+    <value>[71797][!!_选择_!!]</value>
+  </data>
+  <data name="默认图床.Text" xml:space="preserve">
+    <value>[5BF20][!!_默认图床_!!]</value>
+  </data>
+</root>

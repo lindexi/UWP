@@ -3,11 +3,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Xaml.Markup;
 
 namespace BitStamp.Model
 {
     public abstract class UploadImageTask
     {
+        public UploadImageTask(StorageFile file)
+        {
+            File = file;
+            Scale = -1;
+            Width = -1;
+            Height = -1;
+        }
+
+        public UploadImageTask(UploadImageTask uploadImageTask)
+        {
+            File = uploadImageTask.File;
+            Scale = uploadImageTask.Scale;
+            Width = uploadImageTask.Width;
+            Height = uploadImageTask.Height;
+            Name = uploadImageTask.Name;
+            Guid = uploadImageTask.Guid;
+        }
+
         public Guid Guid
         {
             set;
@@ -36,24 +55,6 @@ namespace BitStamp.Model
         {
             set;
             get;
-        }
-
-        public UploadImageTask(StorageFile file)
-        {
-            File = file;
-            Scale = -1;
-            Width = -1;
-            Height = -1;
-        }
-
-        public UploadImageTask(UploadImageTask uploadImageTask)
-        {
-            File = uploadImageTask.File;
-            Scale = uploadImageTask.Scale;
-            Width = uploadImageTask.Width;
-            Height = uploadImageTask.Height;
-            Name = uploadImageTask.Name;
-            Guid = uploadImageTask.Guid;
         }
 
         public double Scale

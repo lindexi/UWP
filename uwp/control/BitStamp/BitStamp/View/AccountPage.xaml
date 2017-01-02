@@ -16,37 +16,41 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer HorizontalScrollBarVisibility="Hidden"
-                      >
+        <ScrollViewer HorizontalScrollBarVisibility="Hidden">
             <StackPanel 
                 Margin="10,10,10,10">
+                <!--<TextBlock x:Uid="lindexi" Text="lindexi"></TextBlock>
+                <TextBox x:Uid="lindexioschinaio" Header="lindexi.oschina.io"></TextBox>-->
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="主题" Margin="0,0,10,0"
+                    <TextBlock x:Uid="主题" Text="主题" Margin="0,0,10,0"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center" />
                     <ToggleSwitch IsOn="{x:Bind View.ThemeDay,Mode=TwoWay}" OffContent="夜间" OnContent="白天" />
                 </StackPanel>
-                <TextBlock Text="默认图床"></TextBlock>
-                <TextBlock FontSize="10" Foreground="Gray">
+                <TextBlock x:Uid="默认图床" Text="默认图床"></TextBlock>
+                <TextBlock x:Uid="可以输入自己图床配置" FontSize="10" Foreground="Gray">
                         可以输入自己的图床配置
                         <LineBreak/>
                         如果没有输入，图床会用默认配置
                 </TextBlock>
+                <!--<TextBlock x:Uid="如果没有输入，图床会使用默认配置" FontSize="10" Foreground="Gray">
+                        如果没有输入，图床会用默认配置
+                </TextBlock>-->
                 <RadioButton IsChecked="{x:Bind View.SmmsImageShack,Mode=TwoWay}" Content="sm.ms"></RadioButton>
                 <RadioButton IsChecked="{x:Bind View.JiuYouImageShack,Mode=TwoWay}">
                     <RadioButton.Content>
                         <Grid>
-                            <TextBlock Text="九幽图床"></TextBlock>
+                            <TextBlock x:Uid="九幽图床" Text="九幽图床"></TextBlock>
                         </Grid>
                     </RadioButton.Content>
                 </RadioButton>
                 <Grid Margin="20,0,0,0"
                       Visibility="{x:Bind View.JiuYouImageShackVisibility,Mode=TwoWay}">
-                    <TextBox Margin="10,1,10,1" Header="九幽云存储key" Text="{x:Bind View.JiuYouSecretId,Mode=TwoWay}"
+                    <TextBox x:Uid="九幽云存储" Margin="10,1,10,1" Header="九幽云存储key" Text="{x:Bind View.JiuYouSecretId,Mode=TwoWay}"
                              IsEnabled="{x:Bind View.JiuYouImageShack,Mode=OneWay,Converter={StaticResource ConvertBooleanNull}}">
                     </TextBox>
                 </Grid>
-                <RadioButton IsChecked="{x:Bind View.QinImageShack,Mode=TwoWay}" Content="骑牛"></RadioButton>
+                <RadioButton IsChecked="{x:Bind View.QinImageShack,Mode=TwoWay}" Content="qiniu"></RadioButton>
                 <Grid Margin="20,0,0,0"
                       Visibility="{x:Bind View.QinImageShackVisibility,Mode=TwoWay}">
                     <StackPanel>
@@ -56,15 +60,15 @@
                                  Text="{x:Bind View.CloundAccound.SecretKey,Mode=TwoWay}"></TextBox>
                         <TextBox Margin="10,1,10,1" Header="Bucket"
                                  Text="{x:Bind View.CloundAccound.Bucket,Mode=TwoWay}"></TextBox>
-                        <TextBox Margin="10,1,10,1" Header="域名"
+                        <TextBox x:Uid="域名" Margin="10,1,10,1" Header="域名"
                                  Text="{x:Bind View.CloundAccound.Url,Mode=TwoWay}"></TextBox>
-                        <TextBox Margin="10,1,10,1" Header="前缀"
+                        <TextBox x:Uid="前缀" Margin="10,1,10,1" Header="前缀"
                                  Text="{x:Bind View.CloundAccound.Pname,Mode=TwoWay}"></TextBox>
                     </StackPanel>
                 </Grid>
                 <Grid Height="1" Background="Gray"></Grid>
                 <Grid>
-                    <TextBox Margin="10,10,10,10"
+                    <TextBox x:Uid="水印Header" Margin="10,10,10,10"
                              Text="{x:Bind View.Str,Mode=TwoWay}" Header="水印">
                     </TextBox>
                 </Grid>
@@ -76,8 +80,8 @@
                     </Grid.RowDefinitions>
                     <Grid>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="本地存储路径"></TextBlock>
-                            <TextBlock FontSize="10" Foreground="Gray"
+                            <TextBlock x:Uid="本地存储路径" Text="本地存储路径"></TextBlock>
+                            <TextBlock x:Uid="本地存储图片加水印所放位置，默认为用户图片" FontSize="10" Foreground="Gray"
                                        Text="本地存储图片加水印所放位置，默认为用户图片区"
                                        VerticalAlignment="Bottom" Margin="0,0,0,0" />
                         </StackPanel>
@@ -95,7 +99,7 @@
                                     <TextBlock Style="{StaticResource SplitFe}"
                                                Text="&#xE890;">
                                     </TextBlock>
-                                    <TextBlock Text="选择"></TextBlock>
+                                    <TextBlock x:Uid="选择" Text="选择"></TextBlock>
                                 </StackPanel>
                             </Button.Content>
                         </Button>

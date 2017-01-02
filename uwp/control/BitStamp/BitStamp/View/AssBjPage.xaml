@@ -53,7 +53,7 @@
                                         <StackPanel Style="{StaticResource SplitStackPanel}">
                                             <TextBlock Style="{StaticResource SplitFe}"
                                            Text="&#xE72D;" />
-                                            <TextBlock Text="图床" />
+                                            <TextBlock x:Uid="图床" Text="图床" />
                                         </StackPanel>
                                     </Grid>
                                 </Button.Content>
@@ -65,7 +65,7 @@
                                     <StackPanel Style="{StaticResource SplitStackPanel}">
                                         <TextBlock Style="{StaticResource SplitFe}"
                                                   Text="&#xE783;"></TextBlock>
-                                        <TextBlock Text="信息"></TextBlock>
+                                        <TextBlock x:Uid="信息" Text="信息"></TextBlock>
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
@@ -75,7 +75,7 @@
                                     <StackPanel Style="{StaticResource SplitStackPanel}">
                                         <TextBlock Style="{StaticResource SplitFe}"
                                                    Text="&#xE713;"></TextBlock>
-                                        <TextBlock Text="设置"></TextBlock>
+                                        <TextBlock x:Uid="设置" Text="设置"></TextBlock>
                                     </StackPanel>
                                 </Button.Content>
                             </Button>

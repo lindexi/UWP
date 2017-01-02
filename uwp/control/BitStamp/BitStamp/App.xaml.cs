@@ -8,6 +8,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
+using Windows.Globalization;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -33,9 +34,16 @@ namespace BitStamp
         /// </summary>
         public App()
         {
+            var globalization = ApplicationLanguages.ManifestLanguages;
+            ApplicationLanguages.PrimaryLanguageOverride = "en";
+
             this.InitializeComponent();
             UnhandledException += App_UnhandledException;
             this.Suspending += OnSuspending;
+
+            //int i = 3;
+            //int k = (++i)+(++i)+(+i);
+            //System.Console.WriteLine(k);
         }
 
         private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)

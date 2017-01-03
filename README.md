@@ -76,9 +76,11 @@
    上传到Nuget，可以搜索`lindexi.uwp.src.ImageStorage `或控制台
    `Install-Package lindexi.uwp.src.ImageStorage`
 
+ - [修改CalendarDatePicker图标颜色](uwp/src/CalendarDatePickerForeground)
+
 # English
 
 Some controls and common codes
 
-
+This rep is not finished yet, and I don't know when I will make it...
 

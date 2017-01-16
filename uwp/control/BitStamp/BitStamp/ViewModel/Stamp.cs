@@ -7,6 +7,7 @@ using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 using BitStamp.Model;
+using BitStamp.Model.Cimage;
 using lindexi.uwp.ImageShack.Model;
 
 namespace BitStamp.ViewModel
@@ -128,6 +129,11 @@ namespace BitStamp.ViewModel
 
         public async Task Jcloud()
         {
+            
+            Cimage image=new Cimage(File);
+            image.UploadImage();
+            return;
+
             ImageShackEnum imageShack = AccoutGoverment.AccountModel.Account.ImageShack;
             if (File.FileType == ".gif" && imageShack == ImageShackEnum.Jiuyou)
             {

@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace BitStamp.ViewModel
 {
-   public class AssBjModel:NotifyProperty
+    public class AssBjModel : NotifyProperty
     {
         public AssBjModel()
         {
@@ -19,7 +19,7 @@ namespace BitStamp.ViewModel
         {
             //StampPage 是用户控件
             //FrameAccount.Navigate(typeof(View.StampPage));
-            FrameVisibility=Visibility.Visible;
+            FrameVisibility = Visibility.Visible;
         }
 
         public AccoutGoverment Account
@@ -30,7 +30,7 @@ namespace BitStamp.ViewModel
 
         public void NavigateAccount()
         {
-            FrameVisibility=Visibility.Collapsed;
+            FrameVisibility = Visibility.Collapsed;
             FrameAccount.Navigate(typeof(View.AccountPage));
         }
 

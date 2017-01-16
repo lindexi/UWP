@@ -25,10 +25,10 @@ namespace BitStamp
         public MainPage()
         {
             this.InitializeComponent();
-            Frame frame=Content as Frame;
+            Frame frame = Content as Frame;
             if (frame == null)
             {
-                frame=new Frame();
+                frame = new Frame();
                 Content = frame;
             }
             frame.Navigate(typeof(View.AssBjPage));

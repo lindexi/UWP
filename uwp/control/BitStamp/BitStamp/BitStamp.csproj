@@ -11,7 +11,7 @@
     <AssemblyName>BitStamp</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -115,6 +115,8 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Appid.cs" />
+    <Compile Include="Model\Cimage\AccountCimage.cs" />
+    <Compile Include="Model\Cimage\Cimage.cs" />
     <Compile Include="Model\clouddn\Auth\digest\Mac.cs" />
     <Compile Include="Model\clouddn\Auth\PutAuthClient.cs" />
     <Compile Include="Model\clouddn\Auth\QiniuAuthClient.cs" />
@@ -270,16 +272,16 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
-      <Name>Windows Mobile Extensions for the UWP</Name>
+    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
+      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10586.0%29</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <XliffResource Include="MultilingualResources\BitStamp.en.xlf" />
     <XliffResource Include="MultilingualResources\BitStamp.qps-ploc.xlf" />
     <XliffResource Include="MultilingualResources\BitStamp.zh-Hant.xlf" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

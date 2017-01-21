@@ -70,7 +70,7 @@ namespace BitStamp.Model.Cimage
             //username=lindexi_gd%40163.com&password=Huc_3113006277&lt=LT-541546-HzhKAKoaeftqtL6EtiCQYXrC3d716w&execution=e1s1&_eventId=submit
             str = await content.ReadAsStringAsync();
             //content=new
-            content=new FormUrlEncodedContent(new List<KeyValuePair<string, string>>()
+            content = new FormUrlEncodedContent(new List<KeyValuePair<string, string>>()
             {
                 new KeyValuePair<string, string>("username",account.UserName),//.Replace("@", "%40")),
                 new KeyValuePair<string, string>("password",account.Key),
@@ -83,9 +83,28 @@ namespace BitStamp.Model.Cimage
             str = await (await http.PostAsync(url, content)).Content.ReadAsStringAsync();
 
             //str = await http.GetStringAsync(url);
-            //foreach (Cookie temp in handler.CookieContainer.GetCookies(url))
+            cookies = new CookieContainer();
+            cookies.MaxCookieSize = int.MaxValue;
+            foreach (Cookie temp in handler.CookieContainer.GetCookies(url))
+            {
+                try
+                {
+                    if ("http://write.blog.csdn.net/".Contains(temp.Domain))
+                    {
+                        cookies.SetCookies(new Uri("http://write.blog.csdn.net/"), temp.ToString());
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+
+            handler.CookieContainer.Add(new Uri("http://write.blog.csdn.net/"), cookies.GetCookies(new Uri("http://write.blog.csdn.net/")));
+
+            //foreach (Cookie temp in cookies.GetCookies(new Uri("http://write.blog.csdn.net/")))
             //{
-            //    handler.CookieContainer.SetCookies(new Uri("http://write.blog.csdn.net/"),temp.ToString());
+            //    handler.CookieContainer.Add();
             //}
 
             //var temp = handler.CookieContainer.GetCookies(url);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -55,6 +56,9 @@ namespace BitStamp.Model.Cimage
             handler.AllowAutoRedirect = true;
 
             string str = await http.GetStringAsync(url);
+
+            HandlCookie(handler, url);
+
             Regex regex = new Regex(" type=\"hidden\" name=\"lt\" value=\"([\\w|\\-]+)\"");
             var lt = regex.Match(str).Groups[1].Value;
             regex = new Regex("type=\"hidden\" name=\"execution\" value=\"(\\w+)\"");
@@ -81,26 +85,27 @@ namespace BitStamp.Model.Cimage
             str = await content.ReadAsStringAsync();
 
             str = await (await http.PostAsync(url, content)).Content.ReadAsStringAsync();
-
+            HandlCookie(handler,url);
             //str = await http.GetStringAsync(url);
-            cookies = new CookieContainer();
-            cookies.MaxCookieSize = int.MaxValue;
-            foreach (Cookie temp in handler.CookieContainer.GetCookies(url))
-            {
-                try
-                {
-                    if ("http://write.blog.csdn.net/".Contains(temp.Domain))
-                    {
-                        cookies.SetCookies(new Uri("http://write.blog.csdn.net/"), temp.ToString());
-                    }
-                }
-                catch
-                {
+            //cookies = new CookieContainer();
+            //cookies.MaxCookieSize = int.MaxValue;
+            //foreach (Cookie temp in handler.CookieContainer.GetCookies(url))
+            //{
+            //    try
+            //    {
+            //        //temp.Domain = ".csdn.net";
+            //        //if ("http://write.blog.csdn.net/".Contains(temp.Domain))
+            //        //{
+            //        //    cookies.SetCookies(new Uri("http://write.blog.csdn.net/"), temp.ToString());
+            //        //}
+            //    }
+            //    catch
+            //    {
 
-                }
-            }
+            //    }
+            //}
 
-            handler.CookieContainer.Add(new Uri("http://write.blog.csdn.net/"), cookies.GetCookies(new Uri("http://write.blog.csdn.net/")));
+            //handler.CookieContainer.Add(new Uri("http://write.blog.csdn.net/"), cookies.GetCookies(new Uri("http://write.blog.csdn.net/")));
 
             //foreach (Cookie temp in cookies.GetCookies(new Uri("http://write.blog.csdn.net/")))
             //{
@@ -110,7 +115,7 @@ namespace BitStamp.Model.Cimage
             //var temp = handler.CookieContainer.GetCookies(url);
 
             //handler.CookieContainer.GetCookies()
-            url = new Uri("http://write.blog.csdn.net/");
+            url = new Uri("http://write.blog.csdn.net/postlist");
             str = await http.GetStringAsync(url);
 
             //content=new MultipartContent();
@@ -122,7 +127,10 @@ namespace BitStamp.Model.Cimage
             var stream = new StreamContent(await File.OpenStreamForReadAsync());
             ((MultipartFormDataContent)content).Add(stream);
             str = await ((MultipartFormDataContent)content).ReadAsStringAsync();
+            //http://write.blog.csdn.net/article/UploadImgMarkdown?parenthost=write.blog.csdn.net
             url = new Uri("http://write.blog.csdn.net/article/UploadImgMarkdown?parenthost=write.blog.csdn.net");
+            HandlCookie(handler, url);
+
             var message = await http.PostAsync(url, content);
             if (message.StatusCode == HttpStatusCode.OK)
             {
@@ -130,6 +138,66 @@ namespace BitStamp.Model.Cimage
                 //message.Content.ReadAsStreamAsync()
                 ResponseImage(message);
             }
+        }
+
+        private static void HandlCookie(HttpClientHandler handler, Uri url)
+        {
+            //uuid_tt_dd=-8518837881335297919_20170109; 
+            //__message_sys_msg_id =0;
+            //__message_gu_msg_id =0; 
+            //__message_cnel_msg_id =0; 
+            //__message_district_code =000000;
+            //__message_in_school =0; _ga=GA1.2.1599396469.1483937637;
+            //_message_m =3ndkuz0qmesws3ayo4leqnn0; 
+            //UserName =lindexi_gd; 
+            //UserInfo =sdHOjO9DCPtj%2BW%2B4g08kUGQFa9Bg1Y%2BlpMLzPyVuR2G1virxcRuehfjD7lBwL9uiOyel%2B4ruNHSaITmLws4DgBDj8Wy8XdIUjfOS98ZWlAB3C4vdJMgX5s92nGzCV19euO%2BfTlb9M488KfA%2BZ7TNVQ%3D%3D; 
+            //UserNick =lindexi_gd; AU=747; UN=lindexi_gd; UE="lindexi_gd@163.com";
+            //BT =1484964095225;
+            //access -token=5f36bc49-0d17-41f1-8096-f5020892d887;
+            //Hm_lvt_6bcd52f51e9b3dce32bec4a3997715ac =1484895363,1484962281,1484963306,1484967480;
+            //Hm_lpvt_6bcd52f51e9b3dce32bec4a3997715ac =1484967480; 
+            //dc_tos =ok409n;
+            //dc_session_id =1484967490039
+            foreach (Cookie temp in handler.CookieContainer.GetCookies(url))
+            {
+                string str = $"name={temp.Name};\ndomain={temp.Domain}\npath={temp.Path}\nvalue={temp.Value}\n\n";
+                Debug.Write(str);
+            }
+            //name=UserName;
+            //domain=.csdn.net
+            //path=/
+            //value=lindexi_gd
+
+            //name=UserInfo;
+            //domain=.csdn.net
+            //path=/
+            //value=sdHOjO9DCPtj%2BW%2B4g08kUGQFa9Bg1Y%2BlpMLzPyVuR2G1virxcRuehfjD7lBwL9uiOyel%2B4ruNHSaITmLws4DgBDj8Wy8XdIUjfOS98ZWlAB3C4vdJMgX5s92nGzCV19euO%2BfTlb9M488KfA%2BZ7TNVQ%3D%3D
+
+            //name=UserNick;
+            //domain=.csdn.net
+            //path=/
+            //value=lindexi_gd
+
+            //name=AU;
+            //domain=.csdn.net
+            //path=/
+            //value=747
+
+            //name=UN;
+            //domain=.csdn.net
+            //path=/
+            //value=lindexi_gd
+
+            //name=BT;
+            //domain=.csdn.net
+            //path=/
+            //value=1484968075530
+
+            //name=access-token;
+            //domain=.csdn.net
+            //path=/
+            //value=e97d57f0-e6a0-4ab7-98e2-ecf5afbfbfda
+
         }
 
         private async void ResponseImage(HttpResponseMessage message)

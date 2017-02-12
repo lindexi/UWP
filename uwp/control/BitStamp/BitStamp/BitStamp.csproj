@@ -19,7 +19,7 @@
     <PackageCertificateKeyFile>BitStamp_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>4B79E13E2683672C3E19D37D300C0DC30BB47004</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>K:\程序\ethylene156\上传\BitStamp\AppPackages\</AppxPackageDir>
+    <AppxPackageDir>E:\程序\ethylene156\上传\publish\UWP\BitStamp\AppPackages\</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>
@@ -102,10 +102,6 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="BitStamp_StoreKey.pfx" />
     <None Include="project.json" />
-    <PRIResource Include="Strings\en\Resources.resw" />
-    <PRIResource Include="Strings\qps-ploc\Resources.resw" />
-    <PRIResource Include="Strings\zh-CN\Resources.resw" />
-    <PRIResource Include="Strings\zh-Hant\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">

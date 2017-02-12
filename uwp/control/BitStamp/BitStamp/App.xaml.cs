@@ -56,7 +56,7 @@ namespace BitStamp
         private void ApplicationViewPreferred()
         {
             //窗口大小
-            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(600, 600));
 

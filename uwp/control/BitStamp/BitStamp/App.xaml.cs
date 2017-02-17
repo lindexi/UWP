@@ -58,11 +58,12 @@ namespace BitStamp
             //窗口大小
             //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(600, 600));
 
             ApplicationView.PreferredLaunchViewSize = new Size(600, 700);
 
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(600, 600));
 
             //标题
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))

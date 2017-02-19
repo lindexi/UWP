@@ -93,7 +93,7 @@
                                     <Image Width="15" Height="15"
                                            Source="ms-appx:///Assets/cloud_197.09665653495px_1193803_easyicon.png">
                                     </Image>
-                                    <TextBlock x:Uid="上传" Text=""></TextBlock>
+                                    <TextBlock x:Uid="上传" Text="上传"></TextBlock>
                                 </StackPanel>
                             </Button.Content>
                         </Button>

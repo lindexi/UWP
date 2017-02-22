@@ -152,7 +152,7 @@ namespace BitStamp.ViewModel
                     Theme = ElementTheme.Light,
                     ThemeDay = true,
                     Str = "",
-                    ImageShack = ImageShackEnum.Jiuyou,
+                    ImageShack = ImageShackEnum.Qin,
                     JiuYouImageShack = true,
                     QinImageShack = false,
                     SmmsImageShack = false,

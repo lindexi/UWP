@@ -139,11 +139,11 @@ namespace BitStamp.ViewModel
             {
                 imageShack = ImageShackEnum.Qin;
             }
-            var size= (await File.GetBasicPropertiesAsync()).Size;
+            var size = (await File.GetBasicPropertiesAsync()).Size;
             //1M
             //1024k
             //‪125000‬
-            if (size > 125000)
+            if (size > 12500000)
             {
                 imageShack = ImageShackEnum.Smms;
             }

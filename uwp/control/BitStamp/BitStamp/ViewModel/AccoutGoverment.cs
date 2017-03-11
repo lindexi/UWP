@@ -153,8 +153,8 @@ namespace BitStamp.ViewModel
                     ThemeDay = true,
                     Str = "",
                     ImageShack = ImageShackEnum.Qin,
-                    JiuYouImageShack = true,
-                    QinImageShack = false,
+                    JiuYouImageShack = false,
+                    QinImageShack = true,
                     SmmsImageShack = false,
                 };
                 await Storage();

@@ -124,7 +124,7 @@ namespace BitStamp.View
             }
 
             await View.Jcloud();
-            //File = null;
+            File = null;
             _upload = false;
         }
 

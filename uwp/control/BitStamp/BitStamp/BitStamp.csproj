@@ -11,7 +11,7 @@
     <AssemblyName>BitStamp</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -19,7 +19,7 @@
     <PackageCertificateKeyFile>BitStamp_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>4B79E13E2683672C3E19D37D300C0DC30BB47004</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>E:\程序\ethylene156\上传\publish\UWP\BitStamp\AppPackages\</AppxPackageDir>
+    <AppxPackageDir>C:\程序\ethylene156\上传\publish\UWP\BitStamp\AppPackages\</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>

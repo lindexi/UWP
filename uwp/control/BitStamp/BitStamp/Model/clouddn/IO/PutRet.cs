@@ -51,14 +51,15 @@ namespace lindexi.uwp.ImageShack.Model.IO
             try
             {
                 Dictionary<string, object> dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
-                object tmp;
-                if (dict.TryGetValue("hash", out tmp))
+                object temp;
+                if (dict.TryGetValue("hash", out temp))
                 {
-                    Hash = (string) tmp;
+                    Hash = (string)temp;
                 }
-                if (dict.TryGetValue("key", out tmp))
+                if (dict.TryGetValue("key", out temp))
                 {
-                    key = (string) tmp;
+                    //中文不能做上传，如果转的话，在最后返回会把转的百分继续转，也就是需要转一次
+                    key = Uri.EscapeDataString((string)temp);
                 }
             }
             catch (Exception e)

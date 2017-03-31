@@ -26,8 +26,9 @@ namespace Framework
         {
             this.InitializeComponent();
             View = (ViewModel.ViewModel) DataContext;
-            View.Content = Frame;
-            View.Read();
+            //View.Content = Frame;
+            //View.Read();
+            View.OnNavigatedTo(Frame);
         }
 
         private ViewModel.ViewModel View

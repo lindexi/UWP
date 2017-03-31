@@ -46,6 +46,7 @@
             </Grid>
             <Grid Grid.Column="{x:Bind View.DetailMaster.GridInt,Mode=OneWay}" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                   Canvas.ZIndex="{x:Bind View.DetailMaster.ZFrame}">
+                <!--<Grid Background="#999988"></Grid>-->
                 <Image Source="ms-appx:///Assets/Strawberry_Adult_content_easyicon.net.png"></Image>
                 <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Visibility="{x:Bind View.DetailMaster.Visibility,Mode=OneWay}">
                     <TextBlock Text="content" HorizontalAlignment="Center"></TextBlock>

@@ -7,7 +7,8 @@ using Windows.UI.Xaml;
 
 namespace Framework.ViewModel
 {
-    public class CodeStorageModel : ViewModelBase, IReceiveMessage
+    [ViewModel]
+    public class CodeStorageModel : NavigateViewModel, IReceiveMessage
     {
         public CodeStorageModel()
         {
@@ -34,16 +35,22 @@ namespace Framework.ViewModel
                     //throw new Exception("没有"+temp.Name.Replace("Model","")+"Page");
                 }
 
-                ViewModel.Add(new ViewModelPage( viewmodel as ViewModelBase,page));
+                ViewModel.Add(new ViewModelPage(viewmodel as ViewModelBase, page));
             }
 
             foreach (var temp in ViewModel.Where(temp => temp.ViewModel is ISendMessage))
             {
-                ((ISendMessage)temp.ViewModel).SendMessageHandler += (s, e) =>
-               {
-                   ReceiveMessage(e);
-               };
+                ((ISendMessage) temp.ViewModel).SendMessageHandler += (s, e) =>
+                {
+                    ReceiveMessage(e);
+                };
             }
+        }
+
+        public DetailMasterModel DetailMaster
+        {
+            set;
+            get;
         }
 
         public ViewModelBase this[string str]
@@ -61,38 +68,14 @@ namespace Framework.ViewModel
             }
         }
 
-        
-
-        public DetailMasterModel DetailMaster
-        {
-            set;
-            get;
-        }
-
-        //public ContentModel ContentModel
-        //{
-        //    set;
-        //    get;
-        //}
-
-        //public ListModel ListModel
-        //{
-        //    set;
-        //    get;
-        //}
 
         public override void OnNavigatedFrom(object obj)
         {
-
         }
 
         public override void OnNavigatedTo(object obj)
         {
             DetailMaster.Narrow();
-            //MasterSendMessage temp = new MasterSendMessage(ReceiveMessage);
-            //ListModel = new ListModel();
-            //ListModel.OnNavigatedTo(null);
-            //ContentModel = new ContentModel();
             foreach (var temp in ViewModel)
             {
                 temp.ViewModel.OnNavigatedTo(null);

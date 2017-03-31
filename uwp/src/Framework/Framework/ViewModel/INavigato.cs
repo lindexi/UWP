@@ -11,6 +11,6 @@ namespace Framework.ViewModel
             get;
         }
 
-        void Navigateto(Type viewModel, object parameter);
+        void Navigate(Type viewModel, object parameter);
     }
 }

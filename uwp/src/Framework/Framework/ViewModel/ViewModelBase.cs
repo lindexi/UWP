@@ -2,36 +2,54 @@
 
 using System;
 using System.Collections.Generic;
-using Windows.UI.Xaml.Controls;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Framework.ViewModel
 {
-    public abstract class ViewModelBase : NotifyProperty, INavigable, INavigato
+    public abstract class ViewModelBase : NotifyProperty  , INavigable
     {
-        public List<ViewModelPage> ViewModel
-        {
-            set;
-            get;
-        } = new List<ViewModelPage>();
-
-        public Frame Content
-        {
-            set;
-            get;
-        }
-
+        /// <summary>
+        /// 从其他页面跳转出
+        /// 需要释放页面
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         public abstract void OnNavigatedFrom(object obj);
+        /// <summary>
+        /// 从其他页面跳转到
+        /// 在这里初始化页面
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         public abstract void OnNavigatedTo(object obj);
+    }
 
-        public async void Navigateto(Type viewModel, object paramter)
+
+    abstract class ViewModelMessage : IAdapterMessage, INotifyPropertyChanged
+    {
+        /// <summary>
+        /// 发送信息
+        /// </summary>
+        public EventHandler<Message> Send { get; set; }
+        /// <summary>
+        /// 接收信息
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="message"></param>
+        public abstract void Receive(object source, Message message);
+        /// <summary>
+        /// 命令合成
+        /// 全部调用发送信息的处理在<see cref="Composite"/>
+        /// </summary>
+        protected static List<Composite> Composite { set; get; }
+     
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            _viewModel?.OnNavigatedFrom(null);
-            ViewModelPage view = ViewModel.Find(temp => temp.ViewModel.GetType() == viewModel);
-            await view.Navigate(Content, paramter);
-            _viewModel = view.ViewModel;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        
-        //当前ViewModel
-        private ViewModelBase _viewModel;
     }
 }

@@ -1,6 +1,11 @@
 ﻿namespace Framework.ViewModel
 {
-    public class Message
+    public interface IMessage
+    {
+
+    }
+
+    public class Message : IMessage
     {
         public Message()
         {

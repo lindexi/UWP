@@ -3,11 +3,10 @@
 namespace Framework.ViewModel
 {
     [CodeStorage]
-    public class ContentModel : ViewModelBase,IReceiveMessage
+    public class ContentModel : ViewModelBase, IReceiveMessage
     {
         public ContentModel()
         {
-
         }
 
         public KeySecret Key
@@ -23,13 +22,8 @@ namespace Framework.ViewModel
             }
         }
 
-
-
-        private KeySecret _key;
-
         public override void OnNavigatedFrom(object obj)
         {
-
         }
 
         public override void OnNavigatedTo(object obj)
@@ -37,11 +31,14 @@ namespace Framework.ViewModel
             Key = obj as KeySecret;
         }
 
+
+        private KeySecret _key;
+
         public void ReceiveMessage(Message message)
         {
             if (message.Key == "点击列表")
             {
-                Key=message.Content as KeySecret;
+                Key = message.Content as KeySecret;
             }
         }
     }

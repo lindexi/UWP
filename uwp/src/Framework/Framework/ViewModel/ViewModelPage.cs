@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Framework.ViewModel
 {
-    public class ViewModelPage
+    public class ViewModelPage:IEquatable<Type>
     {
         public ViewModelPage()
         {
@@ -17,6 +17,12 @@ namespace Framework.ViewModel
             //{
             //    //ViewModel=View.GetConstructor(null)
             //}
+        }
+
+        public ViewModelPage(Type viewModel)
+        {
+            _viewModel = viewModel;
+            Key = _viewModel.Name;
         }
 
         public ViewModelPage(Type viewModel, Type page)
@@ -70,7 +76,31 @@ namespace Framework.ViewModel
                 });
         }
 
+         
+
         private Type _viewModel;
 
+        protected bool Equals(ViewModelPage other)
+        {
+            return _viewModel == other._viewModel;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((ViewModelPage) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return _viewModel?.GetHashCode() ?? 0;
+        }
+
+        public bool Equals(Type other)
+        {
+            return _viewModel == other; 
+        }
     }
 }

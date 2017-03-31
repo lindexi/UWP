@@ -12,27 +12,19 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Framework.ViewModel;
 
-// “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
+// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
 namespace Framework.View
 {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    [ViewModel(ViewModel = typeof(AModel))]
-    public sealed partial class APage : Page
+    public sealed partial class SplashPage : Page
     {
-        public APage()
+        public SplashPage()
         {
             this.InitializeComponent();
-            ViewModel = (AModel) DataContext;
-        }
-
-        private AModel ViewModel
-        {
-            get;
         }
     }
 }

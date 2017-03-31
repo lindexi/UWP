@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="43179.uwp" Publisher="CN=227D1644-D24B-430C-AFA3-3FD86CE65409" Version="1.1.3.0" />
+  <Identity Name="43179.uwp" Publisher="CN=227D1644-D24B-430C-AFA3-3FD86CE65409" Version="1.1.15.0" />
   <mp:PhoneIdentity PhoneProductId="6da73a42-ff2f-4b6c-b75d-d275f4347f1e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>uwp 简体繁体转换</DisplayName>

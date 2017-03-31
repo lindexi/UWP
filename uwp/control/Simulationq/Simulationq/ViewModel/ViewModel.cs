@@ -16,26 +16,19 @@ namespace Simulationq.ViewModel
 
         public ViewModel()
         {
-            bool d = true;
-            d = false;
             FillSolidColor = new SolidColorBrush(Colors.Gray);
             StrokeSolidColor = new SolidColorBrush(Colors.LightCoral);
 
-            Width = 10;
-            Height = 10;
+            Width = 5;
+            Height = 5;
 
             Col = (int)(Window.Current.Bounds.Width / Width) - 10;
             Row = (int)(Window.Current.Bounds.Height / Height) - 10;
 
-            //if (d)
-            //{
-            //    Col = 6;
-            //    Row = 4;
-            //}
 
             Solid = new Solid[Row * Col];
 
-            SolidColorBrush solid = new SolidColorBrush(new Color()
+            solid = new SolidColorBrush(new Color()
             {
                 A = 255,
                 R = 5,
@@ -46,196 +39,128 @@ namespace Simulationq.ViewModel
 
             for (int i = 0; i < Row * Col; i++)
             {
-                Solid[i] = new Solid()
-                {
-                    UsolidColorBrush = solid,
-                    FsolidColorBrush = FillSolidColor
-                };
-                //for (int j = 0; j < Col; j++)
-                //{
-                //    Solid[i,j]=new Solid();
-                //}
-            }
-            foreach (var temp in Solid)
-            {
-                temp.SolidColor = FillSolidColor;
-                // = new SolidColorBrush(Colors.Gray);
+                Solid[i] = new Solid();
             }
 
-            //Solid[15].SolidColor = StrokeSolidColor;
+            //foreach (var temp in Solid)
+            //{
+            //    temp.SolidColor = FillSolidColor;
+            //}
 
-
-
-            if (d)
-            {
-                // 1 1 0
-                // 0 0 0
-                // 1 1 0 
-                //List<int> temp=new List<int>()
-                //{
-                //    1,2,7,8
-                //};
-                foreach (var temp in new List<int>()
-                {
-                    //9,10,14,17,21,22
-
-                    //2 *Col+3,2*Col+4,
-                    //3*Col+2,3*Col+5,
-                    //4*Col+3,4*Col+4
-
-                    3 *Col+2,3*Col+3,3*Col+4
-
-                })
-                {
-                    Solid[temp - 1].SolidColor = solid;
-                }
-            }
-
-            //         return;
 
 
             new Task(async () =>
             {
-                //await Task.Delay(5000);
-
-                //Random ran = new Random();
-                var n = 0;
                 while (true)
                 {
-                    bool _true = false;
-                    //Parallel.For(0, Row * Col, ((i, state) =>
-                    //  {
-                    //      if (i == 2 * Col)
-                    //      {
+                    Next();
 
-                    //      }
-                    //      n = ZhenDev(i, solid);
-                    //      if (Solid[i].SolidColor != solid)
-                    //      {
-                    //          if (n == 3)
-                    //          {
-                    //              Solid[i].WeizCsefsimile = true;
-                    //              //_true = true;
-                    //          }
-                    //      }
-                    //      else
-                    //      {
-                    //          if (n > 3 || n < 2)
-                    //          {
-                    //              Solid[i].WeizCsefsimile = false;
-                    //             // _true = true;
-                    //          }
-                    //      }
-                    //  }));
-
-                    for (int i = 0; i < Row * Col; i++)
-                    {
-                        if (i == 2 * Col)
-                        {
-
-                        }
-                        n = ZhenDev(i, solid);
-                        if (Solid[i].SolidColor != solid)
-                        {
-                            //if (n == 2 || n == 3)
-                            if (n == 3)
-                            {
-                                //if (_ran.Next(2) == 0)
-                                {
-                                    //Solid[i].SolidColor = solid;
-                                    Solid[i].WeizCsefsimile = true;
-                                }
-                                _true = true;
-                            }
-                        }
-                        else
-                        {
-                            //if (n != 2 || n!=3)
-                            if (n > 3 || n < 2)
-                            {
-                                //Solid[i].SolidColor = FillSolidColor;
-                                Solid[i].WeizCsefsimile = false;
-                                _true = true;
-                            }
-                            //if (n == 3)
-                            //{
-                            //    if (_ran.Next(2) == 0)
-                            //    {
-                            //        Solid[i].SolidColor = FillSolidColor;
-                            //    }
-                            //    _true = true;
-                            //}
-                        }
-                    }
-
-                    if (!_true )
-                    {
-                        _true = true;
-                        if (Solid.All(temp => temp.SolidColor != solid))
-                        {
-
-                        }
-                        else
-                        {
-                            Bjie?.Invoke();
-                            await Task.Delay(3000);
-                        }
-
-                        //for (int i = 0; i < Row * Col; i++)
-                        //{
-                        //    Solid[i].SolidColor = FillSolidColor;
-                        //}
-                        n = Row * Col / 2 - Solid.Count(temp => temp.SolidColor == solid);
-                        n = _ran.Next(n / 10);
-
-                        for (int i = 0; i < n; i++)
-                        {
-                            var temp = Solid[_ran.Next(Row) * Col + _ran.Next(Col / 2)];
-                            if (temp.SolidColor == solid)
-                            {
-                                //i--;
-                            }
-                            else
-                            {
-                                //temp.SolidColor = solid;
-                                temp.WeizCsefsimile = true;
-                            }
-                        }
-                    }
-
-                    foreach (var temp in Solid)
-                    {
-                        if (temp.WeizCsefsimile && temp.SolidColor != solid)
-                        {
-                            temp.SolidColor = solid;
-                        }
-                        else if (temp.WeizCsefsimile == false && temp.SolidColor != FillSolidColor)
-                        {
-                            temp.SolidColor = FillSolidColor;
-                        }
-                        //temp.SolidColor = temp.WeizCsefsimile ? solid : FillSolidColor;
-                        //temp.WeizCsefsimile = false;
-                    }
-
-                    //int n = Solid.Count(temp => temp.SolidColor == solid);
-
-                    //for (int i = 0; i < 2; i++)
-                    //{
-                    //    var temp = Solid[_ran.Next(Row * Col)];
-                    //    if (temp.SolidColor == solid)
-                    //    {
-                    //        //i--;
-                    //    }
-                    //    else
-                    //    {
-                    //        temp.SolidColor = solid;
-                    //    }
-                    //}
-
-                    await Task.Delay(100);
+                    await Task.Delay(1);
                 }
             }).Start();
         }
+
+        private void Next()
+        {
+            //bool _true = false;
+
+
+
+
+            Parallel.For(0, Row * Col, (i, e) =>
+            {
+                var n = ZhenDev(i);
+                if (!Solid[i].WeizCsefsimile)
+                {
+                    if (n == 3)
+                    {
+                        Solid[i].Nextcun = true;
+                        //_true = true;
+                    }
+                }
+                else
+                {
+                    if (n > 3 || n < 2)
+                    {
+                        Solid[i].Nextcun = false;
+                        //_true = true;
+                    }
+                }
+            });
+            //for (int i = 0; i < Row * Col; i++)
+            //{
+            //    n = ZhenDev(i);
+            //    if (!Solid[i].WeizCsefsimile)
+            //    {
+            //        if (n == 3)
+            //        {
+            //            Solid[i].Nextcun = true;
+            //            _true = true;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (n > 3 || n < 2)
+            //        {
+            //            Solid[i].Nextcun = false;
+            //            _true = true;
+            //        }
+            //    }
+            //}
+
+            //if (!_true)
+            //{
+            //    Ealiang();
+            //}
+
+            foreach (var temp in Solid)
+            {
+                temp.WeizCsefsimile = temp.Nextcun;
+            }
+
+            //foreach (var temp in Solid)
+            //{
+            //    if (temp.WeizCsefsimile && temp.SolidColor != solid)
+            //    {
+            //        temp.SolidColor = solid;
+            //    }
+            //    else if (temp.WeizCsefsimile == false && temp.SolidColor != FillSolidColor)
+            //    {
+            //        temp.SolidColor = FillSolidColor;
+            //    }
+            //}
+
+            NextUmShi?.Invoke(this, null);
+            //return n;
+        }
+
+        private SolidColorBrush solid
+        {
+            get; set;
+        }
+
+        public void Ealiang()
+        {
+            var n = Row * Col / 2 - Solid.Count(temp => temp.WeizCsefsimile);
+            n = _ran.Next(n / 10);
+
+            for (int i = 0; i < n; i++)
+            {
+                var temp = Solid[_ran.Next(Row) * Col + _ran.Next(Col / 2)];
+                if (temp.WeizCsefsimile)
+                {
+                    //i--;
+                }
+                else
+                {
+                    //temp.SolidColor = solid;
+                    temp.WeizCsefsimile = true;
+                    temp.Nextcun = true;
+                }
+            }
+        }
+
+        public EventHandler NextUmShi;
 
         public Action Bjie
         {
@@ -243,7 +168,7 @@ namespace Simulationq.ViewModel
             get;
         }
 
-        private int ZhenDev(int n, SolidColorBrush solid)
+        private int ZhenDev(int n)
         {
             int row = n / Col;
             int col = n - row * Col;
@@ -256,7 +181,7 @@ namespace Simulationq.ViewModel
             if (row - 1 >= 0 && col - 1 >= 0)
             {
                 n = (row - 1) * Col + (col - 1);
-                if (Solid[n].SolidColor == solid)
+                if (Solid[n].WeizCsefsimile)
                 {
                     s++;
                 }
@@ -266,7 +191,7 @@ namespace Simulationq.ViewModel
             if (row - 1 >= 0)
             {
                 n = (row - 1) * Col + col;
-                if (Solid[n].SolidColor == solid)
+                if (Solid[n].WeizCsefsimile)
                 {
                     s++;
                 }
@@ -276,7 +201,7 @@ namespace Simulationq.ViewModel
             if (row - 1 >= 0 && col + 1 < Col)
             {
                 n = (row - 1) * Col + (col + 1);
-                if (Solid[n].SolidColor == solid)
+                if (Solid[n].WeizCsefsimile)
                 {
                     s++;
                 }
@@ -286,7 +211,7 @@ namespace Simulationq.ViewModel
             if (row >= 0 && col - 1 >= 0)
             {
                 n = (row) * Col + (col - 1);
-                if (Solid[n].SolidColor == solid)
+                if (Solid[n].WeizCsefsimile)
                 {
                     s++;
                 }
@@ -296,7 +221,7 @@ namespace Simulationq.ViewModel
             if (row >= 0 && col + 1 < Col)
             {
                 n = (row) * Col + (col + 1);
-                if (Solid[n].SolidColor == solid)
+                if (Solid[n].WeizCsefsimile)
                 {
                     s++;
                 }
@@ -306,7 +231,7 @@ namespace Simulationq.ViewModel
             if (row + 1 < Row && col - 1 >= 0)
             {
                 n = (row + 1) * Col + (col - 1);
-                if (Solid[n].SolidColor == solid)
+                if (Solid[n].WeizCsefsimile)
                 {
                     s++;
                 }
@@ -316,7 +241,7 @@ namespace Simulationq.ViewModel
             if (row + 1 < Row && col >= 0)
             {
                 n = (row + 1) * Col + (col);
-                if (Solid[n].SolidColor == solid)
+                if (Solid[n].WeizCsefsimile)
                 {
                     s++;
                 }
@@ -326,7 +251,7 @@ namespace Simulationq.ViewModel
             if (row + 1 < Row && col + 1 < Col)
             {
                 n = (row + 1) * Col + (col + 1);
-                if (Solid[n].SolidColor == solid)
+                if (Solid[n].WeizCsefsimile)
                 {
                     s++;
                 }
@@ -442,51 +367,46 @@ namespace Simulationq.ViewModel
 
     public class Solid : NotifyProperty
     {
-        public SolidColorBrush SolidColor
-        {
-            set
-            {
-                _solidColor = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return _solidColor;
-            }
-        }
+        //public SolidColorBrush SolidColor
+        //{
+        //    set
+        //    {
+        //        _solidColor = value;
+        //        OnPropertyChanged();
+        //    }
+        //    get
+        //    {
+        //        return _solidColor;
+        //    }
+        //}
 
         public bool WeizCsefsimile
         {
-            set
-            {
-                _weizCsefsimile = value;
-                //OnPropertyChanged();
-            }
-            get
-            {
-                return _weizCsefsimile;
-            }
+            set; get;
         }
 
-        public void Rsolid()
+        public bool Nextcun
         {
-            WeizCsefsimile = !WeizCsefsimile;
-            SolidColor = WeizCsefsimile ? UsolidColorBrush : FsolidColorBrush;
+            set; get;
         }
 
-        public SolidColorBrush UsolidColorBrush
-        {
-            set;
-            get;
-        }
+        //public void Rsolid()
+        //{
+        //    WeizCsefsimile = !WeizCsefsimile;
+        //    SolidColor = WeizCsefsimile ? UsolidColorBrush : FsolidColorBrush;
+        //}
 
-        public SolidColorBrush FsolidColorBrush
-        {
-            set;
-            get;
-        }
+        //public SolidColorBrush UsolidColorBrush
+        //{
+        //    set;
+        //    get;
+        //}
 
-        private bool _weizCsefsimile;
+        //public SolidColorBrush FsolidColorBrush
+        //{
+        //    set;
+        //    get;
+        //}
 
 
         private SolidColorBrush _solidColor;

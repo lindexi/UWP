@@ -22,6 +22,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
+using Microsoft.Graphics.Canvas;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -34,115 +35,179 @@ namespace Simulationq
     {
         public MainPage()
         {
-            View=new ViewModel.ViewModel();
             this.InitializeComponent();
-            DataContext = View;
-            NewRectangle();
-            View.Bjie += async () =>
-            {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                    async () =>
-                    {
-                        var bitmap = new RenderTargetBitmap();
-                        DateTime time = DateTime.Now;
-                        Random ran = new Random();
-                        string str = time.Year + time.Month + time.Day + time.Hour.ToString() + time.Minute + ran.Next(1000);
-                        StorageFile file = await KnownFolders.PicturesLibrary.CreateFileAsync(str + ".jpg",
-                            CreationCollisionOption.GenerateUniqueName);
-                        await bitmap.RenderAsync(Canvas);
-                        var buffer = await bitmap.GetPixelsAsync();
-                        using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
-                        {
-                            var encod = await BitmapEncoder.CreateAsync(
-                                BitmapEncoder.JpegEncoderId, stream);
-                            encod.SetPixelData(BitmapPixelFormat.Bgra8,
-                                BitmapAlphaMode.Ignore,
-                                (uint)bitmap.PixelWidth,
-                                (uint)bitmap.PixelHeight,
-                                DisplayInformation.GetForCurrentView().LogicalDpi,
-                                DisplayInformation.GetForCurrentView().LogicalDpi,
-                                buffer.ToArray()
-                               );
-                            await encod.FlushAsync();
-                        }
-                    });
-
-               
-            };
+            canvas.Invalidate();
+            ViewModel.NextUmShi += WinNextUm;
+            FillSolidColor = new SolidColorBrush(Colors.Gray);
         }
 
-        private void NewRectangle()
+        private Random Ran { set; get; } = new Random();
+
+        CanvasBitmap img;
+
+        private void Canvas_OnDraw(Microsoft.Graphics.Canvas.UI.Xaml.CanvasControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasDrawEventArgs args)
         {
-            _rectangle=new Rectangle[View.Row,View.Col];
+            var draw = args.DrawingSession;
 
-            Canvas.Width = View.Width*View.Col;
-            Canvas.Height = View.Height*View.Row;
-            Canvas.Background=new SolidColorBrush(Colors.White);
+            var s = ViewModel.Solid;
+            var c = 0;
+            var r = 0;
+            var w = ViewModel.Width;
 
-            double width;
-            double height;
-
-            width = View.Width;
-            height = View.Height;
-
-            Button[,] _button=new Button[View.Row, View.Col];
-
-
-            for (int i = 0; i < View.Row; i++)
+            foreach (var temp in s)
             {
-                for (int j = 0; j < View.Col; j++)
+                draw.DrawRectangle(new Rect()
                 {
-                    //_rectangle[i,j]=new Rectangle()
-                    //{
-                    //    Width = width,
-                    //    Height = height,
-                    //    Fill = View.FillSolidColor,
-                    //    Stroke = View.StrokeSolidColor,
-                    //    Margin = new Thickness(width*j, height * i, 0,0)
-                    //};
-                    //Binding bind = new Binding()
-                    //{
-                    //    Path = new PropertyPath("Solid[" + (i * View.Col + j).ToString() + "].SolidColor"),
-                    //    Mode = BindingMode.OneWay
-                    //};
-                    //_rectangle[i, j].DataContext = View;
-                    //_rectangle[i, j].SetBinding(Shape.FillProperty, bind);
-                    //Canvas.Children.Add(_rectangle[i, j]);
-
-                    _button[i,j]=new Button()
-                    {
-                        Width = width,
-                        Height = height,
-                        Background =  View.FillSolidColor,
-                        Margin = new Thickness(width * j, height * i, 0, 0)
-                    };
-                    Binding bind = new Binding()
-                    {
-                        Path = new PropertyPath("Solid[" + (i * View.Col + j).ToString() + "].SolidColor"),
-                        Mode = BindingMode.OneWay
-                    };
-                    Canvas.Children.Add(_button[i, j]);
-                    _button[i, j].DataContext = View;
-                    _button[i,j].SetBinding(Button.BackgroundProperty,bind);
-                    var i1 = i;
-                    var j1 = j;
-                    _button[i, j].Click += (s, e) =>
-                    {
-                        View.Solid[i1 * View.Col+j1].Rsolid();
-                    };
+                    X = w * c,
+                    Y = w * r,
+                    Width = w,
+                    Height = w,
+                }, temp.WeizCsefsimile ? FillSolidColor.Color : Colors.Transparent);
+                draw.FillRectangle(new Rect()
+                {
+                    X = w * c,
+                    Y = w * r,
+                    Width = w,
+                    Height = w,
+                }, temp.WeizCsefsimile ? FillSolidColor.Color : Colors.Transparent);
+                c++;
+                if (c == ViewModel.Col)
+                {
+                    c = 0;
+                    r++;
                 }
             }
+
+            //draw.DrawText("lindexi", Ran.Next(10, 100), Ran.Next(10, 100), 500, 50, r(), new CanvasTextFormat()
+            //{
+            //    FontSize = 100
+            //});
+
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    draw.DrawLine(Ran.Next(10, 100), Ran.Next(10, 100), Ran.Next(100, 1000), Ran.Next(100, 1000), r());
+            //}
+            //if (img != null)
+            //{
+            //    draw.DrawImage(img, Ran.Next(10, 1000), rc());
+            //}
+            //else
+            //{
+            //    Img().Wait();
+            //}
+
+            //Color r()
+            //{
+            //    return Color.FromArgb(0xFF, rc(), rc(), rc());
+            //}
+
+            //byte rc()
+            //{
+            //    return (byte)(Ran.NextDouble() * 255);
+            //}
+
+            //async Task Img()
+            //{
+            //    img = await CanvasBitmap.LoadAsync(canvas, new Uri("ms-appx:///Assets/SplashScreen.png"));
+            //}
         }
+
+        private void Page_OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            canvas.RemoveFromVisualTree();
+            canvas = null;
+        }
+
+        public ViewModel.ViewModel ViewModel { get; set; } = new ViewModel.ViewModel();
+
+        private async void WinNextUm(object sender, object e)
+        {
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+               () =>
+               {
+                   canvas.Invalidate();
+               });
+        }
+
+
+        public SolidColorBrush FillSolidColor
+        {
+            set; get;
+        }
+
+        public SolidColorBrush StrokeSolidColor
+        {
+            set; get;
+        }
+
+
+        //private void NewRectangle()
+        //{
+        //    _rectangle=new Rectangle[View.Row,View.Col];
+
+        //    Canvas.Width = View.Width*View.Col;
+        //    Canvas.Height = View.Height*View.Row;
+        //    Canvas.Background=new SolidColorBrush(Colors.White);
+
+        //    double width;
+        //    double height;
+
+        //    width = View.Width;
+        //    height = View.Height;
+
+        //    Button[,] _button=new Button[View.Row, View.Col];
+
+
+        //    for (int i = 0; i < View.Row; i++)
+        //    {
+        //        for (int j = 0; j < View.Col; j++)
+        //        {
+        //            //_rectangle[i,j]=new Rectangle()
+        //            //{
+        //            //    Width = width,
+        //            //    Height = height,
+        //            //    Fill = View.FillSolidColor,
+        //            //    Stroke = View.StrokeSolidColor,
+        //            //    Margin = new Thickness(width*j, height * i, 0,0)
+        //            //};
+        //            //Binding bind = new Binding()
+        //            //{
+        //            //    Path = new PropertyPath("Solid[" + (i * View.Col + j).ToString() + "].SolidColor"),
+        //            //    Mode = BindingMode.OneWay
+        //            //};
+        //            //_rectangle[i, j].DataContext = View;
+        //            //_rectangle[i, j].SetBinding(Shape.FillProperty, bind);
+        //            //Canvas.Children.Add(_rectangle[i, j]);
+
+        //            _button[i,j]=new Button()
+        //            {
+        //                Width = width,
+        //                Height = height,
+        //                Background =  View.FillSolidColor,
+        //                Margin = new Thickness(width * j, height * i, 0, 0)
+        //            };
+        //            Binding bind = new Binding()
+        //            {
+        //                Path = new PropertyPath("Solid[" + (i * View.Col + j).ToString() + "].SolidColor"),
+        //                Mode = BindingMode.OneWay
+        //            };
+        //            Canvas.Children.Add(_button[i, j]);
+        //            _button[i, j].DataContext = View;
+        //            _button[i,j].SetBinding(Button.BackgroundProperty,bind);
+        //            var i1 = i;
+        //            var j1 = j;
+        //            _button[i, j].Click += (s, e) =>
+        //            {
+        //                View.Solid[i1 * View.Col+j1].Rsolid();
+        //            };
+        //        }
+        //    }
+        //}
 
         private Rectangle[,] _rectangle;
 
 
-        //public List<string> Str=new List<string>()
-        //{
-        //    "林德熙",
-        //    "CSDN博客",
-        //    "九幽"
-        //};
+      
 
         private ViewModel.ViewModel View
         {

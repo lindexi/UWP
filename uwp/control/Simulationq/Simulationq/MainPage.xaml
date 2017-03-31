@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Simulationq"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Resources>
@@ -67,10 +68,12 @@
 
         </ListView>-->
         
-        <Canvas x:Name="Canvas" Margin="10,10,10,10" 
+        <!--<Canvas x:Name="Canvas" Margin="10,10,10,10" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch">
             
-        </Canvas>
+        </Canvas>-->
+        <canvas:CanvasControl x:Name="canvas" ClearColor="Black" Draw="Canvas_OnDraw"></canvas:CanvasControl>
+        <Button Background="#FFFFA0" Content="重置" VerticalAlignment="Bottom" Click="{x:Bind ViewModel.Ealiang}"></Button>
     </Grid>
 </Page>

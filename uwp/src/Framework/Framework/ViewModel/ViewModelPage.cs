@@ -65,7 +65,7 @@ namespace Framework.ViewModel
             {
                 ViewModel = (ViewModelBase) _viewModel.GetConstructor(Type.EmptyTypes).Invoke(null);
             }
-            ViewModel.OnNavigatedTo(paramter);
+            ViewModel.OnNavigatedTo(this,paramter);
 #if NOGUI
             return;
 #endif

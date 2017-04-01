@@ -7,12 +7,12 @@
         ///     清理页面
         /// </summary>
         /// <param name="obj"></param>
-        void OnNavigatedFrom(object obj);
+        void OnNavigatedFrom(object sender, object obj);
 
         /// <summary>
         ///     跳转到
         /// </summary>
         /// <param name="obj"></param>
-        void OnNavigatedTo(object obj);
+        void OnNavigatedTo(object sender, object obj);
     }
 }

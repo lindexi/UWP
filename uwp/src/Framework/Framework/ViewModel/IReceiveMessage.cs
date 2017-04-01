@@ -2,6 +2,6 @@ namespace Framework.ViewModel
 {
     public interface IReceiveMessage
     {
-        void ReceiveMessage(Message message);
+        void ReceiveMessage(object sender, Message message);
     }
 }

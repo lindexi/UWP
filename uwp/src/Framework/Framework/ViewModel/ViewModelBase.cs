@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Framework.ViewModel
 {
-    public abstract class ViewModelBase : NotifyProperty  , INavigable
+    public abstract class ViewModelBase : NotifyProperty, INavigable
     {
         /// <summary>
         /// 从其他页面跳转出
@@ -16,18 +16,19 @@ namespace Framework.ViewModel
         /// </summary>
         /// <param name="source"></param>
         /// <param name="e"></param>
-        public abstract void OnNavigatedFrom(object obj);
+        public abstract void OnNavigatedFrom(object sender, object obj);
+
         /// <summary>
         /// 从其他页面跳转到
         /// 在这里初始化页面
         /// </summary>
         /// <param name="source"></param>
         /// <param name="e"></param>
-        public abstract void OnNavigatedTo(object obj);
+        public abstract void OnNavigatedTo(object sender, object obj);
     }
 
 
-    abstract class ViewModelMessage : IAdapterMessage, INotifyPropertyChanged
+    public abstract class ViewModelMessage : IAdapterMessage, INotifyPropertyChanged
     {
         /// <summary>
         /// 发送信息

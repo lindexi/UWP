@@ -14,13 +14,13 @@ namespace Framework.ViewModel
     public class AModel : ViewModelBase
     {
         public string Name { get; set; } = "csdn";
-        public override void OnNavigatedFrom(object obj)
+        public override void OnNavigatedFrom(object sender, object obj)
         {
             return;
             throw new NotImplementedException();
         }
 
-        public override void OnNavigatedTo(object obj)
+        public override void OnNavigatedTo(object sender, object obj)
         {
 
         }
@@ -34,12 +34,12 @@ namespace Framework.ViewModel
 
         }
 
-        public override void OnNavigatedFrom(object obj)
+        public override void OnNavigatedFrom(object sender, object obj)
         {
 
         }
 
-        public override void OnNavigatedTo(object obj)
+        public override void OnNavigatedTo(object sender, object obj)
         {
         }
     }
@@ -95,18 +95,19 @@ namespace Framework.ViewModel
 
         public void NavigateToInfo()
         {
+            
         }
 
         public void NavigateToAccount()
         {
         }
 
-        public override void OnNavigatedFrom(object obj)
+        public override void OnNavigatedFrom(object sender, object obj)
         {
 
         }
 
-        public override void OnNavigatedTo(object obj)
+        public override void OnNavigatedTo(object sender, object obj)
         {
             FrameVisibility = Visibility.Collapsed;
             Content = (Frame)obj;

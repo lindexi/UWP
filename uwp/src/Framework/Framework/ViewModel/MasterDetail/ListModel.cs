@@ -29,7 +29,7 @@ namespace Framework.ViewModel
         public void ListClick(object sender, ItemClickEventArgs e)
         {
             var keySecret = e.ClickedItem as KeySecret;
-            Message temp=new Message()
+            Message temp=new Message(this)
             {
                 Content = keySecret,
                 Goal = nameof(ContentModel),
@@ -49,12 +49,12 @@ namespace Framework.ViewModel
 
         private ObservableCollection<KeySecret> _keySecret;
 
-        public override void OnNavigatedFrom(object obj)
+        public override void OnNavigatedFrom(object sender, object obj)
         {
 
         }
 
-        public override void OnNavigatedTo(object obj)
+        public override void OnNavigatedTo(object sender, object obj)
         {
             KeySecret = new ObservableCollection<KeySecret>()
             {

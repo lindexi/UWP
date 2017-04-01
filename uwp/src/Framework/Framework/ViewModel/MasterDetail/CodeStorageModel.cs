@@ -69,16 +69,16 @@ namespace Framework.ViewModel
         }
 
 
-        public override void OnNavigatedFrom(object obj)
+        public override void OnNavigatedFrom(object sender, object obj)
         {
         }
 
-        public override void OnNavigatedTo(object obj)
+        public override void OnNavigatedTo(object sender, object obj)
         {
             DetailMaster.Narrow();
             foreach (var temp in ViewModel)
             {
-                temp.ViewModel.OnNavigatedTo(null);
+                temp.ViewModel.OnNavigatedTo(this,null);
             }
         }
 
@@ -93,7 +93,7 @@ namespace Framework.ViewModel
                 if (temp.Key == message.Goal)
                 {
                     var receive = temp.ViewModel as IReceiveMessage;
-                    receive?.ReceiveMessage(message);
+                    receive?.ReceiveMessage(this,message);
                 }
             }
         }

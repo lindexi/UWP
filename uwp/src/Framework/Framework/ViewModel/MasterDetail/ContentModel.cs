@@ -22,11 +22,11 @@ namespace Framework.ViewModel
             }
         }
 
-        public override void OnNavigatedFrom(object obj)
+        public override void OnNavigatedFrom(object sender, object obj)
         {
         }
 
-        public override void OnNavigatedTo(object obj)
+        public override void OnNavigatedTo(object sender, object obj)
         {
             Key = obj as KeySecret;
         }
@@ -34,7 +34,7 @@ namespace Framework.ViewModel
 
         private KeySecret _key;
 
-        public void ReceiveMessage(Message message)
+        public void ReceiveMessage(object sender, Message message)
         {
             if (message.Key == "点击列表")
             {

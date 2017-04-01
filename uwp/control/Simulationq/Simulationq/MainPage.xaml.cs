@@ -7,12 +7,14 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.Graphics.Display;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -39,43 +41,71 @@ namespace Simulationq
             canvas.Invalidate();
             ViewModel.NextUmShi += WinNextUm;
             FillSolidColor = new SolidColorBrush(Colors.Gray);
+
+            Loaded += MainPage_Loaded;
         }
 
-        private Random Ran { set; get; } = new Random();
-
-        CanvasBitmap img;
-
-        private void Canvas_OnDraw(Microsoft.Graphics.Canvas.UI.Xaml.CanvasControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasDrawEventArgs args)
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            var draw = args.DrawingSession;
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                var applicationView = ApplicationView.GetForCurrentView();
+                applicationView.SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                var statusbar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                statusbar.BackgroundColor = Colors.Beige;
+                statusbar.BackgroundOpacity = 0.2;
+                statusbar.ForegroundColor = Colors.Black;
+                applicationView.TryEnterFullScreenMode();
+            }
 
             var s = ViewModel.Solid;
             var c = 0;
             var r = 0;
             var w = ViewModel.Width;
-
             foreach (var temp in s)
             {
-                draw.DrawRectangle(new Rect()
+                Rectangle.Add(new Rect()
                 {
                     X = w * c,
                     Y = w * r,
                     Width = w,
                     Height = w,
-                }, temp.WeizCsefsimile ? FillSolidColor.Color : Colors.Transparent);
-                draw.FillRectangle(new Rect()
-                {
-                    X = w * c,
-                    Y = w * r,
-                    Width = w,
-                    Height = w,
-                }, temp.WeizCsefsimile ? FillSolidColor.Color : Colors.Transparent);
+                });
                 c++;
                 if (c == ViewModel.Col)
                 {
                     c = 0;
                     r++;
                 }
+            }
+        }
+
+        private Random Ran { set; get; } = new Random();
+
+        CanvasBitmap img;
+
+        private List<Rect> Rectangle { set; get; } = new List<Rect>();
+
+        private void Canvas_OnDraw(Microsoft.Graphics.Canvas.UI.Xaml.CanvasControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasDrawEventArgs args)
+        {
+            var draw = args.DrawingSession;
+
+            var s = ViewModel.Solid;
+            //var c = 0;
+            //var r = 0;
+            //var w = ViewModel.Width;
+
+            for (var i = 0; i < s.Length; i++)
+            {
+                var temp = s[i];
+                draw.FillRectangle(Rectangle[i], temp.WeizCsefsimile ? FillSolidColor.Color : Colors.Transparent);
+                draw.DrawRectangle(Rectangle[i], temp.WeizCsefsimile ? BoundColor : Colors.Transparent);
+                //c++;
+                //if (c == ViewModel.Col)
+                //{
+                //    c = 0;
+                //    r++;
+                //}
             }
 
             //draw.DrawText("lindexi", Ran.Next(10, 100), Ran.Next(10, 100), 500, 50, r(), new CanvasTextFormat()
@@ -117,6 +147,8 @@ namespace Simulationq
             canvas.RemoveFromVisualTree();
             canvas = null;
         }
+
+        private Color BoundColor { set; get; } = Color.FromArgb(255, 0x56, 0x56, 0x56);
 
         public ViewModel.ViewModel ViewModel { get; set; } = new ViewModel.ViewModel();
 
@@ -207,7 +239,7 @@ namespace Simulationq
         private Rectangle[,] _rectangle;
 
 
-      
+
 
         private ViewModel.ViewModel View
         {

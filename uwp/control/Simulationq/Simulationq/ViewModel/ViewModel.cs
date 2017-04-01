@@ -19,8 +19,8 @@ namespace Simulationq.ViewModel
             FillSolidColor = new SolidColorBrush(Colors.Gray);
             StrokeSolidColor = new SolidColorBrush(Colors.LightCoral);
 
-            Width = 5;
-            Height = 5;
+            Width = 10;
+            Height = 10;
 
             Col = (int)(Window.Current.Bounds.Width / Width) - 10;
             Row = (int)(Window.Current.Bounds.Height / Height) - 10;
@@ -409,7 +409,7 @@ namespace Simulationq.ViewModel
         //}
 
 
-        private SolidColorBrush _solidColor;
+        //private SolidColorBrush _solidColor;
     }
 
 

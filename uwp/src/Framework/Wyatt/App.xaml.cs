@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace Framework
+namespace Wyatt
 {
     /// <summary>
     /// 提供特定于应用程序的行为，以补充默认的应用程序类。

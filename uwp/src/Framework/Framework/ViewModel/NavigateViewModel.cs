@@ -51,6 +51,6 @@ namespace Framework.ViewModel
 
         //当前ViewModel
         private ViewModelBase _viewModel;
-        
+        public List<Composite> Composite { set; get; }
     }
 }

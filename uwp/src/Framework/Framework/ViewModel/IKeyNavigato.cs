@@ -1,4 +1,4 @@
-﻿namespace Framework.ViewModel
+﻿namespace lindexi.uwp.Framework.ViewModel
 {
     /// <summary>
     ///     使用Key获得ViewModel

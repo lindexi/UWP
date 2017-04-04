@@ -53,20 +53,20 @@ namespace Framework.ViewModel
             get;
         }
 
-        public ViewModelBase this[string str]
-        {
-            get
-            {
-                foreach (var temp in ViewModel)
-                {
-                    if (temp.Key == str)
-                    {
-                        return temp.ViewModel;
-                    }
-                }
-                return null;
-            }
-        }
+        //public ViewModelBase this[string str]
+        //{
+        //    get
+        //    {
+        //        foreach (var temp in ViewModel)
+        //        {
+        //            if (temp.Key == str)
+        //            {
+        //                return temp.ViewModel;
+        //            }
+        //        }
+        //        return null;
+        //    }
+        //}
 
 
         public override void OnNavigatedFrom(object sender, object obj)

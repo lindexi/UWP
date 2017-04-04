@@ -3,37 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 
-namespace Framework.ViewModel
+namespace lindexi.uwp.Framework.ViewModel
 {
-    public abstract class NavigateViewModel : ViewModelBase, INavigato,IReceiveMessage
+    public abstract class NavigateViewModel : ViewModelBase, INavigato, IReceiveMessage
     {
-        public Frame Content
-        {
-            set;
-            get;
-        }
+        //当前ViewModel
+        private ViewModelBase _viewModel;
 
         public ViewModelBase this[string str]
         {
             get { return ViewModel.FirstOrDefault(temp => temp.Key == str)?.ViewModel; }
         }
 
-        public List<ViewModelPage> ViewModel
-        {
-            set;
-            get;
-        } 
+        public List<ViewModelPage> ViewModel { set; get; }
+
+        public List<Composite> Composite { set; get; }
+
+        public Frame Content { set; get; }
 
         public async void Navigate(Type viewModel, object paramter)
         {
-            _viewModel?.OnNavigatedFrom(this,null);
+            _viewModel?.OnNavigatedFrom(this, null);
             var send = _viewModel as ISendMessage;
             if (send?.SendMessageHandler != null)
             {
                 send.SendMessageHandler -= ReceiveMessage;
             }
 
-            ViewModelPage view = ViewModel.Find(temp =>temp.Equals(viewModel));
+            ViewModelPage view = ViewModel.Find(temp => temp.Equals(viewModel));
             await view.Navigate(Content, paramter);
 
             send = view.ViewModel as ISendMessage;
@@ -46,11 +43,6 @@ namespace Framework.ViewModel
 
         public virtual void ReceiveMessage(object sender, Message message)
         {
-
         }
-
-        //当前ViewModel
-        private ViewModelBase _viewModel;
-        public List<Composite> Composite { set; get; }
     }
 }

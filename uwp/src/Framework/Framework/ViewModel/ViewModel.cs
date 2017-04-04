@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Framework.View;
 
-namespace Framework.ViewModel
+namespace lindexi.uwp.Framework.ViewModel
 {
     [ViewModel]
     public class AModel : ViewModelBase
     {
         public string Name { get; set; } = "csdn";
+
         public override void OnNavigatedFrom(object sender, object obj)
         {
             return;
@@ -22,7 +20,6 @@ namespace Framework.ViewModel
 
         public override void OnNavigatedTo(object sender, object obj)
         {
-
         }
     }
 
@@ -31,12 +28,10 @@ namespace Framework.ViewModel
     {
         public LinModel()
         {
-
         }
 
         public override void OnNavigatedFrom(object sender, object obj)
         {
-
         }
 
         public override void OnNavigatedTo(object sender, object obj)
@@ -46,28 +41,22 @@ namespace Framework.ViewModel
 
     public class ViewModel : NavigateViewModel
     {
+        private Visibility _frameVisibility;
+
         public ViewModel()
         {
             View = this;
         }
 
-        public AModel AModel
-        {
-            set;
-            get;
-        }
+        public AModel AModel { set; get; }
 
-        public LinModel LinModel
-        {
-            set;
-            get;
-        }
+        public LinModel LinModel { set; get; }
 
-        public CodeStorageModel CodeStorageModel
-        {
-            set;
-            get;
-        }
+        //public CodeStorageModel CodeStorageModel
+        //{
+        //    set;
+        //    get;
+        //}
 
         public Visibility FrameVisibility
         {
@@ -76,26 +65,18 @@ namespace Framework.ViewModel
                 _frameVisibility = value;
                 OnPropertyChanged();
             }
-            get
-            {
-                return _frameVisibility;
-            }
+            get { return _frameVisibility; }
         }
 
-        public ViewModel View
-        {
-            set;
-            get;
-        }
+        public ViewModel View { set; get; }
 
         public void NavigateToList()
         {
-            Navigate(typeof(CodeStorageModel), null);
+            //Navigate(typeof(CodeStorageModel), null);
         }
 
         public void NavigateToInfo()
         {
-            
         }
 
         public void NavigateToAccount()
@@ -104,16 +85,15 @@ namespace Framework.ViewModel
 
         public override void OnNavigatedFrom(object sender, object obj)
         {
-
         }
 
         public override void OnNavigatedTo(object sender, object obj)
         {
             FrameVisibility = Visibility.Collapsed;
-            Content = (Frame)obj;
+            Content = (Frame) obj;
 #if NOGUI
 #else
-            Content.Navigate(typeof(SplashPage));
+            //Content.Navigate(typeof(SplashPage));
 #endif
             if (ViewModel == null)
             {
@@ -124,7 +104,9 @@ namespace Framework.ViewModel
                 //CodeStorageModel = new CodeStorageModel();
                 //ViewModel.Add(new ViewModelPage(CodeStorageModel, typeof(MasterDetailPage))
                 //);
-                foreach (var temp in applacationAssembly.DefinedTypes.Where(temp => temp.IsSubclassOf(typeof(ViewModelBase))))
+                foreach (
+                    var temp in applacationAssembly.DefinedTypes.Where(temp => temp.IsSubclassOf(typeof(ViewModelBase)))
+                )
                 {
                     ViewModel.Add(new ViewModelPage(temp.AsType()));
                 }
@@ -143,11 +125,7 @@ namespace Framework.ViewModel
             }
 
             FrameVisibility = Visibility.Visible;
-            Navigate(typeof(AModel),null);
-            
+            Navigate(typeof(AModel), null);
         }
-
-
-        private Visibility _frameVisibility;
     }
 }

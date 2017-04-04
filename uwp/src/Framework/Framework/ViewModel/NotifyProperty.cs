@@ -1,12 +1,10 @@
-﻿// lindexi
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 
-namespace Framework.ViewModel
+namespace lindexi.uwp.Framework.ViewModel
 {
     /// <summary>
     ///     提供继承通知UI改变值
@@ -16,6 +14,8 @@ namespace Framework.ViewModel
         public NotifyProperty()
         {
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void UpdateProper<T>(ref T properValue, T newValue, [CallerMemberName] string properName = "")
         {
@@ -32,12 +32,7 @@ namespace Framework.ViewModel
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                () =>
-                {
-                    handler?.Invoke(this, new PropertyChangedEventArgs(name));
-                });
+                () => { handler?.Invoke(this, new PropertyChangedEventArgs(name)); });
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

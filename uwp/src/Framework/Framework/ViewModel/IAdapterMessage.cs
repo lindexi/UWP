@@ -1,19 +1,20 @@
 ﻿using System;
 
-namespace Framework.ViewModel
+namespace lindexi.uwp.Framework.ViewModel
 {
     /// <summary>
-    /// 接收发送信息
+    ///     接收发送信息
     /// </summary>
-    interface IAdapterMessage
+    internal interface IAdapterMessage
     {
         /// <summary>
-        /// 发送信息
+        ///     发送信息
         /// </summary>
         EventHandler<Message> Send { set; get; }
+
         /// <summary>
-        /// 接收信息
-        /// </summary> 
+        ///     接收信息
+        /// </summary>
         /// <param name="source"></param>
         /// <param name="message"></param>
         void Receive(object source, Message message);

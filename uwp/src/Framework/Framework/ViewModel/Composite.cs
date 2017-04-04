@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Framework.ViewModel
+namespace lindexi.uwp.Framework.ViewModel
 {
     public class Composite
     {
@@ -9,7 +9,6 @@ namespace Framework.ViewModel
 
         public virtual void Run(ViewModelBase source, Message o)
         {
-            
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Framework.ViewModel
+﻿namespace lindexi.uwp.Framework.ViewModel
 {
     //public class MasterSendMessage : ISendMessage
     //{

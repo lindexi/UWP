@@ -1,10 +1,22 @@
 ﻿using Windows.UI.Core;
 using Windows.UI.Xaml;
 
-namespace Framework.ViewModel
+namespace lindexi.uwp.Framework.ViewModel.MasterDetail
 {
     public class DetailMasterModel : NotifyProperty
     {
+        private GridLength _detailGrid;
+
+        private int _gridInt;
+
+        private GridLength _masterGrid;
+
+        private Visibility _visibility = Visibility.Collapsed;
+
+        private int _zFrame;
+
+        private int _zListView;
+
         public DetailMasterModel()
         {
             SystemNavigationManager.GetForCurrentView().BackRequested += BackRequested;
@@ -18,10 +30,7 @@ namespace Framework.ViewModel
                 _gridInt = value;
                 OnPropertyChanged();
             }
-            get
-            {
-                return _gridInt;
-            }
+            get { return _gridInt; }
         }
 
         public int ZFrame
@@ -31,10 +40,7 @@ namespace Framework.ViewModel
                 _zFrame = value;
                 OnPropertyChanged();
             }
-            get
-            {
-                return _zFrame;
-            }
+            get { return _zFrame; }
         }
 
         public GridLength MasterGrid
@@ -44,10 +50,7 @@ namespace Framework.ViewModel
                 _masterGrid = value;
                 OnPropertyChanged();
             }
-            get
-            {
-                return _masterGrid;
-            }
+            get { return _masterGrid; }
         }
 
         public GridLength DetailGrid
@@ -57,10 +60,7 @@ namespace Framework.ViewModel
                 _detailGrid = value;
                 OnPropertyChanged();
             }
-            get
-            {
-                return _detailGrid;
-            }
+            get { return _detailGrid; }
         }
 
         public int ZListView
@@ -70,17 +70,10 @@ namespace Framework.ViewModel
                 _zListView = value;
                 OnPropertyChanged();
             }
-            get
-            {
-                return _zListView;
-            }
+            get { return _zListView; }
         }
 
-        public bool HasFrame
-        {
-            set;
-            get;
-        }
+        public bool HasFrame { set; get; }
 
         public Visibility Visibility
         {
@@ -89,10 +82,7 @@ namespace Framework.ViewModel
                 _visibility = value;
                 OnPropertyChanged();
             }
-            get
-            {
-                return _visibility;
-            }
+            get { return _visibility; }
         }
 
         public void MasterClick()
@@ -125,18 +115,6 @@ namespace Framework.ViewModel
                 GridInt = 1;
             }
         }
-
-        private GridLength _detailGrid;
-
-        private int _gridInt;
-
-        private GridLength _masterGrid;
-
-        private Visibility _visibility = Visibility.Collapsed;
-
-        private int _zFrame;
-
-        private int _zListView;
 
         private void BackRequested(object sender, BackRequestedEventArgs e)
         {

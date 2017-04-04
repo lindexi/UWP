@@ -1,4 +1,4 @@
-namespace Framework.ViewModel
+namespace lindexi.uwp.Framework.ViewModel
 {
     public interface IReceiveMessage
     {

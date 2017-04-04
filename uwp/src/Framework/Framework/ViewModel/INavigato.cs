@@ -1,15 +1,11 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
 
-namespace Framework.ViewModel
+namespace lindexi.uwp.Framework.ViewModel
 {
     public interface INavigato
     {
-        Frame Content
-        {
-            set;
-            get;
-        }
+        Frame Content { set; get; }
 
         void Navigate(Type viewModel, object parameter);
     }

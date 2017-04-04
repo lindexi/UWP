@@ -1,16 +1,16 @@
-﻿// lindexi
-
-using System;
+﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 
-namespace Framework.ViewModel
+namespace lindexi.uwp.Framework.ViewModel
 {
-    public class ViewModelPage:IEquatable<Type>
+    public class ViewModelPage : IEquatable<Type>
     {
+        private Type _viewModel;
+
         public ViewModelPage()
         {
             //if (ViewModel == null)
@@ -40,23 +40,16 @@ namespace Framework.ViewModel
             _viewModel = viewModel.GetType();
         }
 
-        public string Key
-        {
-            set;
-            get;
-        }
+        public string Key { set; get; }
 
 
-        public ViewModelBase ViewModel
-        {
-            set;
-            get;
-        }
+        public ViewModelBase ViewModel { set; get; }
 
-        public Type Page
+        public Type Page { set; get; }
+
+        public bool Equals(Type other)
         {
-            set;
-            get;
+            return _viewModel == other;
         }
 
         public async Task Navigate(Frame content, object paramter)
@@ -65,20 +58,13 @@ namespace Framework.ViewModel
             {
                 ViewModel = (ViewModelBase) _viewModel.GetConstructor(Type.EmptyTypes).Invoke(null);
             }
-            ViewModel.OnNavigatedTo(this,paramter);
+            ViewModel.OnNavigatedTo(this, paramter);
 #if NOGUI
             return;
 #endif
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                () =>
-                {
-                    content.Navigate(Page,ViewModel);
-                });
+                () => { content.Navigate(Page, ViewModel); });
         }
-
-         
-
-        private Type _viewModel;
 
         protected bool Equals(ViewModelPage other)
         {
@@ -89,18 +75,13 @@ namespace Framework.ViewModel
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((ViewModelPage) obj);
         }
 
         public override int GetHashCode()
         {
             return _viewModel?.GetHashCode() ?? 0;
-        }
-
-        public bool Equals(Type other)
-        {
-            return _viewModel == other; 
         }
     }
 }

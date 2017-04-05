@@ -32,6 +32,13 @@ namespace lindexi.uwp.Framework.ViewModel
             Key = _viewModel.Name;
         }
 
+        public ViewModelPage(ViewModelBase viewModel)
+        {
+            ViewModel = viewModel;
+            Key = viewModel.GetType().Name;
+            _viewModel = viewModel.GetType();
+        }
+
         public ViewModelPage(ViewModelBase viewModel, Type page)
         {
             ViewModel = viewModel;

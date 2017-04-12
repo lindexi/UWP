@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using lindexi.uwp.Framework.ViewModel;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -24,7 +25,13 @@ namespace Wyatt
     {
         public MainPage()
         {
+            ViewModel = new ViewModel();
             this.InitializeComponent();
+        }
+
+        public ViewModel ViewModel
+        {
+            set; get;
         }
     }
 }

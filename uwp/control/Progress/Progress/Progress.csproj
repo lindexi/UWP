@@ -105,6 +105,9 @@
     <Compile Include="View\IndeterminateProgress.xaml.cs">
       <DependentUpon>IndeterminateProgress.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Marquez.xaml.cs">
+      <DependentUpon>Marquez.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Rount.xaml.cs">
       <DependentUpon>Rount.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\IndeterminateProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Marquez.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -53,5 +53,9 @@ namespace Progress
                 SetValue(ValueProperty, value);
             }
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

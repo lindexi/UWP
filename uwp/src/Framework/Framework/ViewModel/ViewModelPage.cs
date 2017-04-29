@@ -10,6 +10,7 @@ namespace lindexi.uwp.Framework.ViewModel
     public class ViewModelPage : IEquatable<Type>
     {
         private Type _viewModel;
+        private ViewModelBase viewModel;
 
         public ViewModelPage()
         {
@@ -47,12 +48,28 @@ namespace lindexi.uwp.Framework.ViewModel
             _viewModel = viewModel.GetType();
         }
 
-        public string Key { set; get; }
+        public string Key
+        {
+            set; get;
+        }
 
 
-        public ViewModelBase ViewModel { set; get; }
+        public ViewModelBase ViewModel
+        {
+            set
+            {
+                viewModel = value;
+            }
+            get
+            {
+                return viewModel ?? (viewModel = (ViewModelBase)_viewModel.GetConstructor(Type.EmptyTypes).Invoke(null));
+            }
+        }
 
-        public Type Page { set; get; }
+        public Type Page
+        {
+            set; get;
+        }
 
         public bool Equals(Type other)
         {
@@ -61,16 +78,24 @@ namespace lindexi.uwp.Framework.ViewModel
 
         public async Task Navigate(Frame content, object paramter)
         {
-            if (ViewModel == null)
-            {
-                ViewModel = (ViewModelBase) _viewModel.GetConstructor(Type.EmptyTypes).Invoke(null);
-            }
+
             ViewModel.OnNavigatedTo(this, paramter);
 #if NOGUI
             return;
 #endif
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                () => { content.Navigate(Page, ViewModel); });
+            try
+            {
+                content.Navigate(Page, ViewModel);
+            }
+            catch
+            {
+               await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+               () =>
+               {
+                   content.Navigate(Page, ViewModel);
+               });
+            }
+          
         }
 
         protected bool Equals(ViewModelPage other)
@@ -80,10 +105,13 @@ namespace lindexi.uwp.Framework.ViewModel
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((ViewModelPage) obj);
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            if (obj.GetType() != GetType())
+                return false;
+            return Equals((ViewModelPage)obj);
         }
 
         public override int GetHashCode()

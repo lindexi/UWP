@@ -94,6 +94,7 @@ namespace lindexi.uwp.Framework.ViewModel.MasterDetail
 
         public void Narrow()
         {
+            
             if (Window.Current.Bounds.Width < 720)
             {
                 MasterGrid = new GridLength(1, GridUnitType.Star);

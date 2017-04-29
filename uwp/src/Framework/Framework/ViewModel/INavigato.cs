@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
+
 namespace lindexi.uwp.Framework.ViewModel
 {
     public interface INavigato

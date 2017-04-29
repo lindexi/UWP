@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CombinationComposite.cs" />
     <Compile Include="ViewModel\Composite.cs" />
     <Compile Include="ViewModel\IAdapterMessage.cs" />
     <Compile Include="ViewModel\IKeyNavigato.cs" />
@@ -134,7 +135,7 @@
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>BitStamp_TemporaryKey.pfx</AssemblyOriginatorKeyFile>

@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using lindexi.uwp.Framework.ViewModel;
+using lindexi.uwp.Framework.ViewModel.MasterDetail;
 
 namespace Framework.ViewModel
 {
@@ -42,7 +44,7 @@ namespace Framework.ViewModel
             {
                 ((ISendMessage) temp.ViewModel).SendMessageHandler += (s, e) =>
                 {
-                    ReceiveMessage(e);
+                    ReceiveMessage(this,e);
                 };
             }
         }
@@ -82,20 +84,20 @@ namespace Framework.ViewModel
             }
         }
 
-        public void ReceiveMessage(Message message)
-        {
-            if (message.Key == "点击列表")
-            {
-                DetailMaster.MasterClick();
-            }
-            foreach (var temp in ViewModel)
-            {
-                if (temp.Key == message.Goal)
-                {
-                    var receive = temp.ViewModel as IReceiveMessage;
-                    receive?.ReceiveMessage(this,message);
-                }
-            }
-        }
+        //public void ReceiveMessage(Message message)
+        //{
+        //    if (message.Key == "点击列表")
+        //    {
+        //        DetailMaster.MasterClick();
+        //    }
+        //    foreach (var temp in Framework.ViewModel)
+        //    {
+        //        if (temp.Key == message.Goal)
+        //        {
+        //            var receive = temp.ViewModel as IReceiveMessage;
+        //            receive?.ReceiveMessage(this,message);
+        //        }
+        //    }
+        //}
     }
 }

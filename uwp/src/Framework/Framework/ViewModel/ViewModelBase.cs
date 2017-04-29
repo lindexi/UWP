@@ -20,8 +20,8 @@ namespace lindexi.uwp.Framework.ViewModel
         ///     从其他页面跳转到
         ///     在这里初始化页面
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"></param>
+        /// <param name="obj"></param>
         public abstract void OnNavigatedTo(object sender, object obj);
 
         public EventHandler<IMessage> SendMessageHandler { set; get; }

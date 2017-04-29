@@ -1,10 +1,11 @@
-﻿using Framework.Model;
+﻿using System;
+using Framework.Model;
 using lindexi.uwp.Framework.ViewModel;
 
 namespace Framework.ViewModel
 {
     [CodeStorage]
-    public class ContentModel : ViewModelBase, IReceiveMessage
+    public class ContentModel : ViewModelBase
     {
         public ContentModel()
         {
@@ -35,9 +36,10 @@ namespace Framework.ViewModel
 
         private KeySecret _key;
 
-        public void ReceiveMessage(object sender, Message message)
+        public override void ReceiveMessage(object sender, IMessage e)
         {
-            if (message.Key == "点击列表")
+            Message message = e as Message;
+            if (message?.Key == "点击列表")
             {
                 Key = message.Content as KeySecret;
             }

@@ -78,7 +78,7 @@ namespace Framework.ViewModel
 
         }
 
-        public EventHandler<Message> SendMessageHandler
+        public EventHandler<IMessage> SendMessageHandler
         {
             get;
             set;

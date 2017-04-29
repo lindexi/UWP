@@ -1,4 +1,5 @@
 ﻿using Framework.Model;
+using lindexi.uwp.Framework.ViewModel;
 
 namespace Framework.ViewModel
 {

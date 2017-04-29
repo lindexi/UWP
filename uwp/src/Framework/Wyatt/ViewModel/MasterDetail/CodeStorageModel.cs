@@ -44,7 +44,7 @@ namespace Framework.ViewModel
             {
                 ((ISendMessage) temp.ViewModel).SendMessageHandler += (s, e) =>
                 {
-                    ReceiveMessage(e);
+                    ReceiveMessage((Message)e);
                 };
             }
         }

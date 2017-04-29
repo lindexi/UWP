@@ -2,6 +2,14 @@
 {
     public interface IMessage
     {
+        ViewModelBase Source
+        {
+            set; get;
+        }
+        string Goal
+        {
+            set; get;
+        }
     }
 
     public class Message : IMessage

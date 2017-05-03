@@ -1,6 +1,6 @@
 ﻿namespace lindexi.uwp.Framework.ViewModel
 {
-    public interface INavigable
+    public interface INavigable: IViewModel
     {
         /// <summary>
         ///     不使用这个页面

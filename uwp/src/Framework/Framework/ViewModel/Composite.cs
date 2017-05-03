@@ -20,9 +20,14 @@ namespace lindexi.uwp.Framework.ViewModel
             get; set;
         }
 
-        public virtual void Run(ViewModelBase source, IMessage message)
+        public virtual void Run(IViewModel source, IMessage message)
         {
 
+        }
+
+        public virtual void Run(ViewModelBase source, IMessage message)
+        {
+           
         }
     }
 }

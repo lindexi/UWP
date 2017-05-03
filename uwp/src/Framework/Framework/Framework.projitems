@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\INavigato.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IReceiveMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ISendMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MasterDetail\DetailMasterModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MasterSendMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Message.cs" />
@@ -29,6 +30,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModel\Tocorre\" />
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModel\" />
   </ItemGroup>
 </Project>

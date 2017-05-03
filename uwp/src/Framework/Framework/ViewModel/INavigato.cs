@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
-    public interface INavigato
+    public interface INavigato: IViewModel
     {
         Frame Content { set; get; }
 

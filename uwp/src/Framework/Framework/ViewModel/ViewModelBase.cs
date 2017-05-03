@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
-    public abstract class ViewModelBase : NotifyProperty, INavigable, ISendMessage, IReceiveMessage
+    public abstract class ViewModelBase : NotifyProperty, INavigable, ISendMessage, IReceiveMessage,IViewModel
     {
         /// <summary>
         /// 表示当前ViewModel是否处于进入状态
@@ -16,10 +16,6 @@ namespace lindexi.uwp.Framework.ViewModel
         {
             get; set;
         }
-
-
-   
-
 
         /// <summary>
         ///     从其他页面跳转出

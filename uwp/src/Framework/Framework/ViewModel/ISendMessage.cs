@@ -2,7 +2,7 @@
 
 namespace lindexi.uwp.Framework.ViewModel
 {
-    public interface ISendMessage
+    public interface ISendMessage: IViewModel
     {
         EventHandler<IMessage> SendMessageHandler { set; get; }
     }

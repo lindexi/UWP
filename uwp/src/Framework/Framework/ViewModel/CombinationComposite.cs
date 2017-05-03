@@ -31,7 +31,7 @@ namespace lindexi.uwp.Framework.ViewModel
     }
 
     public class CombinationComposite<T, U>  : Composite, IMessage
-        where U : IMessage where T : ViewModelBase
+        where U : IMessage where T : IViewModel
     {
         public CombinationComposite(ViewModelBase source)
         {
@@ -59,11 +59,11 @@ namespace lindexi.uwp.Framework.ViewModel
             set; get;
         }
 
-        public override void Run(ViewModelBase source, IMessage message)
+        public override void Run(IViewModel source, IMessage message)
         {
             if (source is T && message is U)
             {
-                _run.Invoke((T)source,(U) message);
+                _run.Invoke((T)source ,(U) message);
             }
 
         }

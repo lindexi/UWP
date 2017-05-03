@@ -2,8 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Windows;
+
+#if WINDOWS_UWP
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+#elif wpf
+using System.Windows.Controls;
+
+#endif
+
 
 namespace lindexi.uwp.Framework.ViewModel
 {

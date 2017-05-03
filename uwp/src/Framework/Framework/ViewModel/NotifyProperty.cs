@@ -1,8 +1,17 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+
+
+#if WINDOWS_UWP
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
+#elif wpf
+using System.Threading;
+using System.Windows;
+using System.Windows.Threading;
+#endif
+
 
 namespace lindexi.uwp.Framework.ViewModel
 {
@@ -31,8 +40,18 @@ namespace lindexi.uwp.Framework.ViewModel
         public async void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChangedEventHandler handler = PropertyChanged;
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+#if WINDOWS_UWP
+               await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                 () => { handler?.Invoke(this, new PropertyChangedEventArgs(name)); });
+#elif wpf
+            SynchronizationContext.SetSynchronizationContext(new
+   DispatcherSynchronizationContext(Application.Current.Dispatcher));
+            SynchronizationContext.Current.Send(obj =>
+            {
+                handler?.Invoke(this, new PropertyChangedEventArgs(name));
+            }, null);
+#endif
+
         }
     }
 }

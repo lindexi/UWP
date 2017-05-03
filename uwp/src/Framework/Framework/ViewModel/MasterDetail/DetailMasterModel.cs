@@ -1,5 +1,11 @@
-﻿using Windows.UI.Core;
+﻿#if  WINDOWS_UWP
+using Windows.UI.Core;
 using Windows.UI.Xaml;
+#elif wpf 
+using System.Windows;
+#endif
+
+
 
 namespace lindexi.uwp.Framework.ViewModel.MasterDetail
 {
@@ -19,7 +25,9 @@ namespace lindexi.uwp.Framework.ViewModel.MasterDetail
 
         public DetailMasterModel()
         {
+#if WINDOWS_UWP
             SystemNavigationManager.GetForCurrentView().BackRequested += BackRequested;
+#endif
             Narrow();
         }
 
@@ -94,8 +102,8 @@ namespace lindexi.uwp.Framework.ViewModel.MasterDetail
 
         public void Narrow()
         {
-            
-            if (Window.Current.Bounds.Width < 720)
+#if WINDOWS_UWP
+              if (Window.Current.Bounds.Width < 720)
             {
                 MasterGrid = new GridLength(1, GridUnitType.Star);
                 DetailGrid = GridLength.Auto;
@@ -115,13 +123,18 @@ namespace lindexi.uwp.Framework.ViewModel.MasterDetail
                 DetailGrid = new GridLength(1, GridUnitType.Star);
                 GridInt = 1;
             }
+#endif
+
         }
 
+#if WINDOWS_UWP
         private void BackRequested(object sender, BackRequestedEventArgs e)
         {
             HasFrame = false;
             Visibility = Visibility.Collapsed;
             Narrow();
-        }
+        } 
+#endif
+
     }
 }

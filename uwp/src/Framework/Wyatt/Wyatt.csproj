@@ -7,8 +7,8 @@
     <ProjectGuid>{7357D8FB-DB4D-4FC2-93E2-79A0A7917189}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Wyatt</RootNamespace>
-    <AssemblyName>Wyatt</AssemblyName>
+    <RootNamespace>lindexi.uwp.Framework</RootNamespace>
+    <AssemblyName>lindexi.uwp.Framework</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
@@ -167,12 +167,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\Framework\Framework.csproj">
-      <Project>{5ec3e94b-4994-4ee4-bd2b-d817889cb861}</Project>
-      <Name>Framework</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <Import Project="..\Framework\Framework.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

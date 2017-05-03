@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Wyatt")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("lindexi.uwp.Framework")]
+[assembly: AssemblyDescription("MVVM")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Wyatt")]
+[assembly: AssemblyCompany("林德熙")]
+[assembly: AssemblyProduct("lindexi.uwp.Framework")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

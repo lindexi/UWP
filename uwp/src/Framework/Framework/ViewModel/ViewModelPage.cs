@@ -1,9 +1,22 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
+
+#if WINDOWS_UWP
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+#elif wpf
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Windows;
+using System.Windows.Threading;
+using System.Windows.Controls;
+#endif
+
+
 
 namespace lindexi.uwp.Framework.ViewModel
 {
@@ -89,13 +102,23 @@ namespace lindexi.uwp.Framework.ViewModel
             }
             catch
             {
-               await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+#if WINDOWS_UWP
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                () =>
                {
                    content.Navigate(Page, ViewModel);
                });
+#elif wpf
+                SynchronizationContext.SetSynchronizationContext(new
+   DispatcherSynchronizationContext(Application.Current.Dispatcher));
+                SynchronizationContext.Current.Send(obj =>
+                {
+                    content.Navigate(Page, ViewModel);
+                }, null);
+#endif
+
             }
-          
+
         }
 
         protected bool Equals(ViewModelPage other)

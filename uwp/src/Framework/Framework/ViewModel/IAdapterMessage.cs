@@ -10,13 +10,13 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <summary>
         ///     发送信息
         /// </summary>
-        EventHandler<Message> Send { set; get; }
+        EventHandler<IMessage> Send { set; get; }
 
         /// <summary>
         ///     接收信息
         /// </summary>
         /// <param name="source"></param>
         /// <param name="message"></param>
-        void Receive(object source, Message message);
+        void Receive(object source,IMessage message);
     }
 }

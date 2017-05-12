@@ -5,6 +5,6 @@
     /// </summary>
     public interface ICombinationComposite
     {
-        void Run(ViewModelBase source, IMessage message);
+        void Run(IViewModel source, IMessage message);
     }
 }

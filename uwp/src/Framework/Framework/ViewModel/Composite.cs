@@ -27,7 +27,7 @@ namespace lindexi.uwp.Framework.ViewModel
 
         public virtual void Run(ViewModelBase source, IMessage message)
         {
-           
+           Run((IViewModel)source,message);
         }
     }
 }

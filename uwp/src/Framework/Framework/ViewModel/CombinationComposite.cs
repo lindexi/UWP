@@ -2,7 +2,10 @@ using System;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
-    public class CombinationComposite : Composite, IMessage
+    /// <summary>
+    /// 组合 Composite 和 Message
+    /// </summary>
+    public class CombinationComposite : Composite, IMessage, ICombinationComposite
     {
         public CombinationComposite(ViewModelBase source)
         {
@@ -30,7 +33,10 @@ namespace lindexi.uwp.Framework.ViewModel
 
     }
 
-    public class CombinationComposite<T, U>  : Composite, IMessage
+    /// <summary>
+    /// 组合 Composite 和 Message
+    /// </summary>
+    public class CombinationComposite<T, U>  : Composite, IMessage,ICombinationComposite
         where U : IMessage where T : IViewModel
     {
         public CombinationComposite(ViewModelBase source)

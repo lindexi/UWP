@@ -45,6 +45,7 @@ namespace lindexi.uwp.Framework.ViewModel
             {
                 ViewModel = new List<ViewModelPage>();
             }
+            ViewModel = new List<ViewModelPage>();
             foreach (var temp in assembly.GetTypes().Where(temp => temp.IsSubclassOf(typeof(ViewModelBase))))
             {
                 ViewModel.Add(new ViewModelPage(temp));
@@ -168,6 +169,14 @@ namespace lindexi.uwp.Framework.ViewModel
         }
 
 
+        /// <inheritdoc />
+        public override void ReceiveMessage(object sender, IMessage message)
+        {
+            var viewModel = string.IsNullOrEmpty(message.Goal) ? this : ViewModel.FirstOrDefault(temp => temp.Key == message.Goal)?.ViewModel;
+            var composite = message as CombinationComposite;
+            composite?.Run(viewModel, composite);
+            Composite.FirstOrDefault(temp => temp.Message == message.GetType())?.Run(viewModel, message);
+        }
 
 
     }

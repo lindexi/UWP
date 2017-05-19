@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CombinationComposite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Composite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\GetValueCombinationComposite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IAdapterMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ICombinationComposite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IKeyNavigato.cs" />

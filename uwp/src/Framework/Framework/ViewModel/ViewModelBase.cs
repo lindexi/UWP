@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using wpfMill;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
@@ -74,6 +75,17 @@ namespace lindexi.uwp.Framework.ViewModel
             base.NavigatedTo(sender, obj);
         }
 
+        /// <summary>
+        /// 获取值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="viewModel"></param>
+        /// <param name="continueWith"></param>
+        public void GetValue<T>(Action<T> continueWith)
+        {
+            Send?.Invoke(this, new GetValueCombinationComposite<T>(this, continueWith));
+        }
+
 
         /// <summary>
         /// 发送消息
@@ -96,9 +108,10 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <param name="message"></param>
         public virtual void ReceiveMessage(object sender, IMessage message)
         {
+            ViewModelBase viewModel = this;
             var composite = message as CombinationComposite;
-            composite?.Run(this, composite);
-            Composite.FirstOrDefault(temp => temp.Message == message.GetType())?.Run(this, message);
+            composite?.Run(viewModel, composite);
+            Composite.FirstOrDefault(temp => temp.Message == message.GetType())?.Run(viewModel, message);
         }
 
     }

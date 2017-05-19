@@ -102,7 +102,12 @@ namespace lindexi.uwp.Framework.ViewModel
 #endif
             try
             {
+#if WINDOWS_UWP
                 content.Navigate(Page, ViewModel);
+#elif wpf
+                content.Navigate(Page.GetConstructor(Type.EmptyTypes).Invoke(null) , ViewModel);
+#endif
+
             }
             catch
             {
@@ -123,6 +128,11 @@ namespace lindexi.uwp.Framework.ViewModel
 
             }
 
+        }
+
+        public void NavigateFrom(object source, object e = null)
+        {
+            ViewModel.NavigatedFrom(source, e);
         }
 
         protected bool Equals(ViewModelPage other)

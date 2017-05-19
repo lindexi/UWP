@@ -84,7 +84,7 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <returns></returns>
         private async Task Navigate(object paramter, ViewModelPage view, Frame content)
         {
-            await view.Navigate(content, paramter);
+            await view.Navigate(content,this, paramter);
 
             ISendMessage send = view.ViewModel as ViewModelMessage;
             if (send != null)

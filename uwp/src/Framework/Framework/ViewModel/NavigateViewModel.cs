@@ -41,6 +41,10 @@ namespace lindexi.uwp.Framework.ViewModel
         {
 #if wpf
             Assembly assembly = Assembly.GetCallingAssembly();
+            if (ViewModel == null)
+            {
+                ViewModel = new List<ViewModelPage>();
+            }
             foreach (var temp in assembly.GetTypes().Where(temp => temp.IsSubclassOf(typeof(ViewModelBase))))
             {
                 ViewModel.Add(new ViewModelPage(temp));

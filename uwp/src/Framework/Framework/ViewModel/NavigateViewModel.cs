@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 #if WINDOWS_UWP
@@ -33,6 +34,46 @@ namespace lindexi.uwp.Framework.ViewModel
         /// </summary>
         public event EventHandler<ViewModelPage> Navigated;
 
+        /// <inheritdoc />
+        public override void OnNavigatedTo(object sender, object obj)
+        {
+            if (Content == null)
+            {
+            Content = obj as Frame;
+
+            }
+
+#if wpf
+            //获得所有ViewModel
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            foreach (var temp in assembly.GetTypes().Where(temp=> temp.IsSubclassOf(typeof(Composite)) && !temp.IsSubclassOf(typeof(CombinationComposite)) &&
+                    temp != typeof(CombinationComposite)))
+            {
+                Composite.Add(temp.Assembly.CreateInstance(temp.FullName) as Composite);
+            }
+
+            foreach (var temp in assembly.GetTypes().Where(temp => temp.IsSubclassOf(typeof(ViewModelBase))))
+            {
+                ViewModel.Add(new ViewModelPage(temp));
+            }
+
+            foreach (var temp in assembly.GetTypes().Where(temp => temp.IsSubclassOf(typeof(Page))))
+            {
+                var viewmodel = temp.GetCustomAttribute<ViewModelAttribute>();
+                if (viewmodel != null)
+                {
+                    var view = ViewModel.FirstOrDefault(t => t.Equals(viewmodel.ViewModel));
+                    if (view != null)
+                    {
+                        view.Page = temp;
+                    }
+                }
+            }
+#endif
+
+
+
+        }
 
         public ViewModelBase this[string str]
         {

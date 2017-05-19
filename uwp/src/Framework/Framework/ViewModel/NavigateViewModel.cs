@@ -23,6 +23,17 @@ namespace lindexi.uwp.Framework.ViewModel
         //当前ViewModel
         private ViewModelBase _viewModel;
 
+        /// <summary>
+        /// 正在跳转事件
+        /// </summary>
+        public event EventHandler<ViewModelPage> Navigating;
+
+        /// <summary>
+        /// 跳转完成
+        /// </summary>
+        public event EventHandler<ViewModelPage> Navigated;
+
+
         public ViewModelBase this[string str]
         {
             get
@@ -58,7 +69,7 @@ namespace lindexi.uwp.Framework.ViewModel
             var viewModel = ViewModel.FirstOrDefault(temp => temp.Key == key);
             if (viewModel != null)
             {
-                Navigate(viewModel, null);
+                Navigate(viewModel, parameter);
             }
             else
             {
@@ -100,6 +111,7 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <returns></returns>
         private async Task Navigate(object paramter, ViewModelPage view, Frame content)
         {
+            Navigating?.Invoke(this, view);
             if (content == null)
             {
                 content = Content;
@@ -107,6 +119,7 @@ namespace lindexi.uwp.Framework.ViewModel
             _viewModel?.NavigatedFrom(this, null);
             await view.Navigate(content, this, paramter);
             _viewModel = view.ViewModel;
+            Navigated?.Invoke(this, view);
         }
 
 

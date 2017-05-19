@@ -26,5 +26,15 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <param name="parameter"></param>
         /// <param name="content"></param>
         void Navigate(Type viewModel, object parameter, Frame content);
+
+        /// <summary>
+        /// 正在跳转事件
+        /// </summary>
+         event EventHandler<ViewModelPage> Navigating;
+
+        /// <summary>
+        /// 跳转完成
+        /// </summary>
+         event EventHandler<ViewModelPage> Navigated;
     }
 }

@@ -20,17 +20,21 @@ using System.Windows.Controls;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
+    /// <summary>
+    /// 包含 抽象页面和页面
+    /// </summary>
     public class ViewModelPage : IEquatable<Type>
     {
+        /// <summary>
+        /// 页面类型，用于创建页面
+        /// </summary>
         private Type _viewModel;
+
         private ViewModelBase viewModel;
 
         public ViewModelPage()
         {
-            //if (ViewModel == null)
-            //{
-            //    //ViewModel=View.GetConstructor(null)
-            //}
+            
         }
 
         public ViewModelPage(Type viewModel)
@@ -92,7 +96,7 @@ namespace lindexi.uwp.Framework.ViewModel
         public async Task Navigate(Frame content, object paramter)
         {
 
-            ViewModel.OnNavigatedTo(this, paramter);
+            ViewModel.NavigatedTo(this,paramter);
 #if NOGUI
             return;
 #endif

@@ -5,18 +5,8 @@ namespace lindexi.uwp.Framework.ViewModel
     /// <summary>
     ///     接收发送信息
     /// </summary>
-    internal interface IAdapterMessage
+    internal interface IAdapterMessage:ISendMessage,IReceiveMessage
     {
-        /// <summary>
-        ///     发送信息
-        /// </summary>
-        EventHandler<IMessage> Send { set; get; }
-
-        /// <summary>
-        ///     接收信息
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="message"></param>
-        void Receive(object source,IMessage message);
+      
     }
 }

@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IReceiveMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ISendMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IViewModelValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MasterDetail\DetailMasterModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MasterSendMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Message.cs" />

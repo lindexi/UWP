@@ -1,5 +1,8 @@
 ﻿namespace lindexi.uwp.Framework.ViewModel
 {
+    /// <summary>
+    /// 可跳转
+    /// </summary>
     public interface INavigable: IViewModel
     {
         /// <summary>
@@ -8,13 +11,13 @@
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="obj"></param>
-        void OnNavigatedFrom(object sender, object obj);
+        void NavigatedFrom(object sender, object obj);
 
         /// <summary>
         ///     跳转到
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="obj"></param>
-        void OnNavigatedTo(object sender, object obj);
+        void NavigatedTo(object sender, object obj);
     }
 }

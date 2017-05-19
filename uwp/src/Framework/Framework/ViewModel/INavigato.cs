@@ -9,10 +9,21 @@ using System.Windows.Controls;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
+    /// <summary>
+    /// 支持跳转
+    /// </summary>
     public interface INavigato: IViewModel
     {
+        /// <summary>
+        /// 提供跳转的控件
+        /// </summary>
         Frame Content { set; get; }
 
+        /// <summary>
+        /// 跳转到页面
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <param name="parameter"></param>
         void Navigate(Type viewModel, object parameter);
     }
 }

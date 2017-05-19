@@ -29,6 +29,9 @@ namespace lindexi.uwp.Framework.ViewModel
             }
         }
 
+        /// <summary>
+        /// 是否已经使用函数
+        /// </summary>
         private bool _run;
 
         public virtual void Run(ViewModelBase source, IMessage message)

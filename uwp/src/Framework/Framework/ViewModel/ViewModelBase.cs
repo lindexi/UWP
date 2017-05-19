@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
-    public abstract class ViewModelBase : NotifyProperty, INavigable, ISendMessage, IReceiveMessage,IViewModel
+    public abstract class ViewModelBase : NotifyProperty, INavigable, IViewModel
     {
         /// <summary>
         /// 表示当前ViewModel是否处于进入状态
@@ -16,6 +16,8 @@ namespace lindexi.uwp.Framework.ViewModel
         {
             get; set;
         }
+
+
 
         /// <summary>
         ///     从其他页面跳转出
@@ -33,61 +35,65 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <param name="obj"></param>
         public abstract void OnNavigatedTo(object sender, object obj);
 
-        public EventHandler<IMessage> SendMessageHandler
+        /// <inheritdoc />
+        public virtual void NavigatedFrom(object sender, object obj)
         {
-            set; get;
+            OnNavigatedFrom(sender, obj);
+            IsLoaded = false;
         }
-        protected List<Composite> Composite = new List<Composite>();
-        public virtual void ReceiveMessage(object sender, IMessage message)
+
+        /// <inheritdoc />
+        public virtual void NavigatedTo(object sender, object obj)
         {
-            if (message is CombinationComposite)
-            {
-                ((CombinationComposite)message).Run(this, message);
-            }
-            Composite.FirstOrDefault(temp => temp.Message == message.GetType())?.Run(this, message);
+            IsLoaded = true;
+            OnNavigatedTo(sender, obj);
         }
     }
 
-
-    public abstract class ViewModelMessage : ViewModelBase,IAdapterMessage
+    /// <summary>
+    /// 可以接收发送消息的页面
+    /// </summary>
+    public abstract class ViewModelMessage : ViewModelBase, IAdapterMessage
     {
+        /// <inheritdoc />
+        public sealed override void NavigatedFrom(object sender, object obj)
+        {
+            base.NavigatedFrom(sender, obj);
+            Send = null;
+        }
+
+        /// <inheritdoc />
+        public sealed override void NavigatedTo(object sender, object obj)
+        {
+            base.NavigatedTo(sender, obj);
+        }
+
+
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        public EventHandler<IMessage> Send
+        {
+            set; get;
+        }
+
         /// <summary>
         ///     命令合成
         ///     全部调用发送信息的处理在<see cref="Composite" />
         /// </summary>
-        protected static List<Composite> Composite
-        {
-            set; get;
-        }
-
-        public void Navigateto(object source, object e)
-        {
-            IsLoaded = true;
-            OnNavigatedTo(source, e);
-        }
-
-        public void NavigateFrom(object source, object e)
-        {
-            OnNavigatedFrom(source, e);
-            IsLoaded = false;
-            Send = null;
-        }
-
-        /// <summary>
-        /// 发送信息
-        /// </summary>
-        public EventHandler<IMessage> Send
-        {
-            get; set;
-        }
+        protected List<Composite> Composite { set; get; } = new List<Composite>();
 
         /// <summary>
         /// 接收信息
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="sender"></param>
         /// <param name="message"></param>
-        public abstract void Receive(object source, IMessage message);
-
+        public virtual void ReceiveMessage(object sender, IMessage message)
+        {
+            var composite = message as CombinationComposite;
+            composite?.Run(this, composite);
+            Composite.FirstOrDefault(temp => temp.Message == message.GetType())?.Run(this, message);
+        }
 
     }
 }

@@ -2,8 +2,14 @@
 
 namespace lindexi.uwp.Framework.ViewModel
 {
+    /// <summary>
+    /// 发送消息
+    /// </summary>
     public interface ISendMessage: IViewModel
     {
-        EventHandler<IMessage> SendMessageHandler { set; get; }
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        EventHandler<IMessage> Send { set; get; }
     }
 }

@@ -12,7 +12,7 @@ namespace lindexi.uwp.Framework.ViewModel
     /// <summary>
     /// 支持跳转
     /// </summary>
-    public interface INavigato: IViewModel
+    public interface INavigateable : IViewModel
     {
         /// <summary>
         /// 提供跳转的控件

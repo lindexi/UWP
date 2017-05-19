@@ -18,7 +18,7 @@ namespace lindexi.uwp.Framework.ViewModel
     /// <summary>
     /// 包含有页面的ViewModel
     /// </summary>
-    public abstract class NavigateViewModel : ViewModelMessage, INavigato
+    public abstract class NavigateViewModel : ViewModelMessage, INavigateable
     {
         //当前ViewModel
         private ViewModelBase _viewModel;

@@ -3,7 +3,7 @@
     /// <summary>
     ///     使用Key获得ViewModel
     /// </summary>
-    public interface IKeyNavigato : INavigato
+    public interface IKeyNavigato : INavigateable
     {
         void Navigateto(string key, object parameter);
     }

@@ -22,12 +22,24 @@ namespace lindexi.uwp.Framework.ViewModel
 
         public virtual void Run(IViewModel source, IMessage message)
         {
-
+            var viewModel = source as ViewModelBase;
+            if (viewModel != null)
+            {
+                Run(viewModel, message);
+            }
         }
+
+        private bool _run;
 
         public virtual void Run(ViewModelBase source, IMessage message)
         {
-           Run((IViewModel)source,message);
+            if (_run)
+            {
+                return;
+            }
+            _run = true;
+            Run((IViewModel)source, message);
+            _run = false;
         }
     }
 }

@@ -93,10 +93,10 @@ namespace lindexi.uwp.Framework.ViewModel
             return _viewModel == other;
         }
 
-        public async Task Navigate(Frame content, object paramter)
+        public async Task Navigate(Frame content, ViewModelMessage source, object paramter)
         {
 
-            ViewModel.NavigatedTo(this,paramter);
+            ViewModel.NavigatedTo(source, paramter);
 #if NOGUI
             return;
 #endif

@@ -23,7 +23,6 @@ namespace lindexi.uwp.Framework.ViewModel
         public override void OnNavigatedFrom(object sender, object obj)
         {
             return;
-            throw new NotImplementedException();
         }
 
         public override void OnNavigatedTo(object sender, object obj)

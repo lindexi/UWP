@@ -5,6 +5,6 @@
     /// </summary>
     public interface IKeyNavigato : INavigateable
     {
-        void Navigateto(string key, object parameter);
+        void Navigate(string key, object parameter);
     }
 }

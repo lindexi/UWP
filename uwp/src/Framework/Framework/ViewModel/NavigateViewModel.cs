@@ -18,7 +18,7 @@ namespace lindexi.uwp.Framework.ViewModel
     /// <summary>
     /// 包含有页面的ViewModel
     /// </summary>
-    public abstract class NavigateViewModel : ViewModelMessage, INavigateable
+    public abstract class NavigateViewModel : ViewModelMessage, IKeyNavigato, INavigateable
     {
         //当前ViewModel
         private ViewModelBase _viewModel;
@@ -52,18 +52,20 @@ namespace lindexi.uwp.Framework.ViewModel
         /// 跳转到页面
         /// </summary>
         /// <param name="key"></param>
-        public void Navigate(string key)
+        /// <param name="parameter"></param>
+        public void Navigate(string key, object parameter = null)
         {
             var viewModel = ViewModel.FirstOrDefault(temp => temp.Key == key);
             if (viewModel != null)
             {
-                Navigate(viewModel,null);
+                Navigate(viewModel, null);
             }
             else
             {
                 throw new ArgumentException();
             }
         }
+
 
         /// <summary>
         /// 跳转到页面
@@ -83,7 +85,7 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <param name="paramter"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public async void Navigate(Type viewModel, object paramter,Frame content=null)
+        public async void Navigate(Type viewModel, object paramter, Frame content = null)
         {
             ViewModelPage view = ViewModel.Find(temp => temp.Equals(viewModel));
             await Navigate(paramter, view, content);
@@ -103,10 +105,12 @@ namespace lindexi.uwp.Framework.ViewModel
                 content = Content;
             }
             _viewModel?.NavigatedFrom(this, null);
-            await view.Navigate(content,this, paramter);
+            await view.Navigate(content, this, paramter);
             _viewModel = view.ViewModel;
         }
 
-      
+
+
+
     }
 }

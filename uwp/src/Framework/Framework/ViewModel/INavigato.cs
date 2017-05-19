@@ -24,6 +24,7 @@ namespace lindexi.uwp.Framework.ViewModel
         /// </summary>
         /// <param name="viewModel"></param>
         /// <param name="parameter"></param>
-        void Navigate(Type viewModel, object parameter);
+        /// <param name="content"></param>
+        void Navigate(Type viewModel, object parameter, Frame content);
     }
 }

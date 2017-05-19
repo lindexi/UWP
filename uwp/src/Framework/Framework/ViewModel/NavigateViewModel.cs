@@ -51,15 +51,29 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <summary>
         /// 跳转到页面
         /// </summary>
+        /// <param name="key"></param>
+        public void Navigate(string key)
+        {
+            var viewModel = ViewModel.FirstOrDefault(temp => temp.Key == key);
+            if (viewModel != null)
+            {
+                Navigate(viewModel,null);
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+        }
+
+        /// <summary>
+        /// 跳转到页面
+        /// </summary>
         /// <param name="viewModel"></param>
         /// <param name="paramter"></param>
-        public async void Navigate(Type viewModel, object paramter)
+        /// <param name="content"></param>
+        public async void Navigate(ViewModelPage viewModel, object paramter, Frame content = null)
         {
-            //_viewModel?.OnNavigatedFrom(this, null);
-            _viewModel?.NavigatedFrom(this,null);
-            await Navigate(viewModel, paramter, Content);
-            ViewModelPage view = ViewModel.Find(temp => temp.Equals(viewModel));
-            _viewModel = view.ViewModel;
+            await Navigate(paramter, viewModel, content);
         }
 
         /// <summary>
@@ -69,7 +83,7 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <param name="paramter"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public async Task Navigate(Type viewModel, object paramter,Frame content)
+        public async void Navigate(Type viewModel, object paramter,Frame content=null)
         {
             ViewModelPage view = ViewModel.Find(temp => temp.Equals(viewModel));
             await Navigate(paramter, view, content);
@@ -84,13 +98,13 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <returns></returns>
         private async Task Navigate(object paramter, ViewModelPage view, Frame content)
         {
-            await view.Navigate(content,this, paramter);
-
-            ISendMessage send = view.ViewModel as ViewModelMessage;
-            if (send != null)
+            if (content == null)
             {
-                send.Send += ReceiveMessage;
+                content = Content;
             }
+            _viewModel?.NavigatedFrom(this, null);
+            await view.Navigate(content,this, paramter);
+            _viewModel = view.ViewModel;
         }
 
       

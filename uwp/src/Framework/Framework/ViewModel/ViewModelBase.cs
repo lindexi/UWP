@@ -65,6 +65,12 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <inheritdoc />
         public sealed override void NavigatedTo(object sender, object obj)
         {
+            var viewmodel = sender as IReceiveMessage;
+            if (viewmodel != null)
+            {
+                Send += viewmodel.ReceiveMessage;
+            }
+
             base.NavigatedTo(sender, obj);
         }
 

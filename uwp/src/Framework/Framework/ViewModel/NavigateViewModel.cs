@@ -34,24 +34,13 @@ namespace lindexi.uwp.Framework.ViewModel
         /// </summary>
         public event EventHandler<ViewModelPage> Navigated;
 
-        /// <inheritdoc />
-        public override void OnNavigatedTo(object sender, object obj)
+        /// <summary>
+        /// 自动组合
+        /// </summary>
+        protected void CombineViewModel()
         {
-            if (Content == null)
-            {
-            Content = obj as Frame;
-
-            }
-
 #if wpf
-            //获得所有ViewModel
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            foreach (var temp in assembly.GetTypes().Where(temp=> temp.IsSubclassOf(typeof(Composite)) && !temp.IsSubclassOf(typeof(CombinationComposite)) &&
-                    temp != typeof(CombinationComposite)))
-            {
-                Composite.Add(temp.Assembly.CreateInstance(temp.FullName) as Composite);
-            }
-
+            Assembly assembly = Assembly.GetCallingAssembly();
             foreach (var temp in assembly.GetTypes().Where(temp => temp.IsSubclassOf(typeof(ViewModelBase))))
             {
                 ViewModel.Add(new ViewModelPage(temp));
@@ -70,9 +59,20 @@ namespace lindexi.uwp.Framework.ViewModel
                 }
             }
 #endif
-
-
-
+        }
+        /// <summary>
+        /// 获取所有的处理
+        /// </summary>
+        protected void AllAssemblyComposite()
+        {
+#if wpf
+            Assembly assembly = Assembly.GetCallingAssembly();
+            foreach (var temp in assembly.GetTypes().Where(temp => temp.IsSubclassOf(typeof(Composite)) && !temp.IsSubclassOf(typeof(CombinationComposite)) &&
+                    temp != typeof(CombinationComposite)))
+            {
+                Composite.Add(temp.Assembly.CreateInstance(temp.FullName) as Composite);
+            }
+#endif
         }
 
         public ViewModelBase this[string str]

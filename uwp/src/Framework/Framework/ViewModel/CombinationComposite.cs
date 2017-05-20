@@ -59,10 +59,9 @@ namespace lindexi.uwp.Framework.ViewModel
             Goal = new PredicateInheritViewModel(typeof(T));
         }
 
-        public CombinationComposite(Action<T, U> run, ViewModelBase source)
+        public CombinationComposite(Action<T, U> run, ViewModelBase source):this(source)
         {
             _run = run;
-            ((IMessage)this).Source = source;
         }
 
         ViewModelBase IMessage.Source

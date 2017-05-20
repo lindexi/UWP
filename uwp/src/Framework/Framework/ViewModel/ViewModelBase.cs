@@ -109,8 +109,8 @@ namespace lindexi.uwp.Framework.ViewModel
         public virtual void ReceiveMessage(object sender, IMessage message)
         {
             ViewModelBase viewModel = this;
-            var composite = message as CombinationComposite;
-            composite?.Run(viewModel, composite);
+            var composite = message as ICombinationComposite;
+            composite?.Run(viewModel, message);
             Composite.FirstOrDefault(temp => temp.Message == message.GetType())?.Run(viewModel, message);
         }
 

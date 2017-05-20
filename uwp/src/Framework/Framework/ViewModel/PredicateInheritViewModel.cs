@@ -18,6 +18,10 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <inheritdoc />
         public bool Predicate(ViewModelPage viewModel)
         {
+            if (Key.IsInterface)
+            {
+                return Key.IsAssignableFrom(viewModel.ViewModel.GetType());
+            }
             return viewModel.ViewModel.GetType().IsSubclassOf(Key);
         }
     }

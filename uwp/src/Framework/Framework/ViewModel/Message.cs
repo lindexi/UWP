@@ -6,10 +6,19 @@
         {
             set; get;
         }
-        string Goal
+        /// <summary>
+        /// 判断使用哪个ViewModel，如果为空，返回上一层
+        /// </summary>
+        IPredicateViewModel Goal
         {
             set; get;
         }
+        /// <summary>
+        /// 判断ViewModel是否符合
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        bool Predicate(ViewModelPage viewModel);
     }
 
     public class Message : IMessage
@@ -32,7 +41,7 @@
         /// <summary>
         ///     目标
         /// </summary>
-        public string Goal { set; get; }
+        public IPredicateViewModel Goal { set; get; }
 
         public object Content { set; get; }
 
@@ -40,5 +49,14 @@
         ///     发送什么信息
         /// </summary>
         public string Key { set; get; }
+
+        public bool Predicate(ViewModelPage viewModel)
+        {
+            if (Goal == null)
+            {
+                return true;
+            }
+            return Goal.Predicate(viewModel);
+        }
     }
 }

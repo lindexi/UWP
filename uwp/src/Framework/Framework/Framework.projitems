@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IKeyNavigato.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\INavigable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\INavigato.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IPredicateViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IReceiveMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ISendMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IViewModel.cs" />
@@ -26,6 +27,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Message.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NavigateViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NotifyProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PredicateInheritViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PredicateKeyViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PredicateViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelBase.cs" />

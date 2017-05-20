@@ -172,7 +172,16 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <inheritdoc />
         public override void ReceiveMessage(object sender, IMessage message)
         {
-            var viewModel = string.IsNullOrEmpty(message.Goal) ? this : ViewModel.FirstOrDefault(temp => temp.Key == message.Goal)?.ViewModel;
+            //var viewModel = string.IsNullOrEmpty(message.Goal) ? this : ViewModel.FirstOrDefault(temp => temp.Key == message.Goal)?.ViewModel;
+            ViewModelBase viewModel = this;
+            if (!message.Predicate(new ViewModelPage(this)))
+            {
+                viewModel = ViewModel.FirstOrDefault(temp => message.Predicate(temp))?.ViewModel;
+            }
+            if (viewModel == null)
+            {
+                return;
+            }
             var composite = message as CombinationComposite;
             composite?.Run(viewModel, composite);
             Composite.FirstOrDefault(temp => temp.Message == message.GetType())?.Run(viewModel, message);

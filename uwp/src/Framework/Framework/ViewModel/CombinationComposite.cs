@@ -9,20 +9,25 @@ namespace lindexi.uwp.Framework.ViewModel
     {
         public CombinationComposite(ViewModelBase source)
         {
-            ((IMessage) this).Source = source;
+            ((IMessage)this).Source = source;
         }
 
         public CombinationComposite(Action<ViewModelBase, object> run, ViewModelBase source)
         {
             _run = run;
-            ((IMessage) this).Source = source;
+            ((IMessage)this).Source = source;
         }
 
-        public ViewModelMessage Aim { get; set; }
+        ViewModelBase IMessage.Source
+        {
+            get; set;
+        }
 
-        ViewModelBase IMessage.Source { get; set; }
-
-        public string Goal { set; get; }
+        /// <inheritdoc />
+        public IPredicateViewModel Goal
+        {
+            set; get;
+        }
 
         public override void Run(ViewModelBase source, IMessage message)
         {
@@ -31,17 +36,27 @@ namespace lindexi.uwp.Framework.ViewModel
 
         protected Action<ViewModelBase, object> _run;
 
+        /// <inheritdoc />
+        public bool Predicate(ViewModelPage viewModel)
+        {
+            if (Goal == null)
+            {
+                return true;
+            }
+            return Goal.Predicate(viewModel);
+        }
     }
 
     /// <summary>
     /// ×éºÏ Composite ºÍ Message
     /// </summary>
-    public class CombinationComposite<T, U>  : Composite, IMessage,ICombinationComposite
+    public class CombinationComposite<T, U> : Composite, IMessage, ICombinationComposite
         where U : IMessage where T : IViewModel
     {
         public CombinationComposite(ViewModelBase source)
         {
             ((IMessage)this).Source = source;
+            Goal = new PredicateInheritViewModel(typeof(T));
         }
 
         public CombinationComposite(Action<T, U> run, ViewModelBase source)
@@ -50,17 +65,13 @@ namespace lindexi.uwp.Framework.ViewModel
             ((IMessage)this).Source = source;
         }
 
-        public ViewModelMessage Aim
-        {
-            get; set;
-        }
-
         ViewModelBase IMessage.Source
         {
             get; set;
         }
 
-        public string Goal
+        /// <inheritdoc />
+        public IPredicateViewModel Goal
         {
             set; get;
         }
@@ -69,11 +80,21 @@ namespace lindexi.uwp.Framework.ViewModel
         {
             if (source is T && message is U)
             {
-                _run.Invoke((T)source ,(U) message);
+                _run.Invoke((T)source, (U)message);
             }
 
         }
 
         protected Action<T, U> _run;
+
+        /// <inheritdoc />
+        public bool Predicate(ViewModelPage viewModel)
+        {
+            if (Goal == null)
+            {
+                return viewModel.ViewModel is T;
+            }
+            return Goal.Predicate(viewModel);
+        }
     }
 }

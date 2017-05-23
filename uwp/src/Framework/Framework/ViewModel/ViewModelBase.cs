@@ -1,23 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using wpfMill;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
     public abstract class ViewModelBase : NotifyProperty, INavigable, IViewModel
     {
         /// <summary>
-        /// 表示当前ViewModel是否处于进入状态
-        /// 用于命令判断是否可用
+        ///     表示当前ViewModel是否处于进入状态
+        ///     用于命令判断是否可用
         /// </summary>
-        public bool IsLoaded
+        public bool IsLoaded { get; set; }
+
+        /// <inheritdoc />
+        public virtual void NavigatedFrom(object sender, object obj)
         {
-            get; set;
+            OnNavigatedFrom(sender, obj);
+            IsLoaded = false;
         }
 
+        /// <inheritdoc />
+        public virtual void NavigatedTo(object sender, object obj)
+        {
+            IsLoaded = true;
+            OnNavigatedTo(sender, obj);
+        }
 
 
         /// <summary>
@@ -35,27 +42,37 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <param name="sender"></param>
         /// <param name="obj"></param>
         public abstract void OnNavigatedTo(object sender, object obj);
-
-        /// <inheritdoc />
-        public virtual void NavigatedFrom(object sender, object obj)
-        {
-            OnNavigatedFrom(sender, obj);
-            IsLoaded = false;
-        }
-
-        /// <inheritdoc />
-        public virtual void NavigatedTo(object sender, object obj)
-        {
-            IsLoaded = true;
-            OnNavigatedTo(sender, obj);
-        }
     }
 
     /// <summary>
-    /// 可以接收发送消息的页面
+    ///     可以接收发送消息的页面
     /// </summary>
     public abstract class ViewModelMessage : ViewModelBase, IAdapterMessage
     {
+        /// <summary>
+        ///     发送消息
+        /// </summary>
+        public EventHandler<IMessage> Send { set; get; }
+
+        /// <summary>
+        ///     接收信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="message"></param>
+        public virtual void ReceiveMessage(object sender, IMessage message)
+        {
+            ViewModelBase viewModel = this;
+            var composite = message as ICombinationComposite;
+            composite?.Run(viewModel, message);
+            Composite.FirstOrDefault(temp => temp.Message == message.GetType())?.Run(viewModel, message);
+        }
+
+        /// <summary>
+        ///     命令合成
+        ///     全部调用发送信息的处理在<see cref="Composite" />
+        /// </summary>
+        protected List<Composite> Composite { set; get; } = new List<Composite>();
+
         /// <inheritdoc />
         public sealed override void NavigatedFrom(object sender, object obj)
         {
@@ -76,43 +93,13 @@ namespace lindexi.uwp.Framework.ViewModel
         }
 
         /// <summary>
-        /// 获取值
+        ///     获取值
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="viewModel"></param>
         /// <param name="continueWith"></param>
         public void GetValue<T>(Action<T> continueWith)
         {
             Send?.Invoke(this, new GetValueCombinationComposite<T>(this, continueWith));
         }
-
-
-        /// <summary>
-        /// 发送消息
-        /// </summary>
-        public EventHandler<IMessage> Send
-        {
-            set; get;
-        }
-
-        /// <summary>
-        ///     命令合成
-        ///     全部调用发送信息的处理在<see cref="Composite" />
-        /// </summary>
-        protected List<Composite> Composite { set; get; } = new List<Composite>();
-
-        /// <summary>
-        /// 接收信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="message"></param>
-        public virtual void ReceiveMessage(object sender, IMessage message)
-        {
-            ViewModelBase viewModel = this;
-            var composite = message as ICombinationComposite;
-            composite?.Run(viewModel, message);
-            Composite.FirstOrDefault(temp => temp.Message == message.GetType())?.Run(viewModel, message);
-        }
-
     }
 }

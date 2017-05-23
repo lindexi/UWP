@@ -3,9 +3,9 @@
 namespace lindexi.uwp.Framework.ViewModel
 {
     /// <summary>
-    /// 通过继承判断viewmodel是否需要
+    ///     通过继承判断viewmodel是否需要
     /// </summary>
-    public class PredicateInheritViewModel:IPredicateViewModel
+    public class PredicateInheritViewModel : IPredicateViewModel
     {
         public PredicateInheritViewModel(Type key)
         {

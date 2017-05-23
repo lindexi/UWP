@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
-
 #if WINDOWS_UWP
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -11,7 +9,6 @@ using Windows.UI.Xaml.Controls;
 using System.Windows.Controls;
 
 #endif
-
 
 namespace lindexi.uwp.Framework.ViewModel
 {
@@ -48,8 +45,6 @@ namespace lindexi.uwp.Framework.ViewModel
 
     public class ViewModel : NavigateViewModel
     {
-        private Visibility _frameVisibility;
-
         public ViewModel()
         {
             View = this;
@@ -76,19 +71,6 @@ namespace lindexi.uwp.Framework.ViewModel
         }
 
         public ViewModel View { set; get; }
-
-        public void NavigateToList()
-        {
-            //Navigate(typeof(CodeStorageModel), null);
-        }
-
-        public void NavigateToInfo()
-        {
-        }
-
-        public void NavigateToAccount()
-        {
-        }
 
         public override void OnNavigatedFrom(object sender, object obj)
         {
@@ -134,5 +116,20 @@ namespace lindexi.uwp.Framework.ViewModel
             FrameVisibility = Visibility.Visible;
             Navigate(typeof(AModel), null);
         }
+
+        public void NavigateToList()
+        {
+            //Navigate(typeof(CodeStorageModel), null);
+        }
+
+        public void NavigateToInfo()
+        {
+        }
+
+        public void NavigateToAccount()
+        {
+        }
+
+        private Visibility _frameVisibility;
     }
 }

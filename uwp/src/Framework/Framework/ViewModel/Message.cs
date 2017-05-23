@@ -2,19 +2,15 @@
 {
     public interface IMessage
     {
-        ViewModelBase Source
-        {
-            set; get;
-        }
+        ViewModelBase Source { set; get; }
+
         /// <summary>
-        /// 判断使用哪个ViewModel，如果为空，返回上一层
+        ///     判断使用哪个ViewModel，如果为空，返回上一层
         /// </summary>
-        IPredicateViewModel Goal
-        {
-            set; get;
-        }
+        IPredicateViewModel Goal { set; get; }
+
         /// <summary>
-        /// 判断ViewModel是否符合
+        ///     判断ViewModel是否符合
         /// </summary>
         /// <param name="viewModel"></param>
         /// <returns></returns>
@@ -23,15 +19,17 @@
 
     public class Message : IMessage
     {
-        //public Message()
-        //{
-
-        //}
-
         public Message(ViewModelBase source)
         {
             Source = source;
         }
+
+        public object Content { set; get; }
+
+        /// <summary>
+        ///     发送什么信息
+        /// </summary>
+        public string Key { set; get; }
 
         /// <summary>
         ///     发送者
@@ -43,13 +41,7 @@
         /// </summary>
         public IPredicateViewModel Goal { set; get; }
 
-        public object Content { set; get; }
-
-        /// <summary>
-        ///     发送什么信息
-        /// </summary>
-        public string Key { set; get; }
-
+        /// <inheritdoc />
         public bool Predicate(ViewModelPage viewModel)
         {
             if (Goal == null)

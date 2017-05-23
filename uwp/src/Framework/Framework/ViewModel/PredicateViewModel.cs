@@ -3,12 +3,15 @@
 namespace lindexi.uwp.Framework.ViewModel
 {
     /// <summary>
-    /// 写规则判断ViewModel是否需要
+    ///     写规则判断ViewModel是否需要
     /// </summary>
-    public class PredicateViewModel:IPredicateViewModel
+    public class PredicateViewModel : IPredicateViewModel
     {
-        private Predicate<ViewModelPage> _predicate;
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
         public PredicateViewModel(Predicate<ViewModelPage> predicate)
         {
             _predicate = predicate;
@@ -19,5 +22,7 @@ namespace lindexi.uwp.Framework.ViewModel
         {
             return _predicate(viewModel);
         }
+
+        private Predicate<ViewModelPage> _predicate;
     }
 }

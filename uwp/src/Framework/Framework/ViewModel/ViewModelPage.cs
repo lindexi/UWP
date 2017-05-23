@@ -65,12 +65,17 @@ namespace lindexi.uwp.Framework.ViewModel
             _viewModel = viewModel.GetType();
         }
 
+        /// <summary>
+        /// 用于表示页面
+        /// </summary>
         public string Key
         {
             set; get;
         }
 
-
+        /// <summary>
+        /// 抽象页面
+        /// </summary>
         public ViewModelBase ViewModel
         {
             set
@@ -83,16 +88,31 @@ namespace lindexi.uwp.Framework.ViewModel
             }
         }
 
+        /// <summary>
+        /// 页面
+        /// </summary>
         public Type Page
         {
             set; get;
         }
 
+        /// <summary>
+        /// 判断输入的类型是否相等
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public bool Equals(Type other)
         {
             return _viewModel == other;
         }
 
+        /// <summary>
+        /// 跳转到
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="source">从那里跳转</param>
+        /// <param name="paramter">参数</param>
+        /// <returns></returns>
         public async Task Navigate(Frame content, ViewModelMessage source, object paramter)
         {
             ViewModel.NavigatedTo(source, paramter);

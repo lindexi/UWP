@@ -7,14 +7,18 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Data.Xml.Dom;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.Graphics.Display;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -36,8 +40,25 @@ namespace BitStamp.View
         {
             View = new Stamp();
             this.InitializeComponent();
-            //Folder = KnownFolders.PicturesLibrary;
+            Window.Current.VisibilityChanged += Current_VisibilityChanged;
+            
+            Unloaded += StampPage_Unloaded;
         }
+
+        private void StampPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.VisibilityChanged -= Current_VisibilityChanged;
+        }
+
+        private void Current_VisibilityChanged(object sender, Windows.UI.Core.VisibilityChangedEventArgs e)
+        {
+            _visibility = e.Visible;
+        }
+
+        /// <summary>
+        /// 判断已经不显示
+        /// </summary>
+        private bool _visibility = true;
 
         private string _name;
 
@@ -107,8 +128,8 @@ namespace BitStamp.View
                             BitmapEncoder.JpegEncoderId, stream);
                         encod.SetPixelData(BitmapPixelFormat.Bgra8,
                             BitmapAlphaMode.Ignore,
-                            (uint)bitmap.PixelWidth,
-                            (uint)bitmap.PixelHeight,
+                            (uint) bitmap.PixelWidth,
+                            (uint) bitmap.PixelHeight,
                             DisplayInformation.GetForCurrentView().LogicalDpi,
                             DisplayInformation.GetForCurrentView().LogicalDpi,
                             buffer.ToArray()
@@ -123,9 +144,39 @@ namespace BitStamp.View
                 }
             }
 
-            await View.Jcloud();
+            await View.Jcloud(() =>
+            {
+                if (_visibility && Window.Current.CoreWindow.Visible)
+                {
+                    //如果当前显示，自动复制
+                    string str = "";
+                    switch (_pivot)
+                    {
+                        case "Markdown":
+                            str = View.LinkReminder;
+                            break;
+                        case "BBCode":
+                            str = View.Bcode;
+                            break;
+                        case "":
+
+                            break;
+                    }
+                    if (!string.IsNullOrEmpty(str))
+                    {
+                        DataPackage data = new DataPackage();
+                        data.SetText(str);
+                        Clipboard.SetContent(data);
+                        //告诉说已经复制
+                        ToastHelper.PopToast("已经复制", str);
+                    }
+                }
+            });
             File = null;
             _upload = false;
+            //上传完成
+
+            
         }
 
         private void Grid_OnDragOver(object sender, DragEventArgs e)
@@ -144,7 +195,7 @@ namespace BitStamp.View
                 {
                     var files = await dataView.GetStorageItemsAsync();
                     StorageFile file = files.OfType<StorageFile>().First();
-                    if ((file.FileType == ".png") || (file.FileType == ".jpg") 
+                    if ((file.FileType == ".png") || (file.FileType == ".jpg")
                         || (file.FileType == ".gif"))
                     {
                         await ImageStorageFile(file);
@@ -221,9 +272,142 @@ namespace BitStamp.View
 
         private void BcodeClipboard(object sender, RoutedEventArgs e)
         {
-            DataPackage data = new DataPackage();
-            data.SetText(View.Bcode);
-            Clipboard.SetContent(data);
+            if (!string.IsNullOrEmpty(View.Bcode))
+            {
+                DataPackage data = new DataPackage();
+                data.SetText(View.Bcode);
+                Clipboard.SetContent(data);
+            }
+        }
+
+        private void Pivot_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var pivot = e.AddedItems.FirstOrDefault() as PivotItem;
+            var str = pivot?.Header.ToString();
+            _pivot = str;
+        }
+
+        /// <summary>
+        /// 表示当前 pivot 选择的
+        /// </summary>
+        private string _pivot;
+    }
+
+
+
+
+    //edi大神提供
+    public static class ToastHelper
+    {
+        /// <summary>
+        /// Show notification in Action Center
+        /// </summary>
+        /// <param name="title">Notification title</param>
+        /// <param name="content">Notification content</param>
+        /// <returns>ToastNotification</returns>
+        public static ToastNotification PopToast(string title, string content)
+        {
+            return PopToast(title, content, null, null);
+        }
+
+        /// <summary>
+        /// Show notification in Action Center
+        /// </summary>
+        /// <param name="title">Notification title</param>
+        /// <param name="content">Notification content</param>
+        /// <param name="tag">Tag</param>
+        /// <param name="group">Group</param>
+        /// <returns>ToastNotification</returns>
+        public static ToastNotification PopToast(string title, string content, string tag, string group)
+        {
+            string xml = $@"<toast activationType='foreground'>
+                                            <visual>
+                                                <binding template='ToastGeneric'>
+                                                </binding>
+                                            </visual>
+                                        </toast>";
+
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml);
+
+            var binding = doc.SelectSingleNode("//binding");
+
+            var el = doc.CreateElement("text");
+            el.InnerText = title;
+
+            binding.AppendChild(el);
+
+            el = doc.CreateElement("text");
+            el.InnerText = content;
+            binding.AppendChild(el);
+
+            return PopCustomToast(doc, tag, group);
+        }
+
+        /// <summary>
+        /// Show notification by custom xml
+        /// </summary>
+        /// <param name="xml">notification xml</param>
+        /// <returns>ToastNotification</returns>
+        public static ToastNotification PopCustomToast(string xml)
+        {
+            return PopCustomToast(xml, null, null);
+        }
+
+        /// <summary>
+        /// Show notification by custom xml
+        /// </summary>
+        /// <param name="xml">notification xml</param>
+        /// <param name="tag">tag</param>
+        /// <param name="group">group</param>
+        /// <returns>ToastNotification</returns>
+        public static ToastNotification PopCustomToast(string xml, string tag, string group)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xml);
+
+
+            return PopCustomToast(doc, tag, group);
+        }
+
+        /// <summary>
+        /// Show notification by custom xml
+        /// </summary>
+        /// <param name="doc">notification xml</param>
+        /// <param name="tag">tag</param>
+        /// <param name="group">group</param>
+        /// <returns>ToastNotification</returns>
+        [DefaultOverload]
+        public static ToastNotification PopCustomToast(XmlDocument doc, string tag, string group)
+        {
+            var toast = new ToastNotification(doc);
+
+            if (tag != null)
+                toast.Tag = tag;
+
+            if (group != null)
+                toast.Group = group;
+
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+
+            return toast;
+        }
+
+        public static string ToString(ValueSet valueSet)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (var pair in valueSet)
+            {
+                if (builder.Length != 0)
+                    builder.Append('\n');
+
+                builder.Append(pair.Key);
+                builder.Append(": ");
+                builder.Append(pair.Value);
+            }
+
+            return builder.ToString();
         }
     }
 }

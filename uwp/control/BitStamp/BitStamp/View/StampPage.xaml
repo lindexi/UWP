@@ -102,7 +102,7 @@
                     </Grid>
                 </StackPanel>
                 <Grid Grid.Row="2">
-                    <Pivot>
+                    <Pivot SelectionChanged="Pivot_OnSelectionChanged">
                         <PivotItem Header="Markdown">
                             <Grid>
                                 <TextBox Margin="10,10,100,10"

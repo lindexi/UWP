@@ -225,6 +225,7 @@ namespace BitStamp.ViewModel
     {
         Jiuyou,
         Smms,
-        Qin
+        Qin,
+        Cimage
     }
 }

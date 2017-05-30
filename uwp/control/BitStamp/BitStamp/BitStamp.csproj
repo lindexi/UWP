@@ -19,7 +19,7 @@
     <PackageCertificateKeyFile>BitStamp_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>4B79E13E2683672C3E19D37D300C0DC30BB47004</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>C:\程序\ethylene156\上传\publish\UWP\BitStamp\AppPackages\</AppxPackageDir>
+    <AppxPackageDir>E:\上传\publish\UWP\BitStamp</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
   </PropertyGroup>
@@ -268,17 +268,26 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
-      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.10586.0%29</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
     <XliffResource Include="MultilingualResources\BitStamp.en.xlf" />
     <XliffResource Include="MultilingualResources\BitStamp.qps-ploc.xlf" />
     <XliffResource Include="MultilingualResources\BitStamp.zh-Hant.xlf" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsDesktop, Version=10.0.14393.0">
+      <Name>Windows Desktop Extensions for the UWP</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsIoT, Version=10.0.14393.0">
+      <Name>Windows IoT Extensions for the UWP</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsMobile, Version=10.0.14393.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsTeam, Version=10.0.14393.0">
+      <Name>Windows Team Extensions for the UWP</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

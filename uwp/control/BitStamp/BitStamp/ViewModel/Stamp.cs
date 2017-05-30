@@ -121,13 +121,15 @@ namespace BitStamp.ViewModel
                     {
                         Accound = Account.Account.CloundAccound
                     };
+                case ImageShackEnum.Cimage:
+                    return new Cimage(file);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(imageShack), imageShack, null);
             }
             //return new JyUploadImage(file);
         }
 
-        public async Task Jcloud()
+        public async Task Jcloud(Action onUpload)
         {
 
             //Cimage image = new Cimage(File);
@@ -140,6 +142,7 @@ namespace BitStamp.ViewModel
                 imageShack = ImageShackEnum.Qin;
             }
             var size = (await File.GetBasicPropertiesAsync()).Size;
+
             //1M
             //1024k
             //‪125000‬
@@ -148,6 +151,10 @@ namespace BitStamp.ViewModel
                 imageShack = ImageShackEnum.Smms;
             }
             //4326  24,447 
+
+#if DEBUG
+            //imageShack = ImageShackEnum.Cimage;
+#endif
 
             UploadImageTask uploadImageTask = NewUploadImageTask(
                imageShack, File);
@@ -166,6 +173,7 @@ namespace BitStamp.ViewModel
                     //               uploadImage.Url + ")";
                     //Bcode = $"[img]{uploadImage.Url}[/img]";
                     Url = uploadImage.Url;
+                    onUpload?.Invoke();
                 }
                 else
                 {

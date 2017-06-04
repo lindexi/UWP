@@ -140,6 +140,7 @@ namespace lindexi.uwp.Framework.ViewModel
                     }
                 }
             }
+
 #endif
         }
 
@@ -155,7 +156,9 @@ namespace lindexi.uwp.Framework.ViewModel
                 assembly.GetTypes()
                     .Where(
                         temp =>
-                            temp.IsSubclassOf(typeof(Composite)) && !temp.IsSubclassOf(typeof(CombinationComposite)) &&
+                            temp.IsSubclassOf(typeof(Composite)) &&
+                            temp.IsAssignableFrom(typeof(ICombinationComposite)) &&
+                            !temp.IsSubclassOf(typeof(CombinationComposite)) &&
                             temp != typeof(CombinationComposite)))
             {
                 Composite.Add(temp.Assembly.CreateInstance(temp.FullName) as Composite);

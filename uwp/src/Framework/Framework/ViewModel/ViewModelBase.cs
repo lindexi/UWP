@@ -12,6 +12,8 @@ namespace lindexi.uwp.Framework.ViewModel
         /// </summary>
         public bool IsLoaded { get; set; }
 
+        public bool IsEnable { get; set; }
+
         /// <inheritdoc />
         public virtual void NavigatedFrom(object sender, object obj)
         {
@@ -52,7 +54,7 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <summary>
         ///     发送消息
         /// </summary>
-        public EventHandler<IMessage> Send { set; get; }
+        EventHandler<IMessage> ISendMessage.Send { set; get; }
 
         /// <summary>
         ///     接收信息
@@ -77,7 +79,7 @@ namespace lindexi.uwp.Framework.ViewModel
         public sealed override void NavigatedFrom(object sender, object obj)
         {
             base.NavigatedFrom(sender, obj);
-            Send = null;
+            ((ISendMessage) this).Send = null;
         }
 
         /// <inheritdoc />
@@ -86,7 +88,7 @@ namespace lindexi.uwp.Framework.ViewModel
             var viewmodel = sender as IReceiveMessage;
             if (viewmodel != null)
             {
-                Send += viewmodel.ReceiveMessage;
+                ((ISendMessage) this).Send += viewmodel.ReceiveMessage;
             }
 
             base.NavigatedTo(sender, obj);
@@ -99,7 +101,27 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <param name="continueWith"></param>
         public void GetValue<T>(Action<T> continueWith)
         {
-            Send?.Invoke(this, new GetValueCombinationComposite<T>(this, continueWith));
+            ((ISendMessage) this).Send?.Invoke(this, new GetValueCombinationComposite<T>(this, continueWith));
+        }
+
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="U"></typeparam>
+        /// <param name="run"></param>
+        public virtual void SendCombinationComposite<T, U>(Action<T, U> run)
+            where U : IMessage where T : IViewModel
+        {
+            ((ISendMessage) this).Send?.Invoke(this, new CombinationComposite<T, U>(run, this));
+        }
+
+        /// <summary>
+        /// 发送消息
+        /// </summary>
+        public virtual void Send(IMessage message)
+        {
+            ((ISendMessage) this).Send?.Invoke(this, message);
         }
     }
 }

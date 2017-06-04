@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using lindexi.uwp.Framework.ViewModel;
+using ViewModel = lindexi.uwp.Progress.ViewModel.ViewModel;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -20,11 +22,16 @@ namespace Progress
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
+    [ViewModel(ViewModel = typeof(ViewModel))]
     public sealed partial class MainPage : Page
     {
         public MainPage()
         {
             this.InitializeComponent();
+            ViewModel = (ViewModel) DataContext;
+            ViewModel.Content = frame;
+            ViewModel.NavigatedTo(this,null);
+
             DispatcherTimer timer=new DispatcherTimer()
             {
                 Interval = new TimeSpan(10)
@@ -37,7 +44,10 @@ namespace Progress
             };
 
             _time = timer;
+
         }
+
+        public ViewModel ViewModel { set; get; } 
 
         private DispatcherTimer _time;
 

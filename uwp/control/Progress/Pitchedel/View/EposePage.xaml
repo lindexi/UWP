@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="lindexi.uwp.Progress.View.EposePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:lindexi.uwp.Progress.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:lindexi.uwp.Progress.Model"
+    DataContext="{Binding Source={StaticResource ViewModel},Path=EposeModel}"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+       <ListView ItemsSource="{x:Bind ViewModel.ViewModel}"
+                 ItemClick="{x:Bind ViewModel.Navigate}"
+                 IsItemClickEnabled="True">
+           <ListView.ItemsPanel>
+               <ItemsPanelTemplate>
+                   <StackPanel Orientation="Horizontal"></StackPanel>
+               </ItemsPanelTemplate>
+           </ListView.ItemsPanel>
+           <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:AdaptModel">
+                   <Grid>
+                       <TextBlock Text="{x:Bind Name}"></TextBlock>
+                   </Grid>
+               </DataTemplate>
+           </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

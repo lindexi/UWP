@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view="using:lindexi.uwp.control.RountProgress.View"
     xmlns:progress="using:lindexi.uwp.Progress"
+    DataContext="{StaticResource ViewModel}"
     mc:Ignorable="d">
     <Page.Resources>
         <!--<Style x:Key="ButtonStyle1" TargetType="Button">
@@ -92,12 +93,29 @@
         <!--<view:RountProgress Value="{x:Bind Value,Mode=OneWay}" Width="100" Height="100" Margin="10,10,250,530"></view:RountProgress>-->
         <!--<view:IndeterminateProgress Width="200" Height="200" Margin="150,10,10,430"></view:IndeterminateProgress>-->
         <!--<view:Rount Margin="175,261,64,289"></view:Rount>-->
-        <Grid.RowDefinitions>
+     
+        <SplitView
+            IsPaneOpen="False"
+            CompactPaneLength="48"
+            OpenPaneLength="200"
+            DisplayMode="Overlay">
+            <SplitView.Pane>
+                <Grid>
+                    <Frame x:Name="Epose"></Frame>
+                </Grid>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Frame x:Name="frame"></Frame>
+            </SplitView.Content>
+        </SplitView>
+
+
+        <!--<Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid>
-            <!--<view:BoucProgress></view:BoucProgress>-->
+            --><!--<view:BoucProgress></view:BoucProgress>--><!--
             <progress:Marquez x:Name="qut" Margin="10,10,10,10" Height="50" Value="{x:Bind Value,Mode=OneWay}" Maximum="100"></progress:Marquez>
             <Button Margin="154,433,156,163"
                     Content="减少"
@@ -107,7 +125,7 @@
         </Grid>
         <Grid Grid.Row="1">
             <Button Click="ButtonBase_OnClick"></Button>
-        </Grid>
+        </Grid>-->
     </Grid>
 </Page>
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
@@ -18,11 +19,21 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <inheritdoc />
         public bool Predicate(ViewModelPage viewModel)
         {
+#if wpf
             if (Key.IsInterface)
             {
                 return Key.IsAssignableFrom(viewModel.ViewModel.GetType());
             }
             return viewModel.ViewModel.GetType().IsSubclassOf(Key);
+#elif WINDOWS_UWP
+
+
+            if (Key.GetTypeInfo().IsInterface)
+            {
+                return Key.IsAssignableFrom(viewModel.ViewModel.GetType());
+            }
+            return viewModel.ViewModel.GetType().GetTypeInfo().IsSubclassOf(Key);
+#endif
         }
     }
 }

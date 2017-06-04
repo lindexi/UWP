@@ -5,6 +5,11 @@
     /// </summary>
     public class PredicateKeyViewModel : IPredicateViewModel
     {
+        public PredicateKeyViewModel(string key)
+        {
+            Key = key;
+        }
+
         /// <summary>
         /// 指定ViewModel，在知道是哪个ViewModel使用这个类
         /// </summary>

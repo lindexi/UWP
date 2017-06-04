@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view="using:lindexi.uwp.control.RountProgress.View"
+    xmlns:progress="using:lindexi.uwp.Progress"
     mc:Ignorable="d">
     <Page.Resources>
         <!--<Style x:Key="ButtonStyle1" TargetType="Button">
@@ -97,7 +98,11 @@
         </Grid.RowDefinitions>
         <Grid>
             <!--<view:BoucProgress></view:BoucProgress>-->
-            <view:Marquez Value="{x:Bind Value,Mode=OneWay}"></view:Marquez>
+            <progress:Marquez x:Name="qut" Margin="10,10,10,10" Height="50" Value="{x:Bind Value,Mode=OneWay}" Maximum="100"></progress:Marquez>
+            <Button Margin="154,433,156,163"
+                    Content="减少"
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Click="ButtonBase_OnClick"></Button>
             <TextBlock Text="blog.csdn.net/lindexi_gd" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="84,389,114,231"></TextBlock>
         </Grid>
         <Grid Grid.Row="1">
@@ -105,3 +110,4 @@
         </Grid>
     </Grid>
 </Page>
+

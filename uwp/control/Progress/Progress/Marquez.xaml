@@ -1,8 +1,7 @@
 ﻿<UserControl
-    x:Class="lindexi.uwp.control.RountProgress.View.Marquez"
+    x:Class="lindexi.uwp.Progress.Marquez"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:lindexi.uwp.control.RountProgress.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -10,7 +9,8 @@
     d:DesignWidth="400">
 
     <Grid>
-        <ProgressBar x:Name="Mcdon" Height="100"  Maximum="100" Minimum="0" Value="20"></ProgressBar>
+        <ProgressBar x:Name="Mcdon" Maximum="100" Minimum="0" Value="20"
+                     VerticalAlignment="Stretch"></ProgressBar>
         <TextBlock x:Name="scrohn" Text="100/100"
                    VerticalAlignment="Center">
             <TextBlock.RenderTransform>

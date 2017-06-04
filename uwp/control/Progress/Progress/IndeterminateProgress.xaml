@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="lindexi.uwp.control.RountProgress.View.IndeterminateProgress"
+    x:Class="lindexi.uwp.Progress.IndeterminateProgress"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:lindexi.uwp.control.RountProgress.View"

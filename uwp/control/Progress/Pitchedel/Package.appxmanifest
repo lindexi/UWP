@@ -7,14 +7,14 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="64f9a655-7d9f-4034-b3c5-9161a9121525"
+    Name="3bcd0baf-5ffa-48e5-9419-ff23fe9f011a"
     Publisher="CN=linde"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="64f9a655-7d9f-4034-b3c5-9161a9121525" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="3bcd0baf-5ffa-48e5-9419-ff23fe9f011a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Progress</DisplayName>
+    <DisplayName>Pitchedel</DisplayName>
     <PublisherDisplayName>linde</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -30,12 +30,12 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="Progress.App">
+      EntryPoint="Pitchedel.App">
       <uap:VisualElements
-        DisplayName="Progress"
+        DisplayName="Pitchedel"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="Progress"
+        Description="Pitchedel"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

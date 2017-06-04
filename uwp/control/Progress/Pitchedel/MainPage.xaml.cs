@@ -32,12 +32,14 @@ namespace Progress
 
             timer.Tick += (o, e) =>
             {
-                Value = Value == 100 ? 0 : Value + 1;
+                Value = Math.Abs(Value - 100) < 0.0001 ? 0 : Value + 1;
                 //Value = 60;
             };
 
-            timer.Start();
+            _time = timer;
         }
+
+        private DispatcherTimer _time;
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
             "Value", typeof(double), typeof(MainPage), new PropertyMetadata(default(double)));
@@ -56,6 +58,10 @@ namespace Progress
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
+            //qut.Maximum-=10;
+            _time.Start();
         }
+
+     
     }
 }

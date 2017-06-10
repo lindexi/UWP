@@ -1,16 +1,13 @@
-﻿// lindexi
-// 16:03
-
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Data.Xml.Dom;
-using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Foundation.Metadata;
 using Windows.Graphics.Display;
@@ -18,17 +15,14 @@ using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
-using BitStamp.Model;
 using BitStamp.ViewModel;
+
+//using Microsoft.Advertising.WinRT.UI;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -39,34 +33,45 @@ namespace BitStamp.View
         public StampPage()
         {
             View = new Stamp();
-            this.InitializeComponent();
+            InitializeComponent();
+
             Window.Current.VisibilityChanged += Current_VisibilityChanged;
-            
+            Window.Current.Activated += Current_Activated;
             Unloaded += StampPage_Unloaded;
         }
+
+        private void Current_Activated(object sender, WindowActivatedEventArgs e)
+        {
+            _visibility = e.WindowActivationState != CoreWindowActivationState.Deactivated;
+        }
+
+        private string _name;
+
+        /// <summary>
+        ///     表示当前 pivot 选择的
+        /// </summary>
+        private string _pivot;
+
+        private bool _upload;
+
+        /// <summary>
+        ///     判断已经不显示
+        /// </summary>
+        private bool _visibility = true;
+
 
         private void StampPage_Unloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.VisibilityChanged -= Current_VisibilityChanged;
+            Window.Current.Activated -= Current_Activated;
         }
 
-        private void Current_VisibilityChanged(object sender, Windows.UI.Core.VisibilityChangedEventArgs e)
+        private void Current_VisibilityChanged(object sender, VisibilityChangedEventArgs e)
         {
             _visibility = e.Visible;
         }
 
-        /// <summary>
-        /// 判断已经不显示
-        /// </summary>
-        private bool _visibility = true;
-
-        private string _name;
-
-        private Stamp View
-        {
-            set;
-            get;
-        }
+        private Stamp View { set; get; }
 
         private StorageFolder Folder => AccoutGoverment.AccountModel.Account.Folder;
 
@@ -92,13 +97,9 @@ namespace BitStamp.View
             File = file;
             _upload = true;
         }
-        private StorageFile File
-        {
-            set;
-            get;
-        }
 
-        private bool _upload;
+        private StorageFile File { set; get; }
+
         private async void Storage_OnClick(object sender, RoutedEventArgs e)
         {
             if (!_upload)
@@ -146,7 +147,7 @@ namespace BitStamp.View
 
             await View.Jcloud(() =>
             {
-                if (_visibility && Window.Current.CoreWindow.Visible)
+                if (_visibility)
                 {
                     //如果当前显示，自动复制
                     string str = "";
@@ -175,8 +176,6 @@ namespace BitStamp.View
             File = null;
             _upload = false;
             //上传完成
-
-            
         }
 
         private void Grid_OnDragOver(object sender, DragEventArgs e)
@@ -212,7 +211,7 @@ namespace BitStamp.View
             }
         }
 
-        private async System.Threading.Tasks.Task ImageStorageFile(StorageFile file)
+        private async Task ImageStorageFile(StorageFile file)
         {
             if (file == null)
             {
@@ -233,7 +232,6 @@ namespace BitStamp.View
             }
             catch (IOException)
             {
-
             }
         }
 
@@ -287,20 +285,25 @@ namespace BitStamp.View
             _pivot = str;
         }
 
-        /// <summary>
-        /// 表示当前 pivot 选择的
-        /// </summary>
-        private string _pivot;
+        //}
+
+        //    string str = e.ErrorMessage;
+        //{
+
+        //private void AdControl_OnErrorOccurred(object sender, AdErrorEventArgs e)
+
+        //}
+        //{
+
+        //private void AdControl_OnAdRefreshed(object sender, RoutedEventArgs e)
     }
-
-
 
 
     //edi大神提供
     public static class ToastHelper
     {
         /// <summary>
-        /// Show notification in Action Center
+        ///     Show notification in Action Center
         /// </summary>
         /// <param name="title">Notification title</param>
         /// <param name="content">Notification content</param>
@@ -311,7 +314,7 @@ namespace BitStamp.View
         }
 
         /// <summary>
-        /// Show notification in Action Center
+        ///     Show notification in Action Center
         /// </summary>
         /// <param name="title">Notification title</param>
         /// <param name="content">Notification content</param>
@@ -345,23 +348,13 @@ namespace BitStamp.View
         }
 
         /// <summary>
-        /// Show notification by custom xml
-        /// </summary>
-        /// <param name="xml">notification xml</param>
-        /// <returns>ToastNotification</returns>
-        public static ToastNotification PopCustomToast(string xml)
-        {
-            return PopCustomToast(xml, null, null);
-        }
-
-        /// <summary>
-        /// Show notification by custom xml
+        ///     Show notification by custom xml
         /// </summary>
         /// <param name="xml">notification xml</param>
         /// <param name="tag">tag</param>
         /// <param name="group">group</param>
         /// <returns>ToastNotification</returns>
-        public static ToastNotification PopCustomToast(string xml, string tag, string group)
+        public static ToastNotification PopCustomToast(string xml, string tag = null, string group = null)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xml);
@@ -371,7 +364,7 @@ namespace BitStamp.View
         }
 
         /// <summary>
-        /// Show notification by custom xml
+        ///     Show notification by custom xml
         /// </summary>
         /// <param name="doc">notification xml</param>
         /// <param name="tag">tag</param>
@@ -381,7 +374,7 @@ namespace BitStamp.View
         public static ToastNotification PopCustomToast(XmlDocument doc, string tag, string group)
         {
             var toast = new ToastNotification(doc);
-
+            
             if (tag != null)
                 toast.Tag = tag;
 
@@ -389,7 +382,7 @@ namespace BitStamp.View
                 toast.Group = group;
 
             ToastNotificationManager.CreateToastNotifier().Show(toast);
-
+            
             return toast;
         }
 

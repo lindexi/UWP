@@ -58,6 +58,11 @@ namespace Dclutterpalan
             };
         }
 
+        private void Page_OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            canvas.RemoveFromVisualTree();
+            canvas = null;
+        }
 
         private List<Point[]> _points = new List<Point[]>();
 

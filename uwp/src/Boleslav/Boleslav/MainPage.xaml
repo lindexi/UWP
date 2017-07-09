@@ -8,6 +8,44 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+       <Pivot>
+          <PivotItem Header="博客">
+              <Grid>
+                  <Grid.RowDefinitions>
+                      <RowDefinition Height="Auto" />
+                      <RowDefinition Height="*" />
+                  </Grid.RowDefinitions>
+                  <Grid>
+                      <Grid.ColumnDefinitions>
+                          <ColumnDefinition></ColumnDefinition>
+                          <ColumnDefinition Width="Auto"></ColumnDefinition>
+                      </Grid.ColumnDefinitions>
+                      <!--<TextBox Name="Value" Margin="20" Text="http://blog.csdn.net/lindexi_gd/rss/list" VerticalAlignment="Center" />-->
+                      <Button Click="feedClick_Click" Content="Feed" Grid.Column="1"></Button>
+                  </Grid>
+                  <ListView Grid.Row="1" ItemsSource="{x:Bind Caleb}">
+                      <ListView.ItemContainerStyle>
+                          <Style TargetType="ListViewItem">
+                              <Setter Property="HorizontalContentAlignment"
+                                      Value="Stretch"></Setter>
+                          </Style>
+                      </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                          <DataTemplate x:DataType="local:Caleb">
+                              <Grid Margin="10,10,10,10">
+                                  <StackPanel>
+                                      <TextBlock Text="{x:Bind Eadwulf}"></TextBlock>
+                                      <TextBlock Text="{x:Bind Zbignev}"></TextBlock>
+                                      <TextBlock Text="{x:Bind Witek}"></TextBlock>
+                                  </StackPanel>
+                              </Grid>
+                          </DataTemplate>
+                      </ListView.ItemTemplate>
+                  </ListView>
+              </Grid>
+            </PivotItem>
+       </Pivot>
+        
+       
     </Grid>
 </Page>

@@ -22,7 +22,7 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button Click="feedClick_Click" Content="Feed" Grid.Column="1"></Button>
+                        <Button Grid.Column="1" Content="Feed" Click="feedClick_Click"></Button>
                     </Grid>
                     <ListView Grid.Row="1" ItemsSource="{x:Bind Caleb}"  IsItemClickEnabled="True" ItemClick="ListView_OnItemClick">
                         <ListView.ItemContainerStyle>
@@ -77,7 +77,7 @@
                 </Grid>
             </PivotItem>
         </Pivot>
-
+        <!--<ProgressRing x:Name="ProgressRing" Width="100" Height="100" IsActive="True"></ProgressRing>-->
 
     </Grid>
 </Page>

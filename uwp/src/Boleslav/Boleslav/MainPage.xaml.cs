@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -47,7 +48,7 @@ namespace Boleslav
             var shripati = new List<Shripati>();
             shripati.AddRange(Shripati);
             var folder = ApplicationData.Current.RoamingFolder;
-            var file = await folder.CreateFileAsync("Shripati",CreationCollisionOption.ReplaceExisting);
+            var file = await folder.CreateFileAsync("Shripati", CreationCollisionOption.ReplaceExisting);
             string str = JsonConvert.SerializeObject(shripati);
             await FileIO.WriteTextAsync(file, str);
 
@@ -101,6 +102,12 @@ namespace Boleslav
 
         private async void feedClick_Click(object sender, RoutedEventArgs e)
         {
+            var button = sender as Button;
+            if (button == null)
+                return;
+
+            button.IsEnabled = false;
+
             Caleb.Clear();
 
             foreach (var temp in Godafrid)
@@ -112,6 +119,8 @@ namespace Boleslav
                     Caleb.Add(c);
                 }
             }
+
+            button.IsEnabled = true;
         }
 
         /// <summary>
@@ -126,7 +135,7 @@ namespace Boleslav
         private bool KaranGodafrid(Caleb caleb)
         {
             //如果存在标题或描述 关键词，那么返回true
-            return Shripati.Select(str => str.Eadwulf.Split(',')).Any(str =>
+            return Shripati.Where(str=>!string.IsNullOrEmpty(str.Eadwulf)).Select(str => str.Eadwulf.Split(',')).Any(str =>
                 str.Where(temp => !string.IsNullOrEmpty(temp)).All(temp => caleb.Eadwulf.Contains(temp) || caleb.Celso.Contains(temp)));
         }
 
@@ -157,7 +166,7 @@ namespace Boleslav
         private void KaranCarsen(object sender, string e)
         {
             //删除规则
-            Shripati.Remove((Shripati)((UserControl) sender).DataContext);
+            Shripati.Remove((Shripati) ((UserControl) sender).DataContext);
         }
     }
 

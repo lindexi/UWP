@@ -10,18 +10,33 @@
     d:DesignWidth="400">
 
     <UserControl.Resources>
-        <local:EadwulfVisibility x:Key="EadwulfVisibility"></local:EadwulfVisibility>
+        <local:EadwulfVisibility x:Key="EadwulfVisibility" />
     </UserControl.Resources>
     <Grid>
         <TextBox x:Name="Eadwulf" Margin="10,10,100,10" Background="Transparent" IsReadOnly="True"
-                 Text="{x:Bind Text,Mode=TwoWay}"
-                AcceptsReturn="True" TextWrapping="Wrap"
-                LostFocus="UIElement_OnLostFocus"></TextBox>
+                 Text="{x:Bind Text,Mode=TwoWay}" PlaceholderText="请输入博客必须包含的关键字，多个关键字使用,分割"
+                 AcceptsReturn="True" TextWrapping="Wrap"
+                 LostFocus="UIElement_OnLostFocus" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="Button" Content="编辑"
                  Visibility="{x:Bind Eadwulf.IsReadOnly,Mode=OneWay,Converter={StaticResource EadwulfVisibility}}"
-                 Click="ButtonBase_OnClick"></Button>
-            <Button Content="删除" Click="Carsen_OnClick"></Button>
+                 Click="ButtonBase_OnClick" />
+            <Button Content="删除" Click="Carsen_OnClick" />
         </StackPanel>
     </Grid>
 </UserControl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -24,14 +14,13 @@ namespace Boleslav.View
             InitializeComponent();
         }
 
-        protected override void OnGotFocus(RoutedEventArgs e)
+        public string Text
         {
-            base.OnGotFocus(e);
-            //Eadwulf.IsReadOnly = false;
-            //Eadwulf.Focus(FocusState.Programmatic);
+            get { return (string) GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
         }
 
-
+        public event EventHandler<string> Carsen;
 
         private void UIElement_OnLostFocus(object sender, RoutedEventArgs e)
         {
@@ -48,21 +37,13 @@ namespace Boleslav.View
             Eadwulf.Focus(FocusState.Programmatic);
         }
 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-            "Text", typeof(string), typeof(KaranPage), new PropertyMetadata(default(string)));
-
-        public string Text
-        {
-            get { return (string) GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
-
         private void Carsen_OnClick(object sender, RoutedEventArgs e)
         {
             Carsen?.Invoke(this, Text);
         }
 
-        public event EventHandler<string> Carsen;
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
+            "Text", typeof(string), typeof(KaranPage), new PropertyMetadata(default(string)));
     }
 
     public class EadwulfVisibility : IValueConverter

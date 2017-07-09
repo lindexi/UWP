@@ -78,6 +78,6 @@
             </PivotItem>
         </Pivot>
         <!--<ProgressRing x:Name="ProgressRing" Width="100" Height="100" IsActive="True"></ProgressRing>-->
-
+        <TextBlock x:Name="TextBlock" Margin="10,10,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
     </Grid>
 </Page>

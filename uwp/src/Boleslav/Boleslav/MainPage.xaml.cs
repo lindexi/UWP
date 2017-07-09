@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.Web.Syndication;
 using Newtonsoft.Json;
@@ -121,6 +122,21 @@ namespace Boleslav
             }
 
             button.IsEnabled = true;
+
+            TextBlock.Visibility = Visibility.Visible;
+            TextBlock.Opacity = 1;
+            TextBlock.Text = "获得文章" + Caleb.Count;
+            Storyboard storyboard = new Storyboard();
+            var animation = new DoubleAnimation { From = 1, To = 0, Duration = new Duration(TimeSpan.FromSeconds(5)) };
+            Storyboard.SetTarget(animation, TextBlock);
+            Storyboard.SetTargetProperty(animation, "Opacity");
+            storyboard.Children.Add(animation);
+            storyboard.Completed += (s, _) =>
+            {
+                TextBlock.Visibility = Visibility.Collapsed;
+            };
+            storyboard.Begin();
+
         }
 
         /// <summary>
@@ -135,8 +151,8 @@ namespace Boleslav
         private bool KaranGodafrid(Caleb caleb)
         {
             //如果存在标题或描述 关键词，那么返回true
-            return Shripati.Where(str=>!string.IsNullOrEmpty(str.Eadwulf)).Select(str => str.Eadwulf.Split(',')).Any(str =>
-                str.Where(temp => !string.IsNullOrEmpty(temp)).All(temp => caleb.Eadwulf.Contains(temp) || caleb.Celso.Contains(temp)));
+            return Shripati.Where(str => !string.IsNullOrEmpty(str.Eadwulf)).Select(str => str.Eadwulf.Split(',')).Any(str =>
+                  str.Where(temp => !string.IsNullOrEmpty(temp)).All(temp => caleb.Eadwulf.Contains(temp) || caleb.Celso.Contains(temp)));
         }
 
 

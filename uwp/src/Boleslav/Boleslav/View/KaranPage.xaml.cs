@@ -21,8 +21,17 @@ namespace Boleslav.View
     {
         public KaranPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
+
+        protected override void OnGotFocus(RoutedEventArgs e)
+        {
+            base.OnGotFocus(e);
+            //Eadwulf.IsReadOnly = false;
+            //Eadwulf.Focus(FocusState.Programmatic);
+        }
+
+      
 
         private void UIElement_OnLostFocus(object sender, RoutedEventArgs e)
         {
@@ -58,7 +67,7 @@ namespace Boleslav.View
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

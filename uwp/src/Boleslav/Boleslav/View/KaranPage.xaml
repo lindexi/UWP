@@ -9,10 +9,10 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
+    <UserControl.Resources>
+        <local:EadwulfVisibility x:Key="EadwulfVisibility"></local:EadwulfVisibility>
+    </UserControl.Resources>
     <Grid>
-        <Grid.Resources>
-            <local:EadwulfVisibility x:Key="EadwulfVisibility"></local:EadwulfVisibility>
-        </Grid.Resources>
         <TextBox x:Name="Eadwulf" Margin="10,10,100,10" Background="Transparent" IsReadOnly="True"
                  Text="{x:Bind Text,Mode=TwoWay}"
                 AcceptsReturn="True" TextWrapping="Wrap"

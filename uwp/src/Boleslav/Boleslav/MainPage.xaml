@@ -5,47 +5,72 @@
     xmlns:local="using:Boleslav"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="using:Boleslav.View"
+    xmlns:system="using:System"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-       <Pivot>
-          <PivotItem Header="博客">
-              <Grid>
-                  <Grid.RowDefinitions>
-                      <RowDefinition Height="Auto" />
-                      <RowDefinition Height="*" />
-                  </Grid.RowDefinitions>
-                  <Grid>
-                      <Grid.ColumnDefinitions>
-                          <ColumnDefinition></ColumnDefinition>
-                          <ColumnDefinition Width="Auto"></ColumnDefinition>
-                      </Grid.ColumnDefinitions>
-                      <!--<TextBox Name="Value" Margin="20" Text="http://blog.csdn.net/lindexi_gd/rss/list" VerticalAlignment="Center" />-->
-                      <Button Click="feedClick_Click" Content="Feed" Grid.Column="1"></Button>
-                  </Grid>
-                  <ListView Grid.Row="1" ItemsSource="{x:Bind Caleb}">
-                      <ListView.ItemContainerStyle>
-                          <Style TargetType="ListViewItem">
-                              <Setter Property="HorizontalContentAlignment"
+        <Pivot>
+            <PivotItem Header="博客">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <!--<TextBox Name="Value" Margin="20" Text="http://blog.csdn.net/lindexi_gd/rss/list" VerticalAlignment="Center" />-->
+                        <Button Click="feedClick_Click" Content="Feed" Grid.Column="1"></Button>
+                    </Grid>
+                    <ListView Grid.Row="1" ItemsSource="{x:Bind Caleb}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment"
                                       Value="Stretch"></Setter>
-                          </Style>
-                      </ListView.ItemContainerStyle>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
-                          <DataTemplate x:DataType="local:Caleb">
-                              <Grid Margin="10,10,10,10">
-                                  <StackPanel>
-                                      <TextBlock Text="{x:Bind Eadwulf}"></TextBlock>
-                                      <TextBlock Text="{x:Bind Zbignev}"></TextBlock>
-                                      <TextBlock Text="{x:Bind Witek}"></TextBlock>
-                                  </StackPanel>
-                              </Grid>
-                          </DataTemplate>
-                      </ListView.ItemTemplate>
-                  </ListView>
-              </Grid>
+                            <DataTemplate x:DataType="local:Caleb">
+                                <Grid Margin="10,10,10,10">
+                                    <StackPanel>
+                                        <TextBlock Text="{x:Bind Eadwulf}"></TextBlock>
+                                        <TextBlock Text="{x:Bind Zbignev}"></TextBlock>
+                                        <TextBlock Text="{x:Bind Witek}"></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </PivotItem>
-       </Pivot>
-        
-       
+            <PivotItem Header="设置">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="545*"/>
+                        <RowDefinition Height="47*"/>
+                    </Grid.RowDefinitions>
+                    <ListView ItemsSource="{x:Bind Shripati}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment"
+                                      Value="Stretch"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate >
+                                <Grid>
+                                    <view:KaranPage Text="{Binding Mode=TwoWay}"></view:KaranPage>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </PivotItem>
+        </Pivot>
+
+
     </Grid>
 </Page>

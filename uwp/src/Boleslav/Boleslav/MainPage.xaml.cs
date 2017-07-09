@@ -34,7 +34,7 @@ namespace Boleslav
 
         public ObservableCollection<Caleb> Caleb { get; set; } = new ObservableCollection<Caleb>();
 
-        private List<Uri> Godafrid { set; get; }=new List<Uri>()
+        private List<Uri> Godafrid { set; get; } = new List<Uri>()
         {
             new Uri("http://blog.csdn.net/lindexi_gd/rss/list"),
             new Uri("http://blog.csdn.net/rss.html?type=Home&channel="),
@@ -45,7 +45,12 @@ namespace Boleslav
             new Uri("http://blog.csdn.net/rss.html?type=Home&channel=cloud"),
             new Uri("http://blog.csdn.net/rss.html?type=Home&channel=software"),
             new Uri("http://blog.csdn.net/rss.html?type=Home&channel=other"),
-          
+
+        };
+
+        public ObservableCollection<string> Shripati { get; set; } = new ObservableCollection<string>()
+        {
+            "win10,uwp,windows"
         };
 
         private async void feedClick_Click(object sender, RoutedEventArgs e)

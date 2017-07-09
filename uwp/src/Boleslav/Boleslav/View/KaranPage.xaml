@@ -17,9 +17,11 @@
                  Text="{x:Bind Text,Mode=TwoWay}"
                 AcceptsReturn="True" TextWrapping="Wrap"
                 LostFocus="UIElement_OnLostFocus"></TextBox>
-        <Button x:Name="Button" Content="编辑"
-                HorizontalAlignment="Right"
-                Visibility="{x:Bind Eadwulf.IsReadOnly,Mode=OneWay,Converter={StaticResource EadwulfVisibility}}"
-                Click="ButtonBase_OnClick"></Button>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+         <Button x:Name="Button" Content="编辑"
+                 Visibility="{x:Bind Eadwulf.IsReadOnly,Mode=OneWay,Converter={StaticResource EadwulfVisibility}}"
+                 Click="ButtonBase_OnClick"></Button>
+            <Button Content="删除" Click="Carsen_OnClick"></Button>
+     </StackPanel>
     </Grid>
 </UserControl>

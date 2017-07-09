@@ -65,9 +65,9 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
-                            <DataTemplate >
+                            <DataTemplate x:DataType="local:Shripati">
                                 <Grid>
-                                    <view:KaranPage Text="{Binding Mode=TwoWay}"></view:KaranPage>
+                                    <view:KaranPage Text="{x:Bind Eadwulf,Mode=TwoWay}" Carsen="KaranCarsen"></view:KaranPage>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

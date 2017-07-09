@@ -31,7 +31,7 @@ namespace Boleslav.View
             //Eadwulf.Focus(FocusState.Programmatic);
         }
 
-      
+
 
         private void UIElement_OnLostFocus(object sender, RoutedEventArgs e)
         {
@@ -56,6 +56,13 @@ namespace Boleslav.View
             get { return (string) GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
+
+        private void Carsen_OnClick(object sender, RoutedEventArgs e)
+        {
+            Carsen?.Invoke(this, Text);
+        }
+
+        public event EventHandler<string> Carsen;
     }
 
     public class EadwulfVisibility : IValueConverter

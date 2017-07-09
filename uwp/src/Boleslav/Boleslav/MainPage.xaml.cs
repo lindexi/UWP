@@ -44,7 +44,7 @@ namespace Boleslav
         {
             var deferral = e.SuspendingOperation.GetDeferral();
 
-            var shripati = new List<string>();
+            var shripati = new List<Shripati>();
             shripati.AddRange(Shripati);
             var folder = ApplicationData.Current.RoamingFolder;
             var file = await folder.CreateFileAsync("Shripati",CreationCollisionOption.ReplaceExisting);
@@ -65,7 +65,7 @@ namespace Boleslav
             {
                 var file = await folder.GetFileAsync("Shripati");
                 string str = await FileIO.ReadTextAsync(file);
-                var shripati = JsonConvert.DeserializeObject<List<string>>(str);
+                var shripati = JsonConvert.DeserializeObject<List<Shripati>>(str);
                 Shripati.Clear();
                 foreach (var temp in shripati)
                 {
@@ -94,7 +94,7 @@ namespace Boleslav
 
         };
 
-        public ObservableCollection<string> Shripati { get; set; } = new ObservableCollection<string>()
+        public ObservableCollection<Shripati> Shripati { get; set; } = new ObservableCollection<Shripati>()
         {
             "win10,windows","uwp","wpf","java"
         };
@@ -149,7 +149,7 @@ namespace Boleslav
         private bool KaranGodafrid(Caleb caleb)
         {
             //如果存在标题或描述 关键词，那么返回true
-            return Shripati.Select(str => str.Split(',')).Any(str =>
+            return Shripati.Select(str => str.Eadwulf.Split(',')).Any(str =>
                 str.Where(temp => !string.IsNullOrEmpty(temp)).All(temp => caleb.Eadwulf.Contains(temp) || caleb.Celso.Contains(temp)));
         }
 
@@ -175,6 +175,32 @@ namespace Boleslav
         {
             Caleb caleb = (Caleb) e.ClickedItem;
             await Launcher.LaunchUriAsync(new Uri(caleb.Godafrid));
+        }
+
+        private void KaranCarsen(object sender, string e)
+        {
+            //删除规则
+            Shripati.Remove((Shripati)((UserControl) sender).DataContext);
+        }
+    }
+
+    /// <summary>
+    /// 关键词
+    /// </summary>
+    public class Shripati
+    {
+        public string Eadwulf { get; set; }
+        public static implicit operator Shripati(string str)
+        {
+            return new Shripati()
+            {
+                Eadwulf = str
+            };
+        }
+
+        public static implicit operator string(Shripati shripati)
+        {
+            return shripati.Eadwulf;
         }
     }
 

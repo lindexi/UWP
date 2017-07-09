@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Pivot>
+        <Pivot Margin="10,10,10,10">
             <PivotItem Header="博客">
                 <Grid>
                     <Grid.RowDefinitions>

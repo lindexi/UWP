@@ -7,6 +7,9 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -70,6 +73,17 @@ namespace Boleslav
                 }
                 // 确保当前窗口处于活动状态
                 Window.Current.Activate();
+
+                if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                {
+                    var applicationView = ApplicationView.GetForCurrentView();
+                    applicationView.SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                    var statusbar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                    statusbar.BackgroundColor = Colors.Beige;
+                    statusbar.BackgroundOpacity = 0.2;
+                    statusbar.ForegroundColor = Colors.Black;
+
+                }
             }
         }
 

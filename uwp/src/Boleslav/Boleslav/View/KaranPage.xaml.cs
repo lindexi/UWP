@@ -24,7 +24,7 @@ namespace Boleslav.View
 
         private void UIElement_OnLostFocus(object sender, RoutedEventArgs e)
         {
-            Eadwulf.IsReadOnly = true;
+            //Eadwulf.IsReadOnly = true;
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

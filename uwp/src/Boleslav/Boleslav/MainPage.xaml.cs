@@ -120,7 +120,7 @@ namespace Boleslav
                     Caleb.Add(c);
                 }
             }
-
+            KaranGodafrid(Caleb);
             button.IsEnabled = true;
 
             TextBlock.Visibility = Visibility.Visible;
@@ -137,6 +137,22 @@ namespace Boleslav
             };
             storyboard.Begin();
 
+        }
+
+        private void KaranGodafrid(ObservableCollection<Caleb> caleb)
+        {
+            //去除重复
+            for (int i = 0; i < caleb.Count; i++)
+            {
+                for (int j = i + 1; j < caleb.Count; j++)
+                {
+                    if (caleb[i].Godafrid == caleb[j].Godafrid)
+                    {
+                        caleb.RemoveAt(j);
+                        j--;
+                    }
+                }
+            }
         }
 
         /// <summary>

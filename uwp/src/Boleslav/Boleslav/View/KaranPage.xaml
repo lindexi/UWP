@@ -13,14 +13,14 @@
         <local:EadwulfVisibility x:Key="EadwulfVisibility" />
     </UserControl.Resources>
     <Grid>
-        <TextBox x:Name="Eadwulf" Margin="10,10,100,10" Background="Transparent" IsReadOnly="True"
+        <TextBox x:Name="Eadwulf" Margin="10,10,100,10" Background="Transparent"
                  Text="{x:Bind Text,Mode=TwoWay}" PlaceholderText="请输入博客必须包含的关键字，多个关键字使用,分割"
                  AcceptsReturn="True" TextWrapping="Wrap"
                  LostFocus="UIElement_OnLostFocus" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="Button" Content="编辑"
+            <!--<Button x:Name="Button" Content="编辑"
                  Visibility="{x:Bind Eadwulf.IsReadOnly,Mode=OneWay,Converter={StaticResource EadwulfVisibility}}"
-                 Click="ButtonBase_OnClick" />
+                 Click="ButtonBase_OnClick" />-->
             <Button Content="删除" Click="Carsen_OnClick" />
         </StackPanel>
     </Grid>

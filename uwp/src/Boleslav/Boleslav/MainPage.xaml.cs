@@ -112,29 +112,6 @@ namespace Boleslav
                     Caleb.Add(c);
                 }
             }
-
-
-            //XmlDocument doc = new XmlDocument();
-            //doc.LoadXml(await client.GetStringAsync(new Uri(url)));
-
-
-            //var Cathaoir = doc.ChildNodes[2];
-            //foreach (XmlElement temp in Cathaoir.FirstChild)
-            //{
-
-            //}
-
-            //SyndicationClient client = new SyndicationClient();
-            //SyndicationFeed feed = await client.RetrieveFeedAsync(new Uri(url));
-            //if (feed != null)
-            //{
-            //    foreach (SyndicationItem item in feed.Items)
-            //    {
-            //        Display.Items.Add(item);
-            //    }
-            //}
-
-
         }
 
         /// <summary>

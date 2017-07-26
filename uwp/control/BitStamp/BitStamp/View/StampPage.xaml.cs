@@ -82,6 +82,7 @@ namespace BitStamp.View
             pick.FileTypeFilter.Add(".png");
             pick.FileTypeFilter.Add(".gif");
             BitmapImage bitmap = new BitmapImage();
+            View.Visibility = Visibility.Visible;
             StorageFile file = await pick.PickSingleFileAsync();
             if (file == null)
             {
@@ -94,6 +95,7 @@ namespace BitStamp.View
             image.Source = bitmap;
             View.Image = bitmap;
 
+            View.Visibility = Visibility.Collapsed;
             File = file;
             _upload = true;
         }
@@ -113,6 +115,13 @@ namespace BitStamp.View
             }
             else
             {
+                var str = View.Account.Account.Str;
+
+                if (!ToggleSwitch.IsOn)
+                {
+                    View.Account.Account.Str = "";
+                }
+
                 DateTime time = DateTime.Now;
                 string name = _name + time.Year + time.Month + time.Day + time.Hour + time.Minute + time.Second;
 
@@ -143,8 +152,11 @@ namespace BitStamp.View
                 {
                     View.Address = "没有选择图片";
                 }
+
+                View.Account.Account.Str = str;
             }
 
+           
             await View.Jcloud(() =>
             {
                 if (_visibility)
@@ -284,18 +296,8 @@ namespace BitStamp.View
             var str = pivot?.Header.ToString();
             _pivot = str;
         }
+        
 
-        //}
-
-        //    string str = e.ErrorMessage;
-        //{
-
-        //private void AdControl_OnErrorOccurred(object sender, AdErrorEventArgs e)
-
-        //}
-        //{
-
-        //private void AdControl_OnAdRefreshed(object sender, RoutedEventArgs e)
     }
 
 

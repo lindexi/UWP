@@ -28,16 +28,19 @@
                         </Style>
                     </FrameworkElement.Resources>
                     <StackPanel Orientation="Horizontal">
+                        <Image Source="ms-appx:///Assets/天.png" Height="20" Width="20"></Image>
                         <TextBlock Text="天数"></TextBlock>
                         <TextBlock Text="{x:Bind View.PinkieDuchesneGeraldo,Mode=OneWay}"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
+                        <Image Source="ms-appx:///Assets/仓库.png" Height="20" Width="20"></Image>
                         <TextBlock Text="仓库容量"></TextBlock>
                         <TextBlock Text="{x:Bind View.JwStorage.Transit,Mode=OneWay}"/>
                         <TextBlock Text="/"></TextBlock>
                         <TextBlock Text="{x:Bind View.JwStorage.TransitStorage,Mode=OneWay}"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="$" Foreground="#FFFFA010"></TextBlock>
                         <TextBlock Text="金钱"></TextBlock>
                         <TextBlock Text="{x:Bind View.JwStorage.TranStoragePrice,Mode=OneWay}"></TextBlock>
                     </StackPanel>

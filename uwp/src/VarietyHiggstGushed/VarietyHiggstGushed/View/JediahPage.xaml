@@ -1,0 +1,79 @@
+﻿<UserControl
+    x:Class="VarietyHiggstGushed.View.JediahPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VarietyHiggstGushed.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <local:DoubleConvert x:Name="Convert"></local:DoubleConvert>
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="100*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.Name}"></TextBlock>
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="ms-appx:///Assets/仓库.png" Height="20" Width="20"></Image>
+                    <TextBlock Text="仓库拥有:"></TextBlock>
+                    <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.Num}"></TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="2">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="$"></TextBlock>
+                    <TextBlock Text="买入价格"></TextBlock>
+                    <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.AshliLyverGeraldo}"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <TextBlock Text="$"></TextBlock>
+                    <TextBlock Text="市场价格"></TextBlock>
+                    <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.Price}"></TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="74*"/>
+                    <RowDefinition Height="85*"/>
+                </Grid.RowDefinitions>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="307*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider Margin="10,10,10,10" Value="{x:Bind NewLansheehyBrunaSharonNum,Mode=TwoWay,Converter={StaticResource ResourceKey=Convert}}" Maximum="{x:Bind NewLansheehyBrunaSharon}">
+                    </Slider>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Button Content="max" Click="MnewBruna"></Button>
+                        <Button Content="买入" Click="NewLansheehy"></Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="59*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Slider Margin="10,10,10,10" Value="{x:Bind AimeeLansheehyBrunaSharonNum,Mode=TwoWay,Converter={StaticResource Convert}}"  Maximum="{x:Bind AimeeLansheehyBrunaSharon}" >
+                       
+                    </Slider>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Button Content="max" Click="MaimeeBruna"></Button>
+                        <Button Content="卖出" Click="AimeeLansheehy"></Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

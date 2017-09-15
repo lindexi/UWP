@@ -53,7 +53,9 @@
                 </Grid.RowDefinitions>
 
                 <ListView Grid.Row="1" ItemsSource="{x:Bind View.PropertyStorage}"
-                          SelectedItem="{Binding CarloPiperIsaacProperty,Mode=TwoWay}">
+                          IsItemClickEnabled="True"
+                          SelectedItem="{Binding CarloPiperIsaacProperty,Mode=TwoWay}"
+                          ItemClick="ListView_OnItemClick">
                     <FrameworkElement.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Center"></Setter>

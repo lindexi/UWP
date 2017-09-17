@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Storage;
 using Windows.UI.Core;
+using Newtonsoft.Json;
 using VarietyHiggstGushed.Model;
 
 namespace VarietyHiggstGushed.ViewModel
@@ -24,8 +26,14 @@ namespace VarietyHiggstGushed.ViewModel
             get;
         }
 
+        ///// <summary>
+        ///// 第一次使用
+        ///// </summary>
+        //public bool TtjeqbikiFbr { get; set; } = true;
+
         public async Task Read()
         {
+            //如果重新开始
             JwStorage.TranStoragePrice = 100;
             JwStorage.TransitStorage = 100;
 
@@ -49,6 +57,34 @@ namespace VarietyHiggstGushed.ViewModel
                                    JwStorage.PropertyStorage.Add(temp);
                                }
                            });
+        }
+
+        public async Task<bool> ReadJwStorage()
+        {
+            //读取存档
+            string str = "JwStorage";
+
+            StorageFolder folder = ApplicationData.Current.RoamingFolder;
+            try
+            {
+                StorageFile file = await folder.GetFileAsync(str);
+                str = await FileIO.ReadTextAsync(file);
+                JwStorage = JsonConvert.DeserializeObject<JwStorage>(str);
+            }
+            catch (FileNotFoundException )
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public async Task Storage()
+        {
+            string str = "JwStorage";
+            StorageFolder folder = ApplicationData.Current.RoamingFolder;
+            StorageFile file = await folder.CreateFileAsync(str, CreationCollisionOption.ReplaceExisting);
+            str = JsonConvert.SerializeObject(JwStorage);
+            await FileIO.WriteTextAsync(file, str);
         }
 
         public JwStorage JwStorage { get; set; } = new JwStorage();

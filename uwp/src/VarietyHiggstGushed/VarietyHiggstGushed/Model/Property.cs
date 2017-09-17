@@ -16,6 +16,11 @@ namespace VarietyHiggstGushed.Model
         private string _name;
         private double _ashliLyverGeraldo;
 
+        public Property()
+        {
+
+        }
+
         public Property(string name, double value)
         {
             Name = name;

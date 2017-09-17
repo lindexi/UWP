@@ -111,6 +111,9 @@
     <Compile Include="ViewModel\AccountGoverment.cs" />
     <Compile Include="ViewModel\NotifyProperty.cs" />
     <Compile Include="ViewModel\StorageModel.cs" />
+    <Compile Include="View\BpyaxxjwkQwknemobzPage.xaml.cs">
+      <DependentUpon>BpyaxxjwkQwknemobzPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\JediahPage.xaml.cs">
       <DependentUpon>JediahPage.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\BpyaxxjwkQwknemobzPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\JediahPage.xaml">
       <SubType>Designer</SubType>

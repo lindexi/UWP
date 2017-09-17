@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -55,7 +56,24 @@ namespace VarietyHiggstGushed.View
 
         private async void YxbrbfgEakhybi_OnClick(object sender, RoutedEventArgs e)
         {
-                await new MessageDialog("开源游戏 https://github.com/lindexi/UWP/tree/master/uwp/src/VarietyHiggstGushed", "关于").ShowAsync();
+            await new MessageDialog("开源游戏 https://github.com/lindexi/UWP/tree/master/uwp/src/VarietyHiggstGushed", "关于")
+            {
+                Options = MessageDialogOptions.None,
+                CancelCommandIndex = 1,
+                Commands =
+                {
+                    new UICommand("打开链接")
+                    {
+                        Invoked = async command =>
+                        {
+                            await Launcher.LaunchUriAsync(new Uri(
+                                "https://github.com/lindexi/UWP/tree/master/uwp/src/VarietyHiggstGushed"));
+                        }
+                    },
+                    new UICommand("关闭")
+                }
+            }.ShowAsync();
+            
         }
     }
 }

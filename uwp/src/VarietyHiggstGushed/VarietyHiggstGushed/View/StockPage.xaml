@@ -105,6 +105,10 @@
             </Grid>
             <Grid Grid.Row="2" Margin="10,10,10,10">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -117,7 +121,14 @@
                     <Button Content="卖出" Click="{x:Bind View.AimeeLansheehyBrunaSharon}"></Button>
                     <Button Content="买仓库" Click="{x:Bind View.NewTransit}"></Button>
                     <Button Content="收摊" Click="{x:Bind View.MerilynPinkieDuchesneGeraldo}"></Button>
-                </StackPanel>
+                </StackPanel>-->
+                <FrameworkElement.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                    </Style>
+                </FrameworkElement.Resources>
+                <Button Margin="10,10,10,10" Content="买仓库" Click="{x:Bind View.NewTransit}"></Button>
+                <Button Margin="10,10,10,10" Grid.Column="1" Content="收摊" Click="{x:Bind View.MerilynPinkieDuchesneGeraldo}"></Button>
             </Grid>
         </Grid>
 

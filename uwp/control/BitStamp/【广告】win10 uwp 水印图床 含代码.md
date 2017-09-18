@@ -77,7 +77,7 @@
 
 ![](http://7xqpl8.com1.z0.glb.clouddn.com/34fdad35-5dfe-a75b-2b4b-8c5e313038e2%2F20179188592.jpg)
 
-复制域名到图床的域名里
+复制域名到图床的域名里，如果需要开启 https ，那么自动把域名修改为 https 开始就好了
 
 ![](http://7xqpl8.com1.z0.glb.clouddn.com/34fdad35-5dfe-a75b-2b4b-8c5e313038e2%2F201791885953.jpg)
 

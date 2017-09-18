@@ -51,6 +51,39 @@
 
 有合作开发的小朋友，联系[lindexi_gd@163.com](mailto:lindexi_gd@163.com)
 
+## 设置自己的骑牛云
+
+如果希望自己开启 https 的小伙伴，可以自己去申请一个云，并且充值，这样可以开启 https ，首先打开空间，点击绑定域名
+
+![](http://7xqpl8.com1.z0.glb.clouddn.com/34fdad35-5dfe-a75b-2b4b-8c5e313038e2%2F201791885531.jpg)
+
+然后选择https就好了
+
+![](http://7xqpl8.com1.z0.glb.clouddn.com/34fdad35-5dfe-a75b-2b4b-8c5e313038e2%2F201791885627.jpg)
+
+接着选择秘钥管理
+
+![](http://7xqpl8.com1.z0.glb.clouddn.com/34fdad35-5dfe-a75b-2b4b-8c5e313038e2%2F20179188572.jpg)
+
+复制 AK 和 SK
+
+![](http://7xqpl8.com1.z0.glb.clouddn.com/34fdad35-5dfe-a75b-2b4b-8c5e313038e2%2F201791885728.jpg)
+
+把复制的内容，放在图床设置对应位置
+
+![](http://7xqpl8.com1.z0.glb.clouddn.com/34fdad35-5dfe-a75b-2b4b-8c5e313038e2%2F201791885816.jpg)
+
+返回对象存储页面，找到空间名，同样放在图床的 Bucket 里
+
+![](http://7xqpl8.com1.z0.glb.clouddn.com/34fdad35-5dfe-a75b-2b4b-8c5e313038e2%2F20179188592.jpg)
+
+复制域名到图床的域名里
+
+![](http://7xqpl8.com1.z0.glb.clouddn.com/34fdad35-5dfe-a75b-2b4b-8c5e313038e2%2F201791885953.jpg)
+
+图床的前缀就是表示自己在图床上传的文件都加的前缀，一般写一个 GUID 就好，不写关系也不大
+
+这样就可以使用图床上传图片到自己的，而不是默认我的了。
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。欢迎转载、使用、重新发布，但务必保留文章署名[林德熙](http://blog.csdn.net/lindexi_gd)(包含链接:http://blog.csdn.net/lindexi_gd )，不得用于商业目的，基于本文修改后的作品务必以相同的许可发布。如有任何疑问，请与我[联系](mailto:lindexi_gd@163.com)。
 

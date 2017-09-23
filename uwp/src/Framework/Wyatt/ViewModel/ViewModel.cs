@@ -7,7 +7,6 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows;
 using Windows.Storage;
-using Newtonsoft.Json;
 #if WINDOWS_UWP
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -46,96 +45,96 @@ namespace lindexi.uwp.Framework.ViewModel
     }
 
 
-    public static class AccountGoverment
-    {
-        public static async Task Read()
-        {
-            //反射获得程序集内所有的 account
-            List<Type> account = new List<Type>();
+    //public static class AccountGoverment
+    //{
+    //    public static async Task Read()
+    //    {
+    //        //反射获得程序集内所有的 account
+    //        List<Type> account = new List<Type>();
 
-            //是否继承自己读写
-            foreach (var temp in account)
-            {
-                _accounts[temp] = await Read(temp);
-            }
-        }
+    //        //是否继承自己读写
+    //        foreach (var temp in account)
+    //        {
+    //            _accounts[temp] = await Read(temp);
+    //        }
+    //    }
 
-        private static async Task<Account> Read(Type type)
-        {
-            var account = (Account) type.GetConstructor(Type.EmptyTypes).Invoke(null);
-            if (Folder == null)
-            {
-                var folder = ApplicationData.Current.RoamingFolder;
-                string str = "account";
-                try
-                {
-                    folder = await folder.GetFolderAsync(str);
-                    Folder = folder;
-                }
-                catch (FileNotFoundException e)
-                {
-                    //Console.WriteLine(e);
-                }
-            }
+    //    private static async Task<Account> Read(Type type)
+    //    {
+    //        var account = (Account) type.GetConstructor(Type.EmptyTypes).Invoke(null);
+    //        if (Folder == null)
+    //        {
+    //            var folder = ApplicationData.Current.RoamingFolder;
+    //            string str = "account";
+    //            try
+    //            {
+    //                folder = await folder.GetFolderAsync(str);
+    //                Folder = folder;
+    //            }
+    //            catch (FileNotFoundException e)
+    //            {
+    //                //Console.WriteLine(e);
+    //            }
+    //        }
 
-            if (Folder != null)
-            {
-                if (account is IAccount temp)
-                {
-                    await temp.Read(Folder);
-                    return account;
-                }
-                else
-                {
-                    var str = type.Name;
-                    try
-                    {
-                        var file = await Folder.GetFileAsync(str);
-                        str = await FileIO.ReadTextAsync(file);
-                        account = (Account) JsonConvert.DeserializeObject(str, type);
-                        return account;
-                    }
-                    catch (FileNotFoundException e)
-                    {
-                        Console.WriteLine(e);
-                    }
-                }
-            }
+    //        if (Folder != null)
+    //        {
+    //            if (account is IAccount temp)
+    //            {
+    //                await temp.Read(Folder);
+    //                return account;
+    //            }
+    //            else
+    //            {
+    //                var str = type.Name;
+    //                try
+    //                {
+    //                    var file = await Folder.GetFileAsync(str);
+    //                    str = await FileIO.ReadTextAsync(file);
+    //                    account = (Account) JsonConvert.DeserializeObject(str, type);
+    //                    return account;
+    //                }
+    //                catch (FileNotFoundException e)
+    //                {
+    //                    Console.WriteLine(e);
+    //                }
+    //            }
+    //        }
 
-            return account;
-        }
+    //        return account;
+    //    }
 
-        /// <summary>
-        /// 获取文件夹
-        /// </summary>
-        /// <returns></returns>
-        private static async Task<StorageFolder> AccountFolder()
-        {
-            var folder = ApplicationData.Current.RoamingFolder;
-            string str = "account";
-            try
-            {
-                folder = await folder.GetFolderAsync(str);
-                return folder;
-            }
-            catch (FileNotFoundException e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-        }
+    //    /// <summary>
+    //    /// 获取文件夹
+    //    /// </summary>
+    //    /// <returns></returns>
+    //    private static async Task<StorageFolder> AccountFolder()
+    //    {
+    //        var folder = ApplicationData.Current.RoamingFolder;
+    //        string str = "account";
+    //        try
+    //        {
+    //            folder = await folder.GetFolderAsync(str);
+    //            return folder;
+    //        }
+    //        catch (FileNotFoundException e)
+    //        {
+    //            Console.WriteLine(e);
+    //            return null;
+    //        }
+    //    }
 
-        private static StorageFolder Folder { get; set; }
+    //    private static StorageFolder Folder { get; set; }
 
-        public static void Storage()
-        {
+    //    public static void Storage()
+    //    {
 
-        }
+    //    }
 
 
 
-        private static Dictionary<Type, Account> _accounts = new Dictionary<Type, Account>();
-    }
+    //    private static Dictionary<Type, Account> _accounts = new Dictionary<Type, Account>();
+    //}
 
 
     [ViewModel]
@@ -165,6 +164,7 @@ namespace lindexi.uwp.Framework.ViewModel
     {
         public LinModel()
         {
+            
         }
 
         public override void OnNavigatedFrom(object sender, object obj)

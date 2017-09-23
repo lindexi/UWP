@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>lindexi.uwp.Framework</id>
+
+    <version>1.0.15251</version>
+
+    <title>lindexi.uwp.Framework</title>
+
+    <authors>林德熙</authors>
+
+    <owners>林德熙</owners>
+
+    <licenseUrl>https://github.com/lindexi/UWP/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</projectUrl>
+    <iconUrl>https://avatars2.githubusercontent.com/u/16054566</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>MVVM </description>
+    <releaseNotes>MVVM</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>UWP </tags>
+    <dependencies>
+      <dependency id="System.ValueTuple" version="[1.0,)" />
+    </dependencies>
+  </metadata>
+  <files>
+        <!-- WinMd and IntelliSense files -->
+        <file src=".\wyatt\bin\Debug\Wyatt.XML" target="lib\uap10.0"/>
+
+         <file src=".\wyatt\bin\ARM\Debug\ImageEnhancer\ImageEnhancer.dll" target="runtimes\win10-arm\native"/>
+        <file src=".\wyatt\bin\ARM\Debug\ImageEnhancer\ImageEnhancer.pri" target="runtimes\win10-arm\native"/>
+
+        <file src=".\wyatt\bin\x64\Debug\ImageEnhancer\ImageEnhancer.dll" target="runtimes\win10-x64\native"/>
+        <file src=".\wyatt\bin\x64\Debug\ImageEnhancer\ImageEnhancer.pri" target="runtimes\win10-x64\native"/>
+
+        <file src=".\wyatt\bin\Debug\ImageEnhancer\ImageEnhancer.dll" target="runtimes\win10-x86\native"/>
+        <file src=".\wyatt\bin\Debug\ImageEnhancer\ImageEnhancer.pri" target="runtimes\win10-x86\native"/>
+    </files>
+</package>

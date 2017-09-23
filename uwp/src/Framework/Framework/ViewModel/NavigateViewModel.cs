@@ -128,12 +128,12 @@ namespace lindexi.uwp.Framework.ViewModel
         //当前ViewModel
         private (ViewModelBase viewModel, Frame frame)? _viewModel;
 
+#if wpf
         /// <summary>
         ///     自动组合
         /// </summary>
         protected void CombineViewModel()
         {
-#if wpf
             Assembly assembly = Assembly.GetCallingAssembly();
             if (ViewModel == null)
             {
@@ -158,15 +158,16 @@ namespace lindexi.uwp.Framework.ViewModel
                 }
             }
 
-#endif
         }
+#endif
 
+#if wpf 
         /// <summary>
         ///     获取所有的处理
         /// </summary>
         protected void AllAssemblyComposite()
         {
-#if wpf
+
             Assembly assembly = Assembly.GetCallingAssembly();
             foreach (
                 var temp in
@@ -180,8 +181,8 @@ namespace lindexi.uwp.Framework.ViewModel
             {
                 Composite.Add(temp.Assembly.CreateInstance(temp.FullName) as Composite);
             }
-#endif
         }
+#endif
 
         /// <summary>
         ///     跳转到页面

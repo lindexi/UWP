@@ -41,6 +41,46 @@ namespace lindexi.uwp.Framework.ViewModel
         }
     }
 
+    public class CombinationComposite<T> : Composite, IMessage, ICombinationComposite
+        where T : IViewModel
+    {
+        protected Action<T> _run;
+
+        public CombinationComposite(ViewModelBase source)
+        {
+            ((IMessage) this).Source = source;
+            Goal = new PredicateInheritViewModel(typeof(T));
+        }
+
+        public CombinationComposite(Action<T> run, ViewModelBase source) : this(source)
+        {
+            _run = run;
+        }
+
+        public override void Run(IViewModel source, IMessage message)
+        {
+            if (source is T )
+            {
+                _run.Invoke((T) source);
+            }
+        }
+
+        ViewModelBase IMessage.Source { get; set; }
+
+        /// <inheritdoc />
+        public IPredicateViewModel Goal { set; get; }
+
+        /// <inheritdoc />
+        public bool Predicate(ViewModelPage viewModel)
+        {
+            if (Goal == null)
+            {
+                return viewModel.ViewModel is T;
+            }
+            return Goal.Predicate(viewModel);
+        }
+    }
+
     /// <summary>
     ///     ×éºÏ Composite ºÍ Message
     /// </summary>

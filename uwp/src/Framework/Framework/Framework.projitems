@@ -30,7 +30,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PredicateInheritViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PredicateKeyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PredicateViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelPage.cs" />

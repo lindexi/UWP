@@ -74,7 +74,7 @@ namespace lindexi.uwp.Framework.ViewModel
                 }
                 catch (FileNotFoundException e)
                 {
-                    Console.WriteLine(e);
+                    //Console.WriteLine(e);
                 }
             }
 

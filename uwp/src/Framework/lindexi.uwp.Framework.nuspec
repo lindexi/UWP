@@ -27,13 +27,13 @@
         <!-- WinMd and IntelliSense files -->
         <file src=".\wyatt\bin\Debug\Wyatt.XML" target="lib\uap10.0"/>
 
-         <file src=".\wyatt\bin\ARM\Debug\ImageEnhancer\ImageEnhancer.dll" target="runtimes\win10-arm\native"/>
-        <file src=".\wyatt\bin\ARM\Debug\ImageEnhancer\ImageEnhancer.pri" target="runtimes\win10-arm\native"/>
+         <file src=".\wyatt\bin\ARM\Debug\wyatt.dll" target="runtimes\win10-arm\native"/>
+        <file src=".\wyatt\bin\ARM\Debug\wyatt.pri" target="runtimes\win10-arm\native"/>
 
-        <file src=".\wyatt\bin\x64\Debug\ImageEnhancer\ImageEnhancer.dll" target="runtimes\win10-x64\native"/>
-        <file src=".\wyatt\bin\x64\Debug\ImageEnhancer\ImageEnhancer.pri" target="runtimes\win10-x64\native"/>
+        <file src=".\wyatt\bin\x64\Debug\wyatt.dll" target="runtimes\win10-x64\native"/>
+        <file src=".\wyatt\bin\x64\Debug\wyatt.pri" target="runtimes\win10-x64\native"/>
 
-        <file src=".\wyatt\bin\Debug\ImageEnhancer\ImageEnhancer.dll" target="runtimes\win10-x86\native"/>
-        <file src=".\wyatt\bin\Debug\ImageEnhancer\ImageEnhancer.pri" target="runtimes\win10-x86\native"/>
+        <file src=".\wyatt\bin\Debug\wyatt.dll" target="runtimes\win10-x86\native"/>
+        <file src=".\wyatt\bin\Debug\wyatt.pri" target="runtimes\win10-x86\native"/>
     </files>
 </package>

@@ -5,7 +5,7 @@ namespace lindexi.uwp.Framework.ViewModel
     /// <summary>
     /// 处理消息
     /// </summary>
-    public class Composite
+    public class Composite: IComposite
     {
         /// <summary>
         /// 处理什么消息

@@ -1,5 +1,8 @@
 ﻿namespace lindexi.uwp.Framework.ViewModel
 {
+    /// <summary>
+    /// 消息
+    /// </summary>
     public interface IMessage
     {
         ViewModelBase Source { set; get; }

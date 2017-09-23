@@ -98,10 +98,10 @@ namespace lindexi.uwp.Framework.ViewModel
         ///     获取值
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="continueWith"></param>
-        public void GetValue<T>(Action<T> continueWith)
+        /// <param name="continus"></param>
+        public void GetValue<T>(Action<T> continus)
         {
-            ((ISendMessage) this).Send?.Invoke(this, new GetValueCombinationComposite<T>(this, continueWith));
+            ((ISendMessage) this).Send?.Invoke(this, new GetValueCombinationComposite<T>(this, continus));
         }
 
         /// <summary>

@@ -3,7 +3,7 @@
   <metadata>
     <id>lindexi.uwp.Framework</id>
 
-    <version>1.0.15251</version>
+    <version>1.0.15512</version>
 
     <title>lindexi.uwp.Framework</title>
 
@@ -25,15 +25,30 @@
   </metadata>
   <files>
         <!-- WinMd and IntelliSense files -->
-        <file src=".\wyatt\bin\Debug\Wyatt.XML" target="lib\uap10.0"/>
+        <file src=".\wyatt\bin\Debug\Wyatt.XML" target="lib\uap"/>
 
          <file src=".\wyatt\bin\ARM\Debug\wyatt.dll" target="runtimes\win10-arm\native"/>
+         <file src=".\wyatt\bin\ARM\Debug\wyatt.pdb" target="runtimes\win10-arm\native"/>
+        <file src=".\wyatt\bin\ARM\Debug\wyatt.XML" target="runtimes\win10-arm\native"/>
         <file src=".\wyatt\bin\ARM\Debug\wyatt.pri" target="runtimes\win10-arm\native"/>
 
         <file src=".\wyatt\bin\x64\Debug\wyatt.dll" target="runtimes\win10-x64\native"/>
+        <file src=".\wyatt\bin\x64\Debug\wyatt.pdb" target="runtimes\win10-x64\native"/>
+        <file src=".\wyatt\bin\x64\Debug\wyatt.XML" target="runtimes\win10-x64\native"/>
         <file src=".\wyatt\bin\x64\Debug\wyatt.pri" target="runtimes\win10-x64\native"/>
 
-        <file src=".\wyatt\bin\Debug\wyatt.dll" target="runtimes\win10-x86\native"/>
-        <file src=".\wyatt\bin\Debug\wyatt.pri" target="runtimes\win10-x86\native"/>
+        <file src=".\wyatt\bin\x86\Debug\wyatt.dll" target="runtimes\win10-x86\native"/>
+        <file src=".\wyatt\bin\x86\Debug\wyatt.pdb" target="runtimes\win10-x86\native"/>
+        <file src=".\wyatt\bin\x86\Debug\wyatt.XML" target="runtimes\win10-x86\native"/>
+        <file src=".\wyatt\bin\x86\Debug\wyatt.pri" target="runtimes\win10-x86\native"/>
+
+        <file src=".\wyatt\bin\Debug\wyatt.dll" target="ref\uap10.0"/>
+        <file src=".\wyatt\bin\Debug\wyatt.pdb" target="ref\uap10.0"/>
+        <file src=".\wyatt\bin\Debug\wyatt.pri" target="ref\uap10.0"/>
+        <file src=".\wyatt\bin\Debug\wyatt.XML" target="ref\uap10.0"/>
+
+      <!--   <file src="..\wyatt\bin\x86\wyatt.dll" target="runtimes\win10-x86\native"/>
+        <file src="..\wyatt\bin\x86\wyatt.pdb" target="runtimes\win10-x86\native"/>
+        <file src="..\wyatt\bin\x86\wyatt.pri" target="runtimes\win10-x86\native"/> -->
     </files>
 </package>

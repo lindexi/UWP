@@ -104,6 +104,11 @@ namespace VarietyHiggstGushed.View
         {
             AimeeLansheehyBrunaSharonNum = AimeeLansheehyBrunaSharon;
         }
+
+        private void CloseButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close?.Invoke(this, null);
+        }
     }
 
     public class DoubleConvert : IValueConverter

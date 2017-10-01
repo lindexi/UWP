@@ -2,12 +2,13 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using lindexi.uwp.Framework.ViewModel;
 using VarietyHiggstGushed.Annotations;
 using VarietyHiggstGushed.Model;
 
 namespace VarietyHiggstGushed.ViewModel
 {
-    public class StorageModel : INotifyPropertyChanged
+    public class StorageModel : ViewModelBase
     {
         private int _pinkieDuchesneGeraldo = 1;
         private Property _carloPiperIsaacProperty;
@@ -125,6 +126,16 @@ namespace VarietyHiggstGushed.ViewModel
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public override void OnNavigatedFrom(object sender, object obj)
+        {
+            
+        }
+
+        public override void OnNavigatedTo(object sender, object obj)
+        {
+           
         }
     }
 }

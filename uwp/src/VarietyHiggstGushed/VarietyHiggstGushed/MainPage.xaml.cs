@@ -27,14 +27,7 @@ namespace VarietyHiggstGushed
         public MainPage()
         {
             this.InitializeComponent();
-            Read();
-        }
 
-        private async void Read()
-        {
-            await AccountGoverment.JwAccountGoverment.Read();
-            var frame = (Frame)Window.Current.Content;
-            frame.Navigate(typeof(StockPage));
         }
     }
 }

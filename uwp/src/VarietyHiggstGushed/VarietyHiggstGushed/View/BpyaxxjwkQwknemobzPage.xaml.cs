@@ -40,7 +40,7 @@ namespace VarietyHiggstGushed.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var frame = (Frame) Window.Current.Content;
-            frame.Navigate(typeof(StockPage));
+            frame.Navigate(typeof(MainPage));
         }
 
         private async void DxpoihQprdqbip_OnClick(object sender, RoutedEventArgs e)
@@ -51,7 +51,7 @@ namespace VarietyHiggstGushed.View
                 return;
             }
             var frame = (Frame) Window.Current.Content;
-            frame.Navigate(typeof(StockPage));
+            frame.Navigate(typeof(MainPage));
         }
 
         private async void YxbrbfgEakhybi_OnClick(object sender, RoutedEventArgs e)

@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Windows.UI.Xaml.Controls;
 using lindexi.uwp.Framework.ViewModel;
 using lindexi.uwp.Progress.Model;
@@ -14,8 +17,25 @@ namespace lindexi.uwp.Progress.ViewModel
 
         public override void OnNavigatedTo(object sender, object obj)
         {
-            ViewModel = new ObservableCollection<AdaptModel>();
+            ViewModel = new ObservableCollection<AdaptModel>()
+            {
+                new AdaptModel("Marquez",typeof(Marquez))
+            };
 
+            var viewmodel = obj as List<ViewModelPage>;
+            if (viewmodel == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < ViewModel.Count; i++)
+            {
+                if (viewmodel.All(temp => !temp.Equals(ViewModel[i].ViewModel)))
+                {
+                    ViewModel.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         public ObservableCollection<AdaptModel> ViewModel { get; set; }

@@ -105,6 +105,10 @@ namespace lindexi.uwp.Framework.ViewModel
                 }
                 else
                 {
+                    if (viewModel == this)
+                    {
+                        return;
+                    }
                     if (viewModel is IReceiveMessage)
                     {
                         ((IReceiveMessage) viewModel).ReceiveMessage(sender, message);
@@ -214,6 +218,27 @@ namespace lindexi.uwp.Framework.ViewModel
                             temp != typeof(CombinationComposite)))
             {
                 Composite.Add(temp.Assembly.CreateInstance(temp.FullName) as Composite);
+            }
+        }
+#elif WINDOWS_UWP
+        /// <summary>
+        ///     获取所有的处理
+        /// </summary>
+        protected void AllAssemblyComposite(Assembly assembly)
+        {
+
+            foreach (
+                var temp in
+                assembly.DefinedTypes
+                    .Where(
+                        temp => 
+                            temp.IsSubclassOf(typeof(Composite)) &&
+                            !typeof(ICombinationComposite).IsAssignableFrom(temp.AsType()) &&
+                            !temp.IsSubclassOf(typeof(CombinationComposite)) &&
+                            temp.AsType() != typeof(CombinationComposite)))
+            {
+               
+                Composite.Add(temp.AsType().GetConstructor(Type.EmptyTypes).Invoke(null) as Composite);
             }
         }
 #endif

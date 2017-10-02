@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using lindexi.uwp.Framework.ViewModel;
 using VarietyHiggstGushed.Annotations;
@@ -15,9 +16,7 @@ namespace VarietyHiggstGushed.ViewModel
 
         public StorageModel()
         {
-            JwStorage = AccountGoverment.JwAccountGoverment.JwStorage;
-            MerilynPinkieDuchesneGeraldo();
-            PinkieDuchesneGeraldo--;
+
         }
 
         //public AmeriStorage AmeriStorage
@@ -113,7 +112,7 @@ namespace VarietyHiggstGushed.ViewModel
                 }
             }
             //下天
-         
+
 
             PinkieDuchesneGeraldo++;
         }
@@ -123,12 +122,57 @@ namespace VarietyHiggstGushed.ViewModel
 
         public override void OnNavigatedFrom(object sender, object obj)
         {
-            
+
+            FjyhtrOcbhzjwi.Fhnazmoul.RemoveSuccessor(_ajuvqrDqsoljna);
         }
 
         public override void OnNavigatedTo(object sender, object obj)
         {
-           
+            JwStorage = AccountGoverment.JwAccountGoverment.JwStorage;
+            MerilynPinkieDuchesneGeraldo();
+            PinkieDuchesneGeraldo--;
+
+            _ajuvqrDqsoljna = _ajuvqrDqsoljna ?? new AjuvqrDqsoljna(async fjyhtrOcbhzjwi =>
+            {
+                if (fjyhtrOcbhzjwi.Handle)
+                {
+                    return;
+                }
+                await AccountGoverment.JwAccountGoverment.Storage();
+                //返回上一层
+                Send(new BackTvvxwlwIlibbcpMessage(this));
+                fjyhtrOcbhzjwi.Handle = true;
+            });
+            FjyhtrOcbhzjwi.Fhnazmoul.AddSuccessor(_ajuvqrDqsoljna);
+        }
+
+        private AjuvqrDqsoljna _ajuvqrDqsoljna;
+    }
+
+    public class BackTvvxwlwIlibbcpMessage : Message
+    {
+        public BackTvvxwlwIlibbcpMessage(ViewModelBase source) : base(source)
+        {
+            Goal = new PredicateInheritViewModel(typeof(NavigateViewModel));
+        }
+    }
+
+    public class BackTvvxwlwIlibbcpComposite : Composite
+    {
+        public BackTvvxwlwIlibbcpComposite()
+        {
+            Message = typeof(BackTvvxwlwIlibbcpMessage);
+        }
+
+        public override void Run(ViewModelBase source, IMessage message)
+        {
+            var viewModel = (NavigateViewModel) source;
+            var id = viewModel.ViewModel.FirstOrDefault(temp =>
+                temp.Page == viewModel.Content.BackStack.LastOrDefault()?.SourcePageType)?.Key;
+            if (!string.IsNullOrEmpty(id))
+            {
+                viewModel.Navigate(id);
+            }
         }
     }
 }

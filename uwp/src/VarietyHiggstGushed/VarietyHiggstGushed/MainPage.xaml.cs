@@ -84,6 +84,7 @@ namespace VarietyHiggstGushed
                 if (fjyhtrOcbhzjwi.Handle)
                 {
                     _ajuvqrDqsoljnaMkfsjNiydfobt = false;
+                    return;
                 }
                 if (_ajuvqrDqsoljnaMkfsjNiydfobt)
                 {

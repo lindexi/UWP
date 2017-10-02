@@ -77,15 +77,15 @@ namespace VarietyHiggstGushed.Model
             }
             else
             {
-                if (successor.Hnkdqckyr > ((IHandle) this).Successor.Hnkdqckyr)
+                if (successor.Hnkdqckyr < ((IHandle) this).Successor.Hnkdqckyr)
+                {
+                    ((IHandle) this).Successor.AddSuccessor(successor);
+                }
+                else
                 {
                     var temp = ((IHandle) this).Successor;
                     ((IHandle) this).Successor = successor;
                     successor.Successor = temp;
-                }
-                else
-                {
-                    ((IHandle) this).Successor.AddSuccessor(successor);
                 }
             }
         }

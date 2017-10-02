@@ -25,12 +25,10 @@ namespace VarietyHiggstGushed.ViewModel
         public override void OnNavigatedTo(object sender, object obj)
         {
             CombineViewModel(Application.Current.GetType().GetTypeInfo().Assembly);
+            AllAssemblyComposite(Application.Current.GetType().GetTypeInfo().Assembly);
             //先到登陆
             Navigate(typeof(TvrwgrnNnuModel), null);
-
         }
-
-     
     }
 
     public interface ILyfxkdxmSzjd

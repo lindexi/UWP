@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using lindexi.uwp.Framework.ViewModel;
 using VarietyHiggstGushed.Model;
 using VarietyHiggstGushed.ViewModel;
 
@@ -22,13 +23,20 @@ namespace VarietyHiggstGushed.View
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
+    [ViewModel(typeof(StorageModel))]
     public sealed partial class StockPage : Page
     {
         public StockPage()
         {
-            View = new StorageModel();
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            View = (StorageModel) e.Parameter;
             DataContext = View;
+
+            base.OnNavigatedTo(e);
         }
 
         private StorageModel View

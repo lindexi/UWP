@@ -40,23 +40,16 @@ namespace VarietyHiggstGushed.View
             base.OnNavigatedTo(e);
         }
 
-      
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var frame = (Frame) Window.Current.Content;
-            frame.Navigate(typeof(MainPage));
+            ViewModel.AdraqbqhUgtwg();
         }
 
-        private async void DxpoihQprdqbip_OnClick(object sender, RoutedEventArgs e)
+        private void DxpoihQprdqbip_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!await AccountGoverment.JwAccountGoverment.ReadJwStorage())
-            {
-                await new MessageDialog("没有找到存档", "没有存档").ShowAsync();
-                return;
-            }
-            var frame = (Frame) Window.Current.Content;
-            frame.Navigate(typeof(MainPage));
+            ViewModel.DxpoihQprdqbip();
         }
 
         private async void YxbrbfgEakhybi_OnClick(object sender, RoutedEventArgs e)
@@ -78,7 +71,7 @@ namespace VarietyHiggstGushed.View
                     new UICommand("关闭")
                 }
             }.ShowAsync();
-            
+
         }
     }
 }

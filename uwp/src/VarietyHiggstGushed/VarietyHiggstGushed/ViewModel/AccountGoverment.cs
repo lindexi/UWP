@@ -34,8 +34,11 @@ namespace VarietyHiggstGushed.ViewModel
         public async Task Read()
         {
             //如果重新开始
-            JwStorage.TranStoragePrice = 100;
-            JwStorage.TransitStorage = 100;
+            JwStorage = new JwStorage
+            {
+                TranStoragePrice = 100,
+                TransitStorage = 100
+            };
 
             var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(
                 "ms-appx:///PropertyStorage.txt"));

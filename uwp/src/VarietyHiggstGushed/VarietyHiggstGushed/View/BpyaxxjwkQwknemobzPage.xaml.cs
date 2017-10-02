@@ -24,18 +24,23 @@ namespace VarietyHiggstGushed.View
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
+    [lindexi.uwp.Framework.ViewModel.ViewModel(typeof(TvrwgrnNnuModel))]
     public sealed partial class BpyaxxjwkQwknemobzPage : Page
     {
         public BpyaxxjwkQwknemobzPage()
         {
             this.InitializeComponent();
-            Read();
         }
 
-        private async void Read()
+        public TvrwgrnNnuModel ViewModel { get; set; }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await AccountGoverment.JwAccountGoverment.Read();
+            ViewModel = (TvrwgrnNnuModel) e.Parameter;
+            base.OnNavigatedTo(e);
         }
+
+      
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

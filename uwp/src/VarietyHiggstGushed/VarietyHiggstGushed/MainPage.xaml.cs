@@ -26,8 +26,17 @@ namespace VarietyHiggstGushed
     {
         public MainPage()
         {
+            ViewModel = new IckixyYofiModel();
             this.InitializeComponent();
-
+            ViewModel.Content = RuvJruhditrj;
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ViewModel.NavigatedTo(this, e);
+            base.OnNavigatedTo(e);
+        }
+
+        public IckixyYofiModel ViewModel { get; set; }
     }
 }

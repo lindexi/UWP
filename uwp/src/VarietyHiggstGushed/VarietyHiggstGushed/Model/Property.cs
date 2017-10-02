@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,15 @@ using VarietyHiggstGushed.Annotations;
 
 namespace VarietyHiggstGushed.Model
 {
+    /// <summary>
+    /// 用于给商品显示运行包括价格
+    /// </summary>
+    public class WqmnygDcxwptivk : Property
+    {
+       
+
+    }
+
     public class Property : INotifyPropertyChanged
     {
         private int _num;

@@ -1,6 +1,5 @@
 ﻿{
   "dependencies": {
-    "lindexi.uwp.Framework": "1.0.15525",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
     "Newtonsoft.Json": "10.0.3",
     "System.ValueTuple": "4.4.0"

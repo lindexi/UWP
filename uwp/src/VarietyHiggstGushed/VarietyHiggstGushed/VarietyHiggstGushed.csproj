@@ -110,8 +110,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Account.cs" />
     <Compile Include="ViewModel\AccountGoverment.cs" />
+    <Compile Include="ViewModel\IckixyYofiModel.cs" />
     <Compile Include="ViewModel\NotifyProperty.cs" />
     <Compile Include="ViewModel\StorageModel.cs" />
+    <Compile Include="ViewModel\TvrwgrnNnuModel.cs" />
     <Compile Include="View\BpyaxxjwkQwknemobzPage.xaml.cs">
       <DependentUpon>BpyaxxjwkQwknemobzPage.xaml</DependentUpon>
     </Compile>
@@ -201,6 +203,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup />
+  <Import Project="..\..\Framework\Framework\Framework.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

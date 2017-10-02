@@ -9,6 +9,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Frame SourcePageType="view:StockPage"></Frame>
+        <Frame x:Name="RuvJruhditrj"></Frame>
     </Grid>
 </Page>

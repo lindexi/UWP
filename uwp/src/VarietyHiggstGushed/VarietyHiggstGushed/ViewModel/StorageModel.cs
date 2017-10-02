@@ -8,7 +8,7 @@ using VarietyHiggstGushed.Model;
 
 namespace VarietyHiggstGushed.ViewModel
 {
-    public class StorageModel : ViewModelBase
+    public class StorageModel : ViewModelMessage
     {
         private int _pinkieDuchesneGeraldo = 1;
         private Property _carloPiperIsaacProperty;
@@ -105,6 +105,7 @@ namespace VarietyHiggstGushed.ViewModel
             PropertyStorage.Clear();
             foreach (var temp in JwStorage.PropertyStorage)
             {
+                //创建临时价格
                 temp.Price = _random.Next(80, 120) * temp.Value / 100;
                 if (_random.Next(JwStorage.PropertyStorage.Count) < JwStorage.PropertyStorage.Count / 2 - PropertyStorage.Count)
                 {
@@ -119,14 +120,6 @@ namespace VarietyHiggstGushed.ViewModel
 
         private Random _random = new Random();
         private int _lansheehyBrunaSharon;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public override void OnNavigatedFrom(object sender, object obj)
         {

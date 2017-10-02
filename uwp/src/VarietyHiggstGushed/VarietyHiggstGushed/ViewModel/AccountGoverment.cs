@@ -78,7 +78,7 @@ namespace VarietyHiggstGushed.ViewModel
             {
                 return false;
             }
-            return true;
+            return JwStorage != null;
         }
 
         public async Task Storage()

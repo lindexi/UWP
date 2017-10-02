@@ -85,7 +85,11 @@ namespace VarietyHiggstGushed.ViewModel
         public int PinkieDuchesneGeraldo
         {
             get { return _pinkieDuchesneGeraldo; }
-            set { _pinkieDuchesneGeraldo = value; OnPropertyChanged(); }
+            set
+            {
+                _pinkieDuchesneGeraldo = value;
+                OnPropertyChanged();
+            }
         }
 
         public Property CarloPiperIsaacProperty
@@ -138,10 +142,10 @@ namespace VarietyHiggstGushed.ViewModel
                 {
                     return;
                 }
+                fjyhtrOcbhzjwi.Handle = true;
                 await AccountGoverment.JwAccountGoverment.Storage();
                 //返回上一层
                 Send(new BackTvvxwlwIlibbcpMessage(this));
-                fjyhtrOcbhzjwi.Handle = true;
             });
             FjyhtrOcbhzjwi.Fhnazmoul.AddSuccessor(_ajuvqrDqsoljna);
         }

@@ -202,8 +202,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="..\..\Framework\Framework\Framework.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Wyatt\Wyatt.csproj">
+      <Project>{3da93ed3-4a9b-4e82-a9a4-67056df9ff1f}</Project>
+      <Name>Wyatt</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

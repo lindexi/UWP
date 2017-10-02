@@ -104,6 +104,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\AmeriStorage.cs" />
+    <Compile Include="Model\FjyhtrOcbhzjwi.cs" />
     <Compile Include="Model\JwStorage.cs" />
     <Compile Include="Model\Property.cs" />
     <Compile Include="Properties\Annotations.cs" />

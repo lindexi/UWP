@@ -20,6 +20,7 @@ namespace VarietyHiggstGushed.Model
 
     }
 
+
     public class Property : INotifyPropertyChanged
     {
         private int _num;

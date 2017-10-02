@@ -7,6 +7,15 @@ namespace lindexi.uwp.Framework.ViewModel
     /// </summary>
     public class ViewModelAttribute : Attribute
     {
+        public ViewModelAttribute()
+        {
+            
+        }
+
+        public ViewModelAttribute(Type viewModel)
+        {
+            ViewModel = viewModel;
+        }
         /// <summary>
         /// 使用的页面
         /// </summary>

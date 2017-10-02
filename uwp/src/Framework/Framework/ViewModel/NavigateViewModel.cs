@@ -159,9 +159,43 @@ namespace lindexi.uwp.Framework.ViewModel
             }
 
         }
+#elif WINDOWS_UWP
+        
+        /// <summary>
+        ///     自动组合
+        /// </summary>
+        protected void CombineViewModel(Assembly assembly)
+        {
+            if (ViewModel == null)
+            {
+                ViewModel = new List<ViewModelPage>();
+            }
+            ViewModel.Clear();
+
+            foreach (var temp in assembly.DefinedTypes.Where(temp => typeof(IViewModel).IsAssignableFrom(temp.AsType())))
+            {
+                ViewModel.Add(new ViewModelPage(temp.AsType()));
+            }
+
+            foreach (var temp in assembly.DefinedTypes.Where(temp => temp.IsSubclassOf(typeof(Page))))
+            {
+                var p = temp.GetCustomAttribute<ViewModelAttribute>();
+                var viewmodel = ViewModel.FirstOrDefault(t => t.Equals(p?.ViewModel));
+                if (viewmodel != null)
+                {
+                    viewmodel.Page = temp.AsType();
+                }
+            }
+
+            //清理
+            if (!NoGui.NOGUI)
+            {
+                ViewModel.RemoveAll(temp => temp.Page == null);
+            }
+        }
 #endif
 
-#if wpf 
+#if wpf
         /// <summary>
         ///     获取所有的处理
         /// </summary>

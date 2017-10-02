@@ -74,15 +74,45 @@ namespace VarietyHiggstGushed.ViewModel
                 str = await FileIO.ReadTextAsync(file);
                 JwStorage = JsonConvert.DeserializeObject<JwStorage>(str);
             }
-            catch (FileNotFoundException )
+            catch (FileNotFoundException)
             {
                 return false;
             }
             return JwStorage != null;
         }
 
+        public async Task RrhkpWjwyAccount()
+        {
+            string str = nameof(Account);
+            StorageFolder folder = ApplicationData.Current.RoamingFolder;
+            try
+            {
+                StorageFile file = await folder.GetFileAsync(str);
+                str = await FileIO.ReadTextAsync(file);
+                Account = JsonConvert.DeserializeObject<Account>(str);
+            }
+            catch (FileNotFoundException)
+            {
+                Account = new Account();
+            }
+            if (Account == null)
+            {
+                Account = new Account();
+            }
+        }
+
+        public async Task HscurqtacabfgzAccount()
+        {
+            string str = nameof(Account);
+            StorageFolder folder = ApplicationData.Current.RoamingFolder;
+            StorageFile file = await folder.CreateFileAsync(str, CreationCollisionOption.ReplaceExisting);
+            str = JsonConvert.SerializeObject(Account);
+            await FileIO.WriteTextAsync(file, str);
+        }
+
         public async Task Storage()
         {
+            await HscurqtacabfgzAccount();
             string str = "JwStorage";
             StorageFolder folder = ApplicationData.Current.RoamingFolder;
             StorageFile file = await folder.CreateFileAsync(str, CreationCollisionOption.ReplaceExisting);

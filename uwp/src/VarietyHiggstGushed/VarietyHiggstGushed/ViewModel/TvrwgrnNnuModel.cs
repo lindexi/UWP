@@ -67,15 +67,4 @@ namespace VarietyHiggstGushed.ViewModel
             Read();
         }
     }
-
-    public class NavigateCombinationComposite : CombinationComposite<NavigateViewModel>
-    {
-        public NavigateCombinationComposite(ViewModelBase source, Type view, object paramter = null) : base(source)
-        {
-            _run = viewModel =>
-            {
-                viewModel.Navigate(view, paramter);
-            };
-        }
-    }
 }

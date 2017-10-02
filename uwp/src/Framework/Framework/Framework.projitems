@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IViewModelValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MasterDetail\DetailMasterModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Message.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NavigateCombinationComposite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NavigateViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NoGui.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NotifyProperty.cs" />

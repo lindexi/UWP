@@ -60,10 +60,13 @@ namespace VarietyHiggstGushed.ViewModel
                                    JwStorage.PropertyStorage.Add(temp);
                                }
                            });
+
+            Account = new Account();
         }
 
         public async Task<bool> ReadJwStorage()
         {
+            await RrhkpWjwyAccount();
             //读取存档
             string str = "JwStorage";
 
@@ -81,7 +84,7 @@ namespace VarietyHiggstGushed.ViewModel
             return JwStorage != null;
         }
 
-        public async Task RrhkpWjwyAccount()
+        private async Task RrhkpWjwyAccount()
         {
             string str = nameof(Account);
             StorageFolder folder = ApplicationData.Current.RoamingFolder;

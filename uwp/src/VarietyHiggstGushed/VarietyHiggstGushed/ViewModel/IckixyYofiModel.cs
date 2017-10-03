@@ -19,15 +19,13 @@ namespace VarietyHiggstGushed.ViewModel
 
         public override void OnNavigatedFrom(object sender, object obj)
         {
-
+             
         }
 
-        public override async void OnNavigatedTo(object sender, object obj)
+        public override void OnNavigatedTo(object sender, object obj)
         {
             CombineViewModel(Application.Current.GetType().GetTypeInfo().Assembly);
             AllAssemblyComposite(Application.Current.GetType().GetTypeInfo().Assembly);
-
-           await AccountGoverment.JwAccountGoverment.RrhkpWjwyAccount();
 
             //先到登陆
             Navigate(typeof(TvrwgrnNnuModel), null);

@@ -12,7 +12,7 @@ namespace VarietyHiggstGushed.ViewModel
     public class StorageModel : ViewModelMessage
     {
         private int _pinkieDuchesneGeraldo = 1;
-        private Property _carloPiperIsaacProperty;
+        private WqmnygDcxwptivk _carloPiperIsaacProperty;
 
         public StorageModel()
         {
@@ -32,11 +32,11 @@ namespace VarietyHiggstGushed.ViewModel
         //    await AccountGoverment.JwAccountGoverment.Read();
         //}
 
-        public ObservableCollection<Property> PropertyStorage
+        public ObservableCollection<WqmnygDcxwptivk> PropertyStorage
         {
             set;
             get;
-        } = new ObservableCollection<Property>();
+        } = new ObservableCollection<WqmnygDcxwptivk>();
 
         public int LansheehyBrunaSharon
         {
@@ -92,7 +92,7 @@ namespace VarietyHiggstGushed.ViewModel
             }
         }
 
-        public Property CarloPiperIsaacProperty
+        public WqmnygDcxwptivk CarloPiperIsaacProperty
         {
             get { return _carloPiperIsaacProperty; }
             set

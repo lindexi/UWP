@@ -19,11 +19,11 @@ namespace VarietyHiggstGushed.Model
 
         }
 
-        public ObservableCollection<Property> PropertyStorage
+        public ObservableCollection<WqmnygDcxwptivk> PropertyStorage
         {
             set;
             get;
-        } = new ObservableCollection<Property>();
+        } = new ObservableCollection<WqmnygDcxwptivk>();
 
         /// <summary>
         /// 仓库
@@ -60,7 +60,7 @@ namespace VarietyHiggstGushed.Model
         /// <param name="property"></param>
         /// <param name="n"></param>
         /// <returns></returns>
-        public void NewProperty(Property property,int n)
+        public void NewProperty(WqmnygDcxwptivk property,int n)
         {
             if (property == null)
             {

@@ -46,8 +46,18 @@ namespace VarietyHiggstGushed.ViewModel
             List<Property> propertyStorage = new List<Property>();
             for (int i = 0; i < str.Length; i++)
             {
-                propertyStorage.Add(new Property(str[i], str[i + 1]));
-                i++;
+                try
+                {
+                    propertyStorage.Add(new Property(str[i], str[i + 1]));
+                    i++;
+                }
+                catch (FormatException e)
+                {
+                    e.Data.Add("1", str[i]);
+                    e.Data.Add("num", str[i + 1]);
+                    throw e;
+                }
+
             }
             propertyStorage.Sort((a, b) => a.Value.CompareTo(b.Value));
 
@@ -57,7 +67,7 @@ namespace VarietyHiggstGushed.ViewModel
                                JwStorage.PropertyStorage.Clear();
                                foreach (var temp in propertyStorage)
                                {
-                                   JwStorage.PropertyStorage.Add(temp);
+                                   JwStorage.PropertyStorage.Add(new WqmnygDcxwptivk(temp));
                                }
                            });
 

@@ -49,7 +49,7 @@ namespace VarietyHiggstGushed.View
         {
             //点击的时候，输入是否要买还是要卖
 
-            View.CarloPiperIsaacProperty = (Property) e.ClickedItem;
+            View.CarloPiperIsaacProperty = (WqmnygDcxwptivk) e.ClickedItem;
             var temp = new JediahPage()
             {
                 ViewModel = View,

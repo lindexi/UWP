@@ -81,7 +81,7 @@
                         </Grid>
                     </ListView.Header>
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="view:Property">
+                        <DataTemplate x:DataType="view:WqmnygDcxwptivk">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30*"></ColumnDefinition>

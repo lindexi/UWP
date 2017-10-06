@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="43179.22502F2EDDECC" Publisher="CN=227D1644-D24B-430C-AFA3-3FD86CE65409" Version="1.115.2.0" />
+  <Identity Name="43179.22502F2EDDECC" Publisher="CN=227D1644-D24B-430C-AFA3-3FD86CE65409" Version="1.252.3.0" />
   <mp:PhoneIdentity PhoneProductId="12c2c614-1467-4d7f-8b4e-b6c82cd6e0d1" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>uwp 商业游戏</DisplayName>

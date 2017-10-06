@@ -7,10 +7,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:VarietyHiggstGushed.ViewModel"
+    xmlns:varietyHiggstGushed="using:VarietyHiggstGushed"
     d:DataContext="{d:DesignInstance viewModel:StorageModel}"
     mc:Ignorable="d">
     <FrameworkElement.Resources>
         <local:StrInt x:Key="StrInt"></local:StrInt>
+        <varietyHiggstGushed:ConverDoubleStr x:Key="ConverDoubleStr"></varietyHiggstGushed:ConverDoubleStr>
     </FrameworkElement.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid>
@@ -42,7 +44,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="$" Foreground="#FFFFA010"></TextBlock>
                         <TextBlock Text="金钱"></TextBlock>
-                        <TextBlock Text="{x:Bind View.JwStorage.TranStoragePrice,Mode=OneWay}"></TextBlock>
+                        <TextBlock Text="{x:Bind View.JwStorage.TranStoragePrice,Mode=OneWay,Converter={StaticResource ConverDoubleStr}}"></TextBlock>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -97,7 +99,7 @@
                                 <TextBlock Text="{x:Bind Name}"></TextBlock>
                                 <TextBlock Grid.Column="1" Text="{x:Bind Price,Mode=OneWay}"></TextBlock>
                                 <TextBlock Grid.Column="2" Text="{x:Bind Num,Mode=OneWay}"></TextBlock>
-                                <TextBlock Grid.Column="3" Text="{x:Bind AshliLyverGeraldo,Mode=OneWay}"></TextBlock>
+                                <TextBlock Grid.Column="3" Text="{x:Bind AshliLyverGeraldo,Mode=OneWay,Converter={StaticResource ConverDoubleStr}}"></TextBlock>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

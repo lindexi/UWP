@@ -5,11 +5,13 @@
     xmlns:local="using:VarietyHiggstGushed.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:varietyHiggstGushed="using:VarietyHiggstGushed"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
     <UserControl.Resources>
         <local:DoubleConvert x:Name="Convert"></local:DoubleConvert>
+        <varietyHiggstGushed:ConverDoubleStr  x:Key="ConverDoubleStr"></varietyHiggstGushed:ConverDoubleStr>
     </UserControl.Resources>
     <Grid >
         <Grid Margin="10,10,10,10">
@@ -45,7 +47,7 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="$"></TextBlock>
                             <TextBlock Text="买入价格"></TextBlock>
-                            <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.AshliLyverGeraldo}"></TextBlock>
+                            <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.AshliLyverGeraldo,Converter={StaticResource ConverDoubleStr}}"></TextBlock>
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal"
@@ -92,5 +94,6 @@
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid></Grid>
+        </Grid>
+    </Grid>
 </UserControl>

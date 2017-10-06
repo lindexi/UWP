@@ -84,10 +84,10 @@ namespace VarietyHiggstGushed.ViewModel
         /// </summary>
         public int PinkieDuchesneGeraldo
         {
-            get { return AccountGoverment.JwAccountGoverment.Account.PinkieDuchesneGeraldo; }
+            get { return AccountGoverment.JwAccountGoverment.JwStorage.PinkieDuchesneGeraldo; }
             set
             {
-                AccountGoverment.JwAccountGoverment.Account.PinkieDuchesneGeraldo = value;
+                AccountGoverment.JwAccountGoverment.JwStorage.PinkieDuchesneGeraldo = value;
                 OnPropertyChanged();
             }
         }

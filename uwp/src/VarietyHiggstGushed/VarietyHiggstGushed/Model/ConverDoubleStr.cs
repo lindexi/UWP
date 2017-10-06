@@ -8,7 +8,7 @@ namespace VarietyHiggstGushed
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var n = (double) value;
-            return n.ToString("########.##");
+            return n.ToString("0.##");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

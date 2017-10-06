@@ -14,6 +14,11 @@ namespace VarietyHiggstGushed.Model
         private int _transit;
         private int _transitStorage;
 
+        /// <summary>
+        /// 天数
+        /// </summary>
+        public int PinkieDuchesneGeraldo { get; set; } = 1;
+
         public JwStorage()
         {
 

@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Effects;
@@ -63,7 +64,7 @@ namespace VarietyHiggstGushed.View
             Rect bound = new Rect(0, 0, canvas.ActualWidth, canvas.ActualHeight);
             foreach (var temp in FireflyParticle)
             {
-                temp.Bound = new Rect(0, 0, canvas.ActualWidth, canvas.ActualHeight);
+                temp.Bound = bound;
             }
         }
 
@@ -182,8 +183,14 @@ namespace VarietyHiggstGushed.View
         public FireflyParticle(Rect bound)
         {
             Point = new Point(ran.Next((int) bound.Width), ran.Next((int) bound.Height));
-            _x = new Ran(Point.X, bound.Width, 0);
-            _y = new Ran(Point.Y, bound.Height, 0);
+            _x = new Ran(Point.X, bound.Width, 0)
+            {
+                EasingFunction = true,
+            };
+            _y = new Ran(Point.Y, bound.Height, 0)
+            {
+                EasingFunction = true,
+            };
             _radius = new Ran(ran.Next(2, 5), 5, 2)
             {
                 Po = 0.71
@@ -197,24 +204,6 @@ namespace VarietyHiggstGushed.View
 
         public void Time(TimeSpan time)
         {
-            //var n = ran.Next(2) > 0 ? 1 : -1;
-            //Radius += ran.NextDouble() * n;
-            //if (Radius < 2)
-            //{
-            //    Radius = 2;
-            //}
-
-            //n = ran.Next(2) > 0 ? 1 : -1;
-            //var x = Point.X;
-            //var y = Point.Y;
-            //x += ran.NextDouble() * n;
-            //n = ran.Next(2) > 0 ? 1 : -1;
-            //y += ran.NextDouble() * n;
-            //Point = new Point(x, y);
-
-            //n = ran.Next(2) > 0 ? 1 : -1;
-            //OpColor += ran.NextDouble() / 10 * n;
-
             _radius.Time(time);
             _opColor.Time(time);
             _x.Time(time);
@@ -233,8 +222,8 @@ namespace VarietyHiggstGushed.View
             set
             {
                 _bound = value;
-                _x.Ma = value.Width;
-                _y.Ma = value.Height;
+                _x.Ma = value.Width - 10;
+                _y.Ma = value.Height - 10;
             }
         }
 
@@ -269,6 +258,8 @@ namespace VarietyHiggstGushed.View
 
         public double Mi { get; set; }
 
+        public bool EasingFunction { get; set; }
+
         /// <summary>
         /// 加速度
         /// </summary>
@@ -276,6 +267,7 @@ namespace VarietyHiggstGushed.View
 
         public void Time(TimeSpan time)
         {
+
             if (Math.Abs(Dalue) < 0.000001)
             {
                 if (Math.Abs(Po) < 0.0001)
@@ -287,21 +279,32 @@ namespace VarietyHiggstGushed.View
                     Dalue = Po;
                 }
             }
+            //减数
+            if (EasingFunction && Math.Abs(Value - To) < Dalue * 10/*如果接近*/)
+            {
+                Dalue /= 2;
+                if (Math.Abs(Dalue) < 1)
+                {
+                    Dalue = 1;
+                }
+            }
             int n = 1;
             if (Value > To)
             {
                 n = n * -1;
             }
             Value += n * Dalue * time.TotalSeconds * 2;
-            if (n > 0 && Value > To)
+            if (n > 0 && Value >= To)
             {
                 Value = To;
                 To = ran.NextDouble() * (Ma - Mi) + Mi;
+                Dalue = 0;
             }
-            if (n < 0 && Value < To)
+            if (n < 0 && Value <= To)
             {
                 Value = To;
                 To = ran.NextDouble() * (Ma - Mi) + Mi;
+                Dalue = 0;
             }
         }
 

@@ -128,7 +128,10 @@ namespace VarietyHiggstGushed.View
                         Invoked = async command =>
                         {
                             await Launcher.LaunchUriAsync(new Uri(
-                                "https://github.com/lindexi/UWP/tree/master/uwp/src/VarietyHiggstGushed"));
+                                "https://github.com/lindexi/UWP/tree/master/uwp/src/VarietyHiggstGushed"),new LauncherOptions()
+                            {
+                                TreatAsUntrusted = true
+                            });
                         }
                     },
                     new UICommand("关闭")

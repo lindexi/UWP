@@ -33,8 +33,8 @@ namespace lindexi.uwp.Framework.ViewModel
         ///     从其他页面跳转出
         ///     需要释放页面
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"></param>
+        /// <param name="obj"></param>
         public abstract void OnNavigatedFrom(object sender, object obj);
 
         /// <summary>

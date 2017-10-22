@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:jiuYouAdUniversal="using:JiuYouAdUniversal"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400"
+    d:DesignHeight="1000"
+    d:DesignWidth="600"
     RequestedTheme="{x:Bind View.Account.Account.Theme,Mode=OneWay}">
     <!--xmlns:UI="using:Microsoft.Advertising.WinRT.UI"-->
     <UserControl.Resources>
@@ -55,10 +55,14 @@
                                HorizontalAlignment="Stretch"
                                VerticalAlignment="Stretch">
                     </Rectangle>
-                    <Grid Margin="20,20,20,20">
-                        <TextBlock x:Uid="拖入图片到这里" Text="拖入图片到这里" AllowDrop="True"
+                    <Grid Margin="20,20,20,20" PointerPressed="Pasteup_OnPointerPressed">
+                        <TextBlock x:Uid="拖入图片到这里" AllowDrop="True"
                                HorizontalAlignment="Center"
-                               VerticalAlignment="Center"></TextBlock>
+                               VerticalAlignment="Center">
+                            拖入图片到这里
+                            <LineBreak></LineBreak>
+                            点击从剪贴板粘贴图片并上传
+                        </TextBlock>
                         <Image Source="{x:Bind View.Image,Mode=OneWay}" AllowDrop="True"/>
                     </Grid>
                 </Grid>
@@ -164,7 +168,7 @@
                           IsActive="True"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch" />
-                <jiuYouAdUniversal:AdControl Grid.Row="1" AdType="Banner" ApplicationKey="95da5b5ebcc881d470104c1543763bbc" ></jiuYouAdUniversal:AdControl>
+                <!--<jiuYouAdUniversal:AdControl Grid.Row="1" AdType="Banner" ApplicationKey="95da5b5ebcc881d470104c1543763bbc" ></jiuYouAdUniversal:AdControl>-->
                 <!--<UI:AdControl Grid.Row="1"  Height ="90" Width="728" ApplicationId="3f83fe91-d6be-434d-a0ae-7351c5a997f1" AdUnitId="test" AdRefreshed="AdControl_OnAdRefreshed" ErrorOccurred="AdControl_OnErrorOccurred"></UI:AdControl>-->
                 <!--<UI:AdControl Grid.Row="1"  Height ="90" Width="728" ApplicationId="9nblggh562r2" AdUnitId="346698" AdRefreshed="AdControl_OnAdRefreshed" ErrorOccurred="AdControl_OnErrorOccurred"></UI:AdControl>-->
             </Grid>

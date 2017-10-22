@@ -19,6 +19,7 @@ using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
 using BitStamp.ViewModel;
 
@@ -156,7 +157,7 @@ namespace BitStamp.View
                 View.Account.Account.Str = str;
             }
 
-           
+
             await View.Jcloud(() =>
             {
                 if (_visibility)
@@ -254,12 +255,7 @@ namespace BitStamp.View
             {
                 if (data.Contains(StandardDataFormats.Bitmap))
                 {
-                    RandomAccessStreamReference file = await data.GetBitmapAsync();
-                    BitmapImage image = new BitmapImage();
-                    await image.SetSourceAsync(await file.OpenReadAsync());
-                    this.image.Source = image;
-                    View.Image = image;
-                    _upload = true;
+                    await SetClipimage(data);
                 }
                 else if (data.Contains(StandardDataFormats.StorageItems))
                 {
@@ -269,6 +265,15 @@ namespace BitStamp.View
             }
         }
 
+        private async Task SetClipimage(DataPackageView data)
+        {
+            RandomAccessStreamReference file = await data.GetBitmapAsync();
+            BitmapImage image = new BitmapImage();
+            await image.SetSourceAsync(await file.OpenReadAsync());
+            this.image.Source = image;
+            View.Image = image;
+            _upload = true;
+        }
 
         private void StrClipboard(object sender, RoutedEventArgs e)
         {
@@ -296,8 +301,21 @@ namespace BitStamp.View
             var str = pivot?.Header.ToString();
             _pivot = str;
         }
-        
 
+
+        private async void Pasteup_OnPointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            //尝试从剪贴板获得图片
+            if (File == null)
+            {
+                var clip = Clipboard.GetContent();
+                if (clip.Contains(StandardDataFormats.Bitmap))
+                {
+                    await SetClipimage(clip);
+                    Storage_OnClick(sender, e);
+                }
+            }
+        }
     }
 
 
@@ -376,7 +394,7 @@ namespace BitStamp.View
         public static ToastNotification PopCustomToast(XmlDocument doc, string tag, string group)
         {
             var toast = new ToastNotification(doc);
-            
+
             if (tag != null)
                 toast.Tag = tag;
 
@@ -384,7 +402,7 @@ namespace BitStamp.View
                 toast.Group = group;
 
             ToastNotificationManager.CreateToastNotifier().Show(toast);
-            
+
             return toast;
         }
 

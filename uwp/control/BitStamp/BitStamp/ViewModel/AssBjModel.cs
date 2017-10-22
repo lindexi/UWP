@@ -31,7 +31,6 @@ namespace BitStamp.ViewModel
         public void NavigateAccount()
         {
             FrameVisibility = Visibility.Collapsed;
-            FrameAccount.Navigate(typeof(View.AccountPage));
         }
 
         public Frame FrameAccount

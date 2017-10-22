@@ -47,7 +47,8 @@
                 <Grid Margin="20,0,0,0"
                       Visibility="{x:Bind View.JiuYouImageShackVisibility,Mode=TwoWay}">
                     <TextBox x:Uid="九幽云存储" Margin="10,1,10,1" Header="九幽云存储key" Text="{x:Bind View.JiuYouSecretId,Mode=TwoWay}"
-                             IsEnabled="{x:Bind View.JiuYouImageShack,Mode=OneWay,Converter={StaticResource ConvertBooleanNull}}">
+                             IsEnabled="{x:Bind View.JiuYouImageShack,Mode=OneWay,Converter={StaticResource ConvertBooleanNull}}"
+                             PlaceholderText="留空使用默认服务器">
                     </TextBox>
                 </Grid>
                 <RadioButton IsChecked="{x:Bind View.QinImageShack,Mode=TwoWay}" Content="qiniu"></RadioButton>
@@ -55,15 +56,20 @@
                       Visibility="{x:Bind View.QinImageShackVisibility,Mode=TwoWay}">
                     <StackPanel>
                         <TextBox Margin="10,1,10,1" Header="AK"
-                                 Text="{x:Bind View.CloundAccound.AccessKey,Mode=TwoWay}"></TextBox>
+                                 Text="{x:Bind View.CloundAccound.AccessKey,Mode=TwoWay}"
+                                 PlaceholderText="留空使用默认服务器"></TextBox>
                         <TextBox Margin="10,1,10,1" Header="SK"
-                                 Text="{x:Bind View.CloundAccound.SecretKey,Mode=TwoWay}"></TextBox>
+                                 Text="{x:Bind View.CloundAccound.SecretKey,Mode=TwoWay}"
+                                 PlaceholderText="留空使用默认服务器"></TextBox>
                         <TextBox Margin="10,1,10,1" Header="Bucket"
-                                 Text="{x:Bind View.CloundAccound.Bucket,Mode=TwoWay}"></TextBox>
+                                 Text="{x:Bind View.CloundAccound.Bucket,Mode=TwoWay}"
+                                 PlaceholderText="留空使用默认服务器"></TextBox>
                         <TextBox x:Uid="域名" Margin="10,1,10,1" Header="域名"
-                                 Text="{x:Bind View.CloundAccound.Url,Mode=TwoWay}"></TextBox>
+                                 Text="{x:Bind View.CloundAccound.Url,Mode=TwoWay}"
+                                 PlaceholderText="留空使用默认服务器"></TextBox>
                         <TextBox x:Uid="前缀" Margin="10,1,10,1" Header="前缀"
-                                 Text="{x:Bind View.CloundAccound.Pname,Mode=TwoWay}"></TextBox>
+                                 Text="{x:Bind View.CloundAccound.Pname,Mode=TwoWay}"
+                                 PlaceholderText="上传的图片添加的前缀"></TextBox>
                     </StackPanel>
                 </Grid>
                 <Grid Height="1" Background="Gray"></Grid>
@@ -82,8 +88,11 @@
                         <StackPanel Orientation="Vertical">
                             <TextBlock x:Uid="本地存储路径" Text="本地存储路径"></TextBlock>
                             <TextBlock x:Uid="本地存储图片加水印所放位置，默认为用户图片" FontSize="10" Foreground="Gray"
-                                       Text="本地存储图片加水印所放位置，默认为用户图片区"
-                                       VerticalAlignment="Bottom" Margin="0,0,0,0" />
+                                       VerticalAlignment="Bottom" Margin="0,0,0,0" >
+                                    本地存储图片加水印所放位置，默认为用户图片区
+                                    <LineBreak></LineBreak>
+                                    点击选择按钮可以自定义图片保存文件夹
+                            </TextBlock>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Row="1">

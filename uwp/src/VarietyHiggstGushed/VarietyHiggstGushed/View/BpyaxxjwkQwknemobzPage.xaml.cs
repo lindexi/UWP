@@ -8,6 +8,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -51,12 +52,38 @@ namespace VarietyHiggstGushed.View
                     FireflyParticle.Add(new FireflyParticle(bound));
                 }
             }
+            Window.Current.VisibilityChanged += VisibilityChanged;
+            Window.Current.Activated += Activated;
+        }
+
+        private void Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
+        {
+            if (e.WindowActivationState == CoreWindowActivationState.CodeActivated)
+            {
+                canvas.Paused = false;
+
+            }
+            else if (e.WindowActivationState == CoreWindowActivationState.PointerActivated)
+            {
+                canvas.Paused = false;
+            }
+            else if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
+            {
+                canvas.Paused = true;
+            }
+        }
+
+        private void VisibilityChanged(object sender, Windows.UI.Core.VisibilityChangedEventArgs e)
+        {
+            canvas.Paused = !e.Visible;
         }
 
         private void BpyaxxjwkQwknemobzPage_Unloaded(object sender, RoutedEventArgs e)
         {
             canvas.RemoveFromVisualTree();
             canvas = null;
+            Window.Current.VisibilityChanged -= VisibilityChanged;
+            Window.Current.Activated -= Activated;
         }
 
         private void BpyaxxjwkQwknemobzPage_SizeChanged(object sender, SizeChangedEventArgs e)

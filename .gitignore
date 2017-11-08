@@ -247,4 +247,4 @@ ModelManifest.xml
 *.appx
 /uwp/control/BitStamp/BitStamp/_pkginfo.txt
 /uwp/src/Imageshack/cloundes/cloundes/Model/Appid.cs
-*.nuspec
+/uwp/src/VarietyHiggstGushed/VarietyHiggstGushed/_pkginfo.txt

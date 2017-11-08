@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using lindexi.uwp.Framework.ViewModel;
 using VarietyHiggstGushed.Annotations;
 using VarietyHiggstGushed.Model;
 
 namespace VarietyHiggstGushed.ViewModel
 {
-    public class StorageModel : INotifyPropertyChanged
+    public class StorageModel : ViewModelMessage
     {
         private int _pinkieDuchesneGeraldo = 1;
-        private Property _carloPiperIsaacProperty;
+        private WqmnygDcxwptivk _carloPiperIsaacProperty;
 
         public StorageModel()
         {
-            JwStorage = AccountGoverment.JwAccountGoverment.JwStorage;
-            MerilynPinkieDuchesneGeraldo();
-            PinkieDuchesneGeraldo--;
+
         }
 
         //public AmeriStorage AmeriStorage
@@ -32,11 +32,11 @@ namespace VarietyHiggstGushed.ViewModel
         //    await AccountGoverment.JwAccountGoverment.Read();
         //}
 
-        public ObservableCollection<Property> PropertyStorage
+        public ObservableCollection<WqmnygDcxwptivk> PropertyStorage
         {
             set;
             get;
-        } = new ObservableCollection<Property>();
+        } = new ObservableCollection<WqmnygDcxwptivk>();
 
         public int LansheehyBrunaSharon
         {
@@ -84,11 +84,15 @@ namespace VarietyHiggstGushed.ViewModel
         /// </summary>
         public int PinkieDuchesneGeraldo
         {
-            get { return _pinkieDuchesneGeraldo; }
-            set { _pinkieDuchesneGeraldo = value; OnPropertyChanged(); }
+            get { return AccountGoverment.JwAccountGoverment.JwStorage.PinkieDuchesneGeraldo; }
+            set
+            {
+                AccountGoverment.JwAccountGoverment.JwStorage.PinkieDuchesneGeraldo = value;
+                OnPropertyChanged();
+            }
         }
 
-        public Property CarloPiperIsaacProperty
+        public WqmnygDcxwptivk CarloPiperIsaacProperty
         {
             get { return _carloPiperIsaacProperty; }
             set
@@ -104,6 +108,7 @@ namespace VarietyHiggstGushed.ViewModel
             PropertyStorage.Clear();
             foreach (var temp in JwStorage.PropertyStorage)
             {
+                //创建临时价格
                 temp.Price = _random.Next(80, 120) * temp.Value / 100;
                 if (_random.Next(JwStorage.PropertyStorage.Count) < JwStorage.PropertyStorage.Count / 2 - PropertyStorage.Count)
                 {
@@ -111,7 +116,7 @@ namespace VarietyHiggstGushed.ViewModel
                 }
             }
             //下天
-         
+
 
             PinkieDuchesneGeraldo++;
         }
@@ -119,12 +124,59 @@ namespace VarietyHiggstGushed.ViewModel
         private Random _random = new Random();
         private int _lansheehyBrunaSharon;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public override void OnNavigatedFrom(object sender, object obj)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+            FjyhtrOcbhzjwi.Fhnazmoul.RemoveSuccessor(_ajuvqrDqsoljna);
+        }
+
+        public override void OnNavigatedTo(object sender, object obj)
+        {
+            JwStorage = AccountGoverment.JwAccountGoverment.JwStorage;
+            MerilynPinkieDuchesneGeraldo();
+            PinkieDuchesneGeraldo--;
+
+            _ajuvqrDqsoljna = _ajuvqrDqsoljna ?? new AjuvqrDqsoljna(async fjyhtrOcbhzjwi =>
+            {
+                if (fjyhtrOcbhzjwi.Handle)
+                {
+                    return;
+                }
+                fjyhtrOcbhzjwi.Handle = true;
+                await AccountGoverment.JwAccountGoverment.Storage();
+                //返回上一层
+                Send(new BackTvvxwlwIlibbcpMessage(this));
+            });
+            FjyhtrOcbhzjwi.Fhnazmoul.AddSuccessor(_ajuvqrDqsoljna);
+        }
+
+        private AjuvqrDqsoljna _ajuvqrDqsoljna;
+    }
+
+    public class BackTvvxwlwIlibbcpMessage : Message
+    {
+        public BackTvvxwlwIlibbcpMessage(ViewModelBase source) : base(source)
+        {
+            Goal = new PredicateInheritViewModel(typeof(NavigateViewModel));
+        }
+    }
+
+    public class BackTvvxwlwIlibbcpComposite : Composite
+    {
+        public BackTvvxwlwIlibbcpComposite()
+        {
+            Message = typeof(BackTvvxwlwIlibbcpMessage);
+        }
+
+        public override void Run(ViewModelBase source, IMessage message)
+        {
+            var viewModel = (NavigateViewModel) source;
+            var id = viewModel.ViewModel.FirstOrDefault(temp =>
+                temp.Page == viewModel.Content.BackStack.LastOrDefault()?.SourcePageType)?.Key;
+            if (!string.IsNullOrEmpty(id))
+            {
+                viewModel.Navigate(id);
+            }
         }
     }
 }

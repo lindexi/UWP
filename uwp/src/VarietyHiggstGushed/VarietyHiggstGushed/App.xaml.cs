@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using VarietyHiggstGushed.View;
+using VarietyHiggstGushed.ViewModel;
 
 namespace VarietyHiggstGushed
 {
@@ -96,10 +98,10 @@ namespace VarietyHiggstGushed
         /// </summary>
         /// <param name="sender">挂起的请求的源。</param>
         /// <param name="e">有关挂起请求的详细信息。</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: 保存应用程序状态并停止任何后台活动
+            await AccountGoverment.JwAccountGoverment.Storage();
             deferral.Complete();
         }
     }

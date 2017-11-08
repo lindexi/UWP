@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+
+    <version>$version$</version>
+
+    <title>$title$</title>
+
+    <authors>林德熙</authors>
+
+    <owners>林德熙</owners>
+
+    <licenseUrl>https://github.com/lindexi/UWP/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</projectUrl>
+    <iconUrl>https://avatars2.githubusercontent.com/u/16054566</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>MVVM </description>
+    <releaseNotes>MVVM</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>UWP </tags>
+   <!--  <dependencies>
+      <dependency id="SampleDependency" version="1.0" />
+    </dependencies> -->
+  </metadata>
+</package>

@@ -9,6 +9,8 @@
     <Import_RootNamespace>Framework</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IComposite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CombinationComposite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Composite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\GetValueCombinationComposite.cs" />
@@ -20,22 +22,22 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IPredicateViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IReceiveMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ISendMessage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\IViewModelValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MasterDetail\DetailMasterModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MasterSendMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Message.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NavigateCombinationComposite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NavigateViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NoGui.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NotifyProperty.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PredicateInheritViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PredicateKeyViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PredicateViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModel\Tocorre\" />
+    <Folder Include="$(MSBuildThisFileDirectory)View\" />
   </ItemGroup>
 </Project>

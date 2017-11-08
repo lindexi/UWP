@@ -1,20 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using VarietyHiggstGushed.Annotations;
 
 namespace VarietyHiggstGushed.Model
 {
+    /// <summary>
+    ///     用于给商品显示运行包括价格
+    /// </summary>
+    public class WqmnygDcxwptivk : Property
+    {
+        public WqmnygDcxwptivk()
+        {
+        }
+
+        public WqmnygDcxwptivk(Property property)
+        {
+            Name = property.Name;
+            Num = property.Num;
+            Value = property.Value; //价值
+        }
+
+        public double Price
+        {
+            set
+            {
+                _price = value;
+                OnPropertyChanged();
+            }
+            get { return _price; }
+        }
+
+        public double AshliLyverGeraldo
+        {
+            get { return _ashliLyverGeraldo; }
+            set
+            {
+                _ashliLyverGeraldo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _ashliLyverGeraldo; //买入
+        private double _price;
+    }
+
+
     public class Property : INotifyPropertyChanged
     {
-        private int _num;
-        private double _price;
-        private string _name;
-        private double _ashliLyverGeraldo;
+        public Property()
+        {
+        }
 
         public Property(string name, double value)
         {
@@ -25,45 +60,40 @@ namespace VarietyHiggstGushed.Model
         public Property(string name, string value)
         {
             Name = name;
-            Value = int.Parse(value);
+            Value = double.Parse(value);
         }
 
         public string Name
         {
-            set { _name = value; OnPropertyChanged(); }
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
             get { return _name; }
         }
 
-        public double Price
-        {
-            set { _price = value; OnPropertyChanged(); }
-            get { return _price; }
-        }
-
-        public double Value
-        {
-            set;
-            get;
-        }
+        public double Value { set; get; }
 
         public int Num
         {
-            set { _num = value; OnPropertyChanged(); }
+            set
+            {
+                _num = value;
+                OnPropertyChanged();
+            }
             get { return _num; }
         }
-
-        public double AshliLyverGeraldo
-        {
-            get { return _ashliLyverGeraldo; }
-            set { _ashliLyverGeraldo = value; OnPropertyChanged(); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private string _name;
+        private int _num;
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

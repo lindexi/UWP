@@ -5,9 +5,44 @@
     xmlns:local="using:VarietyHiggstGushed"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="using:VarietyHiggstGushed.View"
     mc:Ignorable="d">
 
+    <Page.Resources>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Frame x:Name="RuvJruhditrj" />
+        <Grid>
+            <TextBlock x:Name="LyfxkdxmSzjd" Margin="10,10,10,10" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        </Grid>
     </Grid>
 </Page>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

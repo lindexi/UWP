@@ -33,8 +33,8 @@ namespace lindexi.uwp.Framework.ViewModel
         ///     从其他页面跳转出
         ///     需要释放页面
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"></param>
+        /// <param name="obj"></param>
         public abstract void OnNavigatedFrom(object sender, object obj);
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace lindexi.uwp.Framework.ViewModel
         ///     命令合成
         ///     全部调用发送信息的处理在<see cref="Composite" />
         /// </summary>
-        protected List<Composite> Composite { set; get; } = new List<Composite>();
+        public List<Composite> Composite { set; get; } = new List<Composite>();
 
         /// <inheritdoc />
         public sealed override void NavigatedFrom(object sender, object obj)
@@ -98,10 +98,10 @@ namespace lindexi.uwp.Framework.ViewModel
         ///     获取值
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="continueWith"></param>
-        public void GetValue<T>(Action<T> continueWith)
+        /// <param name="continus"></param>
+        public void GetValue<T>(Action<T> continus)
         {
-            ((ISendMessage) this).Send?.Invoke(this, new GetValueCombinationComposite<T>(this, continueWith));
+            ((ISendMessage) this).Send?.Invoke(this, new GetValueCombinationComposite<T>(this, continus));
         }
 
         /// <summary>

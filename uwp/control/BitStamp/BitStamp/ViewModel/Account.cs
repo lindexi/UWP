@@ -17,10 +17,10 @@ namespace BitStamp.ViewModel
     {
         public Account()
         {
-           
+
         }
 
-        
+
 
         public ElementTheme Theme
         {
@@ -94,7 +94,7 @@ namespace BitStamp.ViewModel
             }
             get
             {
-                return _smmsImageShack= ImageShack == ImageShackEnum.Smms;
+                return _smmsImageShack = ImageShack == ImageShackEnum.Smms;
             }
         }
 
@@ -107,7 +107,7 @@ namespace BitStamp.ViewModel
                 {
                     ImageShack = ImageShackEnum.Qin;
                 }
-                QinImageShackVisibility=value == true ? Visibility.Visible : Visibility.Collapsed;
+                QinImageShackVisibility = value == true ? Visibility.Visible : Visibility.Collapsed;
                 OnPropertyChanged();
                 //OnPropertyChanged(nameof(QinImageShackVisibility));
             }
@@ -146,7 +146,7 @@ namespace BitStamp.ViewModel
             }
             get
             {
-                return _jiuYouImageShack= ImageShack == ImageShackEnum.Jiuyou;
+                return _jiuYouImageShack = ImageShack == ImageShackEnum.Jiuyou;
             }
         }
 
@@ -207,7 +207,7 @@ namespace BitStamp.ViewModel
         {
             set;
             get;
-        }=new CloundesAccound();
+        } = new CloundesAccound();
 
         private string _address;
 

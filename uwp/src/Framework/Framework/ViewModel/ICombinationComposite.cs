@@ -3,8 +3,8 @@
     /// <summary>
     /// 组合 Composite 和 Message
     /// </summary>
-    public interface ICombinationComposite
+    public interface ICombinationComposite: IComposite
     {
-        void Run(IViewModel source, IMessage message);
+       
     }
 }

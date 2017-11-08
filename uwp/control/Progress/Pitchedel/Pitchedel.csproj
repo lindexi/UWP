@@ -101,9 +101,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\AdaptModel.cs" />
     <Compile Include="ViewModel\EposeModel.cs" />
+    <Compile Include="ViewModel\MarquezModel.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="View\EposePage.xaml.cs">
       <DependentUpon>EposePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MarquezPage.xaml.cs">
+      <DependentUpon>MarquezPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SwipeableSplitView.cs" />
   </ItemGroup>
@@ -133,6 +137,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\EposePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MarquezPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

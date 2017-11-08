@@ -84,7 +84,7 @@
                 </SplitView.Pane>
                 <SplitView.Content>
                     <Grid>
-                        <Frame x:Name="frame"></Frame>
+                        <Frame x:Name="frame" SourcePageType="local:AccountPage"></Frame>
                         <Grid>
                             <local:StampPage Visibility="{x:Bind View.FrameVisibility,Mode=OneWay}"></local:StampPage>
                         </Grid>

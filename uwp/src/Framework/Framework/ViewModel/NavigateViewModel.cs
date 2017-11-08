@@ -28,7 +28,7 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <summary>
         ///     包含的页面集合
         /// </summary>
-        public List<ViewModelPage> ViewModel { set; get; }
+        public List<ViewModelPage> ViewModel { set; get; } = new List<ViewModelPage>();
 
         /// <summary>
         ///     正在跳转事件
@@ -91,9 +91,30 @@ namespace lindexi.uwp.Framework.ViewModel
             {
                 return;
             }
-            var composite = message as ICombinationComposite;
-            composite?.Run(viewModel, message);
-            Composite.FirstOrDefault(temp => temp.Message == message.GetType())?.Run(viewModel, message);
+            IComposite composite = message as ICombinationComposite;
+            if (composite != null)
+            {
+                composite.Run(viewModel, message);
+            }
+            else
+            {
+                composite = Composite.FirstOrDefault(temp => temp.Message == message.GetType());
+                if (composite != null)
+                {
+                    composite.Run(viewModel, message);
+                }
+                else
+                {
+                    if (viewModel == this)
+                    {
+                        return;
+                    }
+                    if (viewModel is IReceiveMessage)
+                    {
+                        ((IReceiveMessage) viewModel).ReceiveMessage(sender, message);
+                    }
+                }
+            }
         }
 
 
@@ -109,14 +130,14 @@ namespace lindexi.uwp.Framework.ViewModel
         }
 
         //当前ViewModel
-        private ViewModelBase _viewModel;
+        private (ViewModelBase viewModel, Frame frame)? _viewModel;
 
+#if wpf
         /// <summary>
         ///     自动组合
         /// </summary>
         protected void CombineViewModel()
         {
-#if wpf
             Assembly assembly = Assembly.GetCallingAssembly();
             if (ViewModel == null)
             {
@@ -141,15 +162,50 @@ namespace lindexi.uwp.Framework.ViewModel
                 }
             }
 
-#endif
         }
+#elif WINDOWS_UWP
+        
+        /// <summary>
+        ///     自动组合
+        /// </summary>
+        protected void CombineViewModel(Assembly assembly)
+        {
+            if (ViewModel == null)
+            {
+                ViewModel = new List<ViewModelPage>();
+            }
+            ViewModel.Clear();
 
+            foreach (var temp in assembly.DefinedTypes.Where(temp => typeof(IViewModel).IsAssignableFrom(temp.AsType())))
+            {
+                ViewModel.Add(new ViewModelPage(temp.AsType()));
+            }
+
+            foreach (var temp in assembly.DefinedTypes.Where(temp => temp.IsSubclassOf(typeof(Page))))
+            {
+                var p = temp.GetCustomAttribute<ViewModelAttribute>();
+                var viewmodel = ViewModel.FirstOrDefault(t => t.Equals(p?.ViewModel));
+                if (viewmodel != null)
+                {
+                    viewmodel.Page = temp.AsType();
+                }
+            }
+
+            //清理
+            if (!NoGui.NOGUI)
+            {
+                ViewModel.RemoveAll(temp => temp.Page == null);
+            }
+        }
+#endif
+
+#if wpf
         /// <summary>
         ///     获取所有的处理
         /// </summary>
         protected void AllAssemblyComposite()
         {
-#if wpf
+
             Assembly assembly = Assembly.GetCallingAssembly();
             foreach (
                 var temp in
@@ -157,13 +213,51 @@ namespace lindexi.uwp.Framework.ViewModel
                     .Where(
                         temp =>
                             temp.IsSubclassOf(typeof(Composite)) &&
-                            temp.IsAssignableFrom(typeof(ICombinationComposite)) &&
+                            !typeof(ICombinationComposite).IsAssignableFrom(temp) &&
                             !temp.IsSubclassOf(typeof(CombinationComposite)) &&
                             temp != typeof(CombinationComposite)))
             {
                 Composite.Add(temp.Assembly.CreateInstance(temp.FullName) as Composite);
             }
+        }
+#elif WINDOWS_UWP
+        /// <summary>
+        ///     获取所有的处理
+        /// </summary>
+        protected void AllAssemblyComposite(Assembly assembly)
+        {
+
+            foreach (
+                var temp in
+                assembly.DefinedTypes
+                    .Where(
+                        temp => 
+                            temp.IsSubclassOf(typeof(Composite)) &&
+                            !typeof(ICombinationComposite).IsAssignableFrom(temp.AsType()) &&
+                            !temp.IsSubclassOf(typeof(CombinationComposite)) &&
+                            temp.AsType() != typeof(CombinationComposite)))
+            {
+               
+                Composite.Add(temp.AsType().GetConstructor(Type.EmptyTypes).Invoke(null) as Composite);
+            }
+        }
 #endif
+
+        /// <summary>
+        ///     跳转到页面
+        /// 只用于测试使用
+        /// </summary>
+        public void Navigate(ViewModelBase viewModel, object paramter, ViewModelBase lastViewModel = null)
+        {
+            if (!NoGui.NOGUI)
+            {
+                throw new Exception("不能在有界面调用这个跳转");
+            }
+            var view = ViewModel.FirstOrDefault(temp => temp.ViewModel == viewModel);
+            Navigating?.Invoke(this, view);
+            lastViewModel?.NavigatedFrom(this, null);
+            viewModel.NavigatedTo(this, paramter);
+            Navigated?.Invoke(this, view);
         }
 
         /// <summary>
@@ -180,9 +274,12 @@ namespace lindexi.uwp.Framework.ViewModel
             {
                 content = Content;
             }
-            _viewModel?.NavigatedFrom(this, null);
+            if (_viewModel != null && content != null && content == _viewModel?.frame)
+            {
+                _viewModel?.viewModel?.NavigatedFrom(this, null);
+            }
             await view.Navigate(content, this, paramter);
-            _viewModel = view.ViewModel;
+            _viewModel = (view.ViewModel, content);
             Navigated?.Invoke(this, view);
         }
     }

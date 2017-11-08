@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using lindexi.uwp.Framework.ViewModel;
+using VarietyHiggstGushed.Model;
 using VarietyHiggstGushed.ViewModel;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
@@ -21,13 +23,20 @@ namespace VarietyHiggstGushed.View
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
+    [ViewModel(typeof(StorageModel))]
     public sealed partial class StockPage : Page
     {
         public StockPage()
         {
-            View = new StorageModel();
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            View = (StorageModel) e.Parameter;
             DataContext = View;
+
+            base.OnNavigatedTo(e);
         }
 
         private StorageModel View
@@ -35,9 +44,30 @@ namespace VarietyHiggstGushed.View
             set;
             get;
         }
+
+        private async void ListView_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            //点击的时候，输入是否要买还是要卖
+
+            View.CarloPiperIsaacProperty = (WqmnygDcxwptivk) e.ClickedItem;
+            var temp = new JediahPage()
+            {
+                ViewModel = View,
+            };
+            ContentDialog contentDialog = new ContentDialog()
+            {
+                Content = temp,
+                IsPrimaryButtonEnabled = false,
+                IsSecondaryButtonEnabled = false,
+            };
+
+            temp.Close += (s, args) => contentDialog.Hide();
+
+            await contentDialog.ShowAsync();
+        }
     }
 
-    public class StrInt:IValueConverter
+    public class StrInt : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

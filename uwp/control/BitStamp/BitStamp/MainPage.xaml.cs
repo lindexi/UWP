@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,13 +28,33 @@ namespace BitStamp
         public MainPage()
         {
             this.InitializeComponent();
-            Frame frame = Content as Frame;
-            if (frame == null)
-            {
-                frame = new Frame();
-                Content = frame;
-            }
-            frame.Navigate(typeof(View.AssBjPage));
+            //Frame frame = Content as Frame;
+            //if (frame == null)
+            //{
+            //    frame = new Frame();
+            //    Content = frame;
+            //}
+            //frame.Navigate(typeof(View.AssBjPage));
+
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.Visible;
+            ApplicationView.GetForCurrentView().TitleBar.ButtonBackgroundColor = Color.FromArgb(0xFF, 140, 206, 205);
+            ApplicationView.GetForCurrentView().TitleBar.ButtonForegroundColor = Color.FromArgb(0xFF, 250, 250, 250);
+            ApplicationView.GetForCurrentView().TitleBar.InactiveForegroundColor = Color.FromArgb(0xFF, 250, 250, 250);
+
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            CoreApplication.GetCurrentView().TitleBar.LayoutMetricsChanged += TitleBar_LayoutMetricsChanged;
+            Loaded += MainPage_Loaded;
+        }
+
+        private void TitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
+        {
+            var titleBar = sender;
+            TitleBar.Padding = new Thickness(titleBar.SystemOverlayLeftInset, 0, titleBar.SystemOverlayRightInset, 0);
+        }
+
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

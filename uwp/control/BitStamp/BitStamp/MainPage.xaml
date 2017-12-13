@@ -9,6 +9,18 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid x:Name="TitleBar">
+            <TextBlock Margin="10,10,10,10" Text="图床"></TextBlock>
+        </Grid>
         
+        <Grid>
+          <Grid>
+              <ToggleButton x:Name="SplitToggleButton" Margin="10,50,10,10" VerticalAlignment="Top">
+                  <ToggleButton.Content>
+                      <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE700;"></TextBlock>
+                  </ToggleButton.Content>
+              </ToggleButton>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

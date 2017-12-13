@@ -4,6 +4,7 @@
 using System;
 using Windows.Storage;
 using BitStamp.Model;
+using BitStamp.Model.Cimage;
 using lindexi.uwp.ImageShack.Model.IO;
 
 namespace lindexi.uwp.ImageShack.Model

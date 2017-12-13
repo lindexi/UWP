@@ -213,7 +213,7 @@ namespace lindexi.uwp.Framework.ViewModel
                     .Where(
                         temp =>
                             temp.IsSubclassOf(typeof(Composite)) &&
-                            !typeof(ICombinationComposite).IsAssignableFrom(temp) &&
+                            !temp.IsAssignableFrom(typeof(ICombinationComposite)) &&
                             !temp.IsSubclassOf(typeof(CombinationComposite)) &&
                             temp != typeof(CombinationComposite)))
             {

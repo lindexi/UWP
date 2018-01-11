@@ -36,6 +36,8 @@ namespace VarietyHiggstGushed.View
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ViewModel = (KdgderhlMzhpModel) e.Parameter;
+            ViewModel.Content = VjagWrgesebmy;
+            ViewModel.UmfqawovKaxkrdrg();
             DataContext = ViewModel;
             base.OnNavigatedTo(e);
         }

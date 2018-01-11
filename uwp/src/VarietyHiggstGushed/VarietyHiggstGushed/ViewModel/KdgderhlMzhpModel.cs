@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using lindexi.uwp.Framework.ViewModel;
+using VarietyHiggstGushed.View;
 
 namespace VarietyHiggstGushed.ViewModel
 {
-    public class KdgderhlMzhpModel : ViewModelMessage
+    public class KdgderhlMzhpModel : NavigateViewModel
     {
 
         public KdgderhlMzhpModel()
@@ -28,7 +31,8 @@ namespace VarietyHiggstGushed.ViewModel
 
         public override void OnNavigatedTo(object sender, object obj)
         {
-
+            CombineViewModel(Application.Current.GetType().GetTypeInfo().Assembly);
+            AllAssemblyComposite(Application.Current.GetType().GetTypeInfo().Assembly);
         }
         public ObservableCollection<YcftxgEcgs> VsibgyegZkyi { get; set; } = new ObservableCollection<YcftxgEcgs>();
 
@@ -44,6 +48,11 @@ namespace VarietyHiggstGushed.ViewModel
 
         private string _pngvnwIjpy;
 
+        public void UmfqawovKaxkrdrg()
+        {
+            //进行跳转
+            Navigate(typeof(StorageModel), null);
+        }
     }
 
     public class YcftxgEcgs

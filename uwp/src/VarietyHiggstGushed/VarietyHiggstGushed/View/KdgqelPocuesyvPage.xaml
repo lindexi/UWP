@@ -20,7 +20,7 @@
 
         <Grid>
 
-          
+            <Frame x:Name="VjagWrgesebmy"></Frame>
             
         </Grid>
         <Grid Grid.Row="1">
@@ -35,7 +35,7 @@
                         HorizontalAlignment="Stretch"></Button>
                 <Button Grid.Column="1" Content="仓库" Margin="10,10,10,10"
                         HorizontalAlignment="Stretch"></Button>
-                <Button Grid.Column="2" Content="跳转测试 跳转到页面3" Margin="10,10,10,10"
+                <Button Grid.Column="2" Content="工地" Margin="10,10,10,10"
                         HorizontalAlignment="Stretch"></Button>
             </Grid>
         </Grid>

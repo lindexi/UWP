@@ -28,45 +28,6 @@ namespace BitStamp.Model.Cimage
         public override void UploadImage()
         {
             GetCookie();
-            CookieAwareWebClientAsync();
-        }
-
-        private async void CookieAwareWebClientAsync()
-        {
-            AccountCimage account = AppId.AccoutCimage;
-            var url = new Uri("https://passport.csdn.net/account/login");
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GET";
-            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
-            request.Headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36";
-            request.ContentType = "application/x-www-form-urlencoded";
-            CookieContainer cookie = new CookieContainer();
-            request.CookieContainer = cookie;
-            HttpWebResponse response = (HttpWebResponse)(await request.GetResponseAsync());
-
-            cookie = request.CookieContainer;
-            string sc = cookie.GetCookieHeader(url);
-
-            string str = "";
-            using (StreamReader stream= new StreamReader(response.GetResponseStream()))
-            {
-                str = stream.ReadToEnd();
-            }
-
-
-            Regex regex = new Regex(" type=\"hidden\" name=\"lt\" value=\"([\\w|\\-]+)\"");
-            var lt = regex.Match(str).Groups[1].Value;
-            regex = new Regex("type=\"hidden\" name=\"execution\" value=\"(\\w+)\"");
-            var execution = regex.Match(str).Groups[1].Value;
-
-            str = $"username={account.UserName}&password={account.Key}&lt={lt}&execution={execution}&_eventId=submit";
-            //str = str.Replace("@", "%40");
-            str = WebUtility.UrlEncode(str);
-
-            request.Method = "post";
-            byte[] postby = Encoding.UTF8.GetBytes(str);
-
         }
 
         private async void GetCookie()
@@ -124,7 +85,6 @@ namespace BitStamp.Model.Cimage
             str = await content.ReadAsStringAsync();
 
             str = await (await http.PostAsync(url, content)).Content.ReadAsStringAsync();
-            Debug.WriteLine(str);
             HandlCookie(handler,url);
             //str = await http.GetStringAsync(url);
             //cookies = new CookieContainer();
@@ -156,13 +116,11 @@ namespace BitStamp.Model.Cimage
 
             //handler.CookieContainer.GetCookies()
             url = new Uri("http://write.blog.csdn.net/postlist");
-            Debug.Write(handler.CookieContainer.GetCookies(url).Count);
             str = await http.GetStringAsync(url);
 
             //content=new MultipartContent();
             //((MultipartContent)content)
             content = new MultipartFormDataContent();
-            HandlCookie(handler,url);
             ((MultipartFormDataContent)content).Headers.Add("name", "file1");
             //((MultipartFormDataContent)content)
             ((MultipartFormDataContent)content).Headers.Add("filename", "20170114120751.png");
@@ -180,49 +138,6 @@ namespace BitStamp.Model.Cimage
                 //message.Content.ReadAsStreamAsync()
                 ResponseImage(message);
             }
-        }
-
-        public static CookieContainer AddCookieToContainer(string cookie, CookieContainer cc, string domain)
-        {
-            string[] tempCookies = cookie.Split(';');
-            string tempCookie = null;
-            int Equallength = 0;//  =的位置 
-            string cookieKey = null;
-            string cookieValue = null;
-            //qg.gome.com.cn  cookie 
-            for (int i = 0; i < tempCookies.Length; i++)
-            {
-                if (!string.IsNullOrEmpty(tempCookies[i]))
-                {
-                    tempCookie = tempCookies[i];
-
-                    Equallength = tempCookie.IndexOf("=");
-
-                    if (Equallength != -1)       //有可能cookie 无=，就直接一个cookiename；比如:a=3;ck;abc=; 
-                    {
-                        cookieKey = tempCookie.Substring(0, Equallength).Trim();
-                        if (Equallength == tempCookie.Length - 1)    //这种是等号后面无值，如：abc=; 
-                        {
-                            cookieValue = "";
-                        }
-                        else
-                        {
-                            cookieValue = tempCookie.Substring(Equallength + 1, tempCookie.Length - Equallength - 1).Trim();
-                        }
-                    }
-
-                    else
-                    {
-                        cookieKey = tempCookie.Trim();
-                        cookieValue = "";
-                    }
-
-                    //cc.Add(new Cookie(cookieKey, cookieValue, "", domain));
-                    cc.Add(new Uri(domain), new Cookie(cookieKey, cookieValue, "", domain));
-                }
-
-            }
-            return cc;
         }
 
         private static void HandlCookie(HttpClientHandler handler, Uri url)
@@ -248,9 +163,6 @@ namespace BitStamp.Model.Cimage
                 string str = $"name={temp.Name};\ndomain={temp.Domain}\npath={temp.Path}\nvalue={temp.Value}\n\n";
                 Debug.Write(str);
             }
-            Debug.Write(handler.CookieContainer.GetCookies(url).Count);
-            Debug.Write(handler.CookieContainer.GetCookieHeader(url));
-            
             //name=UserName;
             //domain=.csdn.net
             //path=/

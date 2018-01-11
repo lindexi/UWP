@@ -21,7 +21,7 @@ namespace BitStamp.ViewModel
         public AccoutGoverment()
         {
             Account = new Account();
-            Read();
+            //Read();
             //Application.Current.Suspending += async (s, e) =>
             //{
             //    var deferral = e.SuspendingOperation.GetDeferral();
@@ -90,7 +90,7 @@ namespace BitStamp.ViewModel
             }
         }
 
-        private async void Read()
+        public async Task Read()
         {
             await Task.Delay(100);
             string folderStr = "account";
@@ -115,6 +115,7 @@ namespace BitStamp.ViewModel
                     //FutureAccessList 
                     if (Account != null)
                     {
+
                         try
                         {
                             Account.Folder = await

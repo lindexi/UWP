@@ -3,7 +3,7 @@
   <metadata>
     <id>lindexi.uwp.Framework</id>
 
-    <version>1.0.15512</version>
+    <version>1.0.15525</version>
 
     <title>lindexi.uwp.Framework</title>
 
@@ -15,8 +15,20 @@
     <projectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</projectUrl>
     <iconUrl>https://avatars2.githubusercontent.com/u/16054566</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>MVVM </description>
-    <releaseNotes>MVVM</releaseNotes>
+    <description>如果在开发过程，遇到多个页面之间，需要传输信息，那么可能遇到设计的问题。如果因为一个页面内包含多个子页面和多个子页面之间的通信问题找不到一个好的解决方法，那么请看本文。如果因为ViewModel代码越来越多烦恼，请试试本文提供的框架。 
+
+    如何使用，请看 http://lindexi.oschina.io/lindexi/post/win10-uwp-MVVM-%E8%BD%BB%E9%87%8F%E6%A1%86%E6%9E%B6/ </description>
+    <releaseNotes>1.0.15535
+
+        解决无法添加处理
+
+      1.0.15525
+
+      解决提供了编译时引用程序集，但没有与 win10-arm 兼容的运行时程序集
+
+      1.0.15512 
+
+解决无法使用的坑</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>UWP </tags>
     <dependencies>
@@ -25,9 +37,9 @@
   </metadata>
   <files>
         <!-- WinMd and IntelliSense files -->
-        <file src=".\wyatt\bin\Debug\Wyatt.XML" target="lib\uap"/>
+        <!-- <file src=".\wyatt\bin\Debug\Wyatt.XML" target="lib\uap"/> -->
 
-         <file src=".\wyatt\bin\ARM\Debug\wyatt.dll" target="runtimes\win10-arm\native"/>
+    <!--      <file src=".\wyatt\bin\ARM\Debug\wyatt.dll" target="runtimes\win10-arm\native"/>
          <file src=".\wyatt\bin\ARM\Debug\wyatt.pdb" target="runtimes\win10-arm\native"/>
         <file src=".\wyatt\bin\ARM\Debug\wyatt.XML" target="runtimes\win10-arm\native"/>
         <file src=".\wyatt\bin\ARM\Debug\wyatt.pri" target="runtimes\win10-arm\native"/>
@@ -40,12 +52,31 @@
         <file src=".\wyatt\bin\x86\Debug\wyatt.dll" target="runtimes\win10-x86\native"/>
         <file src=".\wyatt\bin\x86\Debug\wyatt.pdb" target="runtimes\win10-x86\native"/>
         <file src=".\wyatt\bin\x86\Debug\wyatt.XML" target="runtimes\win10-x86\native"/>
-        <file src=".\wyatt\bin\x86\Debug\wyatt.pri" target="runtimes\win10-x86\native"/>
+        <file src=".\wyatt\bin\x86\Debug\wyatt.pri" target="runtimes\win10-x86\native"/> -->
+
+        <file src=".\wyatt\bin\ARM\Debug\wyatt.dll" target="runtimes\win10-arm\lib\uap10.0"/>
+        <file src=".\wyatt\bin\ARM\Debug\wyatt.pdb" target="runtimes\win10-arm\lib\uap10.0"/>
+        <file src=".\wyatt\bin\ARM\Debug\wyatt.XML" target="runtimes\win10-arm\lib\uap10.0"/>
+        <file src=".\wyatt\bin\ARM\Debug\wyatt.pri" target="runtimes\win10-arm\lib\uap10.0"/>
+
+        <file src=".\wyatt\bin\x64\Debug\wyatt.dll" target="runtimes\win10-x64\lib\uap10.0"/>
+        <file src=".\wyatt\bin\x64\Debug\wyatt.pdb" target="runtimes\win10-x64\lib\uap10.0"/>
+        <file src=".\wyatt\bin\x64\Debug\wyatt.XML" target="runtimes\win10-x64\lib\uap10.0"/>
+        <file src=".\wyatt\bin\x64\Debug\wyatt.pri" target="runtimes\win10-x64\lib\uap10.0"/>
+
+        <file src=".\wyatt\bin\x86\Debug\wyatt.dll" target="runtimes\win10-x86\lib\uap10.0"/>
+        <file src=".\wyatt\bin\x86\Debug\wyatt.pdb" target="runtimes\win10-x86\lib\uap10.0"/>
+        <file src=".\wyatt\bin\x86\Debug\wyatt.XML" target="runtimes\win10-x86\lib\uap10.0"/>
+        <file src=".\wyatt\bin\x86\Debug\wyatt.pri" target="runtimes\win10-x86\lib\uap10.0"/>
 
         <file src=".\wyatt\bin\Debug\wyatt.dll" target="ref\uap10.0"/>
         <file src=".\wyatt\bin\Debug\wyatt.pdb" target="ref\uap10.0"/>
         <file src=".\wyatt\bin\Debug\wyatt.pri" target="ref\uap10.0"/>
         <file src=".\wyatt\bin\Debug\wyatt.XML" target="ref\uap10.0"/>
+         <!--  <file src=".\wyatt\bin\Debug\wyatt.dll" target="ref\"/>
+        <file src=".\wyatt\bin\Debug\wyatt.pdb" target="ref\"/>
+        <file src=".\wyatt\bin\Debug\wyatt.pri" target="ref\"/>
+        <file src=".\wyatt\bin\Debug\wyatt.XML" target="ref\"/> -->
 
       <!--   <file src="..\wyatt\bin\x86\wyatt.dll" target="runtimes\win10-x86\native"/>
         <file src="..\wyatt\bin\x86\wyatt.pdb" target="runtimes\win10-x86\native"/>

@@ -28,11 +28,7 @@ namespace lindexi.uwp.Framework.ViewModel
 #elif WINDOWS_UWP
 
 
-            if (Key.GetTypeInfo().IsInterface)
-            {
-                return Key.IsAssignableFrom(viewModel.ViewModel.GetType());
-            }
-            return viewModel.ViewModel.GetType().GetTypeInfo().IsSubclassOf(Key);
+            return Key.IsAssignableFrom(viewModel.ViewModel.GetType());
 #endif
         }
     }

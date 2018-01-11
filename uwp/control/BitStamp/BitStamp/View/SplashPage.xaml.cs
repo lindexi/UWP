@@ -43,6 +43,18 @@ namespace BitStamp.View
 
             //ApplicationView.GetForCurrentView().TryResizeView(new Size(200, 1000));
 
+            
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Read();
+            base.OnNavigatedTo(e);
+        }
+
+        private async void Read()
+        {
+            await AccoutGoverment.AccountModel.Read();
             AccoutGoverment.AccountModel.OnReadEventHandler += async (s, e) =>
             {
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,

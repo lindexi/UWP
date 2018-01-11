@@ -234,7 +234,7 @@ namespace lindexi.uwp.Framework.ViewModel
                         temp => 
                             temp.IsSubclassOf(typeof(Composite)) &&
                             !typeof(ICombinationComposite).IsAssignableFrom(temp.AsType()) &&
-                            !temp.IsSubclassOf(typeof(CombinationComposite)) &&
+                            !temp.IsSubclassOf(typeof(CombinationComposite)) && !temp.ContainsGenericParameters &&
                             temp.AsType() != typeof(CombinationComposite)))
             {
                

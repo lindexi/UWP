@@ -19,12 +19,9 @@
         </Grid.RowDefinitions>
 
         <Grid>
-
             <Frame x:Name="VjagWrgesebmy"></Frame>
-            
         </Grid>
         <Grid Grid.Row="1">
-
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

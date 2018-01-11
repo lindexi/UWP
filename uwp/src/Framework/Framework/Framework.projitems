@@ -35,9 +35,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Page.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModel\Tocorre\" />
-    <Folder Include="$(MSBuildThisFileDirectory)View\" />
   </ItemGroup>
 </Project>

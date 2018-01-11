@@ -31,7 +31,7 @@ namespace VarietyHiggstGushed.ViewModel
                 await new MessageDialog("没有找到存档", "没有存档").ShowAsync();
                 return;
             }
-            Send(new NavigateCombinationComposite(this, typeof(StorageModel)));
+            Send(new NavigateCombinationComposite(this, typeof(KdgderhlMzhpModel)));
         }
 
 
@@ -49,12 +49,12 @@ namespace VarietyHiggstGushed.ViewModel
                 pzsqSgxdj.PrimaryButtonClick += async (sender, args) =>
                 {
                     await AccountGoverment.JwAccountGoverment.Read();
-                    Send(new NavigateCombinationComposite(this, typeof(StorageModel)));
+                    Send(new NavigateCombinationComposite(this, typeof(KdgderhlMzhpModel)));
                 };
                 await pzsqSgxdj.ShowAsync();
                 return;
             }
-            Send(new NavigateCombinationComposite(this, typeof(StorageModel)));
+            Send(new NavigateCombinationComposite(this, typeof(KdgderhlMzhpModel)));
         }
 
         public override void OnNavigatedFrom(object sender, object obj)

@@ -40,13 +40,9 @@ namespace BitStamp
             this.InitializeComponent();
             UnhandledException += App_UnhandledException;
             this.Suspending += OnSuspending;
-
-            //int i = 3;
-            //int k = (++i)+(++i)+(+i);
-            //System.Console.WriteLine(k);
         }
 
-        private void App_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             //记录
             e.Handled = true;

@@ -54,7 +54,6 @@ namespace BitStamp.View
 
         private async void Read()
         {
-            await AccoutGoverment.AccountModel.Read();
             AccoutGoverment.AccountModel.OnReadEventHandler += async (s, e) =>
             {
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
@@ -65,6 +64,7 @@ namespace BitStamp.View
                         Window.Current.Content = rootFrame;
                     });
             };
+            await AccoutGoverment.AccountModel.Read();
         }
     }
 }

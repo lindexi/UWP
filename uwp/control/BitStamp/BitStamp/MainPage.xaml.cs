@@ -31,7 +31,7 @@ namespace BitStamp
                 frame = new Frame();
                 Content = frame;
             }
-            frame.Navigate(typeof(View.AssBjPage));
+            frame.Navigate(typeof(DrowilHuwfevfPage));
         }
     }
 }

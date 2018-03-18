@@ -173,6 +173,16 @@
     <Compile Include="View\AssBjPage.xaml.cs">
       <DependentUpon>AssBjPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DdglttKoxu.xaml.cs">
+      <DependentUpon>DdglttKoxu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DrowilHuwfevfPage.xaml.cs">
+      <DependentUpon>DrowilHuwfevfPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HrbHtlad.xaml.cs">
+      <DependentUpon>HrbHtlad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TuzyzpvHjpqptzk.cs" />
     <Compile Include="View\SplashPage.xaml.cs">
       <DependentUpon>SplashPage.xaml</DependentUpon>
     </Compile>
@@ -252,6 +262,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="View\DdglttKoxu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DrowilHuwfevfPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\HrbHtlad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\LightThemeDictionary.xaml">
       <SubType>Designer</SubType>

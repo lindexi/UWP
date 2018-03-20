@@ -30,29 +30,15 @@ namespace BitStamp.ViewModel
             //};
         }
 
-        public EventHandler OnReadEventHandler
-        {
-            set;
-            get;
-        }
+        public EventHandler OnReadEventHandler { set; get; }
 
 
-        public Account Account
-        {
-            set;
-            get;
-        }
+        public Account Account { set; get; }
 
         public static AccoutGoverment AccountModel
         {
-            set
-            {
-                _accountModel = value;
-            }
-            get
-            {
-                return _accountModel ?? (_accountModel = new AccoutGoverment());
-            }
+            set { _accountModel = value; }
+            get { return _accountModel ?? (_accountModel = new AccoutGoverment()); }
         }
 
         public async Task Storage()
@@ -104,29 +90,29 @@ namespace BitStamp.ViewModel
             {
                 first = true;
             }
+
             if (!first)
             {
                 try
                 {
                     StorageFile file = await folder.GetFileAsync(folderStr + ".json");
-                    var json = JsonSerializer.Create();
-                    Account = json.Deserialize<Account>(new JsonTextReader(
-                        new StreamReader(await file.OpenStreamForReadAsync())));
-                    //FutureAccessList 
+                    var dwrotSvwm =await FileIO.ReadTextAsync(file);
+                    Account = JsonConvert.DeserializeObject<Account>(dwrotSvwm);
                     if (Account != null)
                     {
-
-                        try
+                        if (!string.IsNullOrEmpty(Account.Token))
                         {
                             Account.Folder = await
-                                StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
-                                    Account.Token);
+                                StorageApplicationPermissions.FutureAccessList.
+                                    GetFolderAsync(
+                                        Account.Token);
+                            Account.Address = Account.Folder.Path;
                         }
-                        catch (ArgumentNullException)
+                        else
                         {
                             Account.Folder = KnownFolders.PicturesLibrary;
+                            Account.Address = Account.Folder.Path;
                         }
-                        Account.Address = Account.Folder.Path;
                     }
                     else
                     {
@@ -158,11 +144,16 @@ namespace BitStamp.ViewModel
                     QinImageShack = true,
                     SmmsImageShack = false,
                 };
+
+                Account.Token = StorageApplicationPermissions.FutureAccessList.Add(Account.Folder);
+
                 await Storage();
             }
 
-            OnReadEventHandler?.Invoke(this,null);
+            OnReadEventHandler?.Invoke(this, null);
         }
+
+       
 
         private static AccoutGoverment _accountModel;
     }

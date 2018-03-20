@@ -119,7 +119,7 @@
             <Grid>
                 <!--图片-->
                 <Grid Margin="70,60,0,30">
-                    <bitStamp:DdglttKoxu Background="BurlyWood" ViewModel="{Binding Mode=OneWay}"/>
+                    <bitStamp:DdglttKoxu Background="BurlyWood" ViewModel="{x:Bind ViewModel, Mode=OneWay}"/>
                 </Grid>
             </Grid>
 
@@ -164,7 +164,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid />
                     <TextBlock Grid.Column="1" Margin="0,0,10,0" VerticalAlignment="Center" Text="Markdown" />
-                    <TextBox Grid.Column="2" Text="" />
+                    <TextBox Grid.Column="2" Text="{x:Bind ViewModel.MarTqqcyhuaKujem,Mode=OneWay}" />
                     <Button Grid.Column="3" Margin="10,0,0,0" HorizontalContentAlignment="Center"
                             Style="{StaticResource KhqpsmpDclyneoqs}"
                             Click="{x:Bind ViewModel.MarDcqHghnuz}">
@@ -186,10 +186,10 @@
                     <Grid />
                     <TextBlock Grid.Column="1" Margin="0,0,10,0" VerticalAlignment="Center"
                                HorizontalTextAlignment="Right" TextAlignment="Right" Width="70" Text="BBCode" />
-                    <TextBox Grid.Column="2" Text="" />
+                    <TextBox Grid.Column="2" Text="{x:Bind ViewModel.BbTkeozdDmady,Mode=OneWay}" />
                     <Button Grid.Column="3" Margin="10,0,0,0" HorizontalContentAlignment="Center"
                             Style="{StaticResource KhqpsmpDclyneoqs}"
-                            Click="{x:Bind ViewModel.BbHozTexwufz}">
+                            Click="{x:Bind ViewModel.BbHozTexwufz,Mode=OneWay}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource KguypnDitzbbi}" Text="&#xE8C8;"
                                        VerticalAlignment="Center" />

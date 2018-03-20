@@ -26,13 +26,24 @@ namespace BitStamp
 
             ViewModel.Content = KasibkqeStkxaij;
 
-            ViewModel.ViewModel=new List<ViewModelPage>()
+            ViewModel.ViewModel = new List<ViewModelPage>()
             {
-                new ViewModelPage(typeof(HrbHtladModel),typeof(HrbHtlad)),
+                new ViewModelPage(typeof(HrbHtladModel), typeof(HrbHtlad)),
             };
 
-            ViewModel.Navigate(typeof(HrbHtladModel), null);
+            TadSvc();
         }
+
+        private async void TadSvc()
+        {
+            if (!_senKrobe)
+            {
+                _senKrobe = true;
+                ViewModel.Navigate(typeof(HrbHtladModel), AccoutGoverment.AccountModel.Account);
+            }
+        }
+
+        private bool _senKrobe;
 
         public DrowilHuwfevfModel ViewModel { get; set; }
 

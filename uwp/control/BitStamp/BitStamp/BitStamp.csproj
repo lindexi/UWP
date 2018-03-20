@@ -165,6 +165,7 @@
     <Compile Include="ViewModel\Account.cs" />
     <Compile Include="ViewModel\AccoutGoverment.cs" />
     <Compile Include="ViewModel\AssBjModel.cs" />
+    <Compile Include="ViewModel\DrowilHuwfevfModel.cs" />
     <Compile Include="ViewModel\NotifyProperty.cs" />
     <Compile Include="ViewModel\Stamp.cs" />
     <Compile Include="View\AccountPage.xaml.cs">
@@ -236,6 +237,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Framework.sln" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
@@ -255,6 +257,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AssBjPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -311,6 +317,7 @@
       <Name>Windows Team Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
+  <Import Project="..\..\..\src\Framework\Framework\Framework.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

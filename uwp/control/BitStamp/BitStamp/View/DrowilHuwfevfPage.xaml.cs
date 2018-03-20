@@ -1,10 +1,13 @@
-﻿using Windows.ApplicationModel.Core;
+﻿using System.Collections.Generic;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using BitStamp.ViewModel;
+using lindexi.uwp.Framework.ViewModel;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -19,8 +22,19 @@ namespace BitStamp
         {
             this.InitializeComponent();
 
-            KasibkqeStkxaij.Navigate(typeof(BitStamp.HrbHtlad));
+            ViewModel = (DrowilHuwfevfModel) DataContext;
+
+            ViewModel.Content = KasibkqeStkxaij;
+
+            ViewModel.ViewModel=new List<ViewModelPage>()
+            {
+                new ViewModelPage(typeof(HrbHtladModel),typeof(HrbHtlad)),
+            };
+
+            ViewModel.Navigate(typeof(HrbHtladModel), null);
         }
+
+        public DrowilHuwfevfModel ViewModel { get; set; }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -40,7 +54,11 @@ namespace BitStamp
 
             dmbyzkfscDycoue.TitleBar.ButtonBackgroundColor = Colors.Transparent;
 
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(1024, 800));
+            ApplicationView.PreferredLaunchViewSize = new Size(1024, 800);
+
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+
+            dmbyzkfscDycoue.SetPreferredMinSize(new Size(1024, 800));
         }
 
         private void BackRequested(object sender, BackRequestedEventArgs e)

@@ -4,6 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
+    xmlns:contract5NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
+
+    xmlns:contract5Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+
     xmlns:bitStamp="using:BitStamp"
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -11,6 +16,8 @@
 
     <FrameworkElement.Resources>
         <RevealBorderBrush x:Key="KilqpdiHbmgvaz" TargetTheme="Light" Color="#08000000" FallbackColor="{ThemeResource SystemAccentColor}"/>
+
+        
         <bitStamp:TkykfwTnwo x:Key="TwacxiieKwxzagoq" />
 
         <Style TargetType="bitStamp:TuzyzpvHjpqptzk">
@@ -37,14 +44,15 @@
     <Grid Margin="70,0,0,10" Background="#00FFFFFF" PointerPressed="UIElement_OnPointerPressed"
           DragOver="Grid_OnDragOver"
           Drop="Grid_Drop">
-        <Rectangle  Stroke="{StaticResource KilqpdiHbmgvaz}" StrokeThickness="7"
+
+        <Rectangle Stroke="{StaticResource KilqpdiHbmgvaz}" StrokeThickness="7"
                     StrokeDashArray="3,3" RadiusX="5" RadiusY="5" Fill="Transparent"></Rectangle>
         <Grid Margin="10,0,10,0">
-            <Image Stretch="Uniform" Source="{x:Bind Image,Mode=OneWay}">
+            <Image Stretch="Uniform" Source="{x:Bind ViewModel.Image,Mode=OneWay}">
 
             </Image>
         </Grid>
-        <Grid Visibility="{x:Bind Image,Mode=OneWay,Converter={StaticResource TwacxiieKwxzagoq}}">
+        <Grid Visibility="{x:Bind ViewModel.Image,Mode=OneWay,Converter={StaticResource TwacxiieKwxzagoq}}">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock Text="欢迎大家使用图床" />
                 <TextBlock Text="可以在设置选择上传的地方" />

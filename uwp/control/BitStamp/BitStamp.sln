@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitStamp", "BitStamp\BitStamp.csproj", "{B80A0B27-7BE2-4A4B-A456-37B973690C55}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Framework", "..\..\src\Framework\Framework\Framework.shproj", "{2C57C77F-C734-48CD-92E9-53677AC7DAFA}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\src\Framework\Framework\Framework.projitems*{2c57c77f-c734-48cd-92e9-53677ac7dafa}*SharedItemsImports = 13
+		..\..\src\Framework\Framework\Framework.projitems*{b80a0b27-7be2-4a4b-a456-37b973690c55}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
@@ -36,5 +42,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {852AD0F6-F15D-4596-B6E6-34D83446E1E6}
 	EndGlobalSection
 EndGlobal

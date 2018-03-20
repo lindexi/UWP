@@ -3,10 +3,11 @@
     "JYAdControl": "2.3.6",
     "JyCloud": "1.0.5",
     "Microsoft.Advertising.XAML": "10.1705.16001",
-    "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.6",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.8",
     "Microsoft.Services.Store.SDK": "10.1705.16001",
-    "Newtonsoft.Json": "10.0.3",
-    "PCLCrypto": "2.0.147"
+    "Newtonsoft.Json": "11.0.1",
+    "PCLCrypto": "2.0.147",
+    "Win2D.uwp": "1.21.0"
   },
   "frameworks": {
     "uap10.0.16299": {}

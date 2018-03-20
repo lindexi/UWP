@@ -4,11 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:BitStamp.ViewModel"
     mc:Ignorable="d">
+    <Page.DataContext>
+        <viewModel:DrowilHuwfevfModel></viewModel:DrowilHuwfevfModel></Page.DataContext>
     <FrameworkElement.Resources>
         <Style x:Key="DvnznnoTvtunt" TargetType="Polygon">
             <Setter Property="Points" Value="0,0,10,0,10,10" />
-            <Setter Property="Fill" Value="#CC009CAE" />
+            <Setter Property="Fill" Value="#C1009CAE" />
             <Setter Property="Stretch" Value="Fill" />
             <Setter Property="Opacity" Value="0.8" />
             <Setter Property="HorizontalAlignment" Value="Right" />
@@ -17,7 +20,7 @@
 
         <Style x:Key="HabvKlfxiac" TargetType="Polygon">
             <Setter Property="Points" Value="0,0,0,10,10,10" />
-            <Setter Property="Fill" Value="#CC009CAE" />
+            <Setter Property="Fill" Value="#C1009CAE" />
             <Setter Property="Stretch" Value="Fill" />
             <Setter Property="Opacity" Value="0.8" />
             <Setter Property="VerticalAlignment" Value="Bottom" />

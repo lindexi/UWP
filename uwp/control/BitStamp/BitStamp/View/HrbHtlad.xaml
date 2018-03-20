@@ -119,7 +119,7 @@
             <Grid>
                 <!--图片-->
                 <Grid Margin="70,60,0,30">
-                    <bitStamp:DdglttKoxu Background="BurlyWood" />
+                    <bitStamp:DdglttKoxu Background="BurlyWood" ViewModel="{Binding Mode=OneWay}"/>
                 </Grid>
             </Grid>
 
@@ -127,27 +127,29 @@
                   HorizontalAlignment="Left"
                   VerticalAlignment="Center">
                 <StackPanel>
-                    <Button Style="{StaticResource KhqpsmpDclyneoqs}" Margin="0,0,0,5">
+                    <Button Style="{StaticResource KhqpsmpDclyneoqs}" Margin="0,0,0,5" 
+                            Click="{x:Bind ViewModel.ClipHnzSytrcwjt}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource KguypnDitzbbi}" Text="&#xE77F;"
                                        VerticalAlignment="Center" />
                             <TextBlock Text="从剪贴板粘贴 (Ctrl+V)" />
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource KhqpsmpDclyneoqs}" Margin="0,0,0,0">
+                    <Button Style="{StaticResource KhqpsmpDclyneoqs}" Margin="0,0,0,0" Click="{x:Bind ViewModel.FileHhhrSkq}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource KguypnDitzbbi}" Text="&#xE8E5;" />
                             <TextBlock Text="从文件打开" />
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource KhqpsmpDclyneoqs}" Margin="0,105,0,0">
+                    <Button Style="{StaticResource KhqpsmpDclyneoqs}" Margin="0,105,0,0"
+                            Click="{x:Bind ViewModel.Upload}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="上传" />
                         </StackPanel>
                     </Button>
                     <TextBlock Margin="0,10,0,0" Text="水印" />
-                    <TextBox Text="" />
-                    <ToggleSwitch Margin="0,30,0,0" OnContent="显示水印" OffContent="不显示水印" />
+                    <TextBox Text="{Binding MartHzlxwlTcq,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <ToggleSwitch Margin="0,30,0,0" IsOn="{x:Bind ViewModel.MarTxanmvssTfnpqlz,Mode=TwoWay}" OnContent="显示水印" OffContent="不显示水印" />
                 </StackPanel>
             </Grid>
         </Grid>
@@ -164,7 +166,8 @@
                     <TextBlock Grid.Column="1" Margin="0,0,10,0" VerticalAlignment="Center" Text="Markdown" />
                     <TextBox Grid.Column="2" Text="" />
                     <Button Grid.Column="3" Margin="10,0,0,0" HorizontalContentAlignment="Center"
-                            Style="{StaticResource KhqpsmpDclyneoqs}">
+                            Style="{StaticResource KhqpsmpDclyneoqs}"
+                            Click="{x:Bind ViewModel.MarDcqHghnuz}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource KguypnDitzbbi}" Text="&#xE8C8;"
                                        VerticalAlignment="Center" />
@@ -185,7 +188,8 @@
                                HorizontalTextAlignment="Right" TextAlignment="Right" Width="70" Text="BBCode" />
                     <TextBox Grid.Column="2" Text="" />
                     <Button Grid.Column="3" Margin="10,0,0,0" HorizontalContentAlignment="Center"
-                            Style="{StaticResource KhqpsmpDclyneoqs}">
+                            Style="{StaticResource KhqpsmpDclyneoqs}"
+                            Click="{x:Bind ViewModel.BbHozTexwufz}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource KguypnDitzbbi}" Text="&#xE8C8;"
                                        VerticalAlignment="Center" />

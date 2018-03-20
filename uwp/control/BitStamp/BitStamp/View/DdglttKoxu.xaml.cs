@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
+using BitStamp.ViewModel;
 
 //https://go.microsoft.com/fwlink/?LinkId=234236 上介绍了“用户控件”项模板
 
@@ -28,30 +29,12 @@ namespace BitStamp
             }
         }
 
-        public static readonly DependencyProperty ImageProperty = DependencyProperty.Register(
-            "Image", typeof(BitmapImage), typeof(DdglttKoxu), new PropertyMetadata(default(BitmapImage)));
-
-        public BitmapImage Image
-        {
-            get { return (BitmapImage) GetValue(ImageProperty); }
-            set { SetValue(ImageProperty, value); }
-        }
+        public HrbHtladModel ViewModel { get; set; }
 
         private async void UIElement_OnPointerPressed(object sender, PointerRoutedEventArgs e)
         {
             var dyhhfSyluomkgu = Clipboard.GetContent();
-
-            if (dyhhfSyluomkgu != null)
-            {
-                if (dyhhfSyluomkgu.Contains(StandardDataFormats.Bitmap))
-                {
-                    await SetClipimage(dyhhfSyluomkgu);
-                }
-                else if (dyhhfSyluomkgu.Contains(StandardDataFormats.StorageItems))
-                {
-                    await ImageStorageFile(dyhhfSyluomkgu);
-                }
-            }
+            await ViewModel.KkrfKuumt(dyhhfSyluomkgu);
         }
 
 
@@ -74,13 +57,14 @@ namespace BitStamp
             try
             {
                 DataPackageView dataView = e.DataView;
-                if (dataView.Contains(StandardDataFormats.StorageItems))
-                {
-                    await ImageStorageFile(dataView);
-                    //await ImageStorageFile(file);
+                //if (dataView.Contains(StandardDataFormats.StorageItems))
+                //{
+                //    await ImageStorageFile(dataView);
+                //    //await ImageStorageFile(file);
 
-                    //_name = file.DisplayName;
-                }
+                //    //_name = file.DisplayName;
+                //}
+                await ViewModel.KkrfKuumt(dataView);
             }
             catch
             {
@@ -88,31 +72,6 @@ namespace BitStamp
             finally
             {
                 defer.Complete();
-            }
-        }
-
-        private async Task SetClipimage(DataPackageView data)
-        {
-            RandomAccessStreamReference file = await data.GetBitmapAsync();
-            BitmapImage image = new BitmapImage();
-            await image.SetSourceAsync(await file.OpenReadAsync());
-            //this.image.Source = image;
-            //View.Image = image;
-            //_upload = true;
-
-            Image = image;
-        }
-
-        private async System.Threading.Tasks.Task ImageStorageFile(DataPackageView dataView)
-        {
-            var files = await dataView.GetStorageItemsAsync();
-            StorageFile file = files.OfType<StorageFile>().First();
-            if (ImageFileType.Any(temp => file.FileType == temp))
-            {
-                BitmapImage bitmap = new BitmapImage();
-                await bitmap.SetSourceAsync(await file.OpenAsync(FileAccessMode.Read));
-
-                Image = bitmap;
             }
         }
     }

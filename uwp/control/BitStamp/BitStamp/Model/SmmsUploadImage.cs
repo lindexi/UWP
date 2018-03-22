@@ -36,6 +36,10 @@ namespace BitStamp.Model
                 new HttpMultipartFormDataContent();
             var fileContent = new HttpStreamContent(await File.OpenAsync(FileAccessMode.Read));
             fileContent.Headers.Add("Content-Type", "application/octet-stream");
+
+            var userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36";
+            webHttpClient.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
+
             httpMultipartFormDataContent.Add(fileContent, "smfile", File.Name);
             var str = await webHttpClient.PostAsync(new Uri(url), httpMultipartFormDataContent);
             ResponseString = str.Content.ToString();

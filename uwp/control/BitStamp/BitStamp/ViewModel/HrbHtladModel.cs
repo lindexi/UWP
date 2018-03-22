@@ -211,7 +211,7 @@ namespace BitStamp.ViewModel
             var heaaxThesolw = new HeaaxThesolw
             {
                 File = _file,
-                CloundesAccound = Account.CloundAccound
+                Account = Account
             };
             await heaaxThesolw.Jcloud(tggSqlaeprfo =>
             {
@@ -304,7 +304,7 @@ namespace BitStamp.ViewModel
 
     public class HeaaxThesolw
     {
-        public CloundesAccound CloundesAccound { get; set; }
+        public Account Account { get; set; }
 
         public StorageFile File { get; set; }
 
@@ -319,7 +319,7 @@ namespace BitStamp.ViewModel
                 case ImageShackEnum.Qin:
                     return new QnUploadImage(file)
                     {
-                        Accound = CloundesAccound
+                        Accound = Account.CloundAccound
                     };
                 case ImageShackEnum.Cimage:
                     return new Cimage(file);
@@ -338,7 +338,7 @@ namespace BitStamp.ViewModel
             //image.UploadImage();
             //return;
 
-            ImageShackEnum imageShack = AccoutGoverment.AccountModel.Account.ImageShack;
+            ImageShackEnum imageShack = Account.ImageShack;
             if (File.FileType == ".gif" && imageShack == ImageShackEnum.Jiuyou)
             {
                 imageShack = ImageShackEnum.Qin;

@@ -35,42 +35,5 @@ namespace BitStamp
 
             base.OnNavigatedTo(e);
         }
-
-        private async void KfuconihiKvqy_OnClick(object sender, RoutedEventArgs e)
-        {
-            var duvDbecdgiu =
-                await CanvasBitmap.LoadAsync(new CanvasDevice(), await _file.OpenAsync(FileAccessMode.Read));
-
-
-            using (var canvasRenderTarget = new CanvasRenderTarget(duvDbecdgiu, duvDbecdgiu.Size))
-            {
-                using (var dc = canvasRenderTarget.CreateDrawingSession())
-                {
-                    dc.DrawImage(duvDbecdgiu);
-                    dc.DrawText("lindexi",
-                        new Vector2((float) (duvDbecdgiu.Size.Width / 2), (float) duvDbecdgiu.Size.Height/2), Colors.Black);
-                }
-
-                var pick = new FileSavePicker();
-                pick.FileTypeChoices.Add("image", new List<string>() {".jpg"});
-
-                var file = await pick.PickSaveFileAsync();
-
-                await canvasRenderTarget.SaveAsync(await file.OpenAsync(FileAccessMode.ReadWrite),CanvasBitmapFileFormat.Jpeg);
-            }
-        }
-
-        private async void KknqymKehfobtlv_OnClick(object sender, RoutedEventArgs e)
-        {
-            var pick = new FileOpenPicker();
-            pick.FileTypeFilter.Add(".jpg");
-            pick.FileTypeFilter.Add(".png");
-
-            var file = await pick.PickSingleFileAsync();
-
-            _file = file;
-        }
-
-        private StorageFile _file;
     }
 }

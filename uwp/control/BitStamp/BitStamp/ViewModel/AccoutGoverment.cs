@@ -100,18 +100,25 @@ namespace BitStamp.ViewModel
                     Account = JsonConvert.DeserializeObject<Account>(dwrotSvwm);
                     if (Account != null)
                     {
-                        if (!string.IsNullOrEmpty(Account.Token))
+                        try
                         {
-                            Account.Folder = await
-                                StorageApplicationPermissions.FutureAccessList.
-                                    GetFolderAsync(
-                                        Account.Token);
-                            Account.Address = Account.Folder.Path;
+                            if (!string.IsNullOrEmpty(Account.Token))
+                            {
+                                Account.Folder = await
+                                    StorageApplicationPermissions.FutureAccessList.
+                                        GetFolderAsync(
+                                            Account.Token);
+                                Account.Address = Account.Folder.Path;
+                            }
+                            else
+                            {
+                                Account.Folder = KnownFolders.PicturesLibrary;
+                                Account.Address = Account.Folder.Path;
+                            }
                         }
-                        else
+                        catch (UnauthorizedAccessException )
                         {
-                            Account.Folder = KnownFolders.PicturesLibrary;
-                            Account.Address = Account.Folder.Path;
+                            Account.Folder = ApplicationData.Current.TemporaryFolder;
                         }
                     }
                     else
@@ -139,7 +146,7 @@ namespace BitStamp.ViewModel
                     Theme = ElementTheme.Light,
                     ThemeDay = true,
                     Str = "",
-                    ImageShack = ImageShackEnum.Qin,
+                    ImageShack = ImageShackEnum.Smms,
                     JiuYouImageShack = false,
                     QinImageShack = true,
                     SmmsImageShack = false,

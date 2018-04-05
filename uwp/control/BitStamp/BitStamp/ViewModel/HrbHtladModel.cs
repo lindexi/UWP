@@ -334,10 +334,6 @@ namespace BitStamp.ViewModel
 
         public async Task Jcloud(Action<bool> onUpload)
         {
-            //Cimage image = new Cimage(File);
-            //image.UploadImage();
-            //return;
-
             ImageShackEnum imageShack = Account.ImageShack;
             if (File.FileType == ".gif" && imageShack == ImageShackEnum.Jiuyou)
             {
@@ -354,6 +350,8 @@ namespace BitStamp.ViewModel
                 imageShack = ImageShackEnum.Smms;
             }
             //4326  24,447 
+
+            imageShack = CheckShack(imageShack);
 
 #if DEBUG
             //imageShack = ImageShackEnum.Cimage;
@@ -374,6 +372,24 @@ namespace BitStamp.ViewModel
                 onUpload?.Invoke(e);
             };
             uploadImageTask.UploadImage();
+        }
+
+        private ImageShackEnum CheckShack(ImageShackEnum imageShack)
+        {
+            //检查当前是否可以使用
+            if (imageShack == ImageShackEnum.Qin)
+            {
+                //如果图床账号错误
+                if (string.IsNullOrEmpty(Account.CloundAccound.AccessKey) ||
+                    string.IsNullOrEmpty(Account.CloundAccound.Bucket) ||
+                    string.IsNullOrEmpty(Account.CloundAccound.SecretKey) ||
+                    string.IsNullOrEmpty(Account.CloundAccound.Url))
+                {
+                    return ImageShackEnum.Smms;
+                }
+            }
+
+            return imageShack;
         }
     }
 }

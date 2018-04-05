@@ -15,7 +15,7 @@
     d:DesignWidth="390">
 
     <FrameworkElement.Resources>
-        <RevealBorderBrush x:Key="KilqpdiHbmgvaz" TargetTheme="Light" Color="#08000000" FallbackColor="{ThemeResource SystemAccentColor}"/>
+        <RevealBorderBrush x:Key="KilqpdiHbmgvaz" TargetTheme="Light" Color="#08000000" FallbackColor="{ThemeResource SystemAccentColor}" />
 
         
         <bitStamp:TkykfwTnwo x:Key="TwacxiieKwxzagoq" />

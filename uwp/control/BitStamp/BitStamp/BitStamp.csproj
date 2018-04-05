@@ -168,6 +168,7 @@
     <Compile Include="ViewModel\DrowilHuwfevfModel.cs" />
     <Compile Include="ViewModel\HrbHtladModel.cs" />
     <Compile Include="ViewModel\NotifyProperty.cs" />
+    <Compile Include="ViewModel\SaeHqeupqModel.cs" />
     <Compile Include="ViewModel\Stamp.cs" />
     <Compile Include="View\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
@@ -183,6 +184,9 @@
     </Compile>
     <Compile Include="View\HrbHtlad.xaml.cs">
       <DependentUpon>HrbHtlad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SaeHqeupqPage.xaml.cs">
+      <DependentUpon>SaeHqeupqPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TuzyzpvHjpqptzk.cs" />
     <Compile Include="View\SplashPage.xaml.cs">
@@ -286,6 +290,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="View\SaeHqeupqPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SplashPage.xaml">
       <SubType>Designer</SubType>

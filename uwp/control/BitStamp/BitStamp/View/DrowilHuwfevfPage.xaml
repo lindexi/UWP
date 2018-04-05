@@ -745,7 +745,8 @@
                                 VerticalAlignment="Bottom" 
                                 Background="Transparent"
                                 FocusVisualPrimaryThickness="2" 
-                                FocusVisualSecondaryThickness="1">
+                                FocusVisualSecondaryThickness="1"
+                                Click="NavigateSaeHqeupq_OnClick">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource KguypnDitzbbi}" 
                                            VerticalAlignment="Center"

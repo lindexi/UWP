@@ -4,8 +4,10 @@ using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using BitStamp.View;
 using BitStamp.ViewModel;
 using lindexi.uwp.Framework.ViewModel;
 
@@ -29,21 +31,14 @@ namespace BitStamp
             ViewModel.ViewModel = new List<ViewModelPage>()
             {
                 new ViewModelPage(typeof(HrbHtladModel), typeof(HrbHtlad)),
+                new ViewModelPage(typeof(SaeHqeupqModel),typeof(SaeHqeupqPage)),
             };
 
-            TadSvc();
-        }
-
-        private async void TadSvc()
-        {
-            if (!_senKrobe)
+            Loaded += (s, e) =>
             {
-                _senKrobe = true;
-                ViewModel.Navigate(typeof(HrbHtladModel), AccoutGoverment.AccountModel.Account);
-            }
+                ViewModel.NavigatedTo(this,null);
+            };
         }
-
-        private bool _senKrobe;
 
         public DrowilHuwfevfModel ViewModel { get; set; }
 
@@ -55,7 +50,7 @@ namespace BitStamp
             telTtxxskne.BackRequested += BackRequested;
 
             telTtxxskne.AppViewBackButtonVisibility =
-                AppViewBackButtonVisibility.Visible;
+                AppViewBackButtonVisibility.Collapsed;
 
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
@@ -74,11 +69,16 @@ namespace BitStamp
 
         private void BackRequested(object sender, BackRequestedEventArgs e)
         {
+            ViewModel.NavigateHrbHtlad();
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                AppViewBackButtonVisibility.Collapsed;
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        private void NavigateSaeHqeupq_OnClick(object sender, RoutedEventArgs e)
         {
-            base.OnNavigatedFrom(e);
+            ViewModel.NavigateSaeHqeupq();
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                AppViewBackButtonVisibility.Visible;
         }
     }
 }

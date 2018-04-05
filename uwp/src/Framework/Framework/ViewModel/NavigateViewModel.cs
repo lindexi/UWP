@@ -73,7 +73,16 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <returns></returns>
         public async void Navigate(Type viewModel, object paramter, Frame content = null)
         {
+            if (viewModel == null)
+            {
+                throw new ArgumentNullException(nameof(viewModel));
+            }
+
             ViewModelPage view = ViewModel.Find(temp => temp.Equals(viewModel));
+            if (view == null)
+            {
+                throw new ArgumentException("Cant find the ViewModel, please sure that you have add it to ViewModel");
+            }
             await Navigate(paramter, view, content);
         }
 

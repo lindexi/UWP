@@ -13,6 +13,7 @@
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
         </Style>
         <model:ConvertBooleanNull x:Key="ConvertBooleanNull" />
+        <local:ConvertBoolenVisibility x:Key="HavoDwcbbtxlr" />
 
         <Style TargetType="ScrollBar">
             <Setter Property="MinWidth" Value="12" />
@@ -586,20 +587,20 @@
         </Style>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}">
+    <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Hidden">
-            <StackPanel
-                Margin="10,10,10,10">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Margin="10,10,10,10">
                 <!--<TextBlock x:Uid="lindexi" Text="lindexi"></TextBlock>
                 <TextBox x:Uid="lindexioschinaio" Header="lindexi.oschina.io"></TextBox>-->
-                <StackPanel Orientation="Horizontal">
+                <!--<StackPanel Orientation="Horizontal">
                     <TextBlock x:Uid="主题" Text="主题" Margin="0,0,10,0"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center" />
                     <ToggleSwitch IsOn="{x:Bind View.ThemeDay,Mode=TwoWay}" OffContent="夜间" OnContent="白天" />
-                </StackPanel>
-                <TextBlock x:Uid="默认图床" Text="默认图床" />
-                <TextBlock x:Uid="可以输入自己图床配置" FontSize="10" Foreground="Gray">
+                </StackPanel>-->
+                <TextBlock x:Uid="默认图床" Text="默认图床" Width="500"/>
+                <TextBlock x:Uid="可以输入自己图床配置" FontSize="10" Foreground="Gray"  >
                     可以输入自己的图床配置
                     <LineBreak />
                     如果没有输入，图床会用默认配置
@@ -608,7 +609,7 @@
                         如果没有输入，图床会用默认配置
                 </TextBlock>-->
                 <RadioButton IsChecked="{x:Bind View.SmmsImageShack,Mode=TwoWay}" Content="sm.ms" />
-                <RadioButton IsChecked="{x:Bind View.JiuYouImageShack,Mode=TwoWay}">
+                <RadioButton x:Name="HceKqiace" IsChecked="{x:Bind View.JiuYouImageShack,Mode=TwoWay}">
                     <RadioButton.Content>
                         <Grid>
                             <TextBlock x:Uid="九幽图床" Text="九幽图床" />
@@ -616,31 +617,32 @@
                     </RadioButton.Content>
                 </RadioButton>
                 <Grid Margin="20,0,0,0"
-                      Visibility="{x:Bind View.JiuYouImageShackVisibility,Mode=TwoWay}">
+                      Visibility="{x:Bind HceKqiace.IsChecked,Converter={StaticResource HavoDwcbbtxlr},Mode=OneWay}">
                     <TextBox x:Uid="九幽云存储" Margin="10,1,10,1" Header="九幽云存储key"
                              Text="{x:Bind View.JiuYouSecretId,Mode=TwoWay}"
                              IsEnabled="{x:Bind View.JiuYouImageShack,Mode=OneWay,Converter={StaticResource ConvertBooleanNull}}"
                              PlaceholderText="留空使用默认服务器" />
                 </Grid>
-                <RadioButton IsChecked="{x:Bind View.QinImageShack,Mode=TwoWay}" Content="qiniu" />
-                <Grid Margin="20,0,0,0"
-                      Visibility="{x:Bind View.QinImageShackVisibility,Mode=TwoWay}">
+                <RadioButton x:Name="SvpezKac" IsChecked="{x:Bind View.QinImageShack,Mode=TwoWay}" Content="qiniu" />
+                <Grid Margin="20,0,0,0" 
+                      Visibility="{x:Bind SvpezKac.IsChecked,Converter={StaticResource HavoDwcbbtxlr},Mode=OneWay}" HorizontalAlignment="Left">
                     <StackPanel>
                         <StackPanel.Resources>
                             <Style TargetType="TextBox">
-                                <Setter Property="Margin" Value="10,1,10,1"></Setter>
-                                <Setter Property="PlaceholderText" Value="请仔细检查值"></Setter>
+                                <Setter Property="Margin" Value="10,1,10,1" />
+                                <Setter Property="PlaceholderText" Value="请仔细检查值" />
+                                <Setter Property="Width" Value="200" />
                             </Style>
                         </StackPanel.Resources>
 
                         <TextBox Margin="10,1,10,1" Header="AK"
-                                 Text="{x:Bind View.CloundAccound.AccessKey,Mode=TwoWay}"/>
+                                 Text="{x:Bind View.CloundAccound.AccessKey,Mode=TwoWay}" />
                         <TextBox Margin="10,1,10,1" Header="SK"
-                                 Text="{x:Bind View.CloundAccound.SecretKey,Mode=TwoWay}"/>
+                                 Text="{x:Bind View.CloundAccound.SecretKey,Mode=TwoWay}" />
                         <TextBox Margin="10,1,10,1" Header="Bucket"
-                                 Text="{x:Bind View.CloundAccound.Bucket,Mode=TwoWay}"/>
+                                 Text="{x:Bind View.CloundAccound.Bucket,Mode=TwoWay}" />
                         <TextBox x:Uid="域名" Margin="10,1,10,1" Header="域名"
-                                 Text="{x:Bind View.CloundAccound.Url,Mode=TwoWay}"/>
+                                 Text="{x:Bind View.CloundAccound.Url,Mode=TwoWay}" />
                         <TextBox x:Uid="前缀" Margin="10,1,10,1" Header="前缀"
                                  Text="{x:Bind View.CloundAccound.Pname,Mode=TwoWay}"
                                  PlaceholderText="上传的图片添加的前缀" />

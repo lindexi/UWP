@@ -14,6 +14,80 @@
             <Setter Property="Margin" Value="10,10,10,10"></Setter>
         </Style>
         <local:DyakmdgwuTlaukxbo x:Key="DyakmdgwuTlaukxbo"></local:DyakmdgwuTlaukxbo>
+        <local:SnlSlejfmnfk x:Key="SnlSlejfmnfk"></local:SnlSlejfmnfk>
+
+        <local:DyqbdpreKuoujeq x:Key="Kuoujeq">
+            <local:DyqbdpreKuoujeq.TuikyyDikvqps>
+                <local:TxvigDixcee>
+                    <local:TxvigDixcee.TnhvrarvlDaz>
+                        <DataTemplate DataType="tpwlxnpDfyecpeoh:DexqurhctSjyfozae">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <TextBlock Style="{StaticResource HztDmaer}" Text="{Binding HnukhltvKfdrpokjz}"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource HztDmaer}" Text="当前的值"></TextBlock>
+                                        <TextBlock Style="{StaticResource HztDmaer}" Text="{Binding DklvubnuiTeqch,Converter={StaticResource DyakmdgwuTlaukxbo}}"></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource HztDmaer}" Text="升级需要修为"></TextBlock>
+                                        <TextBlock Style="{StaticResource HztDmaer}" Text="{Binding DmyikbmfDeb,Converter={StaticResource DyakmdgwuTlaukxbo}}"></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <RepeatButton Margin="10,10,10,10" Content="升级" Click="HzmzKgeu_OnClick"></RepeatButton>
+                                </Grid>
+                                <Grid Grid.Column="4">
+                                    <Button Margin="10,10,10,10" Content="点击" Click="DlsuqHmopxh_OnClick"></Button>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </local:TxvigDixcee.TnhvrarvlDaz>
+                </local:TxvigDixcee>
+                <local:ThhlqolHdhkja>
+                    <local:ThhlqolHdhkja.TnhvrarvlDaz>
+                        <DataTemplate DataType="tpwlxnpDfyecpeoh:DexqurhctSjyfozae">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <TextBlock Style="{StaticResource HztDmaer}" Text="{Binding HnukhltvKfdrpokjz}"></TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource HztDmaer}" Text="技能"></TextBlock>
+                                        <TextBlock Style="{StaticResource HztDmaer}" Text="{Binding DklvubnuiTeqch,Converter={StaticResource SnlSlejfmnfk}}"></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource HztDmaer}" Text="需要修为"></TextBlock>
+                                        <TextBlock Style="{StaticResource HztDmaer}" Text="{Binding DmyikbmfDeb,Converter={StaticResource SnlSlejfmnfk}}"></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="3">
+                                    <RepeatButton Margin="10,10,10,10" Content="添加技能" Click="HzmzKgeu_OnClick"></RepeatButton>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </local:ThhlqolHdhkja.TnhvrarvlDaz>
+                </local:ThhlqolHdhkja>
+            </local:DyqbdpreKuoujeq.TuikyyDikvqps>
+        </local:DyqbdpreKuoujeq>
     </Page.Resources>
     <Grid d:DataContext="{d:DesignInstance viewModel:HnlcDbtdhsdjModel}">
         <Grid.RowDefinitions>
@@ -31,7 +105,8 @@
         <Grid Grid.Row="1">
             <ListView ItemsSource="{Binding DexqurhctSjyfozae}" HorizontalAlignment="Stretch"
                       BorderBrush="Transparent" BorderThickness="0"
-                      HorizontalContentAlignment="Stretch">
+                      HorizontalContentAlignment="Stretch"
+                      ItemTemplateSelector="{StaticResource Kuoujeq}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="Template">
@@ -45,40 +120,7 @@
                         </Setter>
                     </Style>
                 </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <DataTemplate DataType="tpwlxnpDfyecpeoh:DexqurhctSjyfozae">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="5*"></ColumnDefinition>
-                                <ColumnDefinition Width="1*"></ColumnDefinition>
-                                <ColumnDefinition Width="1*"></ColumnDefinition>
-                                <ColumnDefinition Width="1*"></ColumnDefinition>
-                                <ColumnDefinition Width="1*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid>
-                                <TextBlock Style="{StaticResource HztDmaer}" Text="{Binding HnukhltvKfdrpokjz}"></TextBlock>
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource HztDmaer}" Text="当前的值"></TextBlock>
-                                    <TextBlock Style="{StaticResource HztDmaer}" Text="{Binding DklvubnuiTeqch,Converter={StaticResource DyakmdgwuTlaukxbo}}"></TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Grid.Column="2">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource HztDmaer}" Text="升级需要修为"></TextBlock>
-                                    <TextBlock Style="{StaticResource HztDmaer}" Text="{Binding DmyikbmfDeb,Converter={StaticResource DyakmdgwuTlaukxbo}}"></TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Grid.Column="3">
-                                <RepeatButton Margin="10,10,10,10" Content="升级" Click="HzmzKgeu_OnClick"></RepeatButton>
-                            </Grid>
-                            <Grid Grid.Column="4">
-                                <Button Margin="10,10,10,10" Content="点击" Click="DlsuqHmopxh_OnClick"></Button>
-                            </Grid>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+
             </ListView>
         </Grid>
     </Grid>

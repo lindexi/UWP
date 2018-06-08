@@ -63,9 +63,14 @@
     <Compile Include="TeddtHlhkgt.cs" />
     <Compile Include="ViewModel\HnlcDbtdhsdjModel.cs" />
     <Compile Include="View\DyakmdgwuTlaukxbo.cs" />
+    <Compile Include="View\DyqbdpreKuoujeq.cs" />
     <Compile Include="View\HnlcDbtdhsdjPage.xaml.cs">
       <DependentUpon>HnlcDbtdhsdjPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SnlSlejfmnfk.cs" />
+    <Compile Include="View\ThhlqolHdhkja.cs" />
+    <Compile Include="View\TuikyyDikvqp.cs" />
+    <Compile Include="View\TxvigDixcee.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

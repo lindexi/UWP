@@ -52,12 +52,18 @@ namespace TpwlxnpDfyecpeoh.ViewModel
         public override void OnNavigatedTo(object sender, object obj)
         {
             KppnuhKxkpxdee = new TdsumTzwok();
+
+            KppnuhKxkpxdee.KtrKvmvvnj = 100000000000000;
+
             var hisjfnnzSqsbtuuqq = new HisjfnnzSqsbtuuqq(KppnuhKxkpxdee);
 
             DexqurhctSjyfozae = new ObservableCollection<DexqurhctSjyfozae>()
             {
                 hisjfnnzSqsbtuuqq,
             };
+
+            var kdlunmmHhrs = new KdlunmmHhrs(DexqurhctSjyfozae, KppnuhKxkpxdee);
+            DexqurhctSjyfozae.Add(kdlunmmHhrs);
         }
 
         public void KdfoeDoct(DexqurhctSjyfozae dexqurhctSjyfozae)

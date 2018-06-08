@@ -59,4 +59,29 @@ namespace BitStamp.View
             throw new NotImplementedException();
         }
     }
+
+    public class ConvertStuSdhbsgm : IValueConverter
+    {
+        public ImageShackEnum KkaHsa { get; set; }
+
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is ImageShackEnum smgSvxetb)
+            {
+                return smgSvxetb == KkaHsa;
+            }
+
+            return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            if (value is true)
+            {
+                return KkaHsa;
+            }
+
+            return ImageShackEnum.NoShack;
+        }
+    }
 }

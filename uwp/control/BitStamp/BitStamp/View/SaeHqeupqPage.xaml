@@ -585,6 +585,11 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <local:ConvertStuSdhbsgm x:Key="SmmstuSdhbsgm" KkaHsa="Smms"></local:ConvertStuSdhbsgm>
+        <local:ConvertStuSdhbsgm x:Key="QinStuSdhbsgm" KkaHsa="Qin"></local:ConvertStuSdhbsgm>
+        <local:ConvertStuSdhbsgm x:Key="JiuyouStuSdhbsgm" KkaHsa="Jiuyou"></local:ConvertStuSdhbsgm>
+
     </Page.Resources>
 
     <Grid>
@@ -599,7 +604,7 @@
                                VerticalAlignment="Center" />
                     <ToggleSwitch IsOn="{x:Bind View.ThemeDay,Mode=TwoWay}" OffContent="夜间" OnContent="白天" />
                 </StackPanel>-->
-                <TextBlock x:Uid="默认图床" Text="默认图床" Width="500"/>
+                <TextBlock x:Uid="默认图床" Width="500" Margin="10,1,10,1" Text="默认图床"/>
                 <TextBlock x:Uid="可以输入自己图床配置" FontSize="10" Foreground="Gray"  >
                     可以输入自己的图床配置
                     <LineBreak />
@@ -608,8 +613,8 @@
                 <!--<TextBlock x:Uid="如果没有输入，图床会使用默认配置" FontSize="10" Foreground="Gray">
                         如果没有输入，图床会用默认配置
                 </TextBlock>-->
-                <RadioButton IsChecked="{x:Bind View.SmmsImageShack,Mode=TwoWay}" Content="sm.ms" />
-                <RadioButton x:Name="HceKqiace" IsChecked="{x:Bind View.JiuYouImageShack,Mode=TwoWay}">
+                <RadioButton IsChecked="{x:Bind ViewModel.Account.ImageShack,Mode=TwoWay,Converter={StaticResource SmmstuSdhbsgm}}" Content="sm.ms" />
+                <RadioButton x:Name="HceKqiace" IsChecked="{x:Bind ViewModel.Account.ImageShack,Mode=OneWay,Converter={StaticResource JiuyouStuSdhbsgm}}">
                     <RadioButton.Content>
                         <Grid>
                             <TextBlock x:Uid="九幽图床" Text="九幽图床" />
@@ -620,18 +625,16 @@
                       Visibility="{x:Bind HceKqiace.IsChecked,Converter={StaticResource HavoDwcbbtxlr},Mode=OneWay}">
                     <TextBox x:Uid="九幽云存储" Margin="10,1,10,1" Header="九幽云存储key"
                              Text="{x:Bind View.JiuYouSecretId,Mode=TwoWay}"
-                             IsEnabled="{x:Bind View.JiuYouImageShack,Mode=OneWay,Converter={StaticResource ConvertBooleanNull}}"
                              PlaceholderText="留空使用默认服务器" />
                 </Grid>
-                <RadioButton x:Name="SvpezKac" IsChecked="{x:Bind View.QinImageShack,Mode=TwoWay}" Content="qiniu" />
+                <RadioButton x:Name="SvpezKac" IsChecked="{x:Bind ViewModel.Account.ImageShack,Mode=TwoWay,Converter={StaticResource QinStuSdhbsgm}}" Content="qiniu" />
                 <Grid Margin="20,0,0,0" 
-                      Visibility="{x:Bind SvpezKac.IsChecked,Converter={StaticResource HavoDwcbbtxlr},Mode=OneWay}" HorizontalAlignment="Left">
+                      Visibility="{x:Bind SvpezKac.IsChecked,Converter={StaticResource HavoDwcbbtxlr},Mode=OneWay}">
                     <StackPanel>
                         <StackPanel.Resources>
                             <Style TargetType="TextBox">
                                 <Setter Property="Margin" Value="10,1,10,1" />
                                 <Setter Property="PlaceholderText" Value="请仔细检查值" />
-                                <Setter Property="Width" Value="200" />
                             </Style>
                         </StackPanel.Resources>
 

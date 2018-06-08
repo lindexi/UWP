@@ -31,14 +31,24 @@ namespace BitStamp
             ViewModel.ViewModel = new List<ViewModelPage>()
             {
                 new ViewModelPage(typeof(HrbHtladModel), typeof(HrbHtlad)),
-                new ViewModelPage(typeof(SaeHqeupqModel),typeof(SaeHqeupqPage)),
+                new ViewModelPage(typeof(SaeHqeupqModel), typeof(SaeHqeupqPage)),
             };
 
-            Loaded += (s, e) =>
-            {
-                ViewModel.NavigatedTo(this,null);
-            };
+            Loaded += (s, e) => { ViewModel.NavigatedTo(this, null); };
+
+            KasibkqeStkxaij.Navigated += HgySmdwraxp;
         }
+
+        private void HgySmdwraxp(object sender, NavigationEventArgs e)
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                e.SourcePageType == typeof(SaeHqeupqPage)
+                    ? AppViewBackButtonVisibility.Visible
+                    : AppViewBackButtonVisibility.Collapsed;
+
+            NavigatHrmfTpu = true;
+        }
+
 
         public DrowilHuwfevfModel ViewModel { get; set; }
 
@@ -67,18 +77,33 @@ namespace BitStamp
             dmbyzkfscDycoue.SetPreferredMinSize(new Size(1024, 800));
         }
 
+        /// <summary>
+        /// 跳转完成
+        /// </summary>
+        private bool NavigatHrmfTpu { get; set; } = true;
+
         private void BackRequested(object sender, BackRequestedEventArgs e)
         {
-            ViewModel.NavigateHrbHtlad();
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                AppViewBackButtonVisibility.Collapsed;
+            if (NavigatHrmfTpu)
+            {
+                NavigatHrmfTpu = false;
+                ViewModel.NavigateHrbHtlad();
+            }
+
+            //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+            //    AppViewBackButtonVisibility.Collapsed;
         }
 
         private void NavigateSaeHqeupq_OnClick(object sender, RoutedEventArgs e)
         {
-            ViewModel.NavigateSaeHqeupq();
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                AppViewBackButtonVisibility.Visible;
+            if (NavigatHrmfTpu)
+            {
+                NavigatHrmfTpu = false;
+                ViewModel.NavigateSaeHqeupq();
+            }
+
+            //SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+            //    AppViewBackButtonVisibility.Visible;
         }
     }
 }

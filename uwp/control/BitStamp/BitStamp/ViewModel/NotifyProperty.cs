@@ -31,11 +31,21 @@ namespace BitStamp
         public async void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChangedEventHandler handler = PropertyChanged;
-            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                () =>
-                {
-                    handler?.Invoke(this, new PropertyChangedEventArgs(name));
-                });
+
+            try
+            {
+                handler?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+            catch (Exception e)
+            {
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                    () =>
+                    {
+                        handler?.Invoke(this, new PropertyChangedEventArgs(name));
+                    });
+
+                Console.WriteLine(e);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

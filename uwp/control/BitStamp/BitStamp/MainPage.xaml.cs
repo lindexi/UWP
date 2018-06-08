@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-//“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
+// https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
 namespace BitStamp
 {
@@ -25,22 +25,10 @@ namespace BitStamp
         public MainPage()
         {
             this.InitializeComponent();
-            Frame frame = Content as Frame;
-            if (frame == null)
-            {
-                frame = new Frame();
-                Content = frame;
-            }
-            if (Window.Current.Bounds.Width<1024)
-            {
-                frame.Navigate(typeof(View.AssBjPage));
 
-            }
-            else
-            {
-                frame.Navigate(typeof(DrowilHuwfevfPage));
-
-            }
+            var frame = new Frame();
+            Content = frame;
+            frame.Navigate(typeof(DrowilHuwfevfPage));
         }
     }
 }

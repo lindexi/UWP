@@ -4,12 +4,5 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BitStamp"
     RequestedTheme="Light">
-    <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Light" Source="View/DarkThemeDictionary.xaml"></ResourceDictionary>
-                <ResourceDictionary x:Key="Dark" Source="View/LightThemeDictionary.xaml"></ResourceDictionary>
-            </ResourceDictionary.ThemeDictionaries>
-        </ResourceDictionary>
-    </Application.Resources>
+
 </Application>

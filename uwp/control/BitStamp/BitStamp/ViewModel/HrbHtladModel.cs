@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using BitStamp.Model;
 using BitStamp.Model.Cimage;
+using BitStamp.View;
 using lindexi.uwp.Framework.ViewModel;
 using lindexi.uwp.ImageShack.Model;
 using Microsoft.Graphics.Canvas;
@@ -78,11 +79,15 @@ namespace BitStamp.ViewModel
             {
                 await SetClipimage(data);
                 TlljvlfTcbzqe = true;
+
+                Upload();
             }
             else if (data.Contains(StandardDataFormats.StorageItems))
             {
                 await KipfrgxqyTzt(data);
                 TlljvlfTcbzqe = true;
+
+                Upload();
             }
         }
 
@@ -219,9 +224,16 @@ namespace BitStamp.ViewModel
                 {
                     MarTqqcyhuaKujem = $"![]({heaaxThesolw.Url})";
                     BbTkeozdDmady = $"[img]{heaaxThesolw.Url}[/img]";
+
+                    ToastHelper.PopToast("uwp 图床", "上传成功" + heaaxThesolw.Url);
                 }
                 else
                 {
+                    MarTqqcyhuaKujem = "上传失败";
+                    BbTkeozdDmady = "上传失败";
+
+                    ToastHelper.PopToast("uwp 图床", "上传失败");
+
                     TlljvlfTcbzqe = true;
                 }
             });

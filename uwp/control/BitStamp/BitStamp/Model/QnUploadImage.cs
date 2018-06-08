@@ -50,6 +50,13 @@ namespace lindexi.uwp.ImageShack.Model
                 {
                     name = File.Name;
                 }
+                else
+                {
+                    var hkbbKhbmbud = DateTime.Now;
+                    name = hkbbKhbmbud.Year.ToString() + hkbbKhbmbud.Month.ToString() + "" + hkbbKhbmbud.Day.ToString() +
+                           hkbbKhbmbud.Hour.ToString() + hkbbKhbmbud.Minute.ToString() + hkbbKhbmbud.Second.ToString() +
+                           _ran.Next(1000).ToString();
+                }
             }
             else
             {
@@ -73,13 +80,15 @@ namespace lindexi.uwp.ImageShack.Model
 
                 Url = Accound.Url + temp.key;
 
-                OnUploaded?.Invoke(this, true);
+                OnUploaded?.Invoke(this, temp.OK);
             }
             catch (Exception)
             {
                 OnUploaded?.Invoke(this, false);
             }
         }
+
+        private Random _ran = new Random();
 
         ///// <param name="accessKey"></param>
         ///// </summary>

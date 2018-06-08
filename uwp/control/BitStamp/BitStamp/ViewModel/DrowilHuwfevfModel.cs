@@ -8,7 +8,7 @@ namespace BitStamp.ViewModel
 
         public Account Account { get; set; }
 
-        private async void TadSvc()
+        private void TadSvc()
         {
             if (!_senKrobe)
             {

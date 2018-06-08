@@ -7,10 +7,6 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.Foundation.Metadata;
-using Windows.Globalization;
-using Windows.UI;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -34,57 +30,8 @@ namespace BitStamp
         /// </summary>
         public App()
         {
-            var globalization = ApplicationLanguages.ManifestLanguages;
-            ApplicationLanguages.PrimaryLanguageOverride = "en";
-
             this.InitializeComponent();
-            UnhandledException += App_UnhandledException;
             this.Suspending += OnSuspending;
-        }
-
-        private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
-        {
-            //记录
-            e.Handled = true;
-
-        }
-
-        private void ApplicationViewPreferred()
-        {
-            //窗口大小
-            //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
-
-            //标题
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                var applicationView = ApplicationView.GetForCurrentView();
-                applicationView.SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
-                var statusbar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
-                statusbar.BackgroundColor = Colors.Beige;
-                statusbar.BackgroundOpacity = 0.2;
-                statusbar.ForegroundColor=Colors.Black;
-
-                
-
-
-
-            }
-            //if (ApiInformation::IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            //{
-            //    //设置全屏模式 
-            //    auto applicationView = ApplicationView::GetForCurrentView();
-            //    applicationView->SetDesiredBoundsMode(ApplicationViewBoundsMode::UseCoreWindow);
-            //    auto statusbar = ViewManagement::StatusBar::GetForCurrentView();
-            //    statusbar->BackgroundColor = Colors::Red; //背景色
-            //                                              //透明度0-1之间，0为全透明，	1为不透明  
-            //                                              //全透明时候可能 前景色与默认色一致导致 信号等信息显示不出来，可改不透明或者改前景色
-            //                                              //全屏模式下 与底色做透明运算。。可类似沉浸式状态栏
-            //    statusbar->BackgroundOpacity = 0;
-            //    statusbar->ForegroundColor = Colors::Blue; //信号 时间等绘制颜色
-            //                                               //statusbar->ProgressIndicator->Text = "test statusbar";  //显示提示字和 。。。
-            //                                               //statusbar->ProgressIndicator->ShowAsync();
-            //}
         }
 
         /// <summary>
@@ -94,29 +41,7 @@ namespace BitStamp
         /// <param name="e">有关启动请求和过程的详细信息。</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-#if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                this.DebugSettings.EnableFrameRateCounter = true;
-            }
-#endif
             Frame rootFrame = Window.Current.Content as Frame;
-
-          
-            ApplicationViewPreferred();
-
-            //if (rootFrame == null)
-            //{
-            //    SplashPage page=new SplashPage();
-            //    Window.Current.Content = page;
-            //    Window.Current.Activate();
-
-            //}
-
-            if (e.PrelaunchActivated == true)
-            {
-                return;
-            }
 
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
@@ -132,8 +57,6 @@ namespace BitStamp
                     //TODO: 从之前挂起的应用程序加载状态
                 }
 
-                
-
                 // 将框架放在当前窗口中
                 Window.Current.Content = rootFrame;
             }
@@ -142,14 +65,7 @@ namespace BitStamp
             {
                 if (rootFrame.Content == null)
                 {
-                    //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
-                    //ApplicationView.PreferredLaunchViewSize = new Size(600, 700);
-                    //ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(200,600));
-
-                    //ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
-                    //当导航堆栈尚未还原时，导航到第一页，
+                    // 当导航堆栈尚未还原时，导航到第一页，
                     // 并通过将所需信息作为导航参数传入来配置
                     // 参数
                     rootFrame.Navigate(typeof(SplashPage), e.Arguments);

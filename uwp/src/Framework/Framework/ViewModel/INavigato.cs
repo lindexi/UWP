@@ -37,4 +37,9 @@ namespace lindexi.uwp.Framework.ViewModel
         /// </summary>
          event EventHandler<ViewModelPage> Navigated;
     }
+
+    public class Frame
+    {
+
+    }
 }

@@ -15,6 +15,8 @@ using System.Windows.Controls;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
+#if wpf
+
     /// <summary>
     ///     包含有页面的ViewModel
     /// </summary>
@@ -292,4 +294,5 @@ namespace lindexi.uwp.Framework.ViewModel
             Navigated?.Invoke(this, view);
         }
     }
+#endif
 }

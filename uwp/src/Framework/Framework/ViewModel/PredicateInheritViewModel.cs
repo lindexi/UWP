@@ -13,7 +13,6 @@ namespace lindexi.uwp.Framework.ViewModel
             Key = key;
         }
 
-
         public Type Key { get; set; }
 
         /// <inheritdoc />
@@ -30,6 +29,7 @@ namespace lindexi.uwp.Framework.ViewModel
 
             return Key.IsAssignableFrom(viewModel.ViewModel.GetType());
 #endif
+            return false;
         }
     }
 }

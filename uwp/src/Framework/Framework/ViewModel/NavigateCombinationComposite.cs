@@ -1,3 +1,4 @@
+#if false
 using System;
 
 namespace lindexi.uwp.Framework.ViewModel
@@ -16,3 +17,4 @@ namespace lindexi.uwp.Framework.ViewModel
         }
     }
 }
+#endif

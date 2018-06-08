@@ -106,6 +106,7 @@ namespace lindexi.uwp.Framework.ViewModel
             return _viewModel == other;
         }
 
+#if false
         /// <summary>
         /// 跳转到
         /// </summary>
@@ -150,6 +151,7 @@ namespace lindexi.uwp.Framework.ViewModel
             }
 
         }
+#endif
 
         public void NavigateFrom(object source, object e = null)
         {

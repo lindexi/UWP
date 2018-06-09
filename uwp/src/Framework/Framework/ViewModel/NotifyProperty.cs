@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 
-#if WINDOWS_UWP
+#if WINDOWS_UWP&&false
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 #elif wpf
@@ -40,7 +40,7 @@ namespace lindexi.uwp.Framework.ViewModel
         public async void OnPropertyChanged([CallerMemberName] string name = "")
         {
             PropertyChangedEventHandler handler = PropertyChanged;
-#if WINDOWS_UWP
+#if WINDOWS_UWP&&false
                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                 () => { handler?.Invoke(this, new PropertyChangedEventArgs(name)); });
 #elif wpf

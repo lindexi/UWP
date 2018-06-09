@@ -14,8 +14,7 @@ namespace lindexi.uwp.Framework.ViewModel
 
         public override void Run(IViewModel source, IMessage message)
         {
-            var viewmodel = source as IViewModelValue<T>;
-            if (viewmodel != null)
+            if (source is IViewModelValue<T> viewmodel)
             {
                 ContinueWith(viewmodel.Value);
             }

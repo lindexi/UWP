@@ -1,11 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="MSBuild.Sdk.Extras/1.5.4">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net45;</TargetFrameworks>
     <RootNamespace>lindexi.MVVM.Framework</RootNamespace>
+    <PackageId>lindexi.MVVM.Framework</PackageId>
+    <Company>lindexi</Company>
+    <Authors>lindexi</Authors>
+    <Product>lindexi.MVVM.Framework</Product>
+    <Description>lindexi.MVVM.Framework</Description>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="ViewModel\MasterDetail\**" />
     <EmbeddedResource Remove="ViewModel\MasterDetail\**" />
     <None Remove="ViewModel\MasterDetail\**" />
   </ItemGroup>
+  
+  <ItemGroup>
+      <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" />
+  </ItemGroup>
+
 </Project>

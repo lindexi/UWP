@@ -7,8 +7,6 @@ namespace lindexi.uwp.Framework.ViewModel
     /// </summary>
     public class CombinationComposite : Composite, IMessage, ICombinationComposite
     {
-        protected Action<ViewModelBase, object> _run;
-
         public CombinationComposite(ViewModelBase source)
         {
             ((IMessage) this).Source = source;
@@ -18,6 +16,11 @@ namespace lindexi.uwp.Framework.ViewModel
         {
             _run = run;
             ((IMessage) this).Source = source;
+        }
+
+        public override void Run(ViewModelBase source, IMessage message)
+        {
+            _run.Invoke(source, message);
         }
 
         ViewModelBase IMessage.Source { get; set; }
@@ -32,20 +35,16 @@ namespace lindexi.uwp.Framework.ViewModel
             {
                 return true;
             }
+
             return Goal.Predicate(viewModel);
         }
 
-        public override void Run(ViewModelBase source, IMessage message)
-        {
-            _run.Invoke(source, message);
-        }
+        protected Action<ViewModelBase, object> _run;
     }
 
     public class CombinationComposite<T> : Composite, IMessage, ICombinationComposite
         where T : IViewModel
     {
-        protected Action<T> _run;
-
         public CombinationComposite(ViewModelBase source)
         {
             ((IMessage) this).Source = source;
@@ -59,7 +58,7 @@ namespace lindexi.uwp.Framework.ViewModel
 
         public override void Run(IViewModel source, IMessage message)
         {
-            if (source is T )
+            if (source is T)
             {
                 _run.Invoke((T) source);
             }
@@ -77,8 +76,11 @@ namespace lindexi.uwp.Framework.ViewModel
             {
                 return viewModel.ViewModel is T;
             }
+
             return Goal.Predicate(viewModel);
         }
+
+        protected Action<T> _run;
     }
 
     /// <summary>
@@ -87,8 +89,6 @@ namespace lindexi.uwp.Framework.ViewModel
     public class CombinationComposite<T, U> : Composite, IMessage, ICombinationComposite
         where U : IMessage where T : IViewModel
     {
-        protected Action<T, U> _run;
-
         public CombinationComposite(ViewModelBase source)
         {
             ((IMessage) this).Source = source;
@@ -120,7 +120,10 @@ namespace lindexi.uwp.Framework.ViewModel
             {
                 return viewModel.ViewModel is T;
             }
+
             return Goal.Predicate(viewModel);
         }
+
+        protected Action<T, U> _run;
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using lindexi.MVVM.Framework.ViewModel;
+
 #if WINDOWS_UWP
 using Windows.UI.Xaml.Controls;
 #elif wpf
@@ -17,7 +19,7 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <summary>
         /// 提供跳转的控件
         /// </summary>
-        Frame Content { set; get; }
+        INavigateFrame Content { set; get; }
 
         /// <summary>
         /// 跳转到页面
@@ -25,7 +27,7 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <param name="viewModel"></param>
         /// <param name="parameter"></param>
         /// <param name="content"></param>
-        void Navigate(Type viewModel, object parameter, Frame content);
+        void Navigate(Type viewModel, object parameter, INavigateFrame content);
 
         /// <summary>
         /// 正在跳转事件
@@ -36,10 +38,5 @@ namespace lindexi.uwp.Framework.ViewModel
         /// 跳转完成
         /// </summary>
          event EventHandler<ViewModelPage> Navigated;
-    }
-
-    public class Frame
-    {
-
     }
 }

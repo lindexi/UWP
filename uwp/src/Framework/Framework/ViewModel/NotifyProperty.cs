@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using lindexi.MVVM.Framework.Annotations;
 
 
 #if WINDOWS_UWP&&false
@@ -24,7 +25,6 @@ namespace lindexi.uwp.Framework.ViewModel
         {
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public void UpdateProper<T>(ref T properValue, T newValue, [CallerMemberName] string properName = "")
         {
@@ -37,21 +37,27 @@ namespace lindexi.uwp.Framework.ViewModel
             OnPropertyChanged(properName);
         }
 
-        public async void OnPropertyChanged([CallerMemberName] string name = "")
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-#if WINDOWS_UWP&&false
-               await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                () => { handler?.Invoke(this, new PropertyChangedEventArgs(name)); });
-#elif wpf
-            SynchronizationContext.SetSynchronizationContext(new
-   DispatcherSynchronizationContext(Application.Current.Dispatcher));
-            SynchronizationContext.Current.Send(obj =>
-            {
-                handler?.Invoke(this, new PropertyChangedEventArgs(name));
-            }, null);
-#endif
+//        public async void OnPropertyChanged([CallerMemberName] string name = "")
+//        {
+//            PropertyChangedEventHandler handler = PropertyChanged;
+//#if WINDOWS_UWP&&false
+//               await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+//                () => { handler?.Invoke(this, new PropertyChangedEventArgs(name)); });
+//#elif wpf
+//            SynchronizationContext.SetSynchronizationContext(new
+//   DispatcherSynchronizationContext(Application.Current.Dispatcher));
+//            SynchronizationContext.Current.Send(obj =>
+//            {
+//                handler?.Invoke(this, new PropertyChangedEventArgs(name));
+//            }, null);
+//#endif
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

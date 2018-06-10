@@ -1,17 +1,54 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+using lindexi.MVVM.Framework.Annotations;
 using lindexi.MVVM.Framework.ViewModel;
-
 
 namespace lindexi.uwp.Framework.ViewModel
 {
+    /// <summary>
+    /// 提供支持跳转类
+    /// </summary>
+    [PublicAPI]
     public abstract class NavigateViewModel : ViewModelMessage, IKeyNavigato, INavigateable
     {
+        /// <summary>
+        /// 提供 ViewModel 之间跳转
+        /// </summary>
         protected ViewModelNavigate ViewModelNavigate { get; set; }
+
+        /// <summary>
+        /// 集合 ViewModel 和 页面 用来跳转
+        /// </summary>
+        public List<ViewModelPage> ViewModelPage { get; set; }
+
+        public IViewModel this[string str]
+        {
+            get { return ViewModelPage.FirstOrDefault(temp => temp.Key == str)?.ViewModel.GetViewModel(); }
+        }
+
+        /// <inheritdoc />
+        public override void OnNavigatedFrom(object sender, object obj)
+        {
+        }
+
+        /// <inheritdoc />
+        public override void OnNavigatedTo(object sender, object obj)
+        {
+            if (obj is INavigateFrame content)
+            {
+                Content = content;
+            }
+            else if (obj is ViewModelNavigate viewModelNavigate)
+            {
+                ViewModelNavigate = viewModelNavigate;
+            }
+
+            if (ViewModelPage == null)
+            {
+                ViewModelPage = new List<ViewModelPage>();
+            }
+        }
 
         /// <inheritdoc />
         public INavigateFrame Content
@@ -19,7 +56,7 @@ namespace lindexi.uwp.Framework.ViewModel
             get => ViewModelNavigate?.Frame;
             set
             {
-                if(!value.Equals(ViewModelNavigate.Frame))
+                if (ViewModelNavigate == null || !value.Equals(ViewModelNavigate.Frame))
                 {
                     ViewModelNavigate = new ViewModelNavigate(value);
                 }
@@ -27,9 +64,9 @@ namespace lindexi.uwp.Framework.ViewModel
         }
 
         /// <inheritdoc />
-        public void Navigate(Type viewModel, object parameter, INavigateFrame content)
+        public void Navigate(Type viewModel, object parameter = null, INavigateFrame content = null)
         {
-            
+            Navigate(viewModel.Name, parameter, content);
         }
 
         /// <inheritdoc />
@@ -39,90 +76,48 @@ namespace lindexi.uwp.Framework.ViewModel
         public event EventHandler<ViewModelPage> Navigated;
 
         /// <inheritdoc />
-        public void Navigate(string key, object parameter)
+        public void Navigate(string key, object parameter, INavigateFrame content = null)
         {
-          
-        }
-    }
-
-    /// <summary>
-    /// 用来跳转 ViewModel 的类
-    /// </summary>
-    public class ViewModelNavigate
-    {
-        /// <inheritdoc />
-        public ViewModelNavigate(INavigateFrame frame)
-        {
-            Frame = frame ?? throw new ArgumentNullException(nameof(frame));
-        }
-
-        /// <summary>
-        /// 跳转到指定的 <paramref name="viewModelPage"/> 添加消息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="viewModelPage"></param>
-        /// <param name="parameter"></param>
-        public void Navigate(INavigateable sender, ViewModelPage viewModelPage,object parameter=null)
-        {
-            if (viewModelPage == null)
+            var viewModel = ViewModelPage.FirstOrDefault(temp => temp.Equals(key));
+            var viewModelNavigate = ViewModelNavigate;
+            if (viewModelNavigate == null)
             {
-                throw new ArgumentNullException(nameof(viewModelPage));
-            }
-            if (sender == null)
-            {
-                throw new ArgumentNullException(nameof(sender));
+                throw new ArgumentException("跳转时，提供跳转的类为空，需要先设置 Content 才可以跳转")
+                {
+                    Data = {{"Method", " Navigate(string key, object parameter, INavigateFrame content = null)"}}
+                };
             }
 
-            var receiveMessage = sender as IReceiveMessage;
-
-
-            var lastViewModel = _lastViewModelPage?.ViewModel?.GetViewModel();
-            if (lastViewModel is INavigable lastNavigableViewModel)
-            {
-                lastNavigableViewModel.NavigatedFrom(sender, parameter);
-            }
-
-            if (receiveMessage != null && lastViewModel is ISendMessage lastSendMessage)
-            {
-                lastSendMessage.Send -= receiveMessage.ReceiveMessage;
-            }
-
-
-            // 开始跳转
-            var viewModel = viewModelPage.ViewModel.GetViewModel();
             if (viewModel == null)
             {
-                throw new ArgumentException("无法从ViewModel.GetViewModel拿到ViewModel值");
-            }
-
-            if (receiveMessage != null)
-            {
-                if (viewModel is ISendMessage sendMessage)
+                throw new ArgumentException("找不到要跳转")
                 {
-                    sendMessage.Send += receiveMessage.ReceiveMessage;
-                }
+                    Data = { { "Method", " Navigate(string key, object parameter, INavigateFrame content = null)" } }
+                };
             }
 
-            if (viewModel is INavigable navigable)
+            var frame = Content;
+
+            if (content != null)
             {
-                navigable.NavigatedTo(sender, parameter);
+                frame = content;
             }
 
-            Frame.Navigate(viewModelPage.Page, parameter);
+            if (!ReferenceEquals(viewModelNavigate.Frame, frame))
+            {
+                viewModelNavigate = new ViewModelNavigate(frame);
+            }
 
-            _lastViewModelPage = viewModelPage;
+            Navigating?.Invoke(this, viewModel);
+            viewModelNavigate.Navigate(this, viewModel, parameter);
+            Navigated?.Invoke(this, viewModel);
         }
-
-        private ViewModelPage _lastViewModelPage;
-
-        public INavigateFrame Frame { get; set; }
     }
 
 #if wpf
-
-    /// <summary>
-    ///     包含有页面的ViewModel
-    /// </summary>
+/// <summary>
+///     包含有页面的ViewModel
+/// </summary>
     public abstract class NavigateViewModel : ViewModelMessage, IKeyNavigato, INavigateable
     {
         public ViewModelBase this[string str]

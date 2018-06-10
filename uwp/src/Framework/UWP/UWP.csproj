@@ -1,16 +1,24 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/1.5.4">
   <PropertyGroup>
     <TargetFrameworks>uap10.0.16299;</TargetFrameworks>
+    <RootNamespace>lindexi.uwp.Framework</RootNamespace>
     <!--<TargetPlatformVersion>10.0.17134.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>-->
     <PackageId>lindexi.uwp.Framework</PackageId> 
-    <Version>2.0.0</Version>
     <Authors>lindexi</Authors>
     <Company>lindexi</Company>
     <Product>lindexi.uwp.Framework</Product>
     <Description>如果在开发过程，遇到多个页面之间，需要传输信息，那么可能遇到设计的问题。如果因为一个页面内包含多个子页面和多个子页面之间的通信问题找不到一个好的解决方法，请使用这个框架。</Description>
     <PackageProjectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</RepositoryUrl>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Build>$([System.DateTime]::op_Subtraction($([System.DateTime]::get_Now().get_Date()),$([System.DateTime]::new(2000,1,1))).get_TotalDays())</Build>
+    <Revision>$([MSBuild]::Divide($([System.DateTime]::get_Now().get_TimeOfDay().get_TotalSeconds()), 2).ToString('F0'))</Revision>
+    <Version>2.1.0.$(Revision)</Version>
+  </PropertyGroup>
+   <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" />

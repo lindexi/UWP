@@ -9,6 +9,7 @@
     <Description>WPF 的 MVVM 框架</Description>
     <PackageProjectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</RepositoryUrl>
+    <RootNamespace>lindexi.wpf.Framework</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

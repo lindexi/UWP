@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using lindexi.MVVM.Framework.Annotations;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
+    [PublicAPI]
     public abstract class ViewModelBase : NotifyProperty, INavigable, IViewModel
     {
         /// <summary>
@@ -85,8 +87,7 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <inheritdoc />
         public sealed override void NavigatedTo(object sender, object obj)
         {
-            var viewmodel = sender as IReceiveMessage;
-            if (viewmodel != null)
+            if (sender is IReceiveMessage viewmodel)
             {
                 ((ISendMessage) this).Send += viewmodel.ReceiveMessage;
             }

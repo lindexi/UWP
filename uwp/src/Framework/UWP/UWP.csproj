@@ -4,7 +4,7 @@
     <RootNamespace>lindexi.uwp.Framework</RootNamespace>
     <!--<TargetPlatformVersion>10.0.17134.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>-->
-    <PackageId>lindexi.uwp.Framework</PackageId> 
+    <PackageId>lindexi.uwp.Framework</PackageId>
     <Authors>lindexi</Authors>
     <Company>lindexi</Company>
     <Product>lindexi.uwp.Framework</Product>
@@ -15,13 +15,12 @@
   <PropertyGroup>
     <Build>$([System.DateTime]::op_Subtraction($([System.DateTime]::get_Now().get_Date()),$([System.DateTime]::new(2000,1,1))).get_TotalDays())</Build>
     <Revision>$([MSBuild]::Divide($([System.DateTime]::get_Now().get_TimeOfDay().get_TotalSeconds()), 2).ToString('F0'))</Revision>
-    <Version>2.1.0.$(Revision)</Version>
+    <Version>2.1.5.$(Revision)</Version>
   </PropertyGroup>
-   <PropertyGroup>
+  <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,10 @@ namespace lindexi.uwp.Framework.ViewModel
         /// </summary>
         public bool IsLoaded { get; set; }
 
-        public bool IsEnable { get; set; }
+        ///// <summary>
+        ///// 是否可以使用
+        ///// </summary>
+        //public bool IsEnable { get; set; }
 
         /// <inheritdoc />
         public virtual void NavigatedFrom(object sender, object obj)
@@ -68,7 +71,8 @@ namespace lindexi.uwp.Framework.ViewModel
             ViewModelBase viewModel = this;
             var composite = message as ICombinationComposite;
             composite?.Run(viewModel, message);
-            Composite.FirstOrDefault(temp => temp.Message == message.GetType())?.Run(viewModel, message);
+
+            ViewModel.Composite.Run(viewModel, message, Composite);
         }
 
         /// <summary>

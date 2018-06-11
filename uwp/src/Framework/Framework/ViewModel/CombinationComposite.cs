@@ -29,7 +29,7 @@ namespace lindexi.uwp.Framework.ViewModel
         public IPredicateViewModel Goal { set; get; }
 
         /// <inheritdoc />
-        public bool Predicate(ViewModelPage viewModel)
+        public bool Predicate(IViewModel viewModel)
         {
             if (Goal == null)
             {
@@ -70,11 +70,11 @@ namespace lindexi.uwp.Framework.ViewModel
         public IPredicateViewModel Goal { set; get; }
 
         /// <inheritdoc />
-        public bool Predicate(ViewModelPage viewModel)
+        public bool Predicate(IViewModel viewModel)
         {
             if (Goal == null)
             {
-                return viewModel.ViewModel is T;
+                return viewModel is T;
             }
 
             return Goal.Predicate(viewModel);
@@ -114,11 +114,11 @@ namespace lindexi.uwp.Framework.ViewModel
         public IPredicateViewModel Goal { set; get; }
 
         /// <inheritdoc />
-        public bool Predicate(ViewModelPage viewModel)
+        public bool Predicate(IViewModel viewModel)
         {
             if (Goal == null)
             {
-                return viewModel.ViewModel is T;
+                return viewModel is T;
             }
 
             return Goal.Predicate(viewModel);

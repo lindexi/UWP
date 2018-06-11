@@ -24,6 +24,26 @@ namespace lindexi.MVVM.Framework.ViewModel
             return ViewModel;
         }
 
+        /// <inheritdoc />
+        public bool IsLoaded
+        {
+            get
+            {
+                if (ViewModel==null)
+                {
+                    return false;
+                }
+
+                var viewModel = ViewModel as ViewModelBase;
+                if (viewModel != null)
+                {
+                    return viewModel.IsLoaded;
+                }
+
+                return false;
+            }
+        }
+
         private T ViewModel { set; get; }
 
         /// <inheritdoc />

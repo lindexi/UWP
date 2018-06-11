@@ -12,17 +12,17 @@ namespace lindexi.uwp.Framework.ViewModel
         /// 
         /// </summary>
         /// <param name="predicate"></param>
-        public PredicateViewModel(Predicate<ViewModelPage> predicate)
+        public PredicateViewModel(Predicate<IViewModel> predicate)
         {
             _predicate = predicate;
         }
 
         /// <inheritdoc />
-        public bool Predicate(ViewModelPage viewModel)
+        public bool Predicate(IViewModel viewModel)
         {
             return _predicate(viewModel);
         }
 
-        private Predicate<ViewModelPage> _predicate;
+        private Predicate<IViewModel> _predicate;
     }
 }

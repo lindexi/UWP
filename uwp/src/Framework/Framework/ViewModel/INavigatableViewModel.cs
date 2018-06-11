@@ -16,5 +16,10 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// </summary>
         /// <returns></returns>
         IViewModel GetViewModel();
+
+        /// <summary>
+        /// 是否已经加载
+        /// </summary>
+        bool IsLoaded { get; }
     }
 }

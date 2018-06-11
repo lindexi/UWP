@@ -2,7 +2,7 @@
 using lindexi.MVVM.Framework.Annotations;
 using lindexi.MVVM.Framework.ViewModel;
 
-namespace UWP
+namespace lindexi.uwp.Framework
 {
     /// <summary>
     ///     可以跳转的页面

@@ -16,9 +16,10 @@
         public string Key { get; set; }
 
         /// <inheritdoc />
-        public bool Predicate(ViewModelPage viewModel)
+        public bool Predicate(IViewModel viewModel)
         {
-            return viewModel.Key == Key;
+
+            return viewModel.GetType().Name == Key;
         }
     }
 }

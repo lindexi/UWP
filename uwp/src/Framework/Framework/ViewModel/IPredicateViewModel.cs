@@ -6,6 +6,6 @@
         /// 判断viewModel是否符合
         /// </summary>
         /// <returns></returns>
-        bool Predicate(ViewModelPage viewModel);
+        bool Predicate(IViewModel viewModel);
     }
 }

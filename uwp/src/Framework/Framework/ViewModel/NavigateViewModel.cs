@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using lindexi.MVVM.Framework.Annotations;
 using lindexi.MVVM.Framework.ViewModel;
 
@@ -16,6 +17,30 @@ namespace lindexi.uwp.Framework.ViewModel
         /// 提供 ViewModel 之间跳转
         /// </summary>
         protected ViewModelNavigate ViewModelNavigate { get; set; }
+
+        /// <inheritdoc />
+        public override void ReceiveMessage(object sender, IMessage message)
+        {
+            ViewModelBase viewModel = this;
+            var composite = message as ICombinationComposite;
+            composite?.Run(viewModel, message);
+
+            var run = ViewModel.Composite.Run(viewModel, message, Composite);
+
+            if (run)
+            {
+                return;
+            }
+
+            // 所有在这个 ViewModel 的 ViewModel 判断是否需要
+            // 解决 A B 两个通信
+            foreach (var temp in ViewModelPage.
+                Where(/*如果 ViewModel 没有使用，就不收消息*/temp => temp.ViewModel.IsLoaded)
+                .Select(temp=>temp.ViewModel.GetViewModel()))
+            {
+                ViewModel.Composite.Run(temp, message, Composite);
+            }
+        }
 
         /// <summary>
         /// 集合 ViewModel 和 页面 用来跳转
@@ -92,11 +117,11 @@ namespace lindexi.uwp.Framework.ViewModel
             {
                 throw new ArgumentException("找不到要跳转")
                 {
-                    Data = { { "Method", " Navigate(string key, object parameter, INavigateFrame content = null)" } }
+                    Data = {{"Method", " Navigate(string key, object parameter, INavigateFrame content = null)"}}
                 };
             }
 
-            var frame = Content;
+            var frame = viewModelNavigate.Frame;
 
             if (content != null)
             {
@@ -111,6 +136,34 @@ namespace lindexi.uwp.Framework.ViewModel
             Navigating?.Invoke(this, viewModel);
             viewModelNavigate.Navigate(this, viewModel, parameter);
             Navigated?.Invoke(this, viewModel);
+        }
+
+        /// <summary>
+        /// 获取所有的处理
+        /// </summary>
+        protected void AllAssemblyComposite(Assembly assembly)
+        {
+            foreach (var temp in assembly.GetTypes().Where(IsCompsite))
+            {
+                try
+                {
+                    Composite.Add(temp.Assembly.CreateInstance(temp.FullName) as Composite);
+                }
+                catch (NullReferenceException)
+                {
+                }
+                catch (ArgumentException)
+                {
+                }
+            }
+
+            bool IsCompsite(Type temp)
+            {
+                return temp.IsSubclassOf(typeof(Composite)) &&
+                       !temp.IsAssignableFrom(typeof(ICombinationComposite))
+                       && temp != typeof(CombinationComposite)
+                       && !temp.IsSubclassOf(typeof(CombinationComposite));
+            }
         }
     }
 

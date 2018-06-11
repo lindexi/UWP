@@ -8,28 +8,21 @@ namespace lindexi.uwp.Framework.ViewModel
     /// </summary>
     public class PredicateInheritViewModel : IPredicateViewModel
     {
+        /// <inheritdoc />
         public PredicateInheritViewModel(Type key)
         {
             Key = key;
         }
 
+        /// <summary>
+        /// 用来判断当前时候符合类型
+        /// </summary>
         public Type Key { get; set; }
 
         /// <inheritdoc />
-        public bool Predicate(ViewModelPage viewModel)
+        public bool Predicate(IViewModel viewModel)
         {
-#if wpf
-            if (Key.IsInterface)
-            {
-                return Key.IsAssignableFrom(viewModel.ViewModel.GetType());
-            }
-            return viewModel.ViewModel.GetType().IsSubclassOf(Key);
-#elif WINDOWS_UWP
-
-
-            return Key.IsAssignableFrom(viewModel.ViewModel.GetType());
-#endif
-            return false;
+            return Key.IsInstanceOfType(viewModel);
         }
     }
 }

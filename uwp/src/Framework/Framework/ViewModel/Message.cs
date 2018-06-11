@@ -17,7 +17,7 @@
         /// </summary>
         /// <param name="viewModel"></param>
         /// <returns></returns>
-        bool Predicate(ViewModelPage viewModel);
+        bool Predicate(IViewModel viewModel);
     }
 
     public class Message : IMessage
@@ -45,7 +45,7 @@
         public IPredicateViewModel Goal { set; get; }
 
         /// <inheritdoc />
-        public bool Predicate(ViewModelPage viewModel)
+        public bool Predicate(IViewModel viewModel)
         {
             if (Goal == null)
             {

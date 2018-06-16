@@ -1,4 +1,6 @@
-﻿namespace lindexi.uwp.Framework.ViewModel
+﻿using lindexi.MVVM.Framework.ViewModel;
+
+namespace lindexi.uwp.Framework.ViewModel
 {
     /// <summary>
     /// 可跳转

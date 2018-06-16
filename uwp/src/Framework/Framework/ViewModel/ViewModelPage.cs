@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Reflection;
-using System.Threading.Tasks;
-using lindexi.MVVM.Framework.ViewModel;
 
 #if WINDOWS_UWP&&false
 using Windows.ApplicationModel.Core;
@@ -19,7 +16,7 @@ using System.Windows.Controls;
 
 
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     /// 包含 抽象页面和页面

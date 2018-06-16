@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using lindexi.MVVM.Framework.Annotations;
-using lindexi.MVVM.Framework.ViewModel;
+using lindexi.uwp.Framework.ViewModel;
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     /// 提供支持跳转类
@@ -25,7 +25,7 @@ namespace lindexi.uwp.Framework.ViewModel
             var composite = message as ICombinationComposite;
             composite?.Run(viewModel, message);
 
-            var run = ViewModel.Composite.Run(viewModel, message, Composite);
+            var run = MVVM.Framework.ViewModel.Composite.Run(viewModel, message, Composite);
 
             if (run)
             {
@@ -38,7 +38,7 @@ namespace lindexi.uwp.Framework.ViewModel
                 Where(/*如果 ViewModel 没有使用，就不收消息*/temp => temp.ViewModel.IsLoaded)
                 .Select(temp=>temp.ViewModel.GetViewModel()))
             {
-                ViewModel.Composite.Run(temp, message, Composite);
+                MVVM.Framework.ViewModel.Composite.Run(temp, message, Composite);
             }
         }
 

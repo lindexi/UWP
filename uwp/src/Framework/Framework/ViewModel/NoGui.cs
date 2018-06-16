@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace lindexi.uwp.Framework.ViewModel
+﻿namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     /// 表示当前是在没有界面的环境

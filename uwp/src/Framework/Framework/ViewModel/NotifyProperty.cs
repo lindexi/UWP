@@ -1,8 +1,6 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using lindexi.MVVM.Framework.Annotations;
-
 
 #if WINDOWS_UWP&&false
 using Windows.ApplicationModel.Core;
@@ -14,7 +12,7 @@ using System.Windows.Threading;
 #endif
 
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     ///     提供继承通知UI改变值

@@ -1,7 +1,7 @@
 ﻿using System;
-using lindexi.MVVM.Framework.ViewModel;
+using lindexi.uwp.Framework.ViewModel;
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     ///     用来跳转 ViewModel 的类

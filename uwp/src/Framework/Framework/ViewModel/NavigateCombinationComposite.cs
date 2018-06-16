@@ -1,7 +1,7 @@
 using System;
-using lindexi.MVVM.Framework.ViewModel;
+using lindexi.uwp.Framework.ViewModel;
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     /// 提供跳转消息，自动找到<see cref="NavigateViewModel"/>让他跳转

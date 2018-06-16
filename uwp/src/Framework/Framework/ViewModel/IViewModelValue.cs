@@ -1,6 +1,4 @@
-﻿using lindexi.uwp.Framework.ViewModel;
-
-namespace wpfMill
+﻿namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     /// 表示 ViewModel 包含属性

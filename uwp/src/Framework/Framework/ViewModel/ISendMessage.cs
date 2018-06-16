@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     /// 发送消息

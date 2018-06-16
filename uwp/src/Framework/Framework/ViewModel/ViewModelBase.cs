@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using lindexi.MVVM.Framework.Annotations;
-using lindexi.MVVM.Framework.ViewModel;
+using lindexi.uwp.Framework.ViewModel;
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
+    /// <summary>
+    /// 提供基础的 ViewModel 包含跳转
+    /// </summary>
     [PublicAPI]
     public abstract class ViewModelBase : NotifyProperty, INavigable, IViewModel
     {
@@ -73,7 +75,7 @@ namespace lindexi.uwp.Framework.ViewModel
             var composite = message as ICombinationComposite;
             composite?.Run(viewModel, message);
 
-            ViewModel.Composite.Run(viewModel, message, Composite);
+            MVVM.Framework.ViewModel.Composite.Run(viewModel, message, Composite);
         }
 
         /// <summary>

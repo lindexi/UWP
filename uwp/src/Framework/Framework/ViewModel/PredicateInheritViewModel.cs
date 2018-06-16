@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Reflection;
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     ///     通过继承判断viewmodel是否需要
@@ -17,7 +16,7 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <summary>
         /// 用来判断当前时候符合类型
         /// </summary>
-        public Type Key { get; set; }
+        public Type Key { get; }
 
         /// <inheritdoc />
         public bool Predicate(IViewModel viewModel)

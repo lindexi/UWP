@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using lindexi.MVVM.Framework.Annotations;
+using lindexi.uwp.Framework.ViewModel;
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     /// 处理消息
@@ -20,8 +21,9 @@ namespace lindexi.uwp.Framework.ViewModel
         /// 处理消息
         /// </summary>
         /// <param name="message">处理的消息类型</param>
-        public Composite(Type message)
+        public Composite([NotNull] Type message)
         {
+            if (ReferenceEquals(message, null)) throw new ArgumentNullException(nameof(message));
             Message = message;
         }
 
@@ -33,8 +35,10 @@ namespace lindexi.uwp.Framework.ViewModel
         public string Key { get; set; }
 
         /// <inheritdoc />
-        public virtual void Run(IViewModel source, IMessage message)
+        public virtual void Run([NotNull] IViewModel source, [NotNull] IMessage message)
         {
+            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
+            if (ReferenceEquals(message, null)) throw new ArgumentNullException(nameof(message));
             var viewModel = source as ViewModelBase;
             if (viewModel != null)
             {
@@ -84,8 +88,10 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <param name="message"></param>
         /// <param name="compositeList"></param>
         [PublicAPI]
-        public static bool Run(IViewModel viewModel, IMessage message, IEnumerable<Composite> compositeList = null)
+        public static bool Run([NotNull] IViewModel viewModel, [NotNull] IMessage message, IEnumerable<Composite> compositeList = null)
         {
+            if (ReferenceEquals(viewModel, null)) throw new ArgumentNullException(nameof(viewModel));
+            if (ReferenceEquals(message, null)) throw new ArgumentNullException(nameof(message));
             if (!message.Goal.Predicate(viewModel))
             {
                 return true;

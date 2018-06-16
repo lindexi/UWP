@@ -1,15 +1,14 @@
 ﻿using System;
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     ///     写规则判断ViewModel是否需要
     /// </summary>
     public class PredicateViewModel : IPredicateViewModel
     {
-        
         /// <summary>
-        /// 
+        /// 自己创建规则判断
         /// </summary>
         /// <param name="predicate"></param>
         public PredicateViewModel(Predicate<IViewModel> predicate)
@@ -23,6 +22,6 @@ namespace lindexi.uwp.Framework.ViewModel
             return _predicate(viewModel);
         }
 
-        private Predicate<IViewModel> _predicate;
+        private readonly Predicate<IViewModel> _predicate;
     }
 }

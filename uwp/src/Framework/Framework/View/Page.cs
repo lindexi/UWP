@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using lindexi.MVVM.Framework.ViewModel;
 #if wpf
 using System.Windows.Navigation;
 using Windows.UI.Xaml.Navigation;

@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
-using lindexi.MVVM.Framework.ViewModel;
+using lindexi.uwp.Framework.ViewModel;
 
 #if WINDOWS_UWP
 using Windows.UI.Xaml.Controls;
@@ -9,7 +8,7 @@ using System.Windows.Controls;
 #endif
 
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     /// 支持跳转

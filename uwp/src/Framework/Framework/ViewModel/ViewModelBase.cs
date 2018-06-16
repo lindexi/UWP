@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using lindexi.MVVM.Framework.Annotations;
+using lindexi.MVVM.Framework.ViewModel;
 
 namespace lindexi.uwp.Framework.ViewModel
 {

@@ -1,28 +1,49 @@
 using System;
+using lindexi.MVVM.Framework.Annotations;
+using lindexi.uwp.Framework.ViewModel;
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     ///     组合 Composite 和 Message
     /// </summary>
     public class CombinationComposite : Composite, IMessage, ICombinationComposite
     {
-        public CombinationComposite(ViewModelBase source)
+        /// <summary>
+        /// 创建组合的Composite用来处理消息
+        /// </summary>
+        /// <param name="source">发送消息的类</param>
+        public CombinationComposite([NotNull] ViewModelBase source)
         {
+            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
             ((IMessage) this).Source = source;
         }
 
-        public CombinationComposite(Action<ViewModelBase, object> run, ViewModelBase source)
+        /// <summary>
+        /// 创建组合的Composite，并且告诉如何处理
+        /// </summary>
+        /// <param name="run">如何处理</param>
+        /// <param name="source">发送消息的类</param>
+        public CombinationComposite([NotNull] Action<ViewModelBase, object> run, [NotNull] ViewModelBase source)
         {
+            if (ReferenceEquals(run, null)) throw new ArgumentNullException(nameof(run));
+            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
+
             _run = run;
             ((IMessage) this).Source = source;
         }
 
+        /// <summary>
+        /// 开始运行
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="message"></param>
         public override void Run(ViewModelBase source, IMessage message)
         {
-            _run.Invoke(source, message);
+            _run(source, message);
         }
 
+        /// <inheritdoc />
         ViewModelBase IMessage.Source { get; set; }
 
         /// <inheritdoc />
@@ -42,25 +63,42 @@ namespace lindexi.uwp.Framework.ViewModel
         protected Action<ViewModelBase, object> _run;
     }
 
+    /// <summary>
+    /// 组合 Composite 和 Message 用于在发送时告诉如何处理
+    /// </summary>
+    /// <typeparam name="T">发送到对应类型的 ViewModel ，用来在这个 ViewModel 处理</typeparam>
     public class CombinationComposite<T> : Composite, IMessage, ICombinationComposite
         where T : IViewModel
     {
-        public CombinationComposite(ViewModelBase source)
+        /// <summary>
+        /// 创建组合 Composite 和 Message 用于在发送时告诉如何处理
+        /// </summary>
+        /// <param name="source"></param>
+        public CombinationComposite([NotNull] ViewModelBase source)
         {
+            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
             ((IMessage) this).Source = source;
             Goal = new PredicateInheritViewModel(typeof(T));
         }
 
-        public CombinationComposite(Action<T> run, ViewModelBase source) : this(source)
+        /// <summary>
+        ///  创建组合 Composite 和 Message 用于在发送时告诉如何处理
+        /// </summary>
+        /// <param name="run">发送到对应的 ViewModel 需要如何处理</param>
+        /// <param name="source"></param>
+        public CombinationComposite([NotNull] Action<T> run, [NotNull] ViewModelBase source) : this(source)
         {
+            if (ReferenceEquals(run, null)) throw new ArgumentNullException(nameof(run));
+            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
             _run = run;
         }
 
+        /// <inheritdoc />
         public override void Run(IViewModel source, IMessage message)
         {
-            if (source is T)
+            if (source is T t)
             {
-                _run.Invoke((T) source);
+                _run.Invoke(t);
             }
         }
 
@@ -84,22 +122,36 @@ namespace lindexi.uwp.Framework.ViewModel
     }
 
     /// <summary>
-    ///     组合 Composite 和 Message
+    /// 组合 Composite 和 Message
     /// </summary>
+    /// <typeparam name="T">发送到的ViewModel是哪个</typeparam>
+    /// <typeparam name="U">发送的消息是哪个</typeparam>
     public class CombinationComposite<T, U> : Composite, IMessage, ICombinationComposite
         where U : IMessage where T : IViewModel
     {
-        public CombinationComposite(ViewModelBase source)
+        /// <summary>
+        /// 创建组合 Composite 和 Message 在发送的时候告诉如何处理
+        /// </summary>
+        /// <param name="source"></param>
+        public CombinationComposite([NotNull] ViewModelBase source)
         {
+            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
             ((IMessage) this).Source = source;
             Goal = new PredicateInheritViewModel(typeof(T));
         }
 
-        public CombinationComposite(Action<T, U> run, ViewModelBase source) : this(source)
+        /// <summary>
+        /// 创建组合 Composite 和 Message 在发送的时候告诉如何处理
+        /// </summary>
+        /// <param name="run"></param>
+        /// <param name="source"></param>
+        public CombinationComposite([NotNull] Action<T, U> run, ViewModelBase source) : this(source)
         {
+            if (ReferenceEquals(run, null)) throw new ArgumentNullException(nameof(run));
             _run = run;
         }
 
+        /// <inheritdoc />
         public override void Run(IViewModel source, IMessage message)
         {
             if (source is T && message is U)

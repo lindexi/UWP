@@ -12,7 +12,7 @@ namespace Framework.View
     /// <summary>
     /// 框架需要使用的页面
     /// </summary>
-    public class Page<T>
+    internal class Page<T>
 #if WINDOWS_UWP&&false
         : Windows.UI.Xaml.Controls.Page
 #endif

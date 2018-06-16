@@ -1,4 +1,5 @@
 using System;
+using lindexi.MVVM.Framework.ViewModel;
 
 namespace lindexi.uwp.Framework.ViewModel
 {

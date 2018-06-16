@@ -1,4 +1,5 @@
 using System;
+using lindexi.MVVM.Framework.ViewModel;
 using wpfMill;
 
 namespace lindexi.uwp.Framework.ViewModel

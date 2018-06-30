@@ -4,12 +4,18 @@
     <TargetFrameworks>net45;</TargetFrameworks>
     <PackageId>lindexi.wpf.Framework</PackageId>
     <Authors>lindexi</Authors>
-    <Version>2.0.0</Version>
+    <Version>2.0.3</Version>
     <Product>lindexi.wpf.Framework</Product>
     <Description>WPF 的 MVVM 框架</Description>
     <PackageProjectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</RepositoryUrl>
     <RootNamespace>lindexi.wpf.Framework</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DocumentationFile>..\bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <OutputPath>..\bin\$(Configuration)\</OutputPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

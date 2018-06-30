@@ -93,9 +93,9 @@ namespace lindexi.MVVM.Framework.ViewModel
         {
             if (ReferenceEquals(viewModel, null)) throw new ArgumentNullException(nameof(viewModel));
             if (ReferenceEquals(message, null)) throw new ArgumentNullException(nameof(message));
-            if (message.Goal == null || !message.Goal.Predicate(viewModel))
+            if (!message.Predicate(viewModel))
             {
-                return true;
+                return false;
             }
 
             if (compositeList == null || !compositeList.Any())

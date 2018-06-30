@@ -88,11 +88,12 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// <param name="message"></param>
         /// <param name="compositeList"></param>
         [PublicAPI]
-        public static bool Run([NotNull] IViewModel viewModel, [NotNull] IMessage message, IEnumerable<Composite> compositeList = null)
+        public static bool Run([NotNull] IViewModel viewModel, [NotNull] IMessage message,
+            IEnumerable<Composite> compositeList = null)
         {
             if (ReferenceEquals(viewModel, null)) throw new ArgumentNullException(nameof(viewModel));
             if (ReferenceEquals(message, null)) throw new ArgumentNullException(nameof(message));
-            if (!message.Goal.Predicate(viewModel))
+            if (message.Goal == null || !message.Goal.Predicate(viewModel))
             {
                 return true;
             }

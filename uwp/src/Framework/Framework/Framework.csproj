@@ -12,7 +12,7 @@
   <PropertyGroup>
     <Build>$([System.DateTime]::op_Subtraction($([System.DateTime]::get_Now().get_Date()),$([System.DateTime]::new(2000,1,1))).get_TotalDays())</Build>
     <Revision>$([MSBuild]::Divide($([System.DateTime]::get_Now().get_TimeOfDay().get_TotalSeconds()), 2).ToString('F0'))</Revision>
-    <Version>1.1.25.17615</Version>
+    <Version>1.2.1.17652</Version>
     <IncludeSymbols>true</IncludeSymbols>
   </PropertyGroup>
   <PropertyGroup>

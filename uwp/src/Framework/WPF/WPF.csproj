@@ -15,6 +15,7 @@
   <PropertyGroup>
     <DocumentationFile>..\bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <OutputPath>..\bin\$(Configuration)\</OutputPath>
+    <IncludeSymbols>true</IncludeSymbols>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 

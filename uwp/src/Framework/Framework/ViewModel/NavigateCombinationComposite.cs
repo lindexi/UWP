@@ -47,6 +47,7 @@ namespace lindexi.MVVM.Framework.ViewModel
     /// <summary>
     /// Ìø×ªÏûÏ¢
     /// </summary>
+    [Composite]
     public class NavigateComposite : Composite
     {
         /// <inheritdoc />

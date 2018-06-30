@@ -139,4 +139,36 @@ namespace lindexi.MVVM.Framework.ViewModel
 
         private static IReadOnlyCollection<Composite> CompositeList { get; }
     }
+
+
+    /// <summary>
+    /// 处理消息
+    /// </summary>
+    /// <typeparam name="TMessage"></typeparam>
+    public class Composite<TMessage> : Composite where TMessage : IMessage
+    {
+        /// <inheritdoc />
+        public Composite() : base(typeof(TMessage))
+        {
+        }
+
+        /// <inheritdoc />
+        public override void Run(IViewModel source, IMessage message)
+        {
+            Run(source, (TMessage) message);
+        }
+
+        protected virtual void Run(IViewModel source, TMessage message)
+        {
+        }
+    }
+
+    /// <summary>
+    /// 表示一个类是处理
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
+    public class CompositeAttribute : Attribute
+    {
+
+    }
 }

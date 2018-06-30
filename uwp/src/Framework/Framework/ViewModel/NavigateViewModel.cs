@@ -143,6 +143,8 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// </summary>
         protected void AllAssemblyComposite(Assembly assembly)
         {
+            Composite.AddRange(lindexi.MVVM.Framework.ViewModel.Composite.GetCompositeList());
+
             foreach (var temp in assembly.GetTypes().Where(IsCompsite))
             {
                 try

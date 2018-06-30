@@ -1,4 +1,5 @@
-﻿using lindexi.MVVM.Framework.Annotations;
+﻿using System;
+using lindexi.MVVM.Framework.Annotations;
 using lindexi.uwp.Framework.ViewModel;
 
 namespace lindexi.MVVM.Framework.ViewModel
@@ -29,7 +30,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         {
             get
             {
-                if (ViewModel==null)
+                if (ViewModel == null)
                 {
                     return false;
                 }
@@ -48,5 +49,50 @@ namespace lindexi.MVVM.Framework.ViewModel
 
         /// <inheritdoc />
         public string Name { get; set; }
+    }
+
+    /// <summary>
+    /// 可以跳转的 ViewModel
+    /// </summary>
+    /// <inheritdoc />
+    [PublicAPI]
+    public class NavigatableViewModel : INavigatableViewModel
+    {
+        /// <inheritdoc />
+        public NavigatableViewModel(Type viewModel)
+        {
+            _viewModel = viewModel;
+            Name = viewModel.Name;
+        }
+
+        /// <inheritdoc />
+        public string Name { get; set; }
+
+        /// <inheritdoc />
+        public IViewModel GetViewModel()
+        {
+            if (ViewModel == null)
+            {
+                ViewModel = (ViewModelBase) Activator.CreateInstance(_viewModel);
+            }
+
+            return ViewModel;
+        }
+
+        private Type _viewModel;
+
+        private ViewModelBase ViewModel { get; set; }
+
+        /// <inheritdoc />
+        public bool IsLoaded => ViewModel?.IsLoaded ?? false;
+
+        /// <summary>
+        /// 转换<see cref="Type"/> 为可跳转类
+        /// </summary>
+        /// <param name="t"></param>
+        public static implicit operator NavigatableViewModel(Type t)
+        {
+            return new NavigatableViewModel(t);
+        }
     }
 }

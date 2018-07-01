@@ -38,7 +38,7 @@ namespace lindexi.MVVM.Framework.ViewModel
                 Where(/*如果 ViewModel 没有使用，就不收消息*/temp => temp.ViewModel.IsLoaded)
                 .Select(temp=>temp.ViewModel.GetViewModel()))
             {
-                MVVM.Framework.ViewModel.Composite.Run(temp, message, Composite);
+                ViewModel.Composite.Run(temp, message, Composite);
             }
         }
 

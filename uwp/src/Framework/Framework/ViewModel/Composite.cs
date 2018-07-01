@@ -95,6 +95,7 @@ namespace lindexi.MVVM.Framework.ViewModel
             if (ReferenceEquals(message, null)) throw new ArgumentNullException(nameof(message));
             if (!message.Predicate(viewModel))
             {
+                // 如果消息不是发送到这个 ViewModel 就返回
                 return false;
             }
 

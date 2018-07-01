@@ -5,6 +5,6 @@ namespace lindexi.MVVM.Framework.ViewModel
     /// </summary>
     public interface IViewModel
     {
-
+       
     }
 }

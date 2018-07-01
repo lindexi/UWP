@@ -9,18 +9,13 @@ namespace lindexi.MVVM.Framework.ViewModel
     /// 提供基础的 ViewModel 包含跳转
     /// </summary>
     [PublicAPI]
-    public abstract class ViewModelBase : NotifyProperty, INavigable, IViewModel
+    public abstract class ViewModelBase : NotifyProperty, INavigable, ILoadableMode, IViewModel
     {
         /// <summary>
         ///     表示当前ViewModel是否处于进入状态
         ///     用于命令判断是否可用
         /// </summary>
         public bool IsLoaded { get; set; }
-
-        ///// <summary>
-        ///// 是否可以使用
-        ///// </summary>
-        //public bool IsEnable { get; set; }
 
         /// <inheritdoc />
         public virtual void NavigatedFrom(object sender, object obj)
@@ -35,7 +30,6 @@ namespace lindexi.MVVM.Framework.ViewModel
             IsLoaded = true;
             OnNavigatedTo(sender, obj);
         }
-
 
         /// <summary>
         ///     从其他页面跳转出
@@ -75,7 +69,7 @@ namespace lindexi.MVVM.Framework.ViewModel
             var composite = message as ICombinationComposite;
             composite?.Run(viewModel, message);
 
-            MVVM.Framework.ViewModel.Composite.Run(viewModel, message, Composite);
+            ViewModel.Composite.Run(viewModel, message, Composite);
         }
 
         /// <summary>

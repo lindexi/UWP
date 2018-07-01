@@ -22,4 +22,15 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <param name="obj"></param>
         void NavigatedTo(object sender, object obj);
     }
+
+    /// <summary>
+    /// 支持是否加载
+    /// </summary>
+    public interface ILoadableMode : IViewModel
+    {
+        /// <summary>
+        /// 当前的 ViewModel 是否加载
+        /// </summary>
+        bool IsLoaded { get; }
+    }
 }

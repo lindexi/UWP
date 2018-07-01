@@ -44,7 +44,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         }
 
         /// <inheritdoc />
-        ViewModelBase IMessage.Source { get; set; }
+        IViewModel IMessage.Source { get; set; }
 
         /// <inheritdoc />
         public IPredicateViewModel Goal { set; get; }
@@ -102,7 +102,8 @@ namespace lindexi.MVVM.Framework.ViewModel
             }
         }
 
-        ViewModelBase IMessage.Source { get; set; }
+        /// <inheritdoc />
+        IViewModel IMessage.Source { get; set; }
 
         /// <inheritdoc />
         public IPredicateViewModel Goal { set; get; }
@@ -160,7 +161,8 @@ namespace lindexi.MVVM.Framework.ViewModel
             }
         }
 
-        ViewModelBase IMessage.Source { get; set; }
+        /// <inheritdoc />
+        IViewModel IMessage.Source { get; set; }
 
         /// <inheritdoc />
         public IPredicateViewModel Goal { set; get; }

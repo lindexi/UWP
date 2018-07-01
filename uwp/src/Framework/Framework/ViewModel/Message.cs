@@ -5,7 +5,10 @@
     /// </summary>
     public interface IMessage
     {
-        ViewModelBase Source { set; get; }
+        /// <summary>
+        /// 发送消息的 <see cref="ViewModelBase"/> 用于告诉是哪个发送
+        /// </summary>
+        IViewModel Source { set; get; }
 
         /// <summary>
         ///     判断使用哪个ViewModel，如果为空，返回上一层
@@ -37,7 +40,7 @@
         /// <summary>
         ///     发送者
         /// </summary>
-        public ViewModelBase Source { set; get; }
+        public IViewModel Source { set; get; }
 
         /// <summary>
         ///     目标

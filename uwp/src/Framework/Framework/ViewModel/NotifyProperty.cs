@@ -17,14 +17,16 @@ namespace lindexi.MVVM.Framework.ViewModel
     /// <summary>
     ///     提供继承通知UI改变值
     /// </summary>
-    public class NotifyProperty : INotifyPropertyChanged
+    public abstract class NotifyProperty : INotifyPropertyChanged
     {
-        public NotifyProperty()
-        {
-        }
-
-
-        public void UpdateProper<T>(ref T properValue, T newValue, [CallerMemberName] string properName = "")
+        /// <summary>
+        /// 更新值，如果两个值相同就不更新
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="properValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name="properName"></param>
+        protected void UpdateProper<T>(ref T properValue, T newValue, [CallerMemberName] string properName = "")
         {
             if (Equals(properValue, newValue))
             {
@@ -50,8 +52,13 @@ namespace lindexi.MVVM.Framework.ViewModel
 //            }, null);
 //#endif
 
+        /// <inheritdoc />
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// 通知属性修改
+        /// </summary>
+        /// <param name="propertyName"></param>
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

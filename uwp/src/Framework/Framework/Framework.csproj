@@ -14,7 +14,7 @@
     <Copyright>MIT</Copyright>
     <PackageLicenseUrl>https://github.com/lindexi/UWP/blob/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>
-      提供默认的是否加载可以发送
+      提供默认的是否加载可以发送   
     </PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup>

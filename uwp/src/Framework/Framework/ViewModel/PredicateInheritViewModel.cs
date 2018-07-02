@@ -24,4 +24,16 @@ namespace lindexi.MVVM.Framework.ViewModel
             return Key.IsInstanceOfType(viewModel);
         }
     }
+
+    /// <summary>
+    ///     通过继承判断viewmodel是否需要
+    /// </summary>
+    public class PredicateInheritViewModel<T> : IPredicateViewModel where T : IViewModel
+    {
+        /// <inheritdoc />
+        public bool Predicate(IViewModel viewModel)
+        {
+            return viewModel is T;
+        }
+    }
 }

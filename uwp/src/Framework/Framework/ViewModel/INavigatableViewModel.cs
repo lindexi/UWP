@@ -11,6 +11,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// 设置或获取 ViewModel 的名字
         /// </summary>
         string Name { get; set; }
+
         /// <summary>
         /// 获取 ViewModel 类
         /// </summary>

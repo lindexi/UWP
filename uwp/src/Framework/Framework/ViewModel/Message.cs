@@ -23,8 +23,10 @@
         bool Predicate(IViewModel viewModel);
     }
 
+    /// <inheritdoc />
     public class Message : IMessage
     {
+        /// <inheritdoc />
         public Message(ViewModelBase source)
         {
             Source = source;

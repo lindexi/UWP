@@ -13,9 +13,11 @@
     <RepositoryUrl>https://github.com/lindexi/UWP/</RepositoryUrl>
     <Copyright>MIT</Copyright>
     <PackageLicenseUrl>https://github.com/lindexi/UWP/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>WPF;MVVM;UWP</PackageTags>
     <PackageReleaseNotes>
-      提供默认的是否加载可以发送   
-    </PackageReleaseNotes>
+      提供默认的是否加载可以发送
+      发送消息传入源不再使用 ViewModelBase ，可以在使用其他框架的时候使用消息
+    </PackageReleaseNotes>    
   </PropertyGroup>
   <PropertyGroup>
     <Build>$([System.DateTime]::op_Subtraction($([System.DateTime]::get_Now().get_Date()),$([System.DateTime]::new(2000,1,1))).get_TotalDays())</Build>

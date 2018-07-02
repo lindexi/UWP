@@ -10,6 +10,9 @@
     <PackageProjectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</RepositoryUrl>
     <RootNamespace>lindexi.wpf.Framework</RootNamespace>
+    <Copyright>MIT</Copyright>
+    <PackageLicenseUrl>https://github.com/lindexi/UWP/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>WPF;MVVM;UWP</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup>

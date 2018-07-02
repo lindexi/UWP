@@ -16,6 +16,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// <param name="continueWith">在获取值之后做的</param>
         public GetValueCombinationComposite(ViewModelBase source, Action<T> continueWith) : base(source)
         {
+            Goal = new PredicateInheritViewModel<IViewModelValue<T>>();
             ContinueWith = continueWith;
         }
 
@@ -23,10 +24,8 @@ namespace lindexi.MVVM.Framework.ViewModel
 
         public override void Run(IViewModel source, IMessage message)
         {
-            if (source is IViewModelValue<T> viewmodel)
-            {
-                ContinueWith(viewmodel.Value);
-            }
+            var viewmodel = (IViewModelValue<T>) source;
+            ContinueWith(viewmodel.Value);
         }
     }
 }

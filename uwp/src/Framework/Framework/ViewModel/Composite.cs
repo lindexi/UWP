@@ -23,22 +23,27 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// <param name="message">处理的消息类型</param>
         public Composite([NotNull] Type message)
         {
-            if (ReferenceEquals(message, null)) throw new ArgumentNullException(nameof(message));
-            Message = message;
+            if (ReferenceEquals(message, null))
+                throw new ArgumentNullException(nameof(message));
+            PredicateMessage = new TypePredicateMessage(message);
         }
 
         /// <summary>
-        /// 处理什么消息
+        /// 判断消息是否符合
         /// </summary>
-        public Type Message { get; set; }
-
-        public string Key { get; set; }
+        public IPredicateMessage PredicateMessage
+        {
+            get => _predicateMessage ?? ViewModel.PredicateMessage.Instance;
+            set => _predicateMessage = value;
+        }
 
         /// <inheritdoc />
         public virtual void Run([NotNull] IViewModel source, [NotNull] IMessage message)
         {
-            if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
-            if (ReferenceEquals(message, null)) throw new ArgumentNullException(nameof(message));
+            if (ReferenceEquals(source, null))
+                throw new ArgumentNullException(nameof(source));
+            if (ReferenceEquals(message, null))
+                throw new ArgumentNullException(nameof(message));
             var viewModel = source as ViewModelBase;
             if (viewModel != null)
             {
@@ -50,6 +55,8 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// 是否已经使用函数
         /// </summary>
         private bool _run;
+
+        private IPredicateMessage _predicateMessage;
 
         /// <inheritdoc />
         public virtual void Run(ViewModelBase source, IMessage message)
@@ -91,8 +98,10 @@ namespace lindexi.MVVM.Framework.ViewModel
         public static bool Run([NotNull] IViewModel viewModel, [NotNull] IMessage message,
             IEnumerable<Composite> compositeList = null)
         {
-            if (ReferenceEquals(viewModel, null)) throw new ArgumentNullException(nameof(viewModel));
-            if (ReferenceEquals(message, null)) throw new ArgumentNullException(nameof(message));
+            if (ReferenceEquals(viewModel, null))
+                throw new ArgumentNullException(nameof(viewModel));
+            if (ReferenceEquals(message, null))
+                throw new ArgumentNullException(nameof(message));
             if (!message.Predicate(viewModel))
             {
                 // 如果消息不是发送到这个 ViewModel 就返回
@@ -107,8 +116,7 @@ namespace lindexi.MVVM.Framework.ViewModel
             var composite = false;
             var exceptionList = new List<Exception>();
 
-            var t = message.GetType();
-            foreach (var temp in compositeList.Where(temp => temp.Message == t))
+            foreach (var temp in compositeList.Where(temp => temp.PredicateMessage.Predicate(message)))
             {
                 try
                 {
@@ -149,12 +157,13 @@ namespace lindexi.MVVM.Framework.ViewModel
     public class Composite<TMessage> : Composite where TMessage : IMessage
     {
         /// <inheritdoc />
-        public Composite() : base(typeof(TMessage))
+        public Composite()
         {
+            PredicateMessage = new TypePredicateMessage<TMessage>();
         }
 
         /// <inheritdoc />
-        public override void Run(IViewModel source, IMessage message)
+        public sealed override void Run(IViewModel source, IMessage message)
         {
             Run(source, (TMessage) message);
         }
@@ -170,6 +179,5 @@ namespace lindexi.MVVM.Framework.ViewModel
     [AttributeUsage(AttributeTargets.Class)]
     public class CompositeAttribute : Attribute
     {
-
     }
 }

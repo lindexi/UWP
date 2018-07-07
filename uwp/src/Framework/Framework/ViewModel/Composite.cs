@@ -168,6 +168,11 @@ namespace lindexi.MVVM.Framework.ViewModel
             Run(source, (TMessage) message);
         }
 
+        /// <summary>
+        /// 运行处理传入对应的消息
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="message"></param>
         protected virtual void Run(IViewModel source, TMessage message)
         {
         }

@@ -28,12 +28,21 @@ namespace lindexi.MVVM.Framework.ViewModel
             
         }
 
+        /// <summary>
+        /// 创建包含页面
+        /// </summary>
+        /// <param name="viewModel"></param>
         public ViewModelPage(INavigatableViewModel viewModel)
         {
             ViewModel = viewModel;
             Key = viewModel.Name;
         }
 
+        /// <summary>
+        /// 创建包含页面
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <param name="page"></param>
         public ViewModelPage(INavigatableViewModel viewModel, INavigatablePage page)
         {
             ViewModel = viewModel;
@@ -122,6 +131,7 @@ namespace lindexi.MVVM.Framework.ViewModel
             return Key.Equals(other);
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -133,6 +143,7 @@ namespace lindexi.MVVM.Framework.ViewModel
             return Equals((ViewModelPage)obj);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return (Key != null ? Key.GetHashCode() : 0);

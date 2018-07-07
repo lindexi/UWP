@@ -60,6 +60,9 @@ namespace lindexi.MVVM.Framework.ViewModel
             return Goal.Predicate(viewModel);
         }
 
+        /// <summary>
+        /// 用来处理消息的方法
+        /// </summary>
         protected Action<ViewModelBase, object> _run;
     }
 
@@ -118,7 +121,9 @@ namespace lindexi.MVVM.Framework.ViewModel
 
             return Goal.Predicate(viewModel);
         }
-
+        /// <summary>
+        /// 用来处理消息的方法
+        /// </summary>
         protected Action<T> _run;
     }
 
@@ -178,6 +183,9 @@ namespace lindexi.MVVM.Framework.ViewModel
             return Goal.Predicate(viewModel);
         }
 
+        /// <summary>
+        /// 用来处理消息的方法
+        /// </summary>
         protected Action<T, U> _run;
     }
 }

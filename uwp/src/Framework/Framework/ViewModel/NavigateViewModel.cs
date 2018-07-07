@@ -47,6 +47,11 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// </summary>
         public List<ViewModelPage> ViewModelPage { get; set; }
 
+        /// <summary>
+        /// 使用字符串获取包含的类
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public IViewModel this[string str]
         {
             get { return ViewModelPage.FirstOrDefault(temp => temp.Key == str)?.ViewModel.GetViewModel(); }

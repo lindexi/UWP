@@ -14,6 +14,9 @@ namespace lindexi.MVVM.Framework.ViewModel
             Frame = frame ?? throw new ArgumentNullException(nameof(frame));
         }
 
+        /// <summary>
+        /// 用来跳转的类
+        /// </summary>
         public INavigateFrame Frame { get; set; }
 
         /// <summary>

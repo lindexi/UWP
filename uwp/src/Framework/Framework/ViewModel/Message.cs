@@ -32,6 +32,9 @@
             Source = source;
         }
 
+        /// <summary>
+        /// 消息
+        /// </summary>
         public object Content { set; get; }
 
         /// <summary>

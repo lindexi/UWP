@@ -9,7 +9,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using BitStamp.View;
 using BitStamp.ViewModel;
+using lindexi.MVVM.Framework.ViewModel;
 using lindexi.uwp.Framework.ViewModel;
+using lindexi.uwp.Framework;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -26,12 +28,12 @@ namespace BitStamp
 
             ViewModel = (DrowilHuwfevfModel) DataContext;
 
-            ViewModel.Content = KasibkqeStkxaij;
+            ViewModel.Content = new NavigateFrame(KasibkqeStkxaij);
 
-            ViewModel.ViewModel = new List<ViewModelPage>()
+            ViewModel.ViewModelPage = new List<ViewModelPage>()
             {
-                new ViewModelPage(typeof(HrbHtladModel), typeof(HrbHtlad)),
-                new ViewModelPage(typeof(SaeHqeupqModel), typeof(SaeHqeupqPage)),
+                new ViewModelPage(new NavigatableViewModel<HrbHtladModel>(), new NavigatablePage<HrbHtlad>()),
+                new ViewModelPage(new NavigatableViewModel<SaeHqeupqModel>(),new NavigatablePage<SaeHqeupqPage>()),
             };
 
             Loaded += (s, e) => { ViewModel.NavigatedTo(this, null); };

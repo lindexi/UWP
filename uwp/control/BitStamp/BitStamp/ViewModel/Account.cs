@@ -8,6 +8,7 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
+using lindexi.MVVM.Framework.ViewModel;
 using lindexi.uwp.ImageShack.Model;
 using Newtonsoft.Json;
 

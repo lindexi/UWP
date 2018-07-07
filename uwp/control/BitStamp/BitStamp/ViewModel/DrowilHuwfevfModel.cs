@@ -1,4 +1,5 @@
-﻿using lindexi.uwp.Framework.ViewModel;
+﻿using lindexi.MVVM.Framework.ViewModel;
+using lindexi.uwp.Framework.ViewModel;
 
 namespace BitStamp.ViewModel
 {

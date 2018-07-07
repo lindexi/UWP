@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using BitStamp.Model;
 using BitStamp.Model.Cimage;
 using BitStamp.View;
+using lindexi.MVVM.Framework.ViewModel;
 using lindexi.uwp.Framework.ViewModel;
 using lindexi.uwp.ImageShack.Model;
 using Microsoft.Graphics.Canvas;

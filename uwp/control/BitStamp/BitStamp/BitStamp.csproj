@@ -329,7 +329,16 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <Import Project="..\..\..\src\Framework\Framework\Framework.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Framework\Framework\Framework.csproj">
+      <Project>{cf869640-5a2d-4c1a-990b-5c8dcf3e18b0}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\Framework\UWP\UWP.csproj">
+      <Project>{cbb6141c-4a67-4acf-894f-ef39ee3c3eb8}</Project>
+      <Name>UWP</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

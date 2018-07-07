@@ -8,6 +8,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 using BitStamp.Model;
 using BitStamp.Model.Cimage;
+using lindexi.MVVM.Framework.ViewModel;
 using lindexi.uwp.ImageShack.Model;
 
 namespace BitStamp.ViewModel

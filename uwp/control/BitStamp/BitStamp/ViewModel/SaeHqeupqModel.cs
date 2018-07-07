@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using lindexi.MVVM.Framework.ViewModel;
 using lindexi.uwp.Framework.ViewModel;
 
 namespace BitStamp.ViewModel

@@ -100,10 +100,16 @@
             </Setter>
         </Style>
 
-        <Style x:Key="KguypnDitzbbi" TargetType="TextBlock">
+        <Style x:Key="TextBlockBackgroundKasloujearRalun" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+
+        <Style x:Key="KguypnDitzbbi" TargetType="TextBlock" BasedOn="{StaticResource TextBlockBackgroundKasloujearRalun}">
             <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
             <Setter Property="Width" Value="38"></Setter>
         </Style>
+
+      
 
     </FrameworkElement.Resources>
     <Grid>
@@ -132,22 +138,23 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource KguypnDitzbbi}" Text="&#xE77F;"
                                        VerticalAlignment="Center" />
-                            <TextBlock Text="从剪贴板粘贴 (Ctrl+V)" />
+                            <TextBlock Style="{StaticResource TextBlockBackgroundKasloujearRalun}" Text="从剪贴板粘贴 (Ctrl+V)" />
                         </StackPanel>
                     </Button>
                     <Button Style="{StaticResource KhqpsmpDclyneoqs}" Margin="0,0,0,0" Click="{x:Bind ViewModel.FileHhhrSkq}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource KguypnDitzbbi}" Text="&#xE8E5;" />
-                            <TextBlock Text="从文件打开" />
+                            <TextBlock Style="{StaticResource TextBlockBackgroundKasloujearRalun}" Text="从文件打开" />
                         </StackPanel>
                     </Button>
                     <Button Style="{StaticResource KhqpsmpDclyneoqs}" Margin="0,105,0,0"
                             Click="{x:Bind ViewModel.Upload}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="上传" />
+                            <FontIcon Margin="0,0,20,0" Foreground="White" HorizontalAlignment="Left" Glyph="&#xED25;" VerticalAlignment="Center"></FontIcon>
+                            <TextBlock Style="{StaticResource TextBlockBackgroundKasloujearRalun}" Text="上传" />
                         </StackPanel>
                     </Button>
-                    <TextBlock Margin="0,10,0,0" Text="水印" />
+                    <TextBlock Margin="0,10,0,0"  Text="水印" />
                     <TextBox Text="{Binding MartHzlxwlTcq,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     <ToggleSwitch Margin="0,30,0,0" IsOn="{x:Bind ViewModel.MarTxanmvssTfnpqlz,Mode=TwoWay}" OnContent="显示水印" OffContent="不显示水印" />
                 </StackPanel>
@@ -171,7 +178,7 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource KguypnDitzbbi}" Text="&#xE8C8;"
                                        VerticalAlignment="Center" />
-                            <TextBlock Margin="-20,0,0,0" Text="复制" />
+                            <TextBlock Margin="-20,0,0,0" Style="{StaticResource TextBlockBackgroundKasloujearRalun}" Text="复制" />
                         </StackPanel>
                     </Button>
                 </Grid>
@@ -193,7 +200,7 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource KguypnDitzbbi}" Text="&#xE8C8;"
                                        VerticalAlignment="Center" />
-                            <TextBlock Margin="-20,0,0,0" Text="复制" />
+                            <TextBlock Margin="-20,0,0,0" Style="{StaticResource TextBlockBackgroundKasloujearRalun}" Text="复制" />
                         </StackPanel>
                     </Button>
                 </Grid>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,8 +42,17 @@ namespace BitStamp.Model
             webHttpClient.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
 
             httpMultipartFormDataContent.Add(fileContent, "smfile", File.Name);
-            var str = await webHttpClient.PostAsync(new Uri(url), httpMultipartFormDataContent);
-            ResponseString = str.Content.ToString();
+            try
+            {
+                var str = await webHttpClient.PostAsync(new Uri(url), httpMultipartFormDataContent);
+                ResponseString = str.Content.ToString();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                OnUploaded?.Invoke(this, false);
+                return;
+            }
 
             Smms smms = JsonConvert.DeserializeObject<Smms>(ResponseString);
             if (smms != null)

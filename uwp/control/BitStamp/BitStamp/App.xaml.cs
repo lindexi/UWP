@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -32,6 +33,14 @@ namespace BitStamp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            UnhandledException += App_UnhandledException;
+        }
+
+        private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            Debug.WriteLine(e.Message);
+            e.Handled = true;
         }
 
         /// <summary>

@@ -19,8 +19,8 @@
     <releaseNotes>MVVM</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>UWP </tags>
-   <!--  <dependencies>
-      <dependency id="SampleDependency" version="1.0" />
-    </dependencies> -->
+    <dependencies>
+      <dependency id="System.ValueTuple" version="[1.0,)" />
+    </dependencies>
   </metadata>
 </package>

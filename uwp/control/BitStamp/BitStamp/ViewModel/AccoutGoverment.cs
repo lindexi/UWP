@@ -21,7 +21,7 @@ namespace BitStamp.ViewModel
         public AccoutGoverment()
         {
             Account = new Account();
-            Read();
+            //Read();
             //Application.Current.Suspending += async (s, e) =>
             //{
             //    var deferral = e.SuspendingOperation.GetDeferral();
@@ -30,29 +30,15 @@ namespace BitStamp.ViewModel
             //};
         }
 
-        public EventHandler OnReadEventHandler
-        {
-            set;
-            get;
-        }
+        public EventHandler OnReadEventHandler { set; get; }
 
 
-        public Account Account
-        {
-            set;
-            get;
-        }
+        public Account Account { set; get; }
 
         public static AccoutGoverment AccountModel
         {
-            set
-            {
-                _accountModel = value;
-            }
-            get
-            {
-                return _accountModel ?? (_accountModel = new AccoutGoverment());
-            }
+            set { _accountModel = value; }
+            get { return _accountModel ?? (_accountModel = new AccoutGoverment()); }
         }
 
         public async Task Storage()
@@ -90,7 +76,7 @@ namespace BitStamp.ViewModel
             }
         }
 
-        private async void Read()
+        public async Task Read()
         {
             await Task.Delay(100);
             string folderStr = "account";
@@ -104,28 +90,36 @@ namespace BitStamp.ViewModel
             {
                 first = true;
             }
+
             if (!first)
             {
                 try
                 {
                     StorageFile file = await folder.GetFileAsync(folderStr + ".json");
-                    var json = JsonSerializer.Create();
-                    Account = json.Deserialize<Account>(new JsonTextReader(
-                        new StreamReader(await file.OpenStreamForReadAsync())));
-                    //FutureAccessList 
+                    var dwrotSvwm =await FileIO.ReadTextAsync(file);
+                    Account = JsonConvert.DeserializeObject<Account>(dwrotSvwm);
                     if (Account != null)
                     {
                         try
                         {
-                            Account.Folder = await
-                                StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
-                                    Account.Token);
+                            if (!string.IsNullOrEmpty(Account.Token))
+                            {
+                                Account.Folder = await
+                                    StorageApplicationPermissions.FutureAccessList.
+                                        GetFolderAsync(
+                                            Account.Token);
+                                Account.Address = Account.Folder.Path;
+                            }
+                            else
+                            {
+                                Account.Folder = KnownFolders.PicturesLibrary;
+                                Account.Address = Account.Folder.Path;
+                            }
                         }
-                        catch (ArgumentNullException)
+                        catch (UnauthorizedAccessException )
                         {
-                            Account.Folder = KnownFolders.PicturesLibrary;
+                            Account.Folder = ApplicationData.Current.TemporaryFolder;
                         }
-                        Account.Address = Account.Folder.Path;
                     }
                     else
                     {
@@ -152,16 +146,21 @@ namespace BitStamp.ViewModel
                     Theme = ElementTheme.Light,
                     ThemeDay = true,
                     Str = "",
-                    ImageShack = ImageShackEnum.Qin,
+                    ImageShack = ImageShackEnum.Smms,
                     JiuYouImageShack = false,
                     QinImageShack = true,
                     SmmsImageShack = false,
                 };
+
+                Account.Token = StorageApplicationPermissions.FutureAccessList.Add(Account.Folder);
+
                 await Storage();
             }
 
-            OnReadEventHandler?.Invoke(this,null);
+            OnReadEventHandler?.Invoke(this, null);
         }
+
+       
 
         private static AccoutGoverment _accountModel;
     }

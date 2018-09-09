@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Reflection;
-using System.Threading.Tasks;
 
-#if WINDOWS_UWP
+#if WINDOWS_UWP&&false
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -18,51 +16,38 @@ using System.Windows.Controls;
 
 
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     /// 包含 抽象页面和页面
     /// </summary>
-    public class ViewModelPage : IEquatable<Type>
+    public class ViewModelPage : IEquatable<string>
     {
-        /// <summary>
-        /// 页面类型，用于创建页面
-        /// </summary>
-        private Type _viewModel;
-
-        private ViewModelBase viewModel;
-
-        public ViewModelPage()
+        internal ViewModelPage()
         {
             
         }
 
-        public ViewModelPage(Type viewModel)
-        {
-            _viewModel = viewModel;
-            Key = _viewModel.Name;
-        }
-
-        public ViewModelPage(Type viewModel, Type page)
-        {
-            _viewModel = viewModel;
-            Page = page;
-            Key = _viewModel.Name;
-        }
-
-        public ViewModelPage(ViewModelBase viewModel)
+        /// <summary>
+        /// 创建包含页面
+        /// </summary>
+        /// <param name="viewModel"></param>
+        public ViewModelPage(INavigatableViewModel viewModel)
         {
             ViewModel = viewModel;
-            Key = viewModel.GetType().Name;
-            _viewModel = viewModel.GetType();
+            Key = viewModel.Name;
         }
 
-        public ViewModelPage(ViewModelBase viewModel, Type page)
+        /// <summary>
+        /// 创建包含页面
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <param name="page"></param>
+        public ViewModelPage(INavigatableViewModel viewModel, INavigatablePage page)
         {
             ViewModel = viewModel;
             Page = page;
-            Key = viewModel.GetType().Name;
-            _viewModel = viewModel.GetType();
+            Key = viewModel.Name;
         }
 
         /// <summary>
@@ -70,42 +55,24 @@ namespace lindexi.uwp.Framework.ViewModel
         /// </summary>
         public string Key
         {
-            set; get;
+             get;
         }
 
         /// <summary>
         /// 抽象页面
         /// </summary>
-        public ViewModelBase ViewModel
-        {
-            set
-            {
-                viewModel = value;
-            }
-            get
-            {
-                return viewModel ?? (viewModel = (ViewModelBase)_viewModel.GetConstructor(Type.EmptyTypes).Invoke(null));
-            }
-        }
+        public INavigatableViewModel ViewModel { private set; get; }
 
         /// <summary>
         /// 页面
         /// </summary>
-        public Type Page
+        public INavigatablePage Page
         {
-            set; get;
+            get;
         }
 
-        /// <summary>
-        /// 判断输入的类型是否相等
-        /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        public bool Equals(Type other)
-        {
-            return _viewModel == other;
-        }
 
+#if false
         /// <summary>
         /// 跳转到
         /// </summary>
@@ -150,17 +117,21 @@ namespace lindexi.uwp.Framework.ViewModel
             }
 
         }
+#endif
 
-        public void NavigateFrom(object source, object e = null)
+        //public void NavigateFrom(object source, object e = null)
+        //{
+        //    ViewModel.NavigatedFrom(source, e);
+        //}
+
+
+        /// <inheritdoc />
+        public bool Equals(string other)
         {
-            ViewModel.NavigatedFrom(source, e);
+            return Key.Equals(other);
         }
 
-        protected bool Equals(ViewModelPage other)
-        {
-            return _viewModel == other._viewModel;
-        }
-
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj))
@@ -172,9 +143,10 @@ namespace lindexi.uwp.Framework.ViewModel
             return Equals((ViewModelPage)obj);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
-            return _viewModel?.GetHashCode() ?? 0;
+            return (Key != null ? Key.GetHashCode() : 0);
         }
     }
 }

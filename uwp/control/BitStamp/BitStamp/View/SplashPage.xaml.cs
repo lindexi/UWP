@@ -43,6 +43,17 @@ namespace BitStamp.View
 
             //ApplicationView.GetForCurrentView().TryResizeView(new Size(200, 1000));
 
+            
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Read();
+            base.OnNavigatedTo(e);
+        }
+
+        private async void Read()
+        {
             AccoutGoverment.AccountModel.OnReadEventHandler += async (s, e) =>
             {
                 await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
@@ -53,6 +64,7 @@ namespace BitStamp.View
                         Window.Current.Content = rootFrame;
                     });
             };
+            await AccoutGoverment.AccountModel.Read();
         }
     }
 }

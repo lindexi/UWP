@@ -1,39 +1,39 @@
 ﻿using System;
-using System.Reflection;
 
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     ///     通过继承判断viewmodel是否需要
     /// </summary>
     public class PredicateInheritViewModel : IPredicateViewModel
     {
+        /// <inheritdoc />
         public PredicateInheritViewModel(Type key)
         {
             Key = key;
         }
 
-
-        public Type Key { get; set; }
+        /// <summary>
+        /// 用来判断当前时候符合类型
+        /// </summary>
+        public Type Key { get; }
 
         /// <inheritdoc />
-        public bool Predicate(ViewModelPage viewModel)
+        public bool Predicate(IViewModel viewModel)
         {
-#if wpf
-            if (Key.IsInterface)
-            {
-                return Key.IsAssignableFrom(viewModel.ViewModel.GetType());
-            }
-            return viewModel.ViewModel.GetType().IsSubclassOf(Key);
-#elif WINDOWS_UWP
+            return Key.IsInstanceOfType(viewModel);
+        }
+    }
 
-
-            if (Key.GetTypeInfo().IsInterface)
-            {
-                return Key.IsAssignableFrom(viewModel.ViewModel.GetType());
-            }
-            return viewModel.ViewModel.GetType().GetTypeInfo().IsSubclassOf(Key);
-#endif
+    /// <summary>
+    ///     通过继承判断viewmodel是否需要
+    /// </summary>
+    public class PredicateInheritViewModel<T> : IPredicateViewModel where T : IViewModel
+    {
+        /// <inheritdoc />
+        public bool Predicate(IViewModel viewModel)
+        {
+            return viewModel is T;
         }
     }
 }

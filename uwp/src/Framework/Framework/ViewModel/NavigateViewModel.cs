@@ -1,23 +1,183 @@
-﻿#if WINDOWS_UWP
-#elif wpf
-#endif
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
-#if WINDOWS_UWP
-using Windows.UI.Xaml.Controls;
-#elif wpf
-using System.Windows.Controls;
+using lindexi.MVVM.Framework.Annotations;
+using lindexi.uwp.Framework.ViewModel;
 
-#endif
-
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
-    ///     包含有页面的ViewModel
+    /// 提供支持跳转类
     /// </summary>
+    [PublicAPI]
+    public abstract class NavigateViewModel : ViewModelMessage, IKeyNavigato, INavigateable
+    {
+        /// <summary>
+        /// 提供 ViewModel 之间跳转
+        /// </summary>
+        protected ViewModelNavigate ViewModelNavigate { get; set; }
+
+        /// <inheritdoc />
+        public override void ReceiveMessage(object sender, IMessage message)
+        {
+            ViewModelBase viewModel = this;
+            var composite = message as ICombinationComposite;
+            composite?.Run(viewModel, message);
+
+            var run = MVVM.Framework.ViewModel.Composite.Run(viewModel, message, Composite);
+
+            if (run)
+            {
+                return;
+            }
+
+            // 所有在这个 ViewModel 的 ViewModel 判断是否需要
+            // 解决 A B 两个通信
+            foreach (var temp in ViewModelPage.
+                Where(/*如果 ViewModel 没有使用，就不收消息*/temp => temp.ViewModel.IsLoaded)
+                .Select(temp=>temp.ViewModel.GetViewModel()))
+            {
+                ViewModel.Composite.Run(temp, message, Composite);
+            }
+        }
+
+        /// <summary>
+        /// 集合 ViewModel 和 页面 用来跳转
+        /// </summary>
+        public List<ViewModelPage> ViewModelPage { get; set; }
+
+        /// <summary>
+        /// 使用字符串获取包含的类
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public IViewModel this[string str]
+        {
+            get { return ViewModelPage.FirstOrDefault(temp => temp.Key == str)?.ViewModel.GetViewModel(); }
+        }
+
+        /// <inheritdoc />
+        public override void OnNavigatedFrom(object sender, object obj)
+        {
+        }
+
+        /// <inheritdoc />
+        public override void OnNavigatedTo(object sender, object obj)
+        {
+            if (obj is INavigateFrame content)
+            {
+                Content = content;
+            }
+            else if (obj is ViewModelNavigate viewModelNavigate)
+            {
+                ViewModelNavigate = viewModelNavigate;
+            }
+
+            if (ViewModelPage == null)
+            {
+                ViewModelPage = new List<ViewModelPage>();
+            }
+        }
+
+        /// <inheritdoc />
+        public INavigateFrame Content
+        {
+            get => ViewModelNavigate?.Frame;
+            set
+            {
+                if (ViewModelNavigate == null || !value.Equals(ViewModelNavigate.Frame))
+                {
+                    ViewModelNavigate = new ViewModelNavigate(value);
+                }
+            }
+        }
+
+        /// <inheritdoc />
+        public void Navigate(Type viewModel, object parameter = null, INavigateFrame content = null)
+        {
+            Navigate(viewModel.Name, parameter, content);
+        }
+
+        /// <inheritdoc />
+        public event EventHandler<ViewModelPage> Navigating;
+
+        /// <inheritdoc />
+        public event EventHandler<ViewModelPage> Navigated;
+
+        /// <inheritdoc />
+        public void Navigate(string key, object parameter, INavigateFrame content = null)
+        {
+            var viewModel = ViewModelPage.FirstOrDefault(temp => temp.Equals(key));
+            var viewModelNavigate = ViewModelNavigate;
+            if (viewModelNavigate == null)
+            {
+                throw new ArgumentException("跳转时，提供跳转的类为空，需要先设置 Content 才可以跳转")
+                {
+                    Data = {{"Method", " Navigate(string key, object parameter, INavigateFrame content = null)"}}
+                };
+            }
+
+            if (viewModel == null)
+            {
+                throw new ArgumentException("找不到要跳转")
+                {
+                    Data = {{"Method", " Navigate(string key, object parameter, INavigateFrame content = null)"}}
+                };
+            }
+
+            var frame = viewModelNavigate.Frame;
+
+            if (content != null)
+            {
+                frame = content;
+            }
+
+            if (!ReferenceEquals(viewModelNavigate.Frame, frame))
+            {
+                viewModelNavigate = new ViewModelNavigate(frame);
+            }
+
+            Navigating?.Invoke(this, viewModel);
+            viewModelNavigate.Navigate(this, viewModel, parameter);
+            Navigated?.Invoke(this, viewModel);
+        }
+
+        /// <summary>
+        /// 获取所有的处理
+        /// </summary>
+        protected void AllAssemblyComposite(Assembly assembly)
+        {
+            Composite.AddRange(lindexi.MVVM.Framework.ViewModel.Composite.GetCompositeList());
+
+            foreach (var temp in assembly.GetTypes().Where(IsCompsite))
+            {
+                try
+                {
+                    Composite.Add(temp.Assembly.CreateInstance(temp.FullName) as Composite);
+                }
+                catch (NullReferenceException)
+                {
+                }
+                catch (ArgumentException)
+                {
+                }
+            }
+
+            bool IsCompsite(Type temp)
+            {
+                return temp.IsSubclassOf(typeof(Composite)) &&
+                       !temp.IsAssignableFrom(typeof(ICombinationComposite))
+                       && temp != typeof(CombinationComposite)
+                       && !temp.IsSubclassOf(typeof(CombinationComposite));
+            }
+        }
+    }
+
+#if wpf
+/// <summary>
+///     包含有页面的ViewModel
+/// </summary>
     public abstract class NavigateViewModel : ViewModelMessage, IKeyNavigato, INavigateable
     {
         public ViewModelBase this[string str]
@@ -73,7 +233,16 @@ namespace lindexi.uwp.Framework.ViewModel
         /// <returns></returns>
         public async void Navigate(Type viewModel, object paramter, Frame content = null)
         {
+            if (viewModel == null)
+            {
+                throw new ArgumentNullException(nameof(viewModel));
+            }
+
             ViewModelPage view = ViewModel.Find(temp => temp.Equals(viewModel));
+            if (view == null)
+            {
+                throw new ArgumentException("Cant find the ViewModel, please sure that you have add it to ViewModel");
+            }
             await Navigate(paramter, view, content);
         }
 
@@ -234,7 +403,7 @@ namespace lindexi.uwp.Framework.ViewModel
                         temp => 
                             temp.IsSubclassOf(typeof(Composite)) &&
                             !typeof(ICombinationComposite).IsAssignableFrom(temp.AsType()) &&
-                            !temp.IsSubclassOf(typeof(CombinationComposite)) &&
+                            !temp.IsSubclassOf(typeof(CombinationComposite)) && !temp.ContainsGenericParameters &&
                             temp.AsType() != typeof(CombinationComposite)))
             {
                
@@ -283,4 +452,5 @@ namespace lindexi.uwp.Framework.ViewModel
             Navigated?.Invoke(this, view);
         }
     }
+#endif
 }

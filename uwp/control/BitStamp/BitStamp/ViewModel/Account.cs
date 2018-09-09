@@ -8,6 +8,7 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
+using lindexi.MVVM.Framework.ViewModel;
 using lindexi.uwp.ImageShack.Model;
 using Newtonsoft.Json;
 
@@ -77,15 +78,28 @@ namespace BitStamp.ViewModel
 
         public ImageShackEnum ImageShack
         {
-            set;
-            get;
+            set
+            {
+                if (value == ImageShackEnum.NoShack)
+                {
+                    return;
+                }
+
+                _imageShack = value;
+                OnPropertyChanged();
+            }
+            get => _imageShack;
         }
 
         public bool? SmmsImageShack
         {
             set
             {
-                _smmsImageShack = value;
+                if (_smmsImageShack == value)
+                {
+                    return;
+                }
+
                 if (value == true)
                 {
                     ImageShack = ImageShackEnum.Smms;
@@ -102,6 +116,11 @@ namespace BitStamp.ViewModel
         {
             set
             {
+                if (_qinImageShack == value)
+                {
+                    return;
+                }
+
                 _qinImageShack = value;
                 if (value == true)
                 {
@@ -135,6 +154,11 @@ namespace BitStamp.ViewModel
         {
             set
             {
+                if (_jiuYouImageShack == value)
+                {
+                    return;
+                }
+
                 _jiuYouImageShack = value;
                 if (value == true)
                 {
@@ -219,6 +243,7 @@ namespace BitStamp.ViewModel
         private string _str;
 
         private ElementTheme _theme = ElementTheme.Light;
+        private ImageShackEnum _imageShack;
     }
 
     public enum ImageShackEnum
@@ -226,6 +251,7 @@ namespace BitStamp.ViewModel
         Jiuyou,
         Smms,
         Qin,
-        Cimage
+        Cimage,
+        NoShack
     }
 }

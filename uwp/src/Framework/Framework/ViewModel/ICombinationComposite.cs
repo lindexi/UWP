@@ -3,8 +3,7 @@
     /// <summary>
     /// 组合 Composite 和 Message
     /// </summary>
-    public interface ICombinationComposite: IComposite
+    public interface ICombinationComposite : IComposite
     {
-       
     }
 }

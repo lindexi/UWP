@@ -1,11 +1,14 @@
-﻿namespace lindexi.uwp.Framework.ViewModel
+﻿namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     /// 消息
     /// </summary>
     public interface IMessage
     {
-        ViewModelBase Source { set; get; }
+        /// <summary>
+        /// 发送消息的 <see cref="ViewModelBase"/> 用于告诉是哪个发送
+        /// </summary>
+        IViewModel Source { set; get; }
 
         /// <summary>
         ///     判断使用哪个ViewModel，如果为空，返回上一层
@@ -17,16 +20,21 @@
         /// </summary>
         /// <param name="viewModel"></param>
         /// <returns></returns>
-        bool Predicate(ViewModelPage viewModel);
+        bool Predicate(IViewModel viewModel);
     }
 
+    /// <inheritdoc />
     public class Message : IMessage
     {
+        /// <inheritdoc />
         public Message(ViewModelBase source)
         {
             Source = source;
         }
 
+        /// <summary>
+        /// 消息
+        /// </summary>
         public object Content { set; get; }
 
         /// <summary>
@@ -37,7 +45,7 @@
         /// <summary>
         ///     发送者
         /// </summary>
-        public ViewModelBase Source { set; get; }
+        public IViewModel Source { set; get; }
 
         /// <summary>
         ///     目标
@@ -45,7 +53,7 @@
         public IPredicateViewModel Goal { set; get; }
 
         /// <inheritdoc />
-        public bool Predicate(ViewModelPage viewModel)
+        public bool Predicate(IViewModel viewModel)
         {
             if (Goal == null)
             {

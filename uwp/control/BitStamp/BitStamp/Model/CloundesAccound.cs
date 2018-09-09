@@ -2,6 +2,8 @@
 // 16:34
 
 using BitStamp;
+using lindexi.MVVM.Framework.ViewModel;
+using Microsoft.Graphics.Canvas.Effects;
 
 namespace lindexi.uwp.ImageShack.Model
 {
@@ -44,11 +46,7 @@ namespace lindexi.uwp.ImageShack.Model
             get;
         }
 
-        public bool UploadFileName
-        {
-            set;
-            get;
-        }
+        public bool UploadFileName { set; get; } = true;
 
         /// <summary>
         ///     前缀

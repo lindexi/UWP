@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace lindexi.uwp.Framework.ViewModel
+namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
     /// 接收信息

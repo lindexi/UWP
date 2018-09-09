@@ -1,27 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{B80A0B27-7BE2-4A4B-A456-37B973690C55}</ProjectGuid>
+    <ProjectGuid>{7478AF9C-E871-48D0-A61E-EA5331654412}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BitStamp</RootNamespace>
     <AssemblyName>BitStamp</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>BitStamp_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>D63EDC6350A861C5F16A1F37FD092BE9F936001A</PackageCertificateThumbprint>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
+    <PackageCertificateKeyFile>BitStamp_StoreKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxPackageDir>E:\上传\publish\UWP\BitStamp</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>C301FCDAC6366E9C6323A4DF9D06A177E3320803</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -92,17 +93,9 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
-  <PropertyGroup Label="MultilingualAppToolkit">
-    <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
-    <MultilingualFallbackLanguage>zh-CN</MultilingualFallbackLanguage>
-    <TranslationReport Condition="'$(Configuration)' == 'Release'">true</TranslationReport>
-    <SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
-  <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="BitStamp_StoreKey.pfx" />
-    <None Include="project.json" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -115,7 +108,6 @@
     <Compile Include="Model\clouddn\Auth\digest\Mac.cs" />
     <Compile Include="Model\clouddn\Auth\PutAuthClient.cs" />
     <Compile Include="Model\clouddn\Auth\QiniuAuthClient.cs" />
-    <Compile Include="Model\CloundesAccound.cs" />
     <Compile Include="Model\clouddn\Conf\ClouddnAccount.cs" />
     <Compile Include="Model\clouddn\Conf\Config.cs" />
     <Compile Include="Model\clouddn\FileOp\Exif.cs" />
@@ -138,7 +130,6 @@
     <Compile Include="Model\clouddn\IO\Resumable\ResumablePutRet.cs" />
     <Compile Include="Model\clouddn\IO\Resumable\Settings.cs" />
     <Compile Include="Model\clouddn\PreFetch\PreFetchClient.cs" />
-    <Compile Include="Model\QnUploadImage.cs" />
     <Compile Include="Model\clouddn\RPC\CallRet.cs" />
     <Compile Include="Model\clouddn\RPC\Client.cs" />
     <Compile Include="Model\clouddn\RSF\DumpItem.cs" />
@@ -156,15 +147,22 @@
     <Compile Include="Model\clouddn\Util\QiniuJsonHelper.cs" />
     <Compile Include="Model\clouddn\Util\StreamEx.cs" />
     <Compile Include="Model\clouddn\Util\StringEx.cs" />
+    <Compile Include="Model\CloundesAccound.cs" />
     <Compile Include="Model\ConvertBooleanNull.cs" />
     <Compile Include="Model\JyUploadImage.cs" />
+    <Compile Include="Model\QnUploadImage.cs" />
     <Compile Include="Model\SmmsUploadImage.cs" />
     <Compile Include="Model\UploadImageTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\Account.cs" />
     <Compile Include="ViewModel\AccoutGoverment.cs" />
     <Compile Include="ViewModel\AssBjModel.cs" />
+    <Compile Include="ViewModel\DrowilHuwfevfModel.cs" />
+    <Compile Include="Model\HemdrisJelnunabisImage.cs" />
+    <Compile Include="Model\HeaaxThesolw.cs" />
+    <Compile Include="ViewModel\HrbHtladModel.cs" />
     <Compile Include="ViewModel\NotifyProperty.cs" />
+    <Compile Include="ViewModel\SaeHqeupqModel.cs" />
     <Compile Include="ViewModel\Stamp.cs" />
     <Compile Include="View\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
@@ -172,21 +170,38 @@
     <Compile Include="View\AssBjPage.xaml.cs">
       <DependentUpon>AssBjPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DdglttKoxu.xaml.cs">
+      <DependentUpon>DdglttKoxu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DrowilHuwfevfPage.xaml.cs">
+      <DependentUpon>DrowilHuwfevfPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HrbHtlad.xaml.cs">
+      <DependentUpon>HrbHtlad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SaeHqeupqPage.xaml.cs">
+      <DependentUpon>SaeHqeupqPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SplashPage.xaml.cs">
       <DependentUpon>SplashPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\StampPage.xaml.cs">
       <DependentUpon>StampPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\TuzyzpvHjpqptzk.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="Assets\Square71x71Logo.scale-200.psd" />
+    <None Include="Assets\Square71x71Logo.scale-400.psd" />
+    <None Include="BitStamp_StoreKey.pfx" />
     <None Include="BitStamp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\cloud_197.09665653495px_1193803_easyicon.png" />
+    <Content Include="Assets\cloud_up_146.14432989691px_1194464_easyicon.net.png" />
     <Content Include="Assets\QQ截图20160926151822.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-125.png" />
@@ -196,6 +211,7 @@
     <Content Include="Assets\Square150x150Logo.scale-100.png" />
     <Content Include="Assets\Square150x150Logo.scale-125.png" />
     <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-400.png" />
     <Content Include="Assets\Square310x310Logo.scale-100.png" />
     <Content Include="Assets\Square310x310Logo.scale-125.png" />
@@ -205,8 +221,10 @@
     <Content Include="Assets\Square44x44Logo.scale-100.png" />
     <Content Include="Assets\Square44x44Logo.scale-125.png" />
     <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-400.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
     <Content Include="Assets\Square71x71Logo.scale-100.png" />
@@ -219,16 +237,13 @@
     <Content Include="Assets\StoreLogo.scale-150.png" />
     <Content Include="Assets\StoreLogo.scale-200.png" />
     <Content Include="Assets\StoreLogo.scale-400.png" />
-    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <None Include="Package.xml" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -240,39 +255,69 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AccountPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\AssBjPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\DarkThemeDictionary.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DdglttKoxu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DrowilHuwfevfPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\HrbHtlad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\LightThemeDictionary.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SaeHqeupqPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\SplashPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\StampPage.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <XliffResource Include="MultilingualResources\BitStamp.en.xlf" />
-    <XliffResource Include="MultilingualResources\BitStamp.qps-ploc.xlf" />
-    <XliffResource Include="MultilingualResources\BitStamp.zh-Hant.xlf" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <PackageReference Include="JyCloud">
+      <Version>1.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="JyFeedBack">
+      <Version>1.0.2.5</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="Win2D.uwp">
+      <Version>1.21.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="WindowsDesktop, Version=10.0.16299.0">
@@ -284,18 +329,21 @@
     <SDKReference Include="WindowsMobile, Version=10.0.16299.0">
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
-    <SDKReference Include="WindowsTeam, Version=10.0.16299.0">
-      <Name>Windows Team Extensions for the UWP</Name>
-    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Framework\Framework\Framework.csproj">
+      <Project>{cf869640-5a2d-4c1a-990b-5c8dcf3e18b0}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\src\Framework\UWP\UWP.csproj">
+      <Project>{cbb6141c-4a67-4acf-894f-ef39ee3c3eb8}</Project>
+      <Name>UWP</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\v$(MultilingualAppToolkitVersion)\Microsoft.Multilingual.PriResources.targets')" />
-  <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets')" Label="MultilingualAppToolkit">
-    <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

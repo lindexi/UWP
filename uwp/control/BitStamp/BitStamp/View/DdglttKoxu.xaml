@@ -1,0 +1,68 @@
+﻿<UserControl
+    x:Class="BitStamp.DdglttKoxu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
+    xmlns:contract5NotPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract,5)"
+
+    xmlns:contract5Present="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+
+    xmlns:bitStamp="using:BitStamp"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="390">
+
+    <FrameworkElement.Resources>
+        <RevealBorderBrush x:Key="KilqpdiHbmgvaz" TargetTheme="Light" Color="#08000000" FallbackColor="{ThemeResource SystemAccentColor}" />
+
+        
+        <bitStamp:TkykfwTnwo x:Key="TwacxiieKwxzagoq" />
+
+        <Style TargetType="bitStamp:TuzyzpvHjpqptzk">
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Left" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Top" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="bitStamp:TuzyzpvHjpqptzk">
+                     <Grid>
+                         <ContentPresenter Content="{TemplateBinding Content}"
+                                           Margin="{TemplateBinding Padding}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                      
+                     </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </FrameworkElement.Resources>
+
+    <Grid Margin="70,0,0,10" Background="#00FFFFFF" PointerPressed="UIElement_OnPointerPressed"
+          DragOver="Grid_OnDragOver"
+          Drop="Grid_Drop">
+
+        <Rectangle Stroke="{StaticResource KilqpdiHbmgvaz}" StrokeThickness="7"
+                    StrokeDashArray="3,3" RadiusX="5" RadiusY="5" Fill="Transparent"></Rectangle>
+        <Grid Margin="10,0,10,0">
+            <Image Stretch="Uniform" Source="{x:Bind ViewModel.Image,Mode=OneWay}">
+
+            </Image>
+        </Grid>
+        <Grid Visibility="{x:Bind ViewModel.Image,Mode=OneWay,Converter={StaticResource TwacxiieKwxzagoq}}">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="欢迎大家使用图床" />
+                <TextBlock Text="可以在设置选择上传的地方" />
+                <TextBlock Text="可以注册账号使用自己服务器" />
+                <TextBlock Text="软件免费使用" />
+                <TextBlock Text="所有上传图片都不会删除" />
+                <TextBlock></TextBlock>
+                <TextBlock Text="点击自动上传"></TextBlock>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</UserControl>

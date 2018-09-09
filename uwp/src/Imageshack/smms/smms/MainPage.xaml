@@ -19,7 +19,7 @@
            </Viewbox>
              <Image Source="{x:Bind View.Bitmap,Mode=OneWay}" />
          </Grid>
-        <Button Grid.Row="1" Content="确定" Click="{x:Bind View.UpLoad}"/>
+        <Button Grid.Row="1" Margin="10,10,10,10" Content="确定" Click="{x:Bind View.UpLoad}"/>
         <Grid Grid.Row="2" Margin="10,10,10,10">
             <TextBox Text="{x:Bind View.Reminder,Mode=OneWay}" TextWrapping="Wrap" />
         </Grid>

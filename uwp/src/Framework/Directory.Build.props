@@ -1,0 +1,16 @@
+<Project>
+  <Import Project="build\Version.props" />
+  <PropertyGroup>
+    <OutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)</OutputPath>
+    <PackageOutputPath>$(OutputPath)</PackageOutputPath>
+    <IncludeSymbols>true</IncludeSymbols>
+    <Authors>lindexi</Authors>
+    <IncludeSymbols>true</IncludeSymbols>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</RepositoryUrl>
+    <Copyright>MIT</Copyright>
+    <PackageLicenseUrl>https://github.com/lindexi/UWP/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>WPF;MVVM;UWP</PackageTags>
+  </PropertyGroup>
+</Project>

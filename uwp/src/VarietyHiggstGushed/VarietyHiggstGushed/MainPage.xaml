@@ -13,36 +13,8 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Frame x:Name="RuvJruhditrj" />
         <Grid>
-            <TextBlock x:Name="LyfxkdxmSzjd" Margin="10,10,10,10" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <TextBlock x:Name="LyfxkdxmSzjd" Margin="10,10,10,10" HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom" />
         </Grid>
     </Grid>
 </Page>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-

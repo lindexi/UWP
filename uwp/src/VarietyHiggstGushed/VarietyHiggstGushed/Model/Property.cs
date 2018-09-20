@@ -27,12 +27,12 @@ namespace VarietyHiggstGushed.Model
                 _price = value;
                 OnPropertyChanged();
             }
-            get { return _price; }
+            get => _price;
         }
 
         public double AshliLyverGeraldo
         {
-            get { return _ashliLyverGeraldo; }
+            get => _ashliLyverGeraldo;
             set
             {
                 _ashliLyverGeraldo = value;
@@ -70,7 +70,7 @@ namespace VarietyHiggstGushed.Model
                 _name = value;
                 OnPropertyChanged();
             }
-            get { return _name; }
+            get => _name;
         }
 
         public double Value { set; get; }
@@ -82,18 +82,18 @@ namespace VarietyHiggstGushed.Model
                 _num = value;
                 OnPropertyChanged();
             }
-            get { return _num; }
+            get => _num;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private string _name;
+        private int _num;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        private string _name;
-        private int _num;
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

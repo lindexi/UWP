@@ -1,24 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using lindexi.uwp.Framework.ViewModel;
-using VarietyHiggstGushed.Annotations;
+using lindexi.MVVM.Framework.ViewModel;
+using lindexi.uwp.Framework;
 using VarietyHiggstGushed.Model;
 
 namespace VarietyHiggstGushed.ViewModel
 {
     public class StorageModel : ViewModelMessage
     {
-        private int _pinkieDuchesneGeraldo = 1;
-        private WqmnygDcxwptivk _carloPiperIsaacProperty;
-
-        public StorageModel()
-        {
-
-        }
-
         //public AmeriStorage AmeriStorage
         //{
         //    set;
@@ -32,16 +22,41 @@ namespace VarietyHiggstGushed.ViewModel
         //    await AccountGoverment.JwAccountGoverment.Read();
         //}
 
-        public ObservableCollection<WqmnygDcxwptivk> PropertyStorage
-        {
-            set;
-            get;
-        } = new ObservableCollection<WqmnygDcxwptivk>();
+        public ObservableCollection<WqmnygDcxwptivk> PropertyStorage { set; get; } =
+            new ObservableCollection<WqmnygDcxwptivk>();
 
         public int LansheehyBrunaSharon
         {
-            get { return _lansheehyBrunaSharon; }
-            set { _lansheehyBrunaSharon = value; OnPropertyChanged(); }
+            get => _lansheehyBrunaSharon;
+            set
+            {
+                _lansheehyBrunaSharon = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     天数
+        /// </summary>
+        public int PinkieDuchesneGeraldo
+        {
+            get => AccountGoverment.JwAccountGoverment.JwStorage.PinkieDuchesneGeraldo;
+            set
+            {
+                AccountGoverment.JwAccountGoverment.JwStorage.PinkieDuchesneGeraldo = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public WqmnygDcxwptivk CarloPiperIsaacProperty
+        {
+            get => _carloPiperIsaacProperty;
+            set
+            {
+                _carloPiperIsaacProperty = value;
+                //LansheehyBrunaSharon = _carloPiperIsaacProperty.Num;
+                OnPropertyChanged();
+            }
         }
 
         public void NewLansheehyBrunaSharon()
@@ -52,6 +67,7 @@ namespace VarietyHiggstGushed.ViewModel
                 LansheehyBrunaSharon = 0;
                 return;
             }
+
             //判断最大可以买入
             //价钱
             var s = (int) Math.Floor(JwStorage.TranStoragePrice / CarloPiperIsaacProperty.Price);
@@ -79,30 +95,6 @@ namespace VarietyHiggstGushed.ViewModel
             }
         }
 
-        /// <summary>
-        /// 天数
-        /// </summary>
-        public int PinkieDuchesneGeraldo
-        {
-            get { return AccountGoverment.JwAccountGoverment.JwStorage.PinkieDuchesneGeraldo; }
-            set
-            {
-                AccountGoverment.JwAccountGoverment.JwStorage.PinkieDuchesneGeraldo = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public WqmnygDcxwptivk CarloPiperIsaacProperty
-        {
-            get { return _carloPiperIsaacProperty; }
-            set
-            {
-                _carloPiperIsaacProperty = value;
-                //LansheehyBrunaSharon = _carloPiperIsaacProperty.Num;
-                OnPropertyChanged();
-            }
-        }
-
         public void MerilynPinkieDuchesneGeraldo()
         {
             PropertyStorage.Clear();
@@ -110,7 +102,8 @@ namespace VarietyHiggstGushed.ViewModel
             {
                 //创建临时价格
                 temp.Price = _random.Next(80, 120) * temp.Value / 100;
-                if (_random.Next(JwStorage.PropertyStorage.Count) < JwStorage.PropertyStorage.Count / 2 - PropertyStorage.Count)
+                if (_random.Next(JwStorage.PropertyStorage.Count) <
+                    JwStorage.PropertyStorage.Count / 2 - PropertyStorage.Count)
                 {
                     PropertyStorage.Add(temp);
                 }
@@ -121,12 +114,8 @@ namespace VarietyHiggstGushed.ViewModel
             PinkieDuchesneGeraldo++;
         }
 
-        private Random _random = new Random();
-        private int _lansheehyBrunaSharon;
-
         public override void OnNavigatedFrom(object sender, object obj)
         {
-
             FjyhtrOcbhzjwi.Fhnazmoul.RemoveSuccessor(_ajuvqrDqsoljna);
         }
 
@@ -142,6 +131,7 @@ namespace VarietyHiggstGushed.ViewModel
                 {
                     return;
                 }
+
                 fjyhtrOcbhzjwi.Handle = true;
                 await AccountGoverment.JwAccountGoverment.Storage();
                 //返回上一层
@@ -151,6 +141,11 @@ namespace VarietyHiggstGushed.ViewModel
         }
 
         private AjuvqrDqsoljna _ajuvqrDqsoljna;
+        private WqmnygDcxwptivk _carloPiperIsaacProperty;
+        private int _lansheehyBrunaSharon;
+        private int _pinkieDuchesneGeraldo = 1;
+
+        private Random _random = new Random();
     }
 
     public class BackTvvxwlwIlibbcpMessage : Message
@@ -165,17 +160,18 @@ namespace VarietyHiggstGushed.ViewModel
     {
         public BackTvvxwlwIlibbcpComposite()
         {
-            Message = typeof(BackTvvxwlwIlibbcpMessage);
+            PredicateMessage = new TypePredicateMessage(typeof(BackTvvxwlwIlibbcpMessage));
         }
 
         public override void Run(ViewModelBase source, IMessage message)
         {
             var viewModel = (NavigateViewModel) source;
-            var id = viewModel.ViewModel.FirstOrDefault(temp =>
-                temp.Page == viewModel.Content.BackStack.LastOrDefault()?.SourcePageType)?.Key;
+            var type = ((NavigateFrame) viewModel.Content).Frame.BackStack.LastOrDefault()?.SourcePageType;
+            var id = viewModel.ViewModelPage.FirstOrDefault(temp =>
+                Equals(temp.Page.PlatformPage, type))?.Key;
             if (!string.IsNullOrEmpty(id))
             {
-                viewModel.Navigate(id);
+                viewModel.Navigate(id, null);
             }
         }
     }

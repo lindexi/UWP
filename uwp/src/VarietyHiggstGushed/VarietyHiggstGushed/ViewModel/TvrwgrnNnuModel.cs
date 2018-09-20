@@ -1,28 +1,12 @@
 using System;
-using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
-using lindexi.uwp.Framework.ViewModel;
+using lindexi.MVVM.Framework.ViewModel;
 
 namespace VarietyHiggstGushed.ViewModel
 {
     public class TvrwgrnNnuModel : ViewModelMessage
     {
-        private async void Read()
-        {
-            if (await AccountGoverment.JwAccountGoverment.ReadJwStorage())
-            {
-                //不是第一次使用
-                _dxpoihQprdqbip = true;
-            }
-            else
-            {
-                await AccountGoverment.JwAccountGoverment.Read();
-            }
-        }
-
-        private bool _dxpoihQprdqbip = false;
-
         public async void DxpoihQprdqbip()
         {
             //读取游戏
@@ -31,6 +15,7 @@ namespace VarietyHiggstGushed.ViewModel
                 await new MessageDialog("没有找到存档", "没有存档").ShowAsync();
                 return;
             }
+
             Send(new NavigateCombinationComposite(this, typeof(KdgderhlMzhpModel)));
         }
 
@@ -54,17 +39,32 @@ namespace VarietyHiggstGushed.ViewModel
                 await pzsqSgxdj.ShowAsync();
                 return;
             }
+
             Send(new NavigateCombinationComposite(this, typeof(KdgderhlMzhpModel)));
         }
 
         public override void OnNavigatedFrom(object sender, object obj)
         {
-
         }
 
         public override void OnNavigatedTo(object sender, object obj)
         {
             Read();
+        }
+
+        private bool _dxpoihQprdqbip;
+
+        private async void Read()
+        {
+            if (await AccountGoverment.JwAccountGoverment.ReadJwStorage())
+            {
+                //不是第一次使用
+                _dxpoihQprdqbip = true;
+            }
+            else
+            {
+                await AccountGoverment.JwAccountGoverment.Read();
+            }
         }
     }
 }

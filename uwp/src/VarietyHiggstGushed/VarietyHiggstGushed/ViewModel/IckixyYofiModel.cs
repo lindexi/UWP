@@ -4,27 +4,22 @@ using System.Linq;
 using System.Reflection;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using lindexi.uwp.Framework.ViewModel;
-using VarietyHiggstGushed.Model;
+using lindexi.MVVM.Framework.ViewModel;
+using lindexi.uwp.Framework;
 
 namespace VarietyHiggstGushed.ViewModel
 {
     public class IckixyYofiModel : NavigateViewModel
     {
-        public IckixyYofiModel()
-        {
-        }
-
         public event EventHandler<string> LyfxkdxmSzjd;
 
         public override void OnNavigatedFrom(object sender, object obj)
         {
-             
         }
 
         public override void OnNavigatedTo(object sender, object obj)
         {
-            CombineViewModel(Application.Current.GetType().GetTypeInfo().Assembly);
+            this.CombineViewModel(Application.Current.GetType().GetTypeInfo().Assembly);
             AllAssemblyComposite(Application.Current.GetType().GetTypeInfo().Assembly);
 
             //先到登陆
@@ -35,9 +30,8 @@ namespace VarietyHiggstGushed.ViewModel
     public interface ILyfxkdxmSzjd
     {
         /// <summary>
-        /// 通知
+        ///     通知
         /// </summary>
         event EventHandler<string> LyfxkdxmSzjd;
-
     }
 }

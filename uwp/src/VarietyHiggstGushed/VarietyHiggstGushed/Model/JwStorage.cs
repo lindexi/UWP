@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using VarietyHiggstGushed.Annotations;
 
@@ -10,42 +7,48 @@ namespace VarietyHiggstGushed.Model
 {
     public class JwStorage : INotifyPropertyChanged
     {
-        private double _tranStoragePrice;
-        private int _transit;
-        private int _transitStorage;
-
         /// <summary>
-        /// 天数
+        ///     天数
         /// </summary>
         public int PinkieDuchesneGeraldo { get; set; } = 1;
 
-        public JwStorage()
-        {
-
-        }
-
-        public ObservableCollection<WqmnygDcxwptivk> PropertyStorage
-        {
-            set;
-            get;
-        } = new ObservableCollection<WqmnygDcxwptivk>();
+        public ObservableCollection<WqmnygDcxwptivk> PropertyStorage { set; get; } =
+            new ObservableCollection<WqmnygDcxwptivk>();
 
         /// <summary>
-        /// 仓库
+        ///     仓库
         /// </summary>
         public int TransitStorage
         {
-            set { _transitStorage = value; OnPropertyChanged(); }
-            get { return _transitStorage; }
+            set
+            {
+                _transitStorage = value;
+                OnPropertyChanged();
+            }
+            get => _transitStorage;
         }
 
         /// <summary>
-        /// 当前
+        ///     当前
         /// </summary>
         public int Transit
         {
-            set { _transit = value; OnPropertyChanged(); }
-            get { return _transit; }
+            set
+            {
+                _transit = value;
+                OnPropertyChanged();
+            }
+            get => _transit;
+        }
+
+        public double TranStoragePrice
+        {
+            set
+            {
+                _tranStoragePrice = value;
+                OnPropertyChanged();
+            }
+            get => _tranStoragePrice;
         }
 
         public void NewTransit(int n)
@@ -53,19 +56,13 @@ namespace VarietyHiggstGushed.Model
             TransitStorage += n;
         }
 
-        public double TranStoragePrice
-        {
-            set { _tranStoragePrice = value; OnPropertyChanged(); }
-            get { return _tranStoragePrice; }
-        }
-
         /// <summary>
-        /// 购买
+        ///     购买
         /// </summary>
         /// <param name="property"></param>
         /// <param name="n"></param>
         /// <returns></returns>
-        public void NewProperty(WqmnygDcxwptivk property,int n)
+        public void NewProperty(WqmnygDcxwptivk property, int n)
         {
             if (property == null)
             {
@@ -77,6 +74,7 @@ namespace VarietyHiggstGushed.Model
             {
                 n = s;
             }
+
             if (n == 0)
             {
                 return;
@@ -94,11 +92,11 @@ namespace VarietyHiggstGushed.Model
         }
 
         /// <summary>
-        /// 卖出
+        ///     卖出
         /// </summary>
         /// <param name="property"></param>
         /// <param name="n"></param>
-        public void TisProperty([NotNull] Property property,int n)
+        public void TisProperty([NotNull] Property property, int n)
         {
             if (property == null)
             {
@@ -116,6 +114,9 @@ namespace VarietyHiggstGushed.Model
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        private int _transit;
+        private int _transitStorage;
+        private double _tranStoragePrice;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -10,21 +10,21 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <canvas:CanvasAnimatedControl x:Name="canvas" ClearColor="Black" Update="Canvas_OnUpdate" Draw="Canvas_Draw"></canvas:CanvasAnimatedControl>
+        <canvas:CanvasAnimatedControl x:Name="canvas" ClearColor="Black" Update="Canvas_OnUpdate" Draw="Canvas_Draw" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="1" VerticalAlignment="Center" >
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
                 <FrameworkElement.Resources>
-                    <Style TargetType="Button" >
-                        <Setter Property="Background" Value="White"></Setter>
-                        <Setter Property="Margin" Value="10,10,10,10"></Setter>
-                        <Setter Property="Width" Value="100"></Setter>
-                        
-                        <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="White" />
+                        <Setter Property="Margin" Value="10,10,10,10" />
+                        <Setter Property="Width" Value="100" />
+
+                        <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
                         <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundTransparentBrush}" />
                         <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
                         <Setter Property="Padding" Value="8,4,8,4" />
@@ -37,7 +37,7 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
-                                    <Grid x:Name="RootGrid" 
+                                    <Grid x:Name="RootGrid"
                                           Background="{TemplateBinding Background}">
                                         <VisualStateManager.VisualStateGroups>
                                             <VisualStateGroup x:Name="CommonStates">
@@ -53,13 +53,17 @@
                                                             <DiscreteObjectKeyFrame KeyTime="0" Value="#A2A2A2" />
                                                         </ObjectAnimationUsingKeyFrames>
 
-                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                     Storyboard.TargetProperty="BorderBrush">
-                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}" />
+                                                        <ObjectAnimationUsingKeyFrames
+                                                            Storyboard.TargetName="ContentPresenter"
+                                                            Storyboard.TargetProperty="BorderBrush">
+                                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                    Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}" />
                                                         </ObjectAnimationUsingKeyFrames>
-                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                     Storyboard.TargetProperty="Foreground">
-                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}" />
+                                                        <ObjectAnimationUsingKeyFrames
+                                                            Storyboard.TargetName="ContentPresenter"
+                                                            Storyboard.TargetProperty="Foreground">
+                                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                    Value="{ThemeResource SystemControlHighlightBaseHighBrush}" />
                                                         </ObjectAnimationUsingKeyFrames>
                                                         <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
                                                     </Storyboard>
@@ -68,15 +72,19 @@
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                                                        Storyboard.TargetProperty="Background">
-                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#565656"/>
+                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#565656" />
                                                         </ObjectAnimationUsingKeyFrames>
-                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                     Storyboard.TargetProperty="BorderBrush">
-                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
+                                                        <ObjectAnimationUsingKeyFrames
+                                                            Storyboard.TargetName="ContentPresenter"
+                                                            Storyboard.TargetProperty="BorderBrush">
+                                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                    Value="{ThemeResource SystemControlHighlightTransparentBrush}" />
                                                         </ObjectAnimationUsingKeyFrames>
-                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                     Storyboard.TargetProperty="Foreground">
-                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}" />
+                                                        <ObjectAnimationUsingKeyFrames
+                                                            Storyboard.TargetName="ContentPresenter"
+                                                            Storyboard.TargetProperty="Foreground">
+                                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                    Value="{ThemeResource SystemControlHighlightBaseHighBrush}" />
                                                         </ObjectAnimationUsingKeyFrames>
                                                         <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
                                                     </Storyboard>
@@ -84,45 +92,47 @@
                                                 <VisualState x:Name="Disabled">
                                                     <Storyboard>
                                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
-                                                     Storyboard.TargetProperty="Background">
-                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
+                                                                                       Storyboard.TargetProperty="Background">
+                                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                    Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
                                                         </ObjectAnimationUsingKeyFrames>
-                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                     Storyboard.TargetProperty="Foreground">
-                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
+                                                        <ObjectAnimationUsingKeyFrames
+                                                            Storyboard.TargetName="ContentPresenter"
+                                                            Storyboard.TargetProperty="Foreground">
+                                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                    Value="{ThemeResource SystemControlDisabledBaseLowBrush}" />
                                                         </ObjectAnimationUsingKeyFrames>
-                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                     Storyboard.TargetProperty="BorderBrush">
-                                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledTransparentBrush}" />
+                                                        <ObjectAnimationUsingKeyFrames
+                                                            Storyboard.TargetName="ContentPresenter"
+                                                            Storyboard.TargetProperty="BorderBrush">
+                                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                    Value="{ThemeResource SystemControlDisabledTransparentBrush}" />
                                                         </ObjectAnimationUsingKeyFrames>
                                                     </Storyboard>
                                                 </VisualState>
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
                                         <ContentPresenter x:Name="ContentPresenter"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            Content="{TemplateBinding Content}"
-                            ContentTransitions="{TemplateBinding ContentTransitions}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                            Padding="{TemplateBinding Padding}"
-                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                            AutomationProperties.AccessibilityView="Raw"/>
+                                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                                          Content="{TemplateBinding Content}"
+                                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                          Padding="{TemplateBinding Padding}"
+                                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                          AutomationProperties.AccessibilityView="Raw" />
                                     </Grid>
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
                     </Style>
                 </FrameworkElement.Resources>
-                <Button Content="新游戏" Click="Button_Click" ></Button>
-                <Button Content="读取游戏" Click="DxpoihQprdqbip_OnClick"></Button>
-                <Button Content="关于" Click="YxbrbfgEakhybi_OnClick"></Button>
+                <Button Content="新游戏" Click="Button_Click" />
+                <Button Content="读取游戏" Click="DxpoihQprdqbip_OnClick" />
+                <Button Content="关于" Click="YxbrbfgEakhybi_OnClick" />
             </StackPanel>
 
         </Grid>
     </Grid>
 </Page>
-
-
-

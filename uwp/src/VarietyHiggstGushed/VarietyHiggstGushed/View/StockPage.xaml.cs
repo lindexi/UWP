@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using lindexi.uwp.Framework.ViewModel;
+using lindexi.MVVM.Framework.ViewModel;
 using VarietyHiggstGushed.Model;
 using VarietyHiggstGushed.ViewModel;
 
@@ -21,14 +11,37 @@ using VarietyHiggstGushed.ViewModel;
 namespace VarietyHiggstGushed.View
 {
     /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
+    ///     可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
     [ViewModel(typeof(StorageModel))]
     public sealed partial class StockPage : Page
     {
         public StockPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+        }
+
+        private StorageModel View { set; get; }
+
+        private async void ListView_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            //点击的时候，输入是否要买还是要卖
+
+            View.CarloPiperIsaacProperty = (WqmnygDcxwptivk) e.ClickedItem;
+            var temp = new JediahPage
+            {
+                ViewModel = View
+            };
+            var contentDialog = new ContentDialog
+            {
+                Content = temp,
+                IsPrimaryButtonEnabled = false,
+                IsSecondaryButtonEnabled = false
+            };
+
+            temp.Close += (s, args) => contentDialog.Hide();
+
+            await contentDialog.ShowAsync();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -37,33 +50,6 @@ namespace VarietyHiggstGushed.View
             DataContext = View;
 
             base.OnNavigatedTo(e);
-        }
-
-        private StorageModel View
-        {
-            set;
-            get;
-        }
-
-        private async void ListView_OnItemClick(object sender, ItemClickEventArgs e)
-        {
-            //点击的时候，输入是否要买还是要卖
-
-            View.CarloPiperIsaacProperty = (WqmnygDcxwptivk) e.ClickedItem;
-            var temp = new JediahPage()
-            {
-                ViewModel = View,
-            };
-            ContentDialog contentDialog = new ContentDialog()
-            {
-                Content = temp,
-                IsPrimaryButtonEnabled = false,
-                IsSecondaryButtonEnabled = false,
-            };
-
-            temp.Close += (s, args) => contentDialog.Hide();
-
-            await contentDialog.ShowAsync();
         }
     }
 
@@ -82,12 +68,15 @@ namespace VarietyHiggstGushed.View
                 {
                     return 0;
                 }
-                if (int.TryParse(str, out int temp))
+
+                if (int.TryParse(str, out var temp))
                 {
                     return temp;
                 }
+
                 return 0;
             }
+
             return 0;
         }
     }

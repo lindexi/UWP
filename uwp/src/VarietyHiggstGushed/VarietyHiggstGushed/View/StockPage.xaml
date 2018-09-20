@@ -11,47 +11,48 @@
     d:DataContext="{d:DesignInstance viewModel:StorageModel}"
     mc:Ignorable="d">
     <FrameworkElement.Resources>
-        <local:StrInt x:Key="StrInt"></local:StrInt>
-        <varietyHiggstGushed:ConverDoubleStr x:Key="ConverDoubleStr"></varietyHiggstGushed:ConverDoubleStr>
+        <local:StrInt x:Key="StrInt" />
+        <varietyHiggstGushed:ConverDoubleStr x:Key="ConverDoubleStr" />
     </FrameworkElement.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right">
                     <FrameworkElement.Resources>
                         <Style TargetType="StackPanel">
-                            <Setter Property="Margin" Value="10,10,10,10"></Setter>
+                            <Setter Property="Margin" Value="10,10,10,10" />
                         </Style>
                     </FrameworkElement.Resources>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="ms-appx:///Assets/天.png" Height="20" Width="20"></Image>
-                        <TextBlock Text="天数"></TextBlock>
-                        <TextBlock Text="{x:Bind View.PinkieDuchesneGeraldo,Mode=OneWay}"></TextBlock>
+                        <Image Source="ms-appx:///Assets/天.png" Height="20" Width="20" />
+                        <TextBlock Text="天数" />
+                        <TextBlock Text="{x:Bind View.PinkieDuchesneGeraldo,Mode=OneWay}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="ms-appx:///Assets/仓库.png" Height="20" Width="20"></Image>
-                        <TextBlock Text="仓库容量"></TextBlock>
-                        <TextBlock Text="{x:Bind View.JwStorage.Transit,Mode=OneWay}"/>
-                        <TextBlock Text="/"></TextBlock>
-                        <TextBlock Text="{x:Bind View.JwStorage.TransitStorage,Mode=OneWay}"></TextBlock>
+                        <Image Source="ms-appx:///Assets/仓库.png" Height="20" Width="20" />
+                        <TextBlock Text="仓库容量" />
+                        <TextBlock Text="{x:Bind View.JwStorage.Transit,Mode=OneWay}" />
+                        <TextBlock Text="/" />
+                        <TextBlock Text="{x:Bind View.JwStorage.TransitStorage,Mode=OneWay}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="$" Foreground="#FFFFA010"></TextBlock>
-                        <TextBlock Text="金钱"></TextBlock>
-                        <TextBlock Text="{x:Bind View.JwStorage.TranStoragePrice,Mode=OneWay,Converter={StaticResource ConverDoubleStr}}"></TextBlock>
+                        <TextBlock Text="$" Foreground="#FFFFA010" />
+                        <TextBlock Text="金钱" />
+                        <TextBlock
+                            Text="{x:Bind View.JwStorage.TranStoragePrice,Mode=OneWay,Converter={StaticResource ConverDoubleStr}}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <ListView Grid.Row="1" ItemsSource="{x:Bind View.PropertyStorage}"
@@ -60,46 +61,47 @@
                           ItemClick="ListView_OnItemClick">
                     <FrameworkElement.Resources>
                         <Style TargetType="TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                            <Setter Property="HorizontalAlignment" Value="Center" />
                         </Style>
                     </FrameworkElement.Resources>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.Header>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30*"></ColumnDefinition>
-                                <ColumnDefinition Width="15*"></ColumnDefinition>
-                                <ColumnDefinition Width="15*"></ColumnDefinition>
-                                <ColumnDefinition Width="15*"></ColumnDefinition>
+                                <ColumnDefinition Width="30*" />
+                                <ColumnDefinition Width="15*" />
+                                <ColumnDefinition Width="15*" />
+                                <ColumnDefinition Width="15*" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="名称"></TextBlock>
-                            <TextBlock Grid.Column="1" Text="价格"></TextBlock>
-                            <TextBlock Grid.Column="2" Text="仓库拥有"></TextBlock>
-                            <TextBlock Grid.Column="3" Text="买入价钱"></TextBlock>
+                            <TextBlock Text="名称" />
+                            <TextBlock Grid.Column="1" Text="价格" />
+                            <TextBlock Grid.Column="2" Text="仓库拥有" />
+                            <TextBlock Grid.Column="3" Text="买入价钱" />
                         </Grid>
                     </ListView.Header>
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="view:WqmnygDcxwptivk">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30*"></ColumnDefinition>
-                                    <ColumnDefinition Width="15*"></ColumnDefinition>
-                                    <ColumnDefinition Width="15*"></ColumnDefinition>
-                                    <ColumnDefinition Width="15*"></ColumnDefinition>
+                                    <ColumnDefinition Width="30*" />
+                                    <ColumnDefinition Width="15*" />
+                                    <ColumnDefinition Width="15*" />
+                                    <ColumnDefinition Width="15*" />
                                 </Grid.ColumnDefinitions>
                                 <FrameworkElement.Resources>
                                     <Style TargetType="TextBlock">
-                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center" />
                                     </Style>
                                 </FrameworkElement.Resources>
-                                <TextBlock Text="{x:Bind Name}"></TextBlock>
-                                <TextBlock Grid.Column="1" Text="{x:Bind Price,Mode=OneWay}"></TextBlock>
-                                <TextBlock Grid.Column="2" Text="{x:Bind Num,Mode=OneWay}"></TextBlock>
-                                <TextBlock Grid.Column="3" Text="{x:Bind AshliLyverGeraldo,Mode=OneWay,Converter={StaticResource ConverDoubleStr}}"></TextBlock>
+                                <TextBlock Text="{x:Bind Name}" />
+                                <TextBlock Grid.Column="1" Text="{x:Bind Price,Mode=OneWay}" />
+                                <TextBlock Grid.Column="2" Text="{x:Bind Num,Mode=OneWay}" />
+                                <TextBlock Grid.Column="3"
+                                           Text="{x:Bind AshliLyverGeraldo,Mode=OneWay,Converter={StaticResource ConverDoubleStr}}" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -107,7 +109,7 @@
             </Grid>
             <Grid Grid.Row="2" Margin="10,10,10,10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <!--<Grid.ColumnDefinitions>
@@ -126,11 +128,12 @@
                 </StackPanel>-->
                 <FrameworkElement.Resources>
                     <Style TargetType="Button">
-                        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                        <Setter Property="HorizontalAlignment" Value="Stretch" />
                     </Style>
                 </FrameworkElement.Resources>
-                <Button Margin="10,10,10,10" Content="买仓库" Click="{x:Bind View.NewTransit}"></Button>
-                <Button Margin="10,10,10,10" Grid.Column="1" Content="收摊" Click="{x:Bind View.MerilynPinkieDuchesneGeraldo}"></Button>
+                <Button Margin="10,10,10,10" Content="买仓库" Click="{x:Bind View.NewTransit}" />
+                <Button Margin="10,10,10,10" Grid.Column="1" Content="收摊"
+                        Click="{x:Bind View.MerilynPinkieDuchesneGeraldo}" />
             </Grid>
         </Grid>
 

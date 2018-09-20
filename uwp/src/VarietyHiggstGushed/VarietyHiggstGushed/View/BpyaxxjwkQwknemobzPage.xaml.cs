@@ -1,23 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using lindexi.MVVM.Framework.ViewModel;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Effects;
 using Microsoft.Graphics.Canvas.UI.Xaml;
@@ -28,40 +20,41 @@ using VarietyHiggstGushed.ViewModel;
 namespace VarietyHiggstGushed.View
 {
     /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
+    ///     可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    [lindexi.uwp.Framework.ViewModel.ViewModel(typeof(TvrwgrnNnuModel))]
+    [ViewModel(typeof(TvrwgrnNnuModel))]
     public sealed partial class BpyaxxjwkQwknemobzPage : Page
     {
         public BpyaxxjwkQwknemobzPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             Loaded += BpyaxxjwkQwknemobzPage_Loaded;
             Unloaded += BpyaxxjwkQwknemobzPage_Unloaded;
             SizeChanged += BpyaxxjwkQwknemobzPage_SizeChanged;
-
         }
+
+        public TvrwgrnNnuModel ViewModel { get; set; }
 
         private void BpyaxxjwkQwknemobzPage_Loaded(object sender, RoutedEventArgs e)
         {
             if (!FireflyParticle.Any())
             {
-                Rect bound = new Rect(0, 0, canvas.ActualWidth, canvas.ActualHeight);
-                for (int i = 0; i < 100; i++)
+                var bound = new Rect(0, 0, canvas.ActualWidth, canvas.ActualHeight);
+                for (var i = 0; i < 100; i++)
                 {
                     FireflyParticle.Add(new FireflyParticle(bound));
                 }
             }
+
             Window.Current.VisibilityChanged += VisibilityChanged;
             Window.Current.Activated += Activated;
         }
 
-        private void Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
+        private void Activated(object sender, WindowActivatedEventArgs e)
         {
             if (e.WindowActivationState == CoreWindowActivationState.CodeActivated)
             {
                 canvas.Paused = false;
-
             }
             else if (e.WindowActivationState == CoreWindowActivationState.PointerActivated)
             {
@@ -73,7 +66,7 @@ namespace VarietyHiggstGushed.View
             }
         }
 
-        private void VisibilityChanged(object sender, Windows.UI.Core.VisibilityChangedEventArgs e)
+        private void VisibilityChanged(object sender, VisibilityChangedEventArgs e)
         {
             canvas.Paused = !e.Visible;
         }
@@ -88,21 +81,12 @@ namespace VarietyHiggstGushed.View
 
         private void BpyaxxjwkQwknemobzPage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Rect bound = new Rect(0, 0, canvas.ActualWidth, canvas.ActualHeight);
+            var bound = new Rect(0, 0, canvas.ActualWidth, canvas.ActualHeight);
             foreach (var temp in FireflyParticle)
             {
                 temp.Bound = bound;
             }
         }
-
-        public TvrwgrnNnuModel ViewModel { get; set; }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            ViewModel = (TvrwgrnNnuModel) e.Parameter;
-            base.OnNavigatedTo(e);
-        }
-
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -128,10 +112,11 @@ namespace VarietyHiggstGushed.View
                         Invoked = async command =>
                         {
                             await Launcher.LaunchUriAsync(new Uri(
-                                "https://github.com/lindexi/UWP/tree/master/uwp/src/VarietyHiggstGushed"),new LauncherOptions()
-                            {
-                                TreatAsUntrusted = true
-                            });
+                                    "https://github.com/lindexi/UWP/tree/master/uwp/src/VarietyHiggstGushed"),
+                                new LauncherOptions
+                                {
+                                    TreatAsUntrusted = true
+                                });
                         }
                     },
                     new UICommand("关闭")
@@ -147,7 +132,7 @@ namespace VarietyHiggstGushed.View
             }
         }
 
-        private List<FireflyParticle> FireflyParticle { set; get; } = new List<FireflyParticle>();
+        private List<FireflyParticle> FireflyParticle { get; } = new List<FireflyParticle>();
 
         private void Canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
@@ -170,33 +155,32 @@ namespace VarietyHiggstGushed.View
                 }
             }
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ViewModel = (TvrwgrnNnuModel) e.Parameter;
+            base.OnNavigatedTo(e);
+        }
     }
-    class GlowEffectGraph : IDisposable
+
+    internal class GlowEffectGraph : IDisposable
     {
-        private MorphologyEffect morphology;
         public GlowEffectGraph()
         {
             Blur.BlurAmount = 10;
             Blur.BorderMode = EffectBorderMode.Soft;
 
-            morphology = new MorphologyEffect()
+            morphology = new MorphologyEffect
             {
                 Mode = MorphologyEffectMode.Dilate,
                 Width = 10,
-                Height = 10,
+                Height = 10
             };
 
             Blur.Source = morphology;
-
         }
 
         public GaussianBlurEffect Blur { get; set; } = new GaussianBlurEffect();
-
-        public void Dispose()
-        {
-            Blur.Dispose();
-            morphology.Dispose();
-        }
 
         public void Setup(ICanvasImage canvas, double amount = 10)
         {
@@ -206,20 +190,28 @@ namespace VarietyHiggstGushed.View
             morphology.Height = (int) Math.Truncate(Math.Floor(amount));
             Blur.BlurAmount = (float) amount;
         }
+
+        public void Dispose()
+        {
+            Blur.Dispose();
+            morphology.Dispose();
+        }
+
+        private readonly MorphologyEffect morphology;
     }
 
-    class FireflyParticle
+    internal class FireflyParticle
     {
         public FireflyParticle(Rect bound)
         {
             Point = new Point(ran.Next((int) bound.Width), ran.Next((int) bound.Height));
             _x = new Ran(Point.X, bound.Width, 0)
             {
-                EasingFunction = true,
+                EasingFunction = true
             };
             _y = new Ran(Point.Y, bound.Height, 0)
             {
-                EasingFunction = true,
+                EasingFunction = true
             };
             _radius = new Ran(ran.Next(2, 5), 5, 2)
             {
@@ -231,6 +223,25 @@ namespace VarietyHiggstGushed.View
         public FireflyParticle()
         {
         }
+
+        private static readonly Random ran = new Random();
+
+        public Point Point { get; set; }
+
+        public Rect Bound
+        {
+            get => _bound;
+            set
+            {
+                _bound = value;
+                _x.Ma = value.Width - 10;
+                _y.Ma = value.Height - 10;
+            }
+        }
+
+        public double Radius { get; set; } = 10;
+        public Color CenterColor { get; set; } = Color.FromArgb(255, 252, 203, 89);
+        public double OpColor { set; get; } = 1;
 
         public void Time(TimeSpan time)
         {
@@ -244,33 +255,16 @@ namespace VarietyHiggstGushed.View
             Point = new Point(_x.Value, _y.Value);
         }
 
-        public Point Point { get; set; }
-
-        public Rect Bound
-        {
-            get { return _bound; }
-            set
-            {
-                _bound = value;
-                _x.Ma = value.Width - 10;
-                _y.Ma = value.Height - 10;
-            }
-        }
-
-        public double Radius { get; set; } = 10;
-        public Color CenterColor { get; set; } = Color.FromArgb(255, 252, 203, 89);
-        public double OpColor { set; get; } = 1;
-        private static Random ran = new Random();
-
-        private Ran _radius;
-        private Ran _opColor = new Ran(1, 1, 0.001);
-
-        private Ran _x;
-        private Ran _y;
         private Rect _bound;
+        private readonly Ran _opColor = new Ran(1, 1, 0.001);
+
+        private readonly Ran _radius;
+
+        private readonly Ran _x;
+        private readonly Ran _y;
     }
 
-    class Ran
+    internal class Ran
     {
         public Ran(double value, double ma, double mi)
         {
@@ -279,6 +273,9 @@ namespace VarietyHiggstGushed.View
             Mi = mi;
             To = ran.NextDouble() * (Ma - Mi) + Mi;
         }
+
+
+        private static readonly Random ran = new Random();
 
         public double Value { get; set; }
         public double To { get; set; }
@@ -291,13 +288,12 @@ namespace VarietyHiggstGushed.View
         public bool EasingFunction { get; set; }
 
         /// <summary>
-        /// 加速度
+        ///     加速度
         /// </summary>
         public double Po { get; set; }
 
         public void Time(TimeSpan time)
         {
-
             if (Math.Abs(Dalue) < 0.000001)
             {
                 if (Math.Abs(Po) < 0.0001)
@@ -309,8 +305,9 @@ namespace VarietyHiggstGushed.View
                     Dalue = Po;
                 }
             }
+
             //减数
-            if (EasingFunction && Math.Abs(Value - To) < Dalue * 10/*如果接近*/)
+            if (EasingFunction && Math.Abs(Value - To) < Dalue * 10 /*如果接近*/)
             {
                 Dalue /= 2;
                 if (Math.Abs(Dalue) < 1)
@@ -318,11 +315,13 @@ namespace VarietyHiggstGushed.View
                     Dalue = 1;
                 }
             }
-            int n = 1;
+
+            var n = 1;
             if (Value > To)
             {
                 n = n * -1;
             }
+
             Value += n * Dalue * time.TotalSeconds * 2;
             if (n > 0 && Value >= To)
             {
@@ -330,6 +329,7 @@ namespace VarietyHiggstGushed.View
                 To = ran.NextDouble() * (Ma - Mi) + Mi;
                 Dalue = 0;
             }
+
             if (n < 0 && Value <= To)
             {
                 Value = To;
@@ -337,9 +337,5 @@ namespace VarietyHiggstGushed.View
                 Dalue = 0;
             }
         }
-
-
-        private static Random ran = new Random();
     }
-
 }

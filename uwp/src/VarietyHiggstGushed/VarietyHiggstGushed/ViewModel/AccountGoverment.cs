@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Storage;
@@ -20,10 +17,16 @@ namespace VarietyHiggstGushed.ViewModel
             JwAccountGoverment = this;
         }
 
-        public Account Account
+        private static AccountGoverment _accountGoverment;
+
+        public Account Account { set; get; }
+
+        public JwStorage JwStorage { get; set; } = new JwStorage();
+
+        public static AccountGoverment JwAccountGoverment
         {
-            set;
-            get;
+            set => _accountGoverment = value;
+            get => _accountGoverment ?? (_accountGoverment = new AccountGoverment());
         }
 
         ///// <summary>
@@ -43,8 +46,8 @@ namespace VarietyHiggstGushed.ViewModel
             var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(
                 "ms-appx:///PropertyStorage.txt"));
             var str = (await FileIO.ReadTextAsync(file)).Split('\n');
-            List<Property> propertyStorage = new List<Property>();
-            for (int i = 0; i < str.Length; i++)
+            var propertyStorage = new List<Property>();
+            for (var i = 0; i < str.Length; i++)
             {
                 try
                 {
@@ -57,19 +60,19 @@ namespace VarietyHiggstGushed.ViewModel
                     e.Data.Add("num", str[i + 1]);
                     throw e;
                 }
-
             }
+
             propertyStorage.Sort((a, b) => a.Value.CompareTo(b.Value));
 
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                           () =>
-                           {
-                               JwStorage.PropertyStorage.Clear();
-                               foreach (var temp in propertyStorage)
-                               {
-                                   JwStorage.PropertyStorage.Add(new WqmnygDcxwptivk(temp));
-                               }
-                           });
+                () =>
+                {
+                    JwStorage.PropertyStorage.Clear();
+                    foreach (var temp in propertyStorage)
+                    {
+                        JwStorage.PropertyStorage.Add(new WqmnygDcxwptivk(temp));
+                    }
+                });
 
             Account = new Account();
         }
@@ -78,12 +81,12 @@ namespace VarietyHiggstGushed.ViewModel
         {
             await RrhkpWjwyAccount();
             //读取存档
-            string str = "JwStorage";
+            var str = "JwStorage";
 
-            StorageFolder folder = ApplicationData.Current.RoamingFolder;
+            var folder = ApplicationData.Current.RoamingFolder;
             try
             {
-                StorageFile file = await folder.GetFileAsync(str);
+                var file = await folder.GetFileAsync(str);
                 str = await FileIO.ReadTextAsync(file);
                 JwStorage = JsonConvert.DeserializeObject<JwStorage>(str);
             }
@@ -91,34 +94,15 @@ namespace VarietyHiggstGushed.ViewModel
             {
                 return false;
             }
-            return JwStorage != null;
-        }
 
-        private async Task RrhkpWjwyAccount()
-        {
-            string str = nameof(Account);
-            StorageFolder folder = ApplicationData.Current.RoamingFolder;
-            try
-            {
-                StorageFile file = await folder.GetFileAsync(str);
-                str = await FileIO.ReadTextAsync(file);
-                Account = JsonConvert.DeserializeObject<Account>(str);
-            }
-            catch (FileNotFoundException)
-            {
-                Account = new Account();
-            }
-            if (Account == null)
-            {
-                Account = new Account();
-            }
+            return JwStorage != null;
         }
 
         public async Task HscurqtacabfgzAccount()
         {
-            string str = nameof(Account);
-            StorageFolder folder = ApplicationData.Current.RoamingFolder;
-            StorageFile file = await folder.CreateFileAsync(str, CreationCollisionOption.ReplaceExisting);
+            var str = nameof(Account);
+            var folder = ApplicationData.Current.RoamingFolder;
+            var file = await folder.CreateFileAsync(str, CreationCollisionOption.ReplaceExisting);
             str = JsonConvert.SerializeObject(Account);
             await FileIO.WriteTextAsync(file, str);
         }
@@ -126,26 +110,31 @@ namespace VarietyHiggstGushed.ViewModel
         public async Task Storage()
         {
             await HscurqtacabfgzAccount();
-            string str = "JwStorage";
-            StorageFolder folder = ApplicationData.Current.RoamingFolder;
-            StorageFile file = await folder.CreateFileAsync(str, CreationCollisionOption.ReplaceExisting);
+            var str = "JwStorage";
+            var folder = ApplicationData.Current.RoamingFolder;
+            var file = await folder.CreateFileAsync(str, CreationCollisionOption.ReplaceExisting);
             str = JsonConvert.SerializeObject(JwStorage);
             await FileIO.WriteTextAsync(file, str);
         }
 
-        public JwStorage JwStorage { get; set; } = new JwStorage();
-
-        private static AccountGoverment _accountGoverment;
-
-        public static AccountGoverment JwAccountGoverment
+        private async Task RrhkpWjwyAccount()
         {
-            set
+            var str = nameof(Account);
+            var folder = ApplicationData.Current.RoamingFolder;
+            try
             {
-                _accountGoverment = value;
+                var file = await folder.GetFileAsync(str);
+                str = await FileIO.ReadTextAsync(file);
+                Account = JsonConvert.DeserializeObject<Account>(str);
             }
-            get
+            catch (FileNotFoundException)
             {
-                return _accountGoverment ?? (_accountGoverment = new AccountGoverment());
+                Account = new Account();
+            }
+
+            if (Account == null)
+            {
+                Account = new Account();
             }
         }
     }

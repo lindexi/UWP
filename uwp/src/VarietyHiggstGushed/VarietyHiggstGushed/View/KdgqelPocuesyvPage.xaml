@@ -10,16 +10,16 @@
     d:DataContext="{d:DesignInstance viewModel:KdgderhlMzhpModel,d:IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
     <Page.Resources>
-      
+
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="89*"/>
-            <RowDefinition Height="11*"/>
+            <RowDefinition Height="89*" />
+            <RowDefinition Height="11*" />
         </Grid.RowDefinitions>
 
         <Grid>
-            <Frame x:Name="VjagWrgesebmy"></Frame>
+            <Frame x:Name="VjagWrgesebmy" />
         </Grid>
         <Grid Grid.Row="1">
             <Grid>
@@ -29,11 +29,11 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Button Content="市场" Margin="10,10,10,10"
-                        HorizontalAlignment="Stretch"></Button>
+                        HorizontalAlignment="Stretch" />
                 <Button Grid.Column="1" Content="仓库" Margin="10,10,10,10"
-                        HorizontalAlignment="Stretch"></Button>
+                        HorizontalAlignment="Stretch" />
                 <Button Grid.Column="2" Content="工地" Margin="10,10,10,10"
-                        HorizontalAlignment="Stretch"></Button>
+                        HorizontalAlignment="Stretch" />
             </Grid>
         </Grid>
     </Grid>

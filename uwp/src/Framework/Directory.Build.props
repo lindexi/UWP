@@ -13,4 +13,10 @@
     <PackageLicenseUrl>https://github.com/lindexi/UWP/blob/master/LICENSE</PackageLicenseUrl>
     <PackageTags>WPF;MVVM;UWP</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <!--指定自己的在安装 nuget 时修改编译-->
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="True" PackagePath="" Visible="false"/>
+  </ItemGroup>
+
 </Project>

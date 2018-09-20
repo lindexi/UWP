@@ -17,6 +17,10 @@ namespace lindexi.wpf.Framework
         /// <summary>显示 Page 实例，支持针对新页面的导航，并保留导航历史记录以支持向前和向后导航。</summary>
         public Frame Frame { get; set; }
 
+        /// <summary>
+        /// 从 <see cref="Frame"/> 转换为 <see cref="NavigateFrame"/> 可以在不同的平台使用不同的类
+        /// </summary>
+        /// <param name="frame"></param>
         public static implicit operator NavigateFrame(Frame frame)
         {
             return new NavigateFrame(frame);

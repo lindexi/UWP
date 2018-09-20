@@ -6,8 +6,9 @@
     <Company>lindexi</Company>
     <Authors>lindexi</Authors>
 
+    <AssemblyName>lindexi.MVVM.Framework</AssemblyName>
     <Product>lindexi.MVVM.Framework</Product>
-    <Description>lindexi.MVVM.Framework</Description>
+    <Description>提供框架的基础支持</Description>
 
     <PackageProjectUrl>https://github.com/lindexi/UWP/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lindexi/UWP/</RepositoryUrl>

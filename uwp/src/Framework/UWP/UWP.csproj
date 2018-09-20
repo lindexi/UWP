@@ -5,6 +5,7 @@
     <!--<TargetPlatformVersion>10.0.17134.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>-->
     <PackageId>lindexi.uwp.Framework</PackageId>
+    <AssemblyName>lindexi.uwp.Framework</AssemblyName>
     <Authors>lindexi</Authors>
     <Company>lindexi</Company>
     <IncludeSymbols>true</IncludeSymbols>

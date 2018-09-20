@@ -3,6 +3,7 @@
     <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
     <TargetFrameworks>net45;</TargetFrameworks>
     <PackageId>lindexi.wpf.Framework</PackageId>
+    <AssemblyName>lindexi.wpf.Framework</AssemblyName>
     <Authors>lindexi</Authors>
     <Version>2.1.2</Version>
     <Product>lindexi.wpf.Framework</Product>

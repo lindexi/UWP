@@ -19,7 +19,7 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>BitStamp_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>E:\程序\上传\程序\publish\UWP\BitStamp</AppxPackageDir>
+    <AppxPackageDir>E:\上传\publish\UWP\BitStamp</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>C301FCDAC6366E9C6323A4DF9D06A177E3320803</PackageCertificateThumbprint>
@@ -103,7 +103,6 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Appid.cs" />
     <Compile Include="Model\Cimage\AccountCimage.cs" />
     <Compile Include="Model\Cimage\Cimage.cs" />
     <Compile Include="Model\clouddn\Auth\digest\Mac.cs" />

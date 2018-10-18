@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Storage;
+using lindexi.uwp.ImageShack.Model;
 using HttpClient = System.Net.Http.HttpClient;
 
 namespace BitStamp.Model.Cimage
@@ -228,5 +229,13 @@ namespace BitStamp.Model.Cimage
             //System.IO.Compression.DeflateStream
 
         }
+    }
+
+    internal class AppId
+    {
+        public static string _secretId;
+        public static string _appId;
+        public static AccountCimage AccoutCimage { get; set; }=new AccountCimage();
+        public static CloundesAccound Accound { get; set; }=new CloundesAccound();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Windows.Storage;
+using BitStamp.Model.Cimage;
 using BitStamp.ViewModel;
 using JyCloudTool.JsonModel;
 

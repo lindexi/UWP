@@ -12,6 +12,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using lindexi.Imageshack.Smms;
 using smms.Model;
 
 namespace smms
@@ -99,6 +100,9 @@ namespace smms
             //Reminder是例子，可以根据具体修改，注意要同步CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync
             imageshack.OnUploadedEventHandler += (sender, str) => Reminder = str.Replace("\\/", "/");
             imageshack.UpLoad();
+
+            //var smmsImageshack = new SmmsImageshack(File);
+            //var smms =await smmsImageshack.UploadImage();
         }
 
         private string _reminder;

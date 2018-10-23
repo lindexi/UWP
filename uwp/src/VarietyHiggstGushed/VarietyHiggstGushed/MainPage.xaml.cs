@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using lindexi.uwp.Framework;
 using VarietyHiggstGushed.Model;
-using VarietyHiggstGushed.View;
 using VarietyHiggstGushed.ViewModel;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
@@ -23,27 +13,22 @@ using VarietyHiggstGushed.ViewModel;
 namespace VarietyHiggstGushed
 {
     /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
+    ///     可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
     public sealed partial class MainPage : Page
     {
         public MainPage()
         {
             ViewModel = new IckixyYofiModel();
-            this.InitializeComponent();
-            ViewModel.Content = RuvJruhditrj;
+            InitializeComponent();
+            ViewModel.Content = (NavigateFrame) RuvJruhditrj;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            ViewModel.LyfxkdxmSzjd += ViewModel_LyfxkdxmSzjd;
-            ViewModel.NavigatedTo(this, e);
-            base.OnNavigatedTo(e);
-            //启动后退关闭
-            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.Visible;
-            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += BackRequested;
-            FiontwzNdqd();
-        }
+        public IckixyYofiModel ViewModel { get; set; }
+
+        private AjuvqrDqsoljna _ajuvqrDqsoljna;
+
+        private bool _ajuvqrDqsoljnaMkfsjNiydfobt;
 
         private void ViewModel_LyfxkdxmSzjd(object sender, string e)
         {
@@ -51,8 +36,8 @@ namespace VarietyHiggstGushed
             LyfxkdxmSzjd.Visibility = Visibility;
             LyfxkdxmSzjd.Opacity = 1;
 
-            Storyboard sb = new Storyboard();
-            DoubleAnimation animation = new DoubleAnimation
+            var sb = new Storyboard();
+            var animation = new DoubleAnimation
             {
                 From = 1,
                 To = 0,
@@ -86,6 +71,7 @@ namespace VarietyHiggstGushed
                     _ajuvqrDqsoljnaMkfsjNiydfobt = false;
                     return;
                 }
+
                 if (_ajuvqrDqsoljnaMkfsjNiydfobt)
                 {
                     Application.Current.Exit();
@@ -99,10 +85,16 @@ namespace VarietyHiggstGushed
             FjyhtrOcbhzjwi.Fhnazmoul.AddSuccessor(_ajuvqrDqsoljna);
         }
 
-        private AjuvqrDqsoljna _ajuvqrDqsoljna;
-
-        private bool _ajuvqrDqsoljnaMkfsjNiydfobt;
-
-        public IckixyYofiModel ViewModel { get; set; }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ViewModel.LyfxkdxmSzjd += ViewModel_LyfxkdxmSzjd;
+            ViewModel.NavigatedTo(this, e);
+            base.OnNavigatedTo(e);
+            //启动后退关闭
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                AppViewBackButtonVisibility.Visible;
+            SystemNavigationManager.GetForCurrentView().BackRequested += BackRequested;
+            FiontwzNdqd();
+        }
     }
 }

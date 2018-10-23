@@ -5,7 +5,6 @@
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
     <IncludeSymbols>true</IncludeSymbols>
     <Authors>lindexi</Authors>
-    <IncludeSymbols>true</IncludeSymbols>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</RepositoryUrl>

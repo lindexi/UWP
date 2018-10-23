@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using VarietyHiggstGushed.Model;
 using VarietyHiggstGushed.ViewModel;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
@@ -23,12 +12,24 @@ namespace VarietyHiggstGushed.View
     {
         public JediahPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
+
+        public static readonly DependencyProperty NewLansheehyBrunaSharonNumProperty = DependencyProperty.Register(
+            "NewLansheehyBrunaSharonNum", typeof(int), typeof(JediahPage), new PropertyMetadata(default(int)));
+
+        public static readonly DependencyProperty NewLansheehyBrunaSharonProperty = DependencyProperty.Register(
+            "NewLansheehyBrunaSharon", typeof(int), typeof(JediahPage), new PropertyMetadata(default(int)));
+
+        public static readonly DependencyProperty AimeeLansheehyBrunaSharonNumProperty = DependencyProperty.Register(
+            "AimeeLansheehyBrunaSharonNum", typeof(int), typeof(JediahPage), new PropertyMetadata(default(int)));
+
+        public static readonly DependencyProperty AimeeLansheehyBrunaSharonProperty = DependencyProperty.Register(
+            "AimeeLansheehyBrunaSharon", typeof(int), typeof(JediahPage), new PropertyMetadata(default(int)));
 
         public StorageModel ViewModel
         {
-            get { return _viewModel; }
+            get => _viewModel;
             set
             {
                 _viewModel = value;
@@ -41,45 +42,33 @@ namespace VarietyHiggstGushed.View
             }
         }
 
-        public static readonly DependencyProperty NewLansheehyBrunaSharonNumProperty = DependencyProperty.Register(
-            "NewLansheehyBrunaSharonNum", typeof(int), typeof(JediahPage), new PropertyMetadata(default(int)));
-
         public int NewLansheehyBrunaSharonNum
         {
-            get { return (int) GetValue(NewLansheehyBrunaSharonNumProperty); }
-            set { SetValue(NewLansheehyBrunaSharonNumProperty, value); }
+            get => (int) GetValue(NewLansheehyBrunaSharonNumProperty);
+            set => SetValue(NewLansheehyBrunaSharonNumProperty, value);
         }
-
-        public static readonly DependencyProperty NewLansheehyBrunaSharonProperty = DependencyProperty.Register(
-            "NewLansheehyBrunaSharon", typeof(int), typeof(JediahPage), new PropertyMetadata(default(int)));
 
         public int NewLansheehyBrunaSharon
         {
-            get { return (int) GetValue(NewLansheehyBrunaSharonProperty); }
-            set { SetValue(NewLansheehyBrunaSharonProperty, value); }
+            get => (int) GetValue(NewLansheehyBrunaSharonProperty);
+            set => SetValue(NewLansheehyBrunaSharonProperty, value);
         }
-
-        public static readonly DependencyProperty AimeeLansheehyBrunaSharonNumProperty = DependencyProperty.Register(
-            "AimeeLansheehyBrunaSharonNum", typeof(int), typeof(JediahPage), new PropertyMetadata(default(int)));
 
         public int AimeeLansheehyBrunaSharonNum
         {
-            get { return (int) GetValue(AimeeLansheehyBrunaSharonNumProperty); }
-            set { SetValue(AimeeLansheehyBrunaSharonNumProperty, value); }
+            get => (int) GetValue(AimeeLansheehyBrunaSharonNumProperty);
+            set => SetValue(AimeeLansheehyBrunaSharonNumProperty, value);
         }
-
-        public static readonly DependencyProperty AimeeLansheehyBrunaSharonProperty = DependencyProperty.Register(
-            "AimeeLansheehyBrunaSharon", typeof(int), typeof(JediahPage), new PropertyMetadata(default(int)));
-
-        private StorageModel _viewModel;
 
         public int AimeeLansheehyBrunaSharon
         {
-            get { return (int) GetValue(AimeeLansheehyBrunaSharonProperty); }
-            set { SetValue(AimeeLansheehyBrunaSharonProperty, value); }
+            get => (int) GetValue(AimeeLansheehyBrunaSharonProperty);
+            set => SetValue(AimeeLansheehyBrunaSharonProperty, value);
         }
 
         public event EventHandler Close;
+
+        private StorageModel _viewModel;
 
         private void NewLansheehy(object sender, RoutedEventArgs e)
         {
@@ -120,8 +109,7 @@ namespace VarietyHiggstGushed.View
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            return (int)Math.Floor((double) value);
+            return (int) Math.Floor((double) value);
         }
     }
-
 }

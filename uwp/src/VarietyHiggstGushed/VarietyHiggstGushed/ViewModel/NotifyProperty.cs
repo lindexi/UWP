@@ -13,11 +13,6 @@ namespace VarietyHiggstGushed.ViewModel
     /// </summary>
     public class NotifyProperty : INotifyPropertyChanged
     {
-        public NotifyProperty()
-        {
-
-        }
-
         public void UpdateProper<T>(ref T properValue, T newValue, [CallerMemberName] string properName = "")
         {
             if (Equals(properValue, newValue))
@@ -31,12 +26,9 @@ namespace VarietyHiggstGushed.ViewModel
 
         public async void OnPropertyChanged([CallerMemberName] string name = "")
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
+            var handler = PropertyChanged;
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                () =>
-                {
-                    handler?.Invoke(this, new PropertyChangedEventArgs(name));
-                });
+                () => { handler?.Invoke(this, new PropertyChangedEventArgs(name)); });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

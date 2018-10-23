@@ -10,10 +10,10 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <UserControl.Resources>
-        <local:DoubleConvert x:Name="Convert"></local:DoubleConvert>
-        <varietyHiggstGushed:ConverDoubleStr  x:Key="ConverDoubleStr"></varietyHiggstGushed:ConverDoubleStr>
+        <local:DoubleConvert x:Name="Convert" />
+        <varietyHiggstGushed:ConverDoubleStr x:Key="ConverDoubleStr" />
     </UserControl.Resources>
-    <Grid >
+    <Grid>
         <Grid Margin="10,10,10,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -21,8 +21,7 @@
             </Grid.RowDefinitions>
             <Grid>
                 <Button FontFamily="Segoe MDL2 Assets" Content="&#xE10A;" HorizontalAlignment="Right"
-                        Click="CloseButton_OnClick">
-                </Button>
+                        Click="CloseButton_OnClick" />
             </Grid>
             <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
 
@@ -34,27 +33,28 @@
                         <RowDefinition Height="100*" />
                     </Grid.RowDefinitions>
                     <Grid>
-                        <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.Name}"></TextBlock>
+                        <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.Name}" />
                     </Grid>
                     <Grid Grid.Row="1">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="ms-appx:///Assets/仓库.png" Height="20" Width="20"></Image>
-                            <TextBlock Text="仓库拥有:"></TextBlock>
-                            <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.Num}"></TextBlock>
+                            <Image Source="ms-appx:///Assets/仓库.png" Height="20" Width="20" />
+                            <TextBlock Text="仓库拥有:" />
+                            <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.Num}" />
                         </StackPanel>
                     </Grid>
                     <Grid Width="300" Grid.Row="2">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="$"></TextBlock>
-                            <TextBlock Text="买入价格"></TextBlock>
-                            <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.AshliLyverGeraldo,Converter={StaticResource ConverDoubleStr}}"></TextBlock>
+                            <TextBlock Text="$" />
+                            <TextBlock Text="买入价格" />
+                            <TextBlock
+                                Text="{x:Bind ViewModel.CarloPiperIsaacProperty.AshliLyverGeraldo,Converter={StaticResource ConverDoubleStr}}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Right">
-                            <TextBlock Text="$"></TextBlock>
-                            <TextBlock Text="市场价格"></TextBlock>
-                            <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.Price}"></TextBlock>
+                            <TextBlock Text="$" />
+                            <TextBlock Text="市场价格" />
+                            <TextBlock Text="{x:Bind ViewModel.CarloPiperIsaacProperty.Price}" />
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Row="3">
@@ -69,11 +69,10 @@
                             </Grid.ColumnDefinitions>
                             <Slider Margin="10,10,10,10"
                                     Value="{x:Bind NewLansheehyBrunaSharonNum,Mode=TwoWay,Converter={StaticResource ResourceKey=Convert}}"
-                                    Maximum="{x:Bind NewLansheehyBrunaSharon}">
-                            </Slider>
+                                    Maximum="{x:Bind NewLansheehyBrunaSharon}" />
                             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                <Button Content="max" Click="MnewBruna"></Button>
-                                <Button Content="买入" Click="NewLansheehy"></Button>
+                                <Button Content="max" Click="MnewBruna" />
+                                <Button Content="买入" Click="NewLansheehy" />
                             </StackPanel>
                         </Grid>
                         <Grid Grid.Row="1">
@@ -83,12 +82,10 @@
                             </Grid.ColumnDefinitions>
                             <Slider Margin="10,10,10,10"
                                     Value="{x:Bind AimeeLansheehyBrunaSharonNum,Mode=TwoWay,Converter={StaticResource Convert}}"
-                                    Maximum="{x:Bind AimeeLansheehyBrunaSharon}">
-
-                            </Slider>
+                                    Maximum="{x:Bind AimeeLansheehyBrunaSharon}" />
                             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                <Button Content="max" Click="MaimeeBruna"></Button>
-                                <Button Content="卖出" Click="AimeeLansheehy"></Button>
+                                <Button Content="max" Click="MaimeeBruna" />
+                                <Button Content="卖出" Click="AimeeLansheehy" />
                             </StackPanel>
                         </Grid>
                     </Grid>

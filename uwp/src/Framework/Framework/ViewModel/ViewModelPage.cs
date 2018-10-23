@@ -15,7 +15,6 @@ using System.Windows.Controls;
 #endif
 
 
-
 namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
@@ -25,7 +24,6 @@ namespace lindexi.MVVM.Framework.ViewModel
     {
         internal ViewModelPage()
         {
-            
         }
 
         /// <summary>
@@ -53,10 +51,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// <summary>
         /// 用于表示页面
         /// </summary>
-        public string Key
-        {
-             get;
-        }
+        public string Key { get; }
 
         /// <summary>
         /// 抽象页面
@@ -66,20 +61,17 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// <summary>
         /// 页面
         /// </summary>
-        public INavigatablePage Page
-        {
-            get;
-        }
+        public INavigatablePage Page { get; }
 
 
 #if false
-        /// <summary>
-        /// 跳转到
-        /// </summary>
-        /// <param name="content"></param>
-        /// <param name="source">从那里跳转</param>
-        /// <param name="paramter">参数</param>
-        /// <returns></returns>
+/// <summary>
+/// 跳转到
+/// </summary>
+/// <param name="content"></param>
+/// <param name="source">从那里跳转</param>
+/// <param name="paramter">参数</param>
+/// <returns></returns>
         public async Task Navigate(Frame content, ViewModelMessage source, object paramter)
         {
             ViewModel.NavigatedTo(source, paramter);
@@ -140,7 +132,7 @@ namespace lindexi.MVVM.Framework.ViewModel
                 return true;
             if (obj.GetType() != GetType())
                 return false;
-            return Equals((ViewModelPage)obj);
+            return Equals(((ViewModelPage) obj).Key);
         }
 
         /// <inheritdoc />

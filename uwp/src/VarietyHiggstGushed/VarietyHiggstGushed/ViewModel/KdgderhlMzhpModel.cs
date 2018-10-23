@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
-using lindexi.uwp.Framework.ViewModel;
-using VarietyHiggstGushed.View;
+using lindexi.MVVM.Framework.ViewModel;
+using lindexi.uwp.Framework;
 
 namespace VarietyHiggstGushed.ViewModel
 {
     public class KdgderhlMzhpModel : NavigateViewModel
     {
-
         public KdgderhlMzhpModel()
         {
-            for (int i = 0; i < 100; i++)
+            for (var i = 0; i < 100; i++)
             {
                 var whzmnTstbq = new YcftxgEcgs("按钮" + i);
                 whzmnTstbq.IxfmHlsg += (s, e) => PngvnwIjpy = ((YcftxgEcgs) s).YwkLjuakc;
@@ -24,21 +19,11 @@ namespace VarietyHiggstGushed.ViewModel
             }
         }
 
-        public override void OnNavigatedFrom(object sender, object obj)
-        {
-
-        }
-
-        public override void OnNavigatedTo(object sender, object obj)
-        {
-            CombineViewModel(Application.Current.GetType().GetTypeInfo().Assembly);
-            AllAssemblyComposite(Application.Current.GetType().GetTypeInfo().Assembly);
-        }
         public ObservableCollection<YcftxgEcgs> VsibgyegZkyi { get; set; } = new ObservableCollection<YcftxgEcgs>();
 
         public string PngvnwIjpy
         {
-            get { return _pngvnwIjpy; }
+            get => _pngvnwIjpy;
             set
             {
                 _pngvnwIjpy = value;
@@ -46,13 +31,23 @@ namespace VarietyHiggstGushed.ViewModel
             }
         }
 
-        private string _pngvnwIjpy;
+        public override void OnNavigatedFrom(object sender, object obj)
+        {
+        }
+
+        public override void OnNavigatedTo(object sender, object obj)
+        {
+            this.CombineViewModel(Application.Current.GetType().GetTypeInfo().Assembly);
+            AllAssemblyComposite(Application.Current.GetType().GetTypeInfo().Assembly);
+        }
 
         public void UmfqawovKaxkrdrg()
         {
             //进行跳转
             Navigate(typeof(StorageModel), null);
         }
+
+        private string _pngvnwIjpy;
     }
 
     public class YcftxgEcgs
@@ -65,11 +60,11 @@ namespace VarietyHiggstGushed.ViewModel
         public string YwkLjuakc { get; set; }
         public string KmulfmFshszg { get; set; }
 
+        public event EventHandler IxfmHlsg;
+
         public void SloafemulWugxhrd()
         {
             IxfmHlsg?.Invoke(this, null);
         }
-
-        public event EventHandler IxfmHlsg;
     }
 }

@@ -34,9 +34,8 @@ namespace lindexi.MVVM.Framework.ViewModel
 
             // 所有在这个 ViewModel 的 ViewModel 判断是否需要
             // 解决 A B 两个通信
-            foreach (var temp in ViewModelPage.
-                Where(/*如果 ViewModel 没有使用，就不收消息*/temp => temp.ViewModel.IsLoaded)
-                .Select(temp=>temp.ViewModel.GetViewModel()))
+            foreach (var temp in ViewModelPage.Where( /*如果 ViewModel 没有使用，就不收消息*/temp => temp.ViewModel.IsLoaded)
+                .Select(temp => temp.ViewModel.GetViewModel()))
             {
                 ViewModel.Composite.Run(temp, message, Composite);
             }
@@ -108,6 +107,18 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// <inheritdoc />
         public void Navigate(string key, object parameter, INavigateFrame content = null)
         {
+            if (ViewModelPage == null)
+            {
+                throw new InvalidOperationException("在调用跳转的时候必须添加可以跳转页面")
+                {
+                    Data =
+                    {
+                        {"为空元素", "ViewModelPage 为空"},
+                        {"可以进行的修复", "调用 this.CombineViewModel 传可以反射程序集"}
+                    }
+                };
+            }
+
             var viewModel = ViewModelPage.FirstOrDefault(temp => temp.Equals(key));
             var viewModelNavigate = ViewModelNavigate;
             if (viewModelNavigate == null)

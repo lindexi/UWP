@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace VarietyHiggstGushed.Model
 {
     /// <summary>
-    /// 责任链模式
+    ///     责任链模式
     /// </summary>
     public class FjyhtrOcbhzjwi
     {
@@ -28,16 +27,12 @@ namespace VarietyHiggstGushed.Model
             AjuvqrDqsoljna.Request(this);
         }
 
-        private IHandle AjuvqrDqsoljna { set; get; } = new AjuvqrDqsoljna(fjyhtrOcbhzjwi => { });
+        private IHandle AjuvqrDqsoljna { get; } = new AjuvqrDqsoljna(fjyhtrOcbhzjwi => { });
     }
 
     public interface IHandle
     {
-        IHandle Successor
-        {
-            set;
-            get;
-        }
+        IHandle Successor { set; get; }
 
         int Hnkdqckyr { get; }
 
@@ -54,12 +49,12 @@ namespace VarietyHiggstGushed.Model
             Request = request;
         }
 
+        public Action<FjyhtrOcbhzjwi> Request { get; }
+
         /// <summary>
-        /// 权限
+        ///     权限
         /// </summary>
         public int Hnkdqckyr { set; get; }
-
-        public Action<FjyhtrOcbhzjwi> Request { get; }
 
         IHandle IHandle.Successor { get; set; }
 
@@ -71,7 +66,7 @@ namespace VarietyHiggstGushed.Model
 
         void IHandle.AddSuccessor(IHandle successor)
         {
-            if (((IHandle)this).Successor == null)
+            if (((IHandle) this).Successor == null)
             {
                 ((IHandle) this).Successor = successor;
             }
@@ -96,6 +91,7 @@ namespace VarietyHiggstGushed.Model
             {
                 return;
             }
+
             if (((IHandle) this).Successor == ajuvqrDqsoljna)
             {
                 ((IHandle) this).Successor = ((IHandle) this).Successor.Successor;

@@ -15,43 +15,40 @@
 
  - [进度条](uwp/control/Progress)
 
- ![](http://img.blog.csdn.net/20160815151046014)
-
  - [变大数字颜色按钮](uwp/control/RountGradualFigure)
 
  ![](uwp/control/RountGradualFigure/RountGradualFigure/Assets/RountGradual.gif)
 
  - [按下等待按钮](uwp/control/Button)
 
- ![](http://7xqpl8.com1.z0.glb.clouddn.com/be842536-5c96-47f4-a49d-354e749a826aProgressButton.gif)
-
-### 图
-
- - DataGrid（没做）
+ ![](http://image.acmx.xyz/be842536-5c96-47f4-a49d-354e749a826aProgressButton.gif)
 
 ## 软件
 
- - [win10 uwp 水印图床](uwp/control/BitStamp)
+### [win10 uwp 水印图床](uwp/control/BitStamp)
 
-   参见 ：[win10 uwp 水印图床](uwp/control/BitStamp/【广告】win10 uwp 水印图床 含代码.md)
+参见 ：[win10 uwp 水印图床](https://blog.csdn.net/lindexi_gd/article/details/52808347?utm_source=blogxgwz5)
 
-   [安装](ms-windows-store://pdp/?productid=9nblggh562r2) https://www.microsoft.com/store/apps/9nblggh562r2
+[安装](ms-windows-store://pdp/?productid=9nblggh562r2) https://www.microsoft.com/store/apps/9nblggh562r2
+
+### [使用 Pandoc 将 Markdown 转 Docx 文件](wpf/PandocMarkdown2Docx)
+
+![](http://image.acmx.xyz/lindexi%2F2018102311206349)
+
+[点击下载](https://github.com/lindexi/UWP/releases/tag/PandocMarkdown2Docx_1.0)
 
 ## 代码
 
  - [DetailMaster](uwp/src/DetailMaster)
 
- ![](http://img.blog.csdn.net/20160806130438076)
-
  - [图床](uwp/src/Imageshack)
 
    图床是把图片上传到云，然后获取图片链接的开发包，我将繁琐的过程写成一个简单的类。
    上传的服务器现在有[sm.ms](https://sm.ms/)和[七牛图床](http://www.qiniu.com/)。其中[七牛sdk UWP](uwp/src/Imageshack/cloundes)，
-   我只有简单文件上传，好多还没写。代码是从其他大神改出
+   我只有简单文件上传，好多还没写。
 
    七牛图床上传到Nuget，搜索`lindexi.uwp.ImageShack.Thirdqiniucs`或
    控制台`Install-Package lindexi.uwp.ImageShack.Thirdqiniucs`
-
 
  - [显示svg](uwp/src/ScalableVectorGraphic)
 
@@ -77,6 +74,50 @@
    `Install-Package lindexi.uwp.src.ImageStorage`
 
  - [修改CalendarDatePicker图标颜色](uwp/src/CalendarDatePickerForeground)
+
+ - [UWP 笔迹识别](uwp/src/Ink)
+
+### [轻量 MVVM 框架](uwp/src/Framework)
+
+提供轻量的 MVVM 框架，可以在 WPF 和 UWP 使用
+
+| Package Name                   | Release (NuGet) | 
+|--------------------------------|-----------------|
+|  `lindexi.uwp.Framework`       |[![NuGet](https://img.shields.io/nuget/v/lindexi.uwp.Framework.svg)](https://www.nuget.org/packages/lindexi.uwp.Framework/)|
+|  `lindexi.MVVM.Framework`      |[![NuGet](https://img.shields.io/nuget/v/lindexi.MVVM.Framework.svg)](https://www.nuget.org/packages/lindexi.MVVM.Framework/)|
+|  `lindexi.wpf.Framework`       |[![NuGet](https://img.shields.io/nuget/v/lindexi.wpf.Framework.svg)](https://www.nuget.org/packages/lindexi.wpf.Framework/)|
+
+如果是 UWP 程序，通过 Nuget 安装
+
+```csharp
+Install-Package lindexi.uwp.Framework
+```
+
+如果是 WPF 程序，通过 Nuget 安装
+
+```csharp
+Install-Package lindexi.wpf.Framework
+```
+
+如果是 Xamarin 项目，可以只安装 lindexi.MVVM.Framework 但是要求项目支持 .NETStandard 2.0 以上
+
+参见：
+
+[win10 uwp MVVM入门](https://lindexi.gitee.io/post/win10-uwp-MVVM%E5%85%A5%E9%97%A8.html )
+
+[win10 uwp MVVM 轻量框架](https://lindexi.gitee.io/post/win10-uwp-MVVM-%E8%BD%BB%E9%87%8F%E6%A1%86%E6%9E%B6.html )
+
+[WPF 轻量级 MVVM 框架入门 2.1.2](https://lindexi.gitee.io/post/WPF-%E8%BD%BB%E9%87%8F%E7%BA%A7-MVVM-%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8-2.1.2.html )
+
+[win10 uwp 轻量级 MVVM 框架入门 2.1.5.3199](https://lindexi.gitee.io/post/win10-uwp-%E8%BD%BB%E9%87%8F%E7%BA%A7-MVVM-%E6%A1%86%E6%9E%B6%E5%85%A5%E9%97%A8-2.1.5.3199.html )
+
+
+ 
+### [WPF 跨线程 UI 的方法](wpf/CaitrairSodeyatarFowfurur)
+
+通过 VisualTraget 在 WPF 使用多个 UI 线程
+
+参见：[WPF 跨线程 UI 的方法](https://lindexi.github.io/lindexi/post/WPF-%E8%B7%A8%E7%BA%BF%E7%A8%8B-UI-%E7%9A%84%E6%96%B9%E6%B3%95.html )
 
 # English
 

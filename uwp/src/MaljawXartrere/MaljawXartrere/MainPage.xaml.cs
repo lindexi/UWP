@@ -148,6 +148,11 @@ namespace MaljawXartrere
 
         private void BemusiMemxea_OnClick(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(PenerfePowForqe.Text))
+            {
+                return;
+            }
+
             PenerfePowForqe.Text = PenerfePowForqe.Text.Substring(0, PenerfePowForqe.Text.Length - 1);
         }
 

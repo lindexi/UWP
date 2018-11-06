@@ -1,6 +1,97 @@
-# Build ASP.NET Core project using Azure Pipelines
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core?view=vsts
+
+queue:
+
+  name: Hosted VS2017
+
+  demands: 
+
+  - msbuild
+
+  - visualstudio
+
+
+
+#Your build pipeline references an undefined variable named ‘Parameters.solution’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Parameters.solution’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references the ‘BuildPlatform’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
 
 steps:
 
-- task: PublishBuildArtifacts@1
+- task: NuGetToolInstaller@0
+
+  displayName: 'Use NuGet 4.4.1'
+
+  inputs:
+
+    versionSpec: 4.4.1
+
+
+
+
+
+- task: NuGetCommand@2
+
+  displayName: 'NuGet restore **\*.sln'
+
+  inputs:
+
+    restoreSolution: '$(Parameters.solution)'
+
+
+
+
+
+- task: VSBuild@1
+
+  displayName: 'Build solution uwp/control/BitStamp/BitStamp.sln'
+
+  inputs:
+
+    solution: '$(Parameters.solution)'
+
+
+
+    vsVersion: 15.0
+
+
+
+    msbuildArgs: '/p:AppxBundlePlatforms="$(BuildPlatform)" /p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\\" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+
+
+
+    platform: x86
+
+
+
+    configuration: '$(BuildConfiguration)'
+
+
+
+    restoreNugetPackages: true
+
+
+
+    createLogFile: true
+
+
+
+
+
+- task: AppCenterDistribute@0
+
+  displayName: 'Deploy  to Visual Studio App Center'
+
+  inputs:
+
+    symbolsIncludeParentDirectory: false
+
+
+
+  enabled: false
+
+
+

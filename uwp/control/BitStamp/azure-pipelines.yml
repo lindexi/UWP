@@ -1,0 +1,6 @@
+# Build ASP.NET Core project using Azure Pipelines
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core?view=vsts
+
+steps:
+
+- task: PublishBuildArtifacts@1

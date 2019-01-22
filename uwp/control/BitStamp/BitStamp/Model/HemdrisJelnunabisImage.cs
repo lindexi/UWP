@@ -7,6 +7,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI;
 using Microsoft.Graphics.Canvas;
+using Microsoft.Graphics.Canvas.Brushes;
 using Microsoft.Graphics.Canvas.Text;
 
 namespace BitStamp.Model
@@ -18,6 +19,11 @@ namespace BitStamp.Model
     {
         public async Task WaterBerbouPelJicayweeno(string str)
         {
+            if (ImageFile == ImageEnum.Gif)
+            {
+                return;
+            }
+
             var duvDbecdgiu = CanvasBitmap;
 
             using (var canvasRenderTarget = new CanvasRenderTarget(duvDbecdgiu, duvDbecdgiu.Size))
@@ -37,12 +43,38 @@ namespace BitStamp.Model
                         {
                             var kjrjuxzaKrbgwk = canvasTextLayout.LayoutBounds;
 
-                            if (kjrjuxzaKrbgwk.Width < duvDbecdgiu.Size.Width)
+                            if (
+                                kjrjuxzaKrbgwk.Width < duvDbecdgiu.Size.Width
+                                && kjrjuxzaKrbgwk.Height < duvDbecdgiu.Size.Height
+                            )
                             {
+                                var width = duvDbecdgiu.Size.Width - kjrjuxzaKrbgwk.Width;
+                                var height = duvDbecdgiu.Size.Height - kjrjuxzaKrbgwk.Height;
+
+                                var canvasGradientStop = new CanvasGradientStop[2];
+                                canvasGradientStop[0] = new CanvasGradientStop()
+                                {
+                                    Position = 0,
+                                    Color = Colors.White
+                                };
+
+                                canvasGradientStop[1] = new CanvasGradientStop()
+                                {
+                                    Position = 1,
+                                    Color = Colors.Black
+                                };
+
+                                var canvasLinearGradientBrush =
+                                    new CanvasLinearGradientBrush(CanvasDevice, canvasGradientStop)
+                                    {
+                                        StartPoint = new Vector2(0, (float) height / 2),
+                                        EndPoint = new Vector2(0, (float) height / 2 + (float) kjrjuxzaKrbgwk.Height)
+                                    };
+
                                 dc.DrawText(str,
-                                    new Vector2((float) (duvDbecdgiu.Size.Width / 2),
-                                        (float) duvDbecdgiu.Size.Height / 2),
-                                    Colors.Black);
+                                    new Vector2((float) (width / 2),
+                                        (float) height / 2),
+                                    canvasLinearGradientBrush, canvasTextFormat);
                             }
                         }
                     }
@@ -54,6 +86,8 @@ namespace BitStamp.Model
                     await canvasRenderTarget.SaveAsync(stream,
                         ImageEnumToCanvasBitmapFileFormat(SaveImage));
                 }
+
+                ImageFile = SaveImage;
 
                 File = file;
             }
@@ -69,9 +103,15 @@ namespace BitStamp.Model
         {
             File = file;
             CanvasBitmap?.Dispose();
-            CanvasBitmap = await CanvasBitmap.LoadAsync(CanvasDevice, await file.OpenAsync(FileAccessMode.Read));
+            ImageFile = GetFileImage(file);
+            if (ImageFile != ImageEnum.Gif)
+            {
+                CanvasBitmap = await CanvasBitmap.LoadAsync(CanvasDevice, await file.OpenAsync(FileAccessMode.Read));
+            }
+
             Upload = true;
         }
+
 
         /// <summary>
         /// 设置图片
@@ -107,6 +147,17 @@ namespace BitStamp.Model
         private ImageEnum SaveImage { get; } = ImageEnum.Jpg;
 
         private CanvasBitmap CanvasBitmap { set; get; }
+
+
+        private ImageEnum GetFileImage(StorageFile file)
+        {
+            if (Enum.TryParse(file.FileType.Substring(1), true, out ImageEnum value))
+            {
+                return value;
+            }
+
+            return ImageEnum.Jpg;
+        }
 
         private static string ImageEnumToBowsoCerepa(ImageEnum image)
         {

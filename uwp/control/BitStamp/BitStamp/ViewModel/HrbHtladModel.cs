@@ -25,14 +25,11 @@ namespace BitStamp.ViewModel
     public class HrbHtladModel : ViewModelMessage
     {
         private string _bbTkeozdDmady;
-        private StorageFile _file;
         private ImageSource _image;
         private string _martHzlxwlTcq;
 
         private string _marTqqcyhuaKujem;
         private bool _marTxanmvssTfnpqlz;
-
-        private CanvasBitmap CanvasBitmap { set; get; }
 
         public ImageSource Image
         {
@@ -51,6 +48,7 @@ namespace BitStamp.ViewModel
             get => _martHzlxwlTcq;
             set
             {
+                Account.Str = value;
                 _martHzlxwlTcq = value;
                 OnPropertyChanged();
             }
@@ -231,11 +229,17 @@ namespace BitStamp.ViewModel
             {
                 HemdrisJelnunabis.StDbvedbwpHxxz = Account.Folder;
             }
+            else
+            {
+                Account = AccoutGoverment.AccountModel.Account;
+            }
 
             if (HemdrisJelnunabis.StDbvedbwpHxxz == null)
             {
                 HemdrisJelnunabis.StDbvedbwpHxxz = ApplicationData.Current.TemporaryFolder;
             }
+
+            MartHzlxwlTcq = Account.Str;
         }
 
         public HemdrisJelnunabisImage HemdrisJelnunabis { get; } = new HemdrisJelnunabisImage();

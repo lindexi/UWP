@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>lindexi.src</RootNamespace>
+    <PackageId>lindexi.src.MacAddress</PackageId>
+    <Authors>lindexi</Authors>
+    <Company>dotnet campus</Company>
+    <Description>在 dotnet core 获取Mac地址，因为这是一个源代码包，不会多引用一个程序集</Description>
+    <PackageProjectUrl>https://github.com/lindexi/uwp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lindexi/uwp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>MIT</Copyright>
+    <PackageLicenseUrl>https://github.com/lindexi/UWP/blob/master/LICENSE</PackageLicenseUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dotnetCampus.SourceYard" Version="0.1.7213-alpha">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

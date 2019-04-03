@@ -7,11 +7,7 @@
     <AssemblyName>lindexi.MVVM.Framework</AssemblyName>
     <Product>lindexi.MVVM.Framework</Product>
     <Description>提供框架的基础支持</Description>
-  
-    <PackageReleaseNotes>
-      提供默认的是否加载可以发送
-      发送消息传入源不再使用 ViewModelBase ，可以在使用其他框架的时候使用消息
-    </PackageReleaseNotes>
+
     <DocumentationFile>$(OutputPath)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 

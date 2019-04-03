@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFrameworks>netcoreapp2.1;net45</TargetFrameworks>
+    <Version>1.0.6</Version>
     <RootNamespace>lindexi.src</RootNamespace>
     <PackageId>lindexi.src.MacAddress</PackageId>
     <Authors>lindexi</Authors>
@@ -15,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="dotnetCampus.SourceYard" Version="0.1.7213-alpha">
+    <PackageReference Include="dotnetCampus.SourceYard" Version="0.1.16539-alpha">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>

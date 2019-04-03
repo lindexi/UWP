@@ -4,13 +4,22 @@
     <OutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)</OutputPath>
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
     <IncludeSymbols>true</IncludeSymbols>
-    <Authors>lindexi</Authors>
+    <Authors>lindexi,ZhengDaoWang</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</PackageProjectUrl>
     <RepositoryUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</RepositoryUrl>
     <Copyright>MIT</Copyright>
-    <PackageLicenseUrl>https://github.com/lindexi/UWP/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>WPF;MVVM;UWP</PackageTags>
+    <PackageReleaseNotes>
+    ## 3.0.1
+    
+    修复数组属性命名
+
+    ## 2.2.5
+      提供默认的是否加载可以发送
+      发送消息传入源不再使用 ViewModelBase ，可以在使用其他框架的时候使用消息
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

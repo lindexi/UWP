@@ -25,17 +25,17 @@ namespace lindexi.uwp.Framework
 
             if (ReferenceEquals(assembly, null)) throw new ArgumentNullException(nameof(assembly));
 
-            if (viewModel.ViewModelPage == null)
+            if (viewModel.ViewModelPageCollection == null)
             {
-                viewModel.ViewModelPage = new List<ViewModelPage>();
+                viewModel.ViewModelPageCollection = new List<ViewModelPage>();
             }
 
-            viewModel.ViewModelPage.Clear();
+            viewModel.ViewModelPageCollection.Clear();
 
             foreach (var temp in assembly.DefinedTypes.Where(temp => typeof(IViewModel).IsAssignableFrom(temp.AsType()))
             )
             {
-                viewModel.ViewModelPage.Add(new ViewModelPage(new NavigatableViewModel(temp)));
+                viewModel.ViewModelPageCollection.Add(new ViewModelPage(new NavigatableViewModel(temp)));
             }
 
             foreach (var temp in assembly.DefinedTypes.Where(temp =>
@@ -45,12 +45,12 @@ namespace lindexi.uwp.Framework
                 if (p != null)
                 {
                     var viewmodel =
-                        viewModel.ViewModelPage.FirstOrDefault(t => t.ViewModel.Name.Equals(p.ViewModel.Name));
+                        viewModel.ViewModelPageCollection.FirstOrDefault(t => t.ViewModel.Name.Equals(p.ViewModel.Name));
 
                     if (viewmodel != null)
                     {
-                        viewModel.ViewModelPage.Remove(viewmodel);
-                        viewModel.ViewModelPage.Add(new ViewModelPage(viewmodel.ViewModel, new NavigatablePage(temp)));
+                        viewModel.ViewModelPageCollection.Remove(viewmodel);
+                        viewModel.ViewModelPageCollection.Add(new ViewModelPage(viewmodel.ViewModel, new NavigatablePage(temp)));
                     }
                 }
             }

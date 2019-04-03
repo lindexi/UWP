@@ -25,7 +25,7 @@ namespace lindexi.MVVM.Framework.ViewModel
             var composite = message as ICombinationComposite;
             composite?.Run(viewModel, message);
 
-            var run = MVVM.Framework.ViewModel.Composite.Run(viewModel, message, Composite);
+            var run = MVVM.Framework.ViewModel.Composite.Run(viewModel, message, CompositeCollection);
 
             if (run)
             {
@@ -34,17 +34,17 @@ namespace lindexi.MVVM.Framework.ViewModel
 
             // 所有在这个 ViewModel 的 ViewModel 判断是否需要
             // 解决 A B 两个通信
-            foreach (var temp in ViewModelPage.Where( /*如果 ViewModel 没有使用，就不收消息*/temp => temp.ViewModel.IsLoaded)
+            foreach (var temp in ViewModelPageCollection.Where( /*如果 ViewModel 没有使用，就不收消息*/temp => temp.ViewModel.IsLoaded)
                 .Select(temp => temp.ViewModel.GetViewModel()))
             {
-                ViewModel.Composite.Run(temp, message, Composite);
+                ViewModel.Composite.Run(temp, message, CompositeCollection);
             }
         }
 
         /// <summary>
         /// 集合 ViewModel 和 页面 用来跳转
         /// </summary>
-        public List<ViewModelPage> ViewModelPage { get; set; }
+        public List<ViewModelPage> ViewModelPageCollection { get; set; }
 
         /// <summary>
         /// 使用字符串获取包含的类
@@ -53,7 +53,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// <returns></returns>
         public IViewModel this[string str]
         {
-            get { return ViewModelPage.FirstOrDefault(temp => temp.Key == str)?.ViewModel.GetViewModel(); }
+            get { return ViewModelPageCollection.FirstOrDefault(temp => temp.Key == str)?.ViewModel.GetViewModel(); }
         }
 
         /// <inheritdoc />
@@ -73,9 +73,9 @@ namespace lindexi.MVVM.Framework.ViewModel
                 ViewModelNavigate = viewModelNavigate;
             }
 
-            if (ViewModelPage == null)
+            if (ViewModelPageCollection == null)
             {
-                ViewModelPage = new List<ViewModelPage>();
+                ViewModelPageCollection = new List<ViewModelPage>();
             }
         }
 
@@ -107,7 +107,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// <inheritdoc />
         public void Navigate(string key, object parameter, INavigateFrame content = null)
         {
-            if (ViewModelPage == null)
+            if (ViewModelPageCollection == null)
             {
                 throw new InvalidOperationException("在调用跳转的时候必须添加可以跳转页面")
                 {
@@ -119,7 +119,7 @@ namespace lindexi.MVVM.Framework.ViewModel
                 };
             }
 
-            var viewModel = ViewModelPage.FirstOrDefault(temp => temp.Equals(key));
+            var viewModel = ViewModelPageCollection.FirstOrDefault(temp => temp.Equals(key));
             var viewModelNavigate = ViewModelNavigate;
             if (viewModelNavigate == null)
             {
@@ -159,13 +159,13 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// </summary>
         protected void AllAssemblyComposite(Assembly assembly)
         {
-            Composite.AddRange(lindexi.MVVM.Framework.ViewModel.Composite.GetCompositeList());
+            CompositeCollection.AddRange(lindexi.MVVM.Framework.ViewModel.Composite.GetCompositeList());
 
             foreach (var temp in assembly.GetTypes().Where(IsCompsite))
             {
                 try
                 {
-                    Composite.Add(temp.Assembly.CreateInstance(temp.FullName) as Composite);
+                    CompositeCollection.Add(temp.Assembly.CreateInstance(temp.FullName) as Composite);
                 }
                 catch (NullReferenceException)
                 {

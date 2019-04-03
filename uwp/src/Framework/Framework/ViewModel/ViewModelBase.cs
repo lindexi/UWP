@@ -69,14 +69,14 @@ namespace lindexi.MVVM.Framework.ViewModel
             var composite = message as ICombinationComposite;
             composite?.Run(viewModel, message);
 
-            ViewModel.Composite.Run(viewModel, message, Composite);
+            ViewModel.Composite.Run(viewModel, message, CompositeCollection);
         }
 
         /// <summary>
         ///     命令合成
-        ///     全部调用发送信息的处理在<see cref="Composite" />
+        ///     全部调用发送信息的处理在<see cref="CompositeCollection" />
         /// </summary>
-        public List<Composite> Composite { set; get; } = new List<Composite>();
+        public List<Composite> CompositeCollection { set; get; } = new List<Composite>();
 
         /// <inheritdoc />
         public sealed override void NavigatedFrom(object sender, object obj)

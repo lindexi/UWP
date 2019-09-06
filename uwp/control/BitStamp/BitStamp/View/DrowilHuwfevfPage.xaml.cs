@@ -30,7 +30,7 @@ namespace BitStamp
 
             ViewModel.Content = new NavigateFrame(KasibkqeStkxaij);
 
-            ViewModel.ViewModelPage = new List<ViewModelPage>()
+            ViewModel.ViewModelPageCollection = new List<ViewModelPage>()
             {
                 new ViewModelPage(new NavigatableViewModel<HrbHtladModel>(), new NavigatablePage<HrbHtlad>()),
                 new ViewModelPage(new NavigatableViewModel<SaeHqeupqModel>(),new NavigatablePage<SaeHqeupqPage>()),

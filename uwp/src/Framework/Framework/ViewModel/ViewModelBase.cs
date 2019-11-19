@@ -90,6 +90,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         {
             if (sender is IReceiveMessage viewmodel)
             {
+                ((ISendMessage) this).Send -= viewmodel.ReceiveMessage;
                 ((ISendMessage) this).Send += viewmodel.ReceiveMessage;
             }
 

@@ -7,11 +7,17 @@
     <Authors>lindexi,ZhengDaoWang</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/lindexi/UWP/tree/master/uwp/src/Framework</RepositoryUrl>
+    <RepositoryUrl>https://github.com/lindexi/UWP</RepositoryUrl>
     <Copyright>MIT</Copyright>
+    <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>WPF;MVVM;UWP</PackageTags>
     <PackageReleaseNotes>
+
+    ## 3.0.2
+
+    修复事件
+
     ## 3.0.1
     
     修复数组属性命名

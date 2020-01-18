@@ -47,17 +47,17 @@ namespace BitStamp.Model
         public async Task Jcloud(Action<bool> onUpload)
         {
             ImageShackEnum imageShack = Account.ImageShack;
-            if (File.FileType == ".gif" && imageShack == ImageShackEnum.Jiuyou)
-            {
-                imageShack = ImageShackEnum.Qin;
-            }
+            //if (File.FileType == ".gif" && imageShack == ImageShackEnum.Jiuyou)
+            //{
+            //    imageShack = ImageShackEnum.Qin;
+            //}
 
             var size = (await File.GetBasicPropertiesAsync()).Size;
 
             //1M
             //1024k
             //‪125000‬
-            if (size > 125000)
+            if (size > 500000)
             {
                 imageShack = ImageShackEnum.Smms;
             }

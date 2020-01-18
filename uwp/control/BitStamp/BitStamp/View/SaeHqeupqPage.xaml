@@ -614,7 +614,7 @@
                         如果没有输入，图床会用默认配置
                 </TextBlock>-->
                 <RadioButton IsChecked="{x:Bind ViewModel.Account.ImageShack,Mode=TwoWay,Converter={StaticResource SmmstuSdhbsgm}}" Content="sm.ms" />
-                <RadioButton x:Name="HceKqiace" IsChecked="{x:Bind ViewModel.Account.ImageShack,Mode=OneWay,Converter={StaticResource JiuyouStuSdhbsgm}}">
+                <!--<RadioButton x:Name="HceKqiace" IsChecked="{x:Bind ViewModel.Account.ImageShack,Mode=OneWay,Converter={StaticResource JiuyouStuSdhbsgm}}">
                     <RadioButton.Content>
                         <Grid>
                             <TextBlock x:Uid="九幽图床" Text="九幽图床" />
@@ -626,7 +626,7 @@
                     <TextBox x:Uid="九幽云存储" Margin="10,1,10,1" Header="九幽云存储key"
                              Text="{x:Bind View.JiuYouSecretId,Mode=TwoWay}"
                              PlaceholderText="留空使用默认服务器" />
-                </Grid>
+                </Grid>-->
                 <RadioButton x:Name="SvpezKac" IsChecked="{x:Bind ViewModel.Account.ImageShack,Mode=TwoWay,Converter={StaticResource QinStuSdhbsgm}}" Content="qiniu" />
                 <Grid Margin="20,0,0,0" 
                       Visibility="{x:Bind SvpezKac.IsChecked,Converter={StaticResource HavoDwcbbtxlr},Mode=OneWay}">
@@ -634,18 +634,20 @@
                         <StackPanel.Resources>
                             <Style TargetType="TextBox">
                                 <Setter Property="Margin" Value="10,1,10,1" />
-                                <Setter Property="PlaceholderText" Value="请仔细检查值" />
                             </Style>
                         </StackPanel.Resources>
 
                         <TextBox Margin="10,1,10,1" Header="AK"
-                                 Text="{x:Bind View.CloundAccound.AccessKey,Mode=TwoWay}" />
+                                 Text="{x:Bind View.CloundAccound.AccessKey,Mode=TwoWay}" 
+                                 PlaceholderText="使用私人图床空间"/>
                         <TextBox Margin="10,1,10,1" Header="SK"
-                                 Text="{x:Bind View.CloundAccound.SecretKey,Mode=TwoWay}" />
+                                 Text="{x:Bind View.CloundAccound.SecretKey,Mode=TwoWay}" 
+                                 PlaceholderText="如不知如何设置请联系 lindexi_gd@163.com"/>
                         <TextBox Margin="10,1,10,1" Header="Bucket"
                                  Text="{x:Bind View.CloundAccound.Bucket,Mode=TwoWay}" />
                         <TextBox x:Uid="域名" Margin="10,1,10,1" Header="域名"
-                                 Text="{x:Bind View.CloundAccound.Url,Mode=TwoWay}" />
+                                 Text="{x:Bind View.CloundAccound.Url,Mode=TwoWay}" 
+                                 PlaceholderText="私人图床空间域名"/>
                         <TextBox x:Uid="前缀" Margin="10,1,10,1" Header="前缀"
                                  Text="{x:Bind View.CloundAccound.Pname,Mode=TwoWay}"
                                  PlaceholderText="上传的图片添加的前缀" />

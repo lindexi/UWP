@@ -241,6 +241,8 @@
     <Language Code="no-no" InMinimumRequirementSet="true" />
     <Language Code="nso" InMinimumRequirementSet="true" />
     <Language Code="nso-za" InMinimumRequirementSet="true" />
+    <Language Code="om" InMinimumRequirementSet="false" />
+    <Language Code="om-et" InMinimumRequirementSet="false" />
     <Language Code="or" InMinimumRequirementSet="true" />
     <Language Code="or-in" InMinimumRequirementSet="true" />
     <Language Code="pa" InMinimumRequirementSet="true" />
@@ -368,12 +370,53 @@
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>43179.90040479E301</MainPackageIdentityName>
+    <MainPackageIdentityName>43179.EN3C</MainPackageIdentityName>
+    <MainPackageIdentityName>43179.Qpush</MainPackageIdentityName>
     <MainPackageIdentityName>43179.uwp</MainPackageIdentityName>
     <MainPackageIdentityName>43179.22502F2EDDECC</MainPackageIdentityName>
     <MainPackageIdentityName>43179.winMarkdown</MainPackageIdentityName>
     <MainPackageIdentityName>43179.25442BE16C8E0</MainPackageIdentityName>
     <MainPackageIdentityName>43179.171160C88AB1</MainPackageIdentityName>
     <MainPackageIdentityName>43179.5635982EE69E1</MainPackageIdentityName>
+    <MainPackageIdentityName>43179.408450ADF2314</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH562R2" />
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH562R2">
+    <BundleInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>X86</PackageArchitecture>
+        <PackageMaxArchitectureVersion>2.5.0.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>X64</PackageArchitecture>
+        <PackageMaxArchitectureVersion>2.5.0.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Arm</PackageArchitecture>
+        <PackageMaxArchitectureVersion>2.5.0.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>2.5.0.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>2.5.0.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>2.5.0.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Neutral</PackageArchitecture>
+        <PackageMaxArchitectureVersion>2.5.0.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+    </BundleInfo>
+  </PackageInfoList>
 </StoreAssociation>

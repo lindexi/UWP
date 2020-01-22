@@ -61,6 +61,12 @@ namespace BaqulukaNercerewhelbeba.Business
                                     _logger.LogInformation($"给{matterMost.Url}发送{blogDescription.Title}博客");
                                     matterMost.SendText($"[{blogDescription.Title}]({blogDescription.Url})");
                                     _logger.LogInformation($"发布 {blogDescription.Title}");
+
+                                    blogContext.PublishedBlogList.Add(new PublishedBlog()
+                                    {
+                                        Blog = blogDescription.Url,
+                                        MatterMost = matterMost.Url,
+                                    });
                                 }
                                 else
                                 {
@@ -77,11 +83,9 @@ namespace BaqulukaNercerewhelbeba.Business
                     blogContext.SaveChanges();
                 }
 
-                await Task.Delay(TimeSpan.FromSeconds(10));
+                await Task.Delay(TimeSpan.FromMinutes(10));
             }
         }
-
-
 
 
         private static async Task<List<BlogDescription>> GetBlog(string url)

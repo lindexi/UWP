@@ -66,7 +66,10 @@ namespace BaqulukaNercerewhelbeba.Business
                                     {
                                         Blog = blogDescription.Url,
                                         MatterMost = matterMost.Url,
+                                        Time = DateTime.Now,
                                     });
+
+                                    blogContext.SaveChanges();
                                 }
                                 else
                                 {

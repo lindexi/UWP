@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.UI.Xaml.Markup;
 
 namespace BitStamp.Model
 {

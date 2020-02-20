@@ -15,6 +15,8 @@ namespace BaqulukaNercerewhelbeba
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine(Environment.CommandLine);
+
             var build = CreateHostBuilder(args).Build(); 
 
             var rssCourier = build.Services.GetService<RssCourier>();

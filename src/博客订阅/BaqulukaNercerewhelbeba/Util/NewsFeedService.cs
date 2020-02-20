@@ -47,31 +47,38 @@ namespace BaqulukaNercerewhelbeba.Util
         {
             var rssNewsItems = new List<ISyndicationItem>();
 
-            var httpClient = new HttpClient()
+            try
             {
-                Timeout = TimeSpan.FromMinutes(10)
-            };
-            var xml = await httpClient.GetStringAsync(_feedUri);
-            Console.WriteLine($"Get {_feedUri}");
-
-            using (var xmlReader = XmlReader.Create(new StringReader(xml)))
-            {
-                XmlFeedReader feedReader = GetXmlFeedReader(xml, xmlReader);
-                Console.WriteLine("Read");
-                while (await feedReader.Read())
+                var httpClient = new HttpClient()
                 {
-                    try
+                    Timeout = TimeSpan.FromMinutes(10)
+                };
+                var xml = await httpClient.GetStringAsync(_feedUri);
+                Console.WriteLine($"Get {_feedUri}");
+
+                using (var xmlReader = XmlReader.Create(new StringReader(xml)))
+                {
+                    XmlFeedReader feedReader = GetXmlFeedReader(xml, xmlReader);
+                    Console.WriteLine("Read");
+                    while (await feedReader.Read())
                     {
-                        if (feedReader.ElementType == SyndicationElementType.Item)
+                        try
                         {
-                            ISyndicationItem item = await feedReader.ReadItem();
-                            rssNewsItems.Add(item);
+                            if (feedReader.ElementType == SyndicationElementType.Item)
+                            {
+                                ISyndicationItem item = await feedReader.ReadItem();
+                                rssNewsItems.Add(item);
+                            }
+                        }
+                        catch (Exception e)
+                        {
                         }
                     }
-                    catch (Exception e)
-                    {
-                    }
                 }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
             }
 
             return rssNewsItems.OrderByDescending(p => p.LastUpdated).ToList();

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace BaqulukaNercerewhelbeba.Business
 {
     /// <summary>
-    /// ½«Rss²©¿Í·¢ËÍ¸÷¸öMatterMostÁ´½Ó
+    /// å°†Rssåšå®¢å‘é€å„ä¸ªMatterMosté“¾æ¥
     /// </summary>
     public class RssCourier
     {
@@ -25,13 +25,13 @@ namespace BaqulukaNercerewhelbeba.Business
         }
 
         /// <summary>
-        /// Æô¶¯
+        /// å¯åŠ¨
         /// </summary>
         public async void Start()
         {
             while (true)
             {
-                _logger.LogInformation($"{DateTime.Now} ¿ªÊ¼À­È¡²©¿Í");
+                _logger.LogInformation($"{DateTime.Now} å¼€å§‹æ‹‰å–åšå®¢");
                 var minTime = TimeSpan.FromDays(1);
 
                 using (var serviceScope = _serviceProvider.CreateScope())
@@ -48,19 +48,19 @@ namespace BaqulukaNercerewhelbeba.Business
 
                             if (distance > minTime)
                             {
-                                _logger.LogInformation($"{blogDescription.Title} ·¢²¼Ê±¼ä {blogDescription.Time} ¾àÀëµ±Ç°{distance.TotalDays:0}");
+                                _logger.LogInformation($"{blogDescription.Title} å‘å¸ƒæ—¶é—´ {blogDescription.Time} è·ç¦»å½“å‰{distance.TotalDays:0}");
                                 continue;
                             }
 
                             foreach (var matterMost in blogContext.Blog.Where(temp => temp.BlogRss == blog.BlogRss).Select(temp => new MatterMost(temp.MatterMostUrl)))
                             {
-                                // ×î½üÃ»ÓĞ·¢²¼¸øÕâ¸ömattermostÕâ¸ö²©¿Í
+                                // æœ€è¿‘æ²¡æœ‰å‘å¸ƒç»™è¿™ä¸ªmattermostè¿™ä¸ªåšå®¢
                                 if (blogContext.PublishedBlogList.All(temp =>
                                     temp.Blog != blogDescription.Url && temp.MatterMost != matterMost.Url))
                                 {
-                                    _logger.LogInformation($"¸ø{matterMost.Url}·¢ËÍ{blogDescription.Title}²©¿Í");
+                                    _logger.LogInformation($"ç»™{matterMost.Url}å‘é€{blogDescription.Title}åšå®¢");
                                     matterMost.SendText($"[{blogDescription.Title}]({blogDescription.Url})");
-                                    _logger.LogInformation($"·¢²¼ {blogDescription.Title}");
+                                    _logger.LogInformation($"å‘å¸ƒ {blogDescription.Title}");
 
                                     blogContext.PublishedBlogList.Add(new PublishedBlog()
                                     {
@@ -73,7 +73,7 @@ namespace BaqulukaNercerewhelbeba.Business
                                 }
                                 else
                                 {
-                                    _logger.LogInformation($"{blogDescription.Title}×î½ü{matterMost.Url}·¢²¼¹ı");
+                                    _logger.LogInformation($"{blogDescription.Title}æœ€è¿‘{matterMost.Url}å‘å¸ƒè¿‡");
                                 }
                             }
                         }

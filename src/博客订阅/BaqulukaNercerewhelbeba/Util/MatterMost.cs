@@ -22,6 +22,7 @@ namespace BaqulukaNercerewhelbeba.Util
                 text = text
             });
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            System.Console.WriteLine($"Post {Url} {json}");
             httpClient.PostAsync(Url, content);
         }
     }

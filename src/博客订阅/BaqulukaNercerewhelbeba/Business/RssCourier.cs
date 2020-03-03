@@ -32,7 +32,7 @@ namespace BaqulukaNercerewhelbeba.Business
             while (true)
             {
                 _logger.LogInformation($"{DateTime.Now} 开始拉取博客");
-                var minTime = TimeSpan.FromDays(1);
+                var minTime = TimeSpan.FromDays(2);
 
                 using (var serviceScope = _serviceProvider.CreateScope())
                 {
@@ -77,8 +77,6 @@ namespace BaqulukaNercerewhelbeba.Business
                                 }
                             }
                         }
-
-
                     }
 
                     blogContext.PublishedBlogList.RemoveRange(blogContext.PublishedBlogList.Where(publishedBlog => (DateTime.Now - publishedBlog.Time) > minTime));

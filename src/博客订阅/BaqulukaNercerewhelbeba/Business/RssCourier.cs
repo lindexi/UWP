@@ -54,9 +54,12 @@ namespace BaqulukaNercerewhelbeba.Business
 
                             foreach (var matterMost in blogContext.Blog.Where(temp => temp.BlogRss == blog.BlogRss).Select(temp => new MatterMost(temp.MatterMostUrl)))
                             {
+                                var publishedBlog = blogContext.PublishedBlogList
+                                    .FirstOrDefault(temp =>
+                                    temp.Blog == blogDescription.Url && temp.MatterMost == matterMost.Url);
+
                                 // 最近没有发布给这个mattermost这个博客
-                                if (blogContext.PublishedBlogList.All(temp =>
-                                    temp.Blog != blogDescription.Url && temp.MatterMost != matterMost.Url))
+                                if (publishedBlog is null)
                                 {
                                     _logger.LogInformation($"给{matterMost.Url}发送{blogDescription.Title}博客");
                                     matterMost.SendText($"[{blogDescription.Title}]({blogDescription.Url})");
@@ -73,7 +76,7 @@ namespace BaqulukaNercerewhelbeba.Business
                                 }
                                 else
                                 {
-                                    _logger.LogInformation($"{blogDescription.Title}最近{matterMost.Url}发布过");
+                                    _logger.LogInformation($"{blogDescription.Title}在 {publishedBlog.Time} 最近{matterMost.Url}发布过");
                                 }
                             }
                         }

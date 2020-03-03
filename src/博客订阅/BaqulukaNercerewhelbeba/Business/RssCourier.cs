@@ -52,33 +52,7 @@ namespace BaqulukaNercerewhelbeba.Business
                                 continue;
                             }
 
-                            foreach (var matterMost in blogContext.Blog.Where(temp => temp.BlogRss == blog.BlogRss).Select(temp => new MatterMost(temp.MatterMostUrl)))
-                            {
-                                var publishedBlog = blogContext.PublishedBlogList
-                                    .FirstOrDefault(temp =>
-                                    temp.Blog == blogDescription.Url && temp.MatterMost == matterMost.Url);
-
-                                // 最近没有发布给这个mattermost这个博客
-                                if (publishedBlog is null)
-                                {
-                                    _logger.LogInformation($"给{matterMost.Url}发送{blogDescription.Title}博客");
-                                    matterMost.SendText($"[{blogDescription.Title}]({blogDescription.Url})");
-                                    _logger.LogInformation($"发布 {blogDescription.Title}");
-
-                                    blogContext.PublishedBlogList.Add(new PublishedBlog()
-                                    {
-                                        Blog = blogDescription.Url,
-                                        MatterMost = matterMost.Url,
-                                        Time = DateTime.Now,
-                                    });
-
-                                    blogContext.SaveChanges();
-                                }
-                                else
-                                {
-                                    _logger.LogInformation($"{blogDescription.Title}在 {publishedBlog.Time} 最近{matterMost.Url}发布过");
-                                }
-                            }
+                            PostBlog(blogContext, blog.BlogRss, blogDescription);
                         }
                     }
 
@@ -88,9 +62,53 @@ namespace BaqulukaNercerewhelbeba.Business
                 }
 
                 await Task.Delay(TimeSpan.FromMinutes(10));
+                await Task.Delay(TimeSpan.FromSeconds(1));
             }
         }
 
+        private void PostBlog(BlogContext blogContext, string blogRss, BlogDescription blogDescription)
+        {
+            foreach (var blog in blogContext.Blog.Where(temp => temp.BlogRss == blogRss))
+            {
+                var publishedBlog = blogContext.PublishedBlogList
+                    .FirstOrDefault(temp =>
+                    temp.Blog == blogDescription.Url && temp.MatterMost == blog.MatterMostUrl);
+
+                // 最近没有发布给这个mattermost这个博客
+                if (publishedBlog is null)
+                {
+                    _logger.LogInformation($"给{blog.MatterMostUrl}发送{blogDescription.Title}博客");
+
+                    var text = $"[{blogDescription.Title}]({blogDescription.Url})";
+
+                    if (blog.MatterMostUrl.Contains("qyapi.weixin"))
+                    {
+                        var qyweixin = new Qyweixin();
+                        qyweixin.SendText(blog.MatterMostUrl, text);
+                    }
+                    else
+                    {
+                        var matterMost = new MatterMost();
+                        matterMost.SendText(blog.MatterMostUrl, text);
+                    }
+
+                    _logger.LogInformation($"发布 {blogDescription.Title}");
+
+                    blogContext.PublishedBlogList.Add(new PublishedBlog()
+                    {
+                        Blog = blogDescription.Url,
+                        MatterMost = blog.MatterMostUrl,
+                        Time = DateTime.Now,
+                    });
+
+                    blogContext.SaveChanges();
+                }
+                else
+                {
+                    _logger.LogInformation($"{blogDescription.Title}在 {publishedBlog.Time} 最近{blog.MatterMostUrl}发布过");
+                }
+            }
+        }
 
         private static async Task<List<BlogDescription>> GetBlog(string url)
         {

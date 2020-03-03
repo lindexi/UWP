@@ -8,9 +8,9 @@ namespace BaqulukaNercerewhelbeba.Model
         public int Id { set; get; }
 
         /// <summary>
-        /// 发送到哪个MatterMost地址
+        /// 发送到哪个地址
         /// </summary>
-        public string MatterMostUrl { set; get; }
+        public string ServerUrl { set; get; }
 
         /// <summary>
         /// 博客订阅链接

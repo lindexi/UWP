@@ -72,24 +72,24 @@ namespace BaqulukaNercerewhelbeba.Business
             {
                 var publishedBlog = blogContext.PublishedBlogList
                     .FirstOrDefault(temp =>
-                    temp.Blog == blogDescription.Url && temp.MatterMost == blog.MatterMostUrl);
+                    temp.Blog == blogDescription.Url && temp.MatterMost == blog.ServerUrl);
 
                 // 最近没有发布给这个mattermost这个博客
                 if (publishedBlog is null)
                 {
-                    _logger.LogInformation($"给{blog.MatterMostUrl}发送{blogDescription.Title}博客");
+                    _logger.LogInformation($"给{blog.ServerUrl}发送{blogDescription.Title}博客");
 
                     var text = $"[{blogDescription.Title}]({blogDescription.Url})";
 
-                    if (blog.MatterMostUrl.Contains("qyapi.weixin"))
+                    if (blog.ServerUrl.Contains("qyapi.weixin"))
                     {
                         var qyweixin = new Qyweixin();
-                        qyweixin.SendText(blog.MatterMostUrl, text);
+                        qyweixin.SendText(blog.ServerUrl, text);
                     }
                     else
                     {
                         var matterMost = new MatterMost();
-                        matterMost.SendText(blog.MatterMostUrl, text);
+                        matterMost.SendText(blog.ServerUrl, text);
                     }
 
                     _logger.LogInformation($"发布 {blogDescription.Title}");
@@ -97,7 +97,7 @@ namespace BaqulukaNercerewhelbeba.Business
                     blogContext.PublishedBlogList.Add(new PublishedBlog()
                     {
                         Blog = blogDescription.Url,
-                        MatterMost = blog.MatterMostUrl,
+                        MatterMost = blog.ServerUrl,
                         Time = DateTime.Now,
                     });
 
@@ -105,7 +105,7 @@ namespace BaqulukaNercerewhelbeba.Business
                 }
                 else
                 {
-                    _logger.LogInformation($"{blogDescription.Title}在 {publishedBlog.Time} 最近{blog.MatterMostUrl}发布过");
+                    _logger.LogInformation($"{blogDescription.Title}在 {publishedBlog.Time} 最近{blog.ServerUrl}发布过");
                 }
             }
         }

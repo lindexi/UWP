@@ -36,8 +36,9 @@ namespace BaqulukaNercerewhelbeba.Business
 
             using (var serviceScope = _serviceProvider.CreateScope())
             {
+                _logger.LogInformation($"开始读取数据库");
                 await using var blogContext = serviceScope.ServiceProvider.GetService<BlogContext>();
-
+                _logger.LogInformation($"开始遍历数据库");
                 await foreach (var blog in blogContext.Blog)
                 {
                     var blogDescriptionList = await GetBlog(blog.BlogRss);
@@ -60,9 +61,11 @@ namespace BaqulukaNercerewhelbeba.Business
                 blogContext.PublishedBlogList.RemoveRange(
                     blogContext.PublishedBlogList.Where(publishedBlog =>
                         (DateTime.Now - publishedBlog.Time) > minTime));
-
+                _logger.LogInformation($"开始保存数据库");
                 blogContext.SaveChanges();
             }
+
+            _logger.LogInformation($"{DateTime.Now} 拉取博客完成");
         }
 
         private readonly INotifyProvider _notifyProvider;

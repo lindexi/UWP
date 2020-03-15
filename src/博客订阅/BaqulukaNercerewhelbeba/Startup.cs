@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using BaqulukaNercerewhelbeba.Business;
 using BaqulukaNercerewhelbeba.Model;
@@ -39,8 +41,47 @@ namespace BaqulukaNercerewhelbeba
 
             services.AddSingleton<RssCourier>();
 
+            FindDb(services);
+        }
+
+        private void FindDb(IServiceCollection services)
+        {
+            // 如果配置里面有说到路径的话，使用配置的文件，如果没有尝试从环境变量获取
+            const string sqliteFilePath = "SqliteFilePath";
+
+            var filePath = Configuration[sqliteFilePath];
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                Console.WriteLine($"Read {filePath} from config");
+                SetSqlite(services, filePath);
+                return;
+            }
+
+            // 尝试从环境变量获取
+            filePath = Environment.GetEnvironmentVariable(sqliteFilePath);
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                Console.WriteLine($"Read {filePath} from Environment value");
+                SetSqlite(services, filePath);
+                return;
+            }
+
+            Console.WriteLine($"Can not find the db file path, will use memory db");
             services.AddDbContext<BlogContext>(options =>
                 options.UseInMemoryDatabase("Blog"));
+        }
+
+        private void SetSqlite(IServiceCollection services, string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(filePath)));
+
+                var emptyDb = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "blog.db");
+                File.Copy(emptyDb, filePath);
+            }
+
+            services.AddDbContext<BlogContext>(option => option.UseSqlite($"Filename={filePath}"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

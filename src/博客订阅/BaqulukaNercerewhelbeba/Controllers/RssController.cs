@@ -26,6 +26,8 @@ namespace BaqulukaNercerewhelbeba.Controllers
             {
                 if (blogRequest.BlogList != null)
                 {
+                    var blogList = new List<Blog>();
+
                     foreach (var blog in blogRequest.BlogList.Select(blog => new Blog()
                     {
                         ServerUrl = blogRequest.MatterMostUrl,
@@ -33,15 +35,20 @@ namespace BaqulukaNercerewhelbeba.Controllers
                     }))
                     {
                         // 判断没有加入过
-                        if (_blogContext.Blog.All(temp => temp.BlogRss != blog.BlogRss && temp.ServerUrl != blog.ServerUrl))
+                        if (_blogContext.Blog.All(temp => temp.BlogRss != blog.BlogRss || temp.ServerUrl != blog.ServerUrl))
                         {
                             _blogContext.Blog.Add(blog);
+                            blogList.Add(blog);
                         }
                     }
 
                     _blogContext.SaveChanges();
 
-                    return Ok($"成功给{blogRequest.MatterMostUrl}添加{blogRequest.BlogList.Count}博客");
+                    return Ok(new
+                    {
+                        Text = $"成功给{blogRequest.MatterMostUrl}添加{blogList.Count}博客",
+                        BlogList = blogList,
+                    });
                 }
                 else
                 {

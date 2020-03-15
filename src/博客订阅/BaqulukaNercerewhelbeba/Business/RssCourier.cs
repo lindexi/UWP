@@ -13,58 +13,59 @@ namespace BaqulukaNercerewhelbeba.Business
     /// <summary>
     /// 将Rss博客发送各个MatterMost链接
     /// </summary>
-    public class RssCourier
+    public class RssCourier : IJob
     {
         private readonly ILogger<RssCourier> _logger;
         private readonly IServiceProvider _serviceProvider;
 
-        public RssCourier(ILogger<RssCourier> logger, IServiceProvider serviceProvider)
+        public RssCourier(ILogger<RssCourier> logger, IServiceProvider serviceProvider, IRssBlog rssBlog, INotifyProvider notifyProvider)
         {
             _logger = logger;
             _serviceProvider = serviceProvider;
+            _rssBlog = rssBlog;
+            _notifyProvider = notifyProvider;
         }
 
         /// <summary>
         /// 启动
         /// </summary>
-        public async void Start()
+        public async Task Start()
         {
-            while (true)
+            _logger.LogInformation($"{DateTime.Now} 开始拉取博客");
+            var minTime = TimeSpan.FromDays(2);
+
+            using (var serviceScope = _serviceProvider.CreateScope())
             {
-                _logger.LogInformation($"{DateTime.Now} 开始拉取博客");
-                var minTime = TimeSpan.FromDays(2);
+                await using var blogContext = serviceScope.ServiceProvider.GetService<BlogContext>();
 
-                using (var serviceScope = _serviceProvider.CreateScope())
+                await foreach (var blog in blogContext.Blog)
                 {
-                    await using var blogContext = serviceScope.ServiceProvider.GetService<BlogContext>();
+                    var blogDescriptionList = await GetBlog(blog.BlogRss);
 
-                    await foreach (var blog in blogContext.Blog)
+                    foreach (var blogDescription in blogDescriptionList)
                     {
-                        var blogDescriptionList = await GetBlog(blog.BlogRss);
+                        var distance = DateTime.Now - blogDescription.Time;
 
-                        foreach (var blogDescription in blogDescriptionList)
+                        if (distance > minTime)
                         {
-                            var distance = DateTime.Now - blogDescription.Time;
-
-                            if (distance > minTime)
-                            {
-                                _logger.LogInformation($"{blogDescription.Title} 发布时间 {blogDescription.Time} 距离当前{distance.TotalDays:0}");
-                                continue;
-                            }
-
-                            PostBlog(blogContext, blog.BlogRss, blogDescription);
+                            _logger.LogInformation(
+                                $"{blogDescription.Title} 发布时间 {blogDescription.Time} 距离当前{distance.TotalDays:0}");
+                            continue;
                         }
+
+                        PostBlog(blogContext, blog.BlogRss, blogDescription);
                     }
-
-                    blogContext.PublishedBlogList.RemoveRange(blogContext.PublishedBlogList.Where(publishedBlog => (DateTime.Now - publishedBlog.Time) > minTime));
-
-                    blogContext.SaveChanges();
                 }
 
-                await Task.Delay(TimeSpan.FromMinutes(10));
-                await Task.Delay(TimeSpan.FromSeconds(1));
+                blogContext.PublishedBlogList.RemoveRange(
+                    blogContext.PublishedBlogList.Where(publishedBlog =>
+                        (DateTime.Now - publishedBlog.Time) > minTime));
+
+                blogContext.SaveChanges();
             }
         }
+
+        private readonly INotifyProvider _notifyProvider;
 
         private void PostBlog(BlogContext blogContext, string blogRss, BlogDescription blogDescription)
         {
@@ -81,16 +82,7 @@ namespace BaqulukaNercerewhelbeba.Business
 
                     var text = $"[{blogDescription.Title}]({blogDescription.Url})";
 
-                    if (blog.ServerUrl.Contains("qyapi.weixin"))
-                    {
-                        var qyweixin = new Qyweixin();
-                        qyweixin.SendText(blog.ServerUrl, text);
-                    }
-                    else
-                    {
-                        var matterMost = new MatterMost();
-                        matterMost.SendText(blog.ServerUrl, text);
-                    }
+                    _notifyProvider.SendText(blog.ServerUrl, text);
 
                     _logger.LogInformation($"发布 {blogDescription.Title}");
 
@@ -110,36 +102,9 @@ namespace BaqulukaNercerewhelbeba.Business
             }
         }
 
-        private static async Task<List<BlogDescription>> GetBlog(string url)
+        private async Task<List<BlogDescription>> GetBlog(string url)
         {
-            var task = Task.Run(async () =>
-            {
-                var blogList = new List<BlogDescription>();
-                var newsFeedService = new NewsFeedService(url);
-                var syndicationItems = await newsFeedService.GetNewsFeed();
-                foreach (var syndicationItem in syndicationItems)
-                {
-                    var description =
-                        syndicationItem.Description.Substring(0, Math.Min(200, syndicationItem.Description.Length));
-                    var time = syndicationItem.Published;
-                    var uri = syndicationItem.Links.FirstOrDefault()?.Uri;
-
-                    if (time < syndicationItem.LastUpdated)
-                    {
-                        time = syndicationItem.LastUpdated;
-                    }
-
-                    blogList.Add(new BlogDescription()
-                    {
-                        Title = syndicationItem.Title,
-                        Description = description,
-                        Time = time.DateTime,
-                        Url = uri?.AbsoluteUri
-                    });
-                }
-
-                return blogList;
-            });
+            var task = Task.Run(async () => await FetchBlog(url));
 
             var t = Task.Delay(TimeSpan.FromMinutes(10));
             await Task.WhenAny(t, task);
@@ -151,5 +116,12 @@ namespace BaqulukaNercerewhelbeba.Business
 
             return new List<BlogDescription>();
         }
+
+        private async Task<List<BlogDescription>> FetchBlog(string url)
+        {
+            return await _rssBlog.FetchBlog(url);
+        }
+
+        private readonly IRssBlog _rssBlog;
     }
 }

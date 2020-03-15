@@ -1,6 +1,6 @@
 ﻿namespace BaqulukaNercerewhelbeba.Util
 {
-    public interface INotifyTool
+    public interface INotifyProvider
     {
         void SendText(string url, string text);
     }

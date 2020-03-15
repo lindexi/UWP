@@ -17,10 +17,12 @@ namespace BaqulukaNercerewhelbeba
         {
             Console.WriteLine(Environment.CommandLine);
 
-            var build = CreateHostBuilder(args).Build(); 
+            var build = CreateHostBuilder(args).Build();
 
             var rssCourier = build.Services.GetService<RssCourier>();
-            rssCourier.Start();
+            var taskWork = build.Services.GetService<TaskWork>();
+            taskWork.StartWork(rssCourier);
+
             build.Run();
         }
 

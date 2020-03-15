@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using BaqulukaNercerewhelbeba.Data;
+using BaqulukaNercerewhelbeba.Util;
 
 namespace BaqulukaNercerewhelbeba
 {
@@ -30,6 +31,11 @@ namespace BaqulukaNercerewhelbeba
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddTransient<ITimeDelay>(s => new TimeDelay());
+            services.AddTransient<IRssBlog>(s => new RssBlog());
+            services.AddTransient<INotifyProvider>(s => new NotifyProvider());
+            services.AddTransient<TaskWork>();
 
             services.AddSingleton<RssCourier>();
 

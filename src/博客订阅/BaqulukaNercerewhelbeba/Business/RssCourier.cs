@@ -58,9 +58,12 @@ namespace BaqulukaNercerewhelbeba.Business
                     }
                 }
 
+                // [客户端与服务器评估 - EF Core](https://docs.microsoft.com/zh-cn/ef/core/querying/client-eval )
+                var dateTime = DateTime.Now.AddDays(-1 * minTime.TotalDays);
+
                 blogContext.PublishedBlogList.RemoveRange(
                     blogContext.PublishedBlogList.Where(publishedBlog =>
-                        (DateTime.Now - publishedBlog.Time) > minTime));
+                        dateTime > publishedBlog.Time));
                 _logger.LogInformation($"开始保存数据库");
                 blogContext.SaveChanges();
             }

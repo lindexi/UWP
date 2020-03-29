@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Web.Http;
 using Newtonsoft.Json;
+using Sm.ms;
 
 namespace BitStamp.Model
 {
@@ -30,22 +32,16 @@ namespace BitStamp.Model
 
         public override async void UploadImage()
         {
-            string url = "https://sm.ms/api/upload";
-            HttpClient webHttpClient =
-                new HttpClient();
-            HttpMultipartFormDataContent httpMultipartFormDataContent =
-                new HttpMultipartFormDataContent();
-            var fileContent = new HttpStreamContent(await File.OpenAsync(FileAccessMode.Read));
-            fileContent.Headers.Add("Content-Type", "application/octet-stream");
+            var smms = new Smms("wXfWIIbNHrZrL1kQeL4QqLgClD4OXZu7");
 
-            var userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36";
-            webHttpClient.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
+            SmmsInfo smmsInfo = null;
 
-            httpMultipartFormDataContent.Add(fileContent, "smfile", File.Name);
             try
             {
-                var str = await webHttpClient.PostAsync(new Uri(url), httpMultipartFormDataContent);
-                ResponseString = str.Content.ToString();
+                var str = await smms.UploadImage(await File.OpenStreamForReadAsync(),File.Name);
+                ResponseString = str;
+
+                smmsInfo = JsonConvert.DeserializeObject<SmmsInfo>(str);
             }
             catch (Exception e)
             {
@@ -54,12 +50,11 @@ namespace BitStamp.Model
                 return;
             }
 
-            Smms smms = JsonConvert.DeserializeObject<Smms>(ResponseString);
-            if (smms != null)
+            if (smmsInfo != null)
             {
-                if (smms.code == "success")
+                if (smmsInfo.Success )
                 {
-                    Url = smms.data.url;
+                    Url = smmsInfo.Data.Url;
                     OnUploaded?.Invoke(this, true);
                 }
                 else
@@ -73,25 +68,94 @@ namespace BitStamp.Model
             }
         }
 
-        private class Smms
+
+        public class SmmsInfo
         {
-            public string code { get; set; }
-            public Data data { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("success")]
+            public bool Success { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("code")]
+            public string Code { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("message")]
+            public string Message { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("data")]
+            public Data Data { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("RequestId")]
+            public string RequestId { get;set; }
+
         }
 
-        private class Data
+        public class Data
         {
-            public int width { get; set; }
-            public int height { get; set; }
-            public string filename { get; set; }
-            public string storename { get; set; }
-            public int size { get; set; }
-            public string path { get; set; }
-            public string hash { get; set; }
-            public int timestamp { get; set; }
-            public string ip { get; set; }
-            public string url { get; set; }
-            public string delete { get; set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("file_id")]
+            public int FileId { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("width")]
+            public int Width { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("height")]
+            public int Height { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("filename")]
+            public string Filename { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("storename")]
+            public string StoreName { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("size")]
+            public int Size { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("path")]
+            public string Path { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("hash")]
+            public string Hash { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("url")]
+            public string Url { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("delete")]
+            public string Delete { get;set; }
+            /// <summary>
+            /// 
+            /// </summary>
+            [JsonProperty("page")]
+            public string Page { get;set; }
         }
     }
 }

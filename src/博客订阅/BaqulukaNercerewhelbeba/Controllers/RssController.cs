@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using BaqulukaNercerewhelbeba.Data;
 using BaqulukaNercerewhelbeba.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +21,7 @@ namespace BaqulukaNercerewhelbeba.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]BlogRequest blogRequest)
+        public IActionResult Post([FromBody] BlogRequest blogRequest)
         {
             if (!string.IsNullOrEmpty(blogRequest.MatterMostUrl))
             {
@@ -59,6 +60,28 @@ namespace BaqulukaNercerewhelbeba.Controllers
             {
                 return BadRequest("MatterMostUrl 不能为空");
             }
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteBlog([FromBody] BlogRequest blogRequest)
+        {
+            var str = new StringBuilder();
+            str.AppendLine($"从 {blogRequest.MatterMostUrl} 移除");
+            List<Blog> removeBlogList = new List<Blog>();
+            foreach (var blog in blogRequest.BlogList)
+            {
+                removeBlogList.AddRange(_blogContext.Blog.Where(temp => temp.BlogRss == blog && temp.ServerUrl == blogRequest.MatterMostUrl));
+            }
+
+            _blogContext.Blog.RemoveRange(removeBlogList);
+            _blogContext.SaveChanges();
+
+            foreach (var blog in removeBlogList)
+            {
+                str.AppendLine(blog.BlogRss);
+            }
+
+            return Ok(str.ToString());
         }
 
         public IEnumerable<Blog> Get()

@@ -52,6 +52,36 @@ namespace dotnetCampus.GitCommand
             return File.ReadAllLines(file);
         }
 
+        public string GetCurrentCommit()
+        {
+            var file = Path.GetTempFileName();
+            Control($"rev-parse HEAD > \"{file}\"");
+            var commit = File.ReadAllText(file).Trim();
+            try
+            {
+                File.Delete(file);
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return commit;
+        }
+
+        public int GetGitCommitRevisionCount()
+        {
+            var control = Control("rev-list --count HEAD");
+            var str = control.Split("\n", StringSplitOptions.RemoveEmptyEntries).Select(temp => temp.Replace("\r", "")).Where(temp => !string.IsNullOrEmpty(temp)).Reverse().FirstOrDefault();
+
+            if (int.TryParse(str, out var count))
+            {
+                return count;
+            }
+
+            return 0;
+        }
+
         public string[] GetLogCommit(string formCommit, string toCommit)
         {
             var file = Path.GetTempFileName();
@@ -100,23 +130,28 @@ namespace dotnetCampus.GitCommand
         {
             str = FileStr() + str;
             WriteLog(str);
-            str = Command(str,Repo.FullName);
+            str = Command(str, Repo.FullName);
 
             WriteLog(str);
             return str;
         }
 
-        private static void WriteLog(string str)
+        private void WriteLog(string str)
         {
-            Console.WriteLine(str);
+            if (NeedWriteLog)
+            {
+                Console.WriteLine(str);
+            }
         }
+
+        public bool NeedWriteLog { set; get; } = true;
 
         private string FileStr()
         {
             return string.Format(GitStr, Repo.FullName);
         }
 
-        private static string Command(string str,string workingDirectory)
+        private static string Command(string str, string workingDirectory)
         {
             // string str = Console.ReadLine();
             //System.Console.InputEncoding = System.Text.Encoding.UTF8;//乱码

@@ -62,7 +62,8 @@ namespace BaqulukaNercerewhelbeba.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPost]
+        [Route("DeleteBlog")]
         public IActionResult DeleteBlog([FromBody] BlogRequest blogRequest)
         {
             var str = new StringBuilder();

@@ -67,7 +67,7 @@ namespace BaqulukaNercerewhelbeba.Controllers
         public IActionResult DeleteBlog([FromBody] BlogRequest blogRequest)
         {
             var str = new StringBuilder();
-            str.AppendLine($"从 {blogRequest.MatterMostUrl} 移除");
+            str.AppendLine($"从 {blogRequest.MatterMostUrl} 移除 {string.Join(" ; ", blogRequest.BlogList)} 博客");
             List<Blog> removeBlogList = new List<Blog>();
             foreach (var blog in blogRequest.BlogList)
             {
@@ -76,6 +76,8 @@ namespace BaqulukaNercerewhelbeba.Controllers
 
             _blogContext.Blog.RemoveRange(removeBlogList);
             _blogContext.SaveChanges();
+
+            str.AppendLine($"删除 {removeBlogList.Count} 个");
 
             foreach (var blog in removeBlogList)
             {

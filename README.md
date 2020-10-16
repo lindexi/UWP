@@ -9,6 +9,12 @@
 
 ## 控件
 
+ - [手绘对称图形控件 仅 WPF 可用](wpf/WPFFlipDrawingCanvas)
+
+ [![](https://img.shields.io/nuget/v/Lindexi.Control.WPFFlipDrawingCanvas.svg)](https://www.nuget.org/packages/Lindexi.Control.WPFFlipDrawingCanvas)
+
+ ![](docs/image/WPFFlipDrawingCanvas.gif)
+
  - [白天黑夜按钮](uwp/control/NightDayThemeToggleButton)
 
  ![](uwp/control/NightDayThemeToggleButton/NightDayThemeToggleButton/Assets/NightDayThemeToggleButton.gif)

@@ -5,6 +5,16 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>Lindexi.Control.WPFFlipDrawingCanvas</RootNamespace>
     <LangVersion>latest</LangVersion>
+    <PackageId>Lindexi.Control.WPFFlipDrawingCanvas</PackageId>
+    <Authors>lindexi</Authors>
+    <Company>lindexi</Company>
+    <Product>Lindexi.Control.WPFFlipDrawingCanvas</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/lindexi/uwp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lindexi/uwp</RepositoryUrl>
+    <Description>手绘对称图形控件
+
+Inking Flip Image Control</Description>
   </PropertyGroup>
 
 </Project>

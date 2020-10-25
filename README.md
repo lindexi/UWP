@@ -1,4 +1,4 @@
-﻿# Uwp
+﻿# UWP
 
 [中文](#中文)
 [English](#English)
@@ -139,13 +139,13 @@ docker build .
 |  `lindexi.MVVM.Framework`      |[![NuGet](https://img.shields.io/nuget/v/lindexi.MVVM.Framework.svg)](https://www.nuget.org/packages/lindexi.MVVM.Framework/)|
 |  `lindexi.wpf.Framework`       |[![NuGet](https://img.shields.io/nuget/v/lindexi.wpf.Framework.svg)](https://www.nuget.org/packages/lindexi.wpf.Framework/)|
 
-如果是 UWP 程序，通过 Nuget 安装
+如果是 UWP 程序，通过 NuGet 安装方法如下
 
 ```csharp
 Install-Package lindexi.uwp.Framework
 ```
 
-如果是 WPF 程序，通过 Nuget 安装
+如果是 WPF 程序，通过 NuGet 安装方法如下
 
 ```csharp
 Install-Package lindexi.wpf.Framework

@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/lindexi/UWP</PackageProjectUrl>
 
     <RepositoryType>git</RepositoryType>
-    <Copyright>Copyright 漏 2020 lindexi, All Rights Reserved.</Copyright> 
+    <Copyright>Copyright © 2020 lindexi, All Rights Reserved.</Copyright> 
   </PropertyGroup>
 
   <ItemGroup>

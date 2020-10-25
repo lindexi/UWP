@@ -24,7 +24,7 @@ namespace lindexi.uwp.control.Button.Control
 
         public string Text
         {
-            get { return (string)GetValue(TextProperty); }
+            get { return (string) GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
 
@@ -38,17 +38,17 @@ namespace lindexi.uwp.control.Button.Control
                     {
                         return;
                     }
-                    if(temp._textBlock!=null)
+                    if (temp._textBlock != null)
                     {
                         temp._textBlock.Text = (string) e.NewValue;
                     }
                 }));
 
-        
+
 
         public bool Complete
         {
-            get { return (bool)GetValue(CompleteProperty); }
+            get { return (bool) GetValue(CompleteProperty); }
             set { SetValue(CompleteProperty, value); }
         }
 
@@ -64,8 +64,8 @@ namespace lindexi.uwp.control.Button.Control
             {
                 return;
             }
-            
-            bool temp = (bool)e.NewValue;
+
+            bool temp = (bool) e.NewValue;
 
 
             //button._textBlock.Visibility = temp ? Visibility.Visible : Visibility.Collapsed;
@@ -89,7 +89,7 @@ namespace lindexi.uwp.control.Button.Control
 
             if (_proress != null)
             {
-                _proress.Visibility=Visibility.Collapsed;
+                _proress.Visibility = Visibility.Collapsed;
             }
         }
     }

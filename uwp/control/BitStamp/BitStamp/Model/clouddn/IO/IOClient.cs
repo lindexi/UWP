@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using Windows.Storage;
 using lindexi.uwp.ImageShack.Model.Auth.digest;
 using lindexi.uwp.ImageShack.Model.RPC;
 using lindexi.uwp.ImageShack.Model.RS;
 using Qiniu.Conf;
+using Windows.Storage;
 using HttpStatusCode = System.Net.HttpStatusCode;
 
 namespace lindexi.uwp.ImageShack.Model.IO

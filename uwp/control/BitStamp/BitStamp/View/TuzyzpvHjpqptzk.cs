@@ -15,7 +15,7 @@ namespace BitStamp
                 var dljolSposrtc = s as TuzyzpvHjpqptzk;
                 if (dljolSposrtc != null)
                 {
-                    
+
                 }
             }));
 
@@ -27,7 +27,7 @@ namespace BitStamp
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            
+
 
             var element = (UIElement) Content;
             if (element != null)

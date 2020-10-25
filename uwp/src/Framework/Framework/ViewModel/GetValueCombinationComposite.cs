@@ -1,19 +1,19 @@
-using System;
+ï»¿using System;
 using lindexi.uwp.Framework.ViewModel;
 
 namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
-    /// ³¢ÊÔ´ÓÖ¸¶¨µÄ ViewModel »ñÈ¡Öµ
+    /// å°è¯•ä»æŒ‡å®šçš„ ViewModel è·å–å€¼
     /// </summary>
     /// <typeparam name="T"></typeparam>
     internal class GetValueCombinationComposite<T> : CombinationComposite
     {
         /// <summary>
-        /// ³¢ÊÔ´ÓÖ¸¶¨µÄ ViewModel »ñÈ¡Öµ
+        /// å°è¯•ä»æŒ‡å®šçš„ ViewModel è·å–å€¼
         /// </summary>
         /// <param name="source"></param>
-        /// <param name="continueWith">ÔÚ»ñÈ¡ÖµÖ®ºó×öµÄ</param>
+        /// <param name="continueWith">åœ¨è·å–å€¼ä¹‹ååšçš„</param>
         public GetValueCombinationComposite(ViewModelBase source, Action<T> continueWith) : base(source)
         {
             Goal = new PredicateInheritViewModel<IViewModelValue<T>>();

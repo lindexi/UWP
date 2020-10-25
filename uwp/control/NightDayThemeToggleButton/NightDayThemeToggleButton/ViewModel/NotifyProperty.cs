@@ -34,7 +34,7 @@ namespace NightDayThemeToggleButton.ViewModel
             PropertyChangedEventHandler handler = PropertyChanged;
             await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                 () =>
-                {  
+                {
                     handler?.Invoke(this, new PropertyChangedEventArgs(name));
                 });
         }

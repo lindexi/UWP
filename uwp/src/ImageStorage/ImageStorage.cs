@@ -95,7 +95,7 @@ namespace lindexi.uwp.src.ImageStorage
         private static async Task<byte[]> ConvertIRandomAccessStreamByte(IRandomAccessStream stream)
         {
             DataReader read = new DataReader(stream.GetInputStreamAt(0));
-            await read.LoadAsync((uint)stream.Size);
+            await read.LoadAsync((uint) stream.Size);
             byte[] temp = new byte[stream.Size];
             read.ReadBytes(temp);
             return temp;

@@ -7,12 +7,12 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
-using Windows.Storage;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Markup;
 using Mntone.SvgForXaml;
 using Mntone.SvgForXaml.UI.Xaml;
 using UwpConvertSimplifie.ViewModel;
+using Windows.Storage;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Markup;
 
 namespace ScalableVectorGraphic.ViewModel
 {
@@ -85,10 +85,10 @@ namespace ScalableVectorGraphic.ViewModel
             XAttribute sizeAttrib = svgRootNode.Attributes().ToList().FirstOrDefault(a => a.Name == "viewBox");
             string size = sizeAttrib?.Value.Split(' ').ElementAtOrDefault(3);
 
-            string width= sizeAttrib?.Value.Split(' ').ElementAtOrDefault(2);
-            string height= sizeAttrib?.Value.Split(' ').ElementAtOrDefault(3);
+            string width = sizeAttrib?.Value.Split(' ').ElementAtOrDefault(2);
+            string height = sizeAttrib?.Value.Split(' ').ElementAtOrDefault(3);
             //Viewbox viewbox=new Viewbox();
-            Canvas canvas=new Canvas()
+            Canvas canvas = new Canvas()
             {
                 Width = double.Parse(width),
                 Height = double.Parse(height)
@@ -96,7 +96,7 @@ namespace ScalableVectorGraphic.ViewModel
 
             foreach (var temp in svgRootNode.Elements())
             {
-                
+
             }
 
             //check color
@@ -119,7 +119,7 @@ namespace ScalableVectorGraphic.ViewModel
                 }
             }
 
-         
+
         }
 
         //private static void ConvertFile(string filename, double fileCount, double total)

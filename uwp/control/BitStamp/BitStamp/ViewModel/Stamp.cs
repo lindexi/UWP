@@ -3,13 +3,13 @@
 
 using System;
 using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media.Imaging;
 using BitStamp.Model;
 using BitStamp.Model.Cimage;
 using lindexi.MVVM.Framework.ViewModel;
 using lindexi.uwp.ImageShack.Model;
+using Windows.Storage;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace BitStamp.ViewModel
 {

@@ -25,7 +25,7 @@ namespace ScalableVectorGraphic
     {
         public MainPage()
         {
-            View=new ViewModel.ViewModel();
+            View = new ViewModel.ViewModel();
             this.InitializeComponent();
             DataContext = View;
             Svgimage();
@@ -39,7 +39,7 @@ namespace ScalableVectorGraphic
 
         private async void Svgimage()
         {
-            var file =await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///assets//weather_sun.svg"));
+            var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///assets//weather_sun.svg"));
             await Svg.LoadFileAsync(file);
         }
 

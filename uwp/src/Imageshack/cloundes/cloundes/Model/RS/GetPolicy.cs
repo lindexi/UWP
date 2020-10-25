@@ -19,7 +19,7 @@ namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.RS
                 mac = new Mac(Config.ACCESS_KEY, Config.Encoding.GetBytes(Config.SECRET_KEY));
             }
 
-            UInt32 deadline = (UInt32) ((DateTime.Now.ToUniversalTime().Ticks - 621355968000000000)/10000000 + expires);
+            UInt32 deadline = (UInt32) ((DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000000 + expires);
             if (baseUrl.Contains("?"))
             {
                 baseUrl += "&e=";

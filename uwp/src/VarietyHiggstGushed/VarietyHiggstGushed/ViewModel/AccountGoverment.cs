@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using VarietyHiggstGushed.Model;
 using Windows.ApplicationModel.Core;
 using Windows.Storage;
 using Windows.UI.Core;
-using Newtonsoft.Json;
-using VarietyHiggstGushed.Model;
 
 namespace VarietyHiggstGushed.ViewModel
 {

@@ -32,7 +32,7 @@ namespace MaljawXartrere
 
         private void PenerfePowForqe_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (PenerfePowForqe.Text.Length == 6 || PenerfePowForqe.Text.Length==3 || PenerfePowForqe.Text.Length==8)
+            if (PenerfePowForqe.Text.Length == 6 || PenerfePowForqe.Text.Length == 3 || PenerfePowForqe.Text.Length == 8)
             {
                 try
                 {
@@ -41,7 +41,7 @@ namespace MaljawXartrere
                 catch (Exception exception)
                 {
                     Debug.WriteLine(exception);
-                    
+
                 }
             }
         }

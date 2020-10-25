@@ -31,11 +31,11 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// <summary>
         /// 正在跳转事件
         /// </summary>
-         event EventHandler<ViewModelPage> Navigating;
+        event EventHandler<ViewModelPage> Navigating;
 
         /// <summary>
         /// 跳转完成
         /// </summary>
-         event EventHandler<ViewModelPage> Navigated;
+        event EventHandler<ViewModelPage> Navigated;
     }
 }

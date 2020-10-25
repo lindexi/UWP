@@ -125,7 +125,7 @@ namespace lindexi.MVVM.Framework.ViewModel
             {
                 throw new ArgumentException("跳转时，提供跳转的类为空，需要先设置 Content 才可以跳转")
                 {
-                    Data = {{"Method", " Navigate(string key, object parameter, INavigateFrame content = null)"}}
+                    Data = { { "Method", " Navigate(string key, object parameter, INavigateFrame content = null)" } }
                 };
             }
 
@@ -133,7 +133,7 @@ namespace lindexi.MVVM.Framework.ViewModel
             {
                 throw new ArgumentException("找不到要跳转")
                 {
-                    Data = {{"Method", " Navigate(string key, object parameter, INavigateFrame content = null)"}}
+                    Data = { { "Method", " Navigate(string key, object parameter, INavigateFrame content = null)" } }
                 };
             }
 

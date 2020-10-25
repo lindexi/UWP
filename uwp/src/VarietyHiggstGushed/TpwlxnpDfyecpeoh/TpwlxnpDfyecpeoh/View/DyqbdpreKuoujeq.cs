@@ -11,7 +11,7 @@ namespace TpwlxnpDfyecpeoh.View
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            var tuikyyDikvqp = TuikyyDikvqps.FirstOrDefault(temp=>temp.KwxvrmxDhzyozzwx(item));
+            var tuikyyDikvqp = TuikyyDikvqps.FirstOrDefault(temp => temp.KwxvrmxDhzyozzwx(item));
             if (tuikyyDikvqp != null)
             {
                 return tuikyyDikvqp.TnhvrarvlDaz;

@@ -1,4 +1,4 @@
-namespace BitStamp.Model.Cimage
+﻿namespace BitStamp.Model.Cimage
 {
     public class AccountCimage
     {

@@ -10,8 +10,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Windows.Storage;
 using lindexi.uwp.ImageShack.Model;
+using Windows.Storage;
 using HttpClient = System.Net.Http.HttpClient;
 
 namespace BitStamp.Model.Cimage
@@ -86,7 +86,7 @@ namespace BitStamp.Model.Cimage
             str = await content.ReadAsStringAsync();
 
             str = await (await http.PostAsync(url, content)).Content.ReadAsStringAsync();
-            HandlCookie(handler,url);
+            HandlCookie(handler, url);
             //str = await http.GetStringAsync(url);
             //cookies = new CookieContainer();
             //cookies.MaxCookieSize = int.MaxValue;
@@ -122,12 +122,12 @@ namespace BitStamp.Model.Cimage
             //content=new MultipartContent();
             //((MultipartContent)content)
             content = new MultipartFormDataContent();
-            ((MultipartFormDataContent)content).Headers.Add("name", "file1");
+            ((MultipartFormDataContent) content).Headers.Add("name", "file1");
             //((MultipartFormDataContent)content)
-            ((MultipartFormDataContent)content).Headers.Add("filename", "20170114120751.png");
+            ((MultipartFormDataContent) content).Headers.Add("filename", "20170114120751.png");
             var stream = new StreamContent(await File.OpenStreamForReadAsync());
-            ((MultipartFormDataContent)content).Add(stream);
-            str = await ((MultipartFormDataContent)content).ReadAsStringAsync();
+            ((MultipartFormDataContent) content).Add(stream);
+            str = await ((MultipartFormDataContent) content).ReadAsStringAsync();
             //http://write.blog.csdn.net/article/UploadImgMarkdown?parenthost=write.blog.csdn.net
             url = new Uri("http://write.blog.csdn.net/article/UploadImgMarkdown?parenthost=write.blog.csdn.net");
             HandlCookie(handler, url);
@@ -235,7 +235,7 @@ namespace BitStamp.Model.Cimage
     {
         public static string _secretId;
         public static string _appId;
-        public static AccountCimage AccoutCimage { get; set; }=new AccountCimage();
-        public static CloundesAccound Accound { get; set; }=new CloundesAccound();
+        public static AccountCimage AccoutCimage { get; set; } = new AccountCimage();
+        public static CloundesAccound Accound { get; set; } = new CloundesAccound();
     }
 }

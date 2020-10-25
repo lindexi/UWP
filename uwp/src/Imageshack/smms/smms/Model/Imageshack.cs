@@ -56,11 +56,11 @@ namespace smms.Model
 
             var multipartFormDataContent = new MultipartFormDataContent();
             var fileContent = new StreamContent((await File.OpenAsync(FileAccessMode.Read)).AsStream());
-            fileContent.Headers.ContentType=new MediaTypeHeaderValue("application/octet-stream");
-            multipartFormDataContent.Add(fileContent,"smfile",File.Name);
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            multipartFormDataContent.Add(fileContent, "smfile", File.Name);
             var userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36";
             httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
-            var response =await httpClient.PostAsync(new Uri(url),multipartFormDataContent);
+            var response = await httpClient.PostAsync(new Uri(url), multipartFormDataContent);
             var str = await response.Content.ReadAsStringAsync();
 
             //HttpMultipartFormDataContent httpMultipartFormDataContent =

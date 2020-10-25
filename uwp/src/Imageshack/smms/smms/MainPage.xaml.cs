@@ -34,7 +34,7 @@ namespace smms
         {
             set;
             get;
-        }=new ViewModel();
+        } = new ViewModel();
 
         private void Grid_OnDragOver(object sender, DragEventArgs e)
         {
@@ -54,7 +54,7 @@ namespace smms
             try
             {
                 View.FileDataPackageView(e.DataView);
-               
+
             }
             finally
             {

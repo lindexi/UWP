@@ -1,18 +1,18 @@
-using System;
+ï»¿using System;
 using lindexi.MVVM.Framework.Annotations;
 using lindexi.uwp.Framework.ViewModel;
 
 namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
-    ///     ×éºÏ Composite ºÍ Message
+    ///     ç»„åˆ Composite å’Œ Message
     /// </summary>
     public class CombinationComposite : Composite, IMessage, ICombinationComposite
     {
         /// <summary>
-        /// ´´½¨×éºÏµÄCompositeÓÃÀ´´¦ÀíÏûÏ¢
+        /// åˆ›å»ºç»„åˆçš„Compositeç”¨æ¥å¤„ç†æ¶ˆæ¯
         /// </summary>
-        /// <param name="source">·¢ËÍÏûÏ¢µÄÀà</param>
+        /// <param name="source">å‘é€æ¶ˆæ¯çš„ç±»</param>
         public CombinationComposite([NotNull] ViewModelBase source)
         {
             if (ReferenceEquals(source, null)) throw new ArgumentNullException(nameof(source));
@@ -20,10 +20,10 @@ namespace lindexi.MVVM.Framework.ViewModel
         }
 
         /// <summary>
-        /// ´´½¨×éºÏµÄComposite£¬²¢ÇÒ¸æËßÈçºÎ´¦Àí
+        /// åˆ›å»ºç»„åˆçš„Compositeï¼Œå¹¶ä¸”å‘Šè¯‰å¦‚ä½•å¤„ç†
         /// </summary>
-        /// <param name="run">ÈçºÎ´¦Àí</param>
-        /// <param name="source">·¢ËÍÏûÏ¢µÄÀà</param>
+        /// <param name="run">å¦‚ä½•å¤„ç†</param>
+        /// <param name="source">å‘é€æ¶ˆæ¯çš„ç±»</param>
         public CombinationComposite([NotNull] Action<ViewModelBase, object> run, [NotNull] ViewModelBase source)
         {
             if (ReferenceEquals(run, null)) throw new ArgumentNullException(nameof(run));
@@ -34,7 +34,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         }
 
         /// <summary>
-        /// ¿ªÊ¼ÔËĞĞ
+        /// å¼€å§‹è¿è¡Œ
         /// </summary>
         /// <param name="source"></param>
         /// <param name="message"></param>
@@ -61,20 +61,20 @@ namespace lindexi.MVVM.Framework.ViewModel
         }
 
         /// <summary>
-        /// ÓÃÀ´´¦ÀíÏûÏ¢µÄ·½·¨
+        /// ç”¨æ¥å¤„ç†æ¶ˆæ¯çš„æ–¹æ³•
         /// </summary>
         protected Action<ViewModelBase, object> _run;
     }
 
     /// <summary>
-    /// ×éºÏ Composite ºÍ Message ÓÃÓÚÔÚ·¢ËÍÊ±¸æËßÈçºÎ´¦Àí
+    /// ç»„åˆ Composite å’Œ Message ç”¨äºåœ¨å‘é€æ—¶å‘Šè¯‰å¦‚ä½•å¤„ç†
     /// </summary>
-    /// <typeparam name="T">·¢ËÍµ½¶ÔÓ¦ÀàĞÍµÄ ViewModel £¬ÓÃÀ´ÔÚÕâ¸ö ViewModel ´¦Àí</typeparam>
+    /// <typeparam name="T">å‘é€åˆ°å¯¹åº”ç±»å‹çš„ ViewModel ï¼Œç”¨æ¥åœ¨è¿™ä¸ª ViewModel å¤„ç†</typeparam>
     public class CombinationComposite<T> : Composite, IMessage, ICombinationComposite
         where T : IViewModel
     {
         /// <summary>
-        /// ´´½¨×éºÏ Composite ºÍ Message ÓÃÓÚÔÚ·¢ËÍÊ±¸æËßÈçºÎ´¦Àí
+        /// åˆ›å»ºç»„åˆ Composite å’Œ Message ç”¨äºåœ¨å‘é€æ—¶å‘Šè¯‰å¦‚ä½•å¤„ç†
         /// </summary>
         /// <param name="source"></param>
         public CombinationComposite([NotNull] ViewModelBase source)
@@ -85,9 +85,9 @@ namespace lindexi.MVVM.Framework.ViewModel
         }
 
         /// <summary>
-        ///  ´´½¨×éºÏ Composite ºÍ Message ÓÃÓÚÔÚ·¢ËÍÊ±¸æËßÈçºÎ´¦Àí
+        ///  åˆ›å»ºç»„åˆ Composite å’Œ Message ç”¨äºåœ¨å‘é€æ—¶å‘Šè¯‰å¦‚ä½•å¤„ç†
         /// </summary>
-        /// <param name="run">·¢ËÍµ½¶ÔÓ¦µÄ ViewModel ĞèÒªÈçºÎ´¦Àí</param>
+        /// <param name="run">å‘é€åˆ°å¯¹åº”çš„ ViewModel éœ€è¦å¦‚ä½•å¤„ç†</param>
         /// <param name="source"></param>
         public CombinationComposite([NotNull] Action<T> run, [NotNull] ViewModelBase source) : this(source)
         {
@@ -122,21 +122,21 @@ namespace lindexi.MVVM.Framework.ViewModel
             return Goal.Predicate(viewModel);
         }
         /// <summary>
-        /// ÓÃÀ´´¦ÀíÏûÏ¢µÄ·½·¨
+        /// ç”¨æ¥å¤„ç†æ¶ˆæ¯çš„æ–¹æ³•
         /// </summary>
         protected Action<T> _run;
     }
 
     /// <summary>
-    /// ×éºÏ Composite ºÍ Message
+    /// ç»„åˆ Composite å’Œ Message
     /// </summary>
-    /// <typeparam name="T">·¢ËÍµ½µÄViewModelÊÇÄÄ¸ö</typeparam>
-    /// <typeparam name="U">·¢ËÍµÄÏûÏ¢ÊÇÄÄ¸ö</typeparam>
+    /// <typeparam name="T">å‘é€åˆ°çš„ViewModelæ˜¯å“ªä¸ª</typeparam>
+    /// <typeparam name="U">å‘é€çš„æ¶ˆæ¯æ˜¯å“ªä¸ª</typeparam>
     public class CombinationComposite<T, U> : Composite, IMessage, ICombinationComposite
         where U : IMessage where T : IViewModel
     {
         /// <summary>
-        /// ´´½¨×éºÏ Composite ºÍ Message ÔÚ·¢ËÍµÄÊ±ºò¸æËßÈçºÎ´¦Àí
+        /// åˆ›å»ºç»„åˆ Composite å’Œ Message åœ¨å‘é€çš„æ—¶å€™å‘Šè¯‰å¦‚ä½•å¤„ç†
         /// </summary>
         /// <param name="source"></param>
         public CombinationComposite([NotNull] ViewModelBase source)
@@ -147,7 +147,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         }
 
         /// <summary>
-        /// ´´½¨×éºÏ Composite ºÍ Message ÔÚ·¢ËÍµÄÊ±ºò¸æËßÈçºÎ´¦Àí
+        /// åˆ›å»ºç»„åˆ Composite å’Œ Message åœ¨å‘é€çš„æ—¶å€™å‘Šè¯‰å¦‚ä½•å¤„ç†
         /// </summary>
         /// <param name="run"></param>
         /// <param name="source"></param>
@@ -184,7 +184,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         }
 
         /// <summary>
-        /// ÓÃÀ´´¦ÀíÏûÏ¢µÄ·½·¨
+        /// ç”¨æ¥å¤„ç†æ¶ˆæ¯çš„æ–¹æ³•
         /// </summary>
         protected Action<T, U> _run;
     }

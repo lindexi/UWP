@@ -25,7 +25,7 @@ namespace TpwlxnpDfyecpeoh
         public MainWindow()
         {
             InitializeComponent();
-             
+
             var hnlcDbtdhsdjPage = new HnlcDbtdhsdjPage();
             var hnlcDbtdhsdjModel = new HnlcDbtdhsdjModel();
             hnlcDbtdhsdjModel.NavigatedTo(this, null);

@@ -53,7 +53,7 @@ namespace ImageMoseClick.ViewModel
 
             //StorageFile image = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///assets/1.png"));
             //image = await pick.PickSingleFileAsync();
-            
+
             //await Image.SetSourceAsync(await image.OpenAsync(FileAccessMode.Read));
         }
 
@@ -70,7 +70,7 @@ namespace ImageMoseClick.ViewModel
             }
         }
 
-        
+
 
         private BitmapImage _image;
 

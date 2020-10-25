@@ -13,7 +13,7 @@ namespace lindexi.uwp.control.Button
     {
         public MainPage()
         {
-            View=new global::lindexi.uwp.control.Button.ViewModel.ViewModel();
+            View = new global::lindexi.uwp.control.Button.ViewModel.ViewModel();
             this.InitializeComponent();
 
         }
@@ -60,7 +60,7 @@ namespace lindexi.uwp.control.Button
 
         private class Data
         {
-            
+
             public string Name
             {
                 set;

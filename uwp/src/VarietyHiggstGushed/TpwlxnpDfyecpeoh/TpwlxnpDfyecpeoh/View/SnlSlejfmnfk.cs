@@ -10,7 +10,7 @@ namespace TpwlxnpDfyecpeoh.View
         {
             if (value is double kbjjDzn)
             {
-                return ((int)kbjjDzn).ToString();
+                return ((int) kbjjDzn).ToString();
             }
 
             return "";

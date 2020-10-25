@@ -26,7 +26,7 @@ namespace TpwlxnpDfyecpeoh
 
         public void DdwTynktxyx()
         {
-            Dfeppzy.KtrKvmvvnj += (long)Math.Floor(DklvubnuiTeqch);
+            Dfeppzy.KtrKvmvvnj += (long) Math.Floor(DklvubnuiTeqch);
         }
     }
 }

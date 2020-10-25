@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Windows.Storage;
 using BitStamp.ViewModel;
 using lindexi.MVVM.Framework.Annotations;
 using lindexi.uwp.ImageShack.Model;
+using Windows.Storage;
 
 namespace BitStamp.Model
 {

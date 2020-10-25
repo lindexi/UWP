@@ -26,8 +26,8 @@ namespace BitStamp.Model
             return false;
         }
 
-        public object ConvertBack(object value, 
-            Type targetType, 
+        public object ConvertBack(object value,
+            Type targetType,
             object parameter, string language)
         {
             throw new NotImplementedException();

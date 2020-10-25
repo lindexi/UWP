@@ -7,12 +7,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Streams;
 using Windows.System;
 using Windows.UI.Xaml;
-using Newtonsoft.Json;
 
 namespace BitStamp.ViewModel
 {
@@ -96,7 +96,7 @@ namespace BitStamp.ViewModel
                 try
                 {
                     StorageFile file = await folder.GetFileAsync(folderStr + ".json");
-                    var dwrotSvwm =await FileIO.ReadTextAsync(file);
+                    var dwrotSvwm = await FileIO.ReadTextAsync(file);
                     Account = JsonConvert.DeserializeObject<Account>(dwrotSvwm);
                     if (Account != null)
                     {
@@ -116,7 +116,7 @@ namespace BitStamp.ViewModel
                                 Account.Address = Account.Folder.Path;
                             }
                         }
-                        catch (UnauthorizedAccessException )
+                        catch (UnauthorizedAccessException)
                         {
                             Account.Folder = ApplicationData.Current.TemporaryFolder;
                         }
@@ -160,7 +160,7 @@ namespace BitStamp.ViewModel
             OnReadEventHandler?.Invoke(this, null);
         }
 
-       
+
 
         private static AccoutGoverment _accountModel;
     }

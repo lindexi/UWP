@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace BaqulukaNercerewhelbeba.Util
 {
-    public class Qyweixin: INotifyTool
+    public class Qyweixin : INotifyTool
     {
         public void SendText(string url, string text)
         {

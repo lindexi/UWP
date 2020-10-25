@@ -25,12 +25,12 @@ namespace BitStamp.ViewModel
 
         public void NavigateSaeHqeupq()
         {
-            Navigate(typeof(SaeHqeupqModel),Account);
+            Navigate(typeof(SaeHqeupqModel), Account);
         }
 
         public override void OnNavigatedFrom(object sender, object obj)
         {
-            
+
         }
 
         public override void OnNavigatedTo(object sender, object obj)

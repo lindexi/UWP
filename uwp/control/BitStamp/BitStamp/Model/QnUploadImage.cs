@@ -2,10 +2,10 @@
 // 16:34
 
 using System;
-using Windows.Storage;
 using BitStamp.Model;
 using BitStamp.Model.Cimage;
 using lindexi.uwp.ImageShack.Model.IO;
+using Windows.Storage;
 
 namespace lindexi.uwp.ImageShack.Model
 {

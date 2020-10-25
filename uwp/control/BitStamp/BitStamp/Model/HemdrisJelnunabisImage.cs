@@ -3,12 +3,12 @@ using System.IO;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.Streams;
-using Windows.UI;
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Brushes;
 using Microsoft.Graphics.Canvas.Text;
+using Windows.Storage;
+using Windows.Storage.Streams;
+using Windows.UI;
 
 namespace BitStamp.Model
 {

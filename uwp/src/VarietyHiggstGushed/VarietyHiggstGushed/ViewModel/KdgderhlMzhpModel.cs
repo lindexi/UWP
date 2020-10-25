@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Reflection;
-using Windows.UI.Xaml;
 using lindexi.MVVM.Framework.ViewModel;
 using lindexi.uwp.Framework;
+using Windows.UI.Xaml;
 
 namespace VarietyHiggstGushed.ViewModel
 {

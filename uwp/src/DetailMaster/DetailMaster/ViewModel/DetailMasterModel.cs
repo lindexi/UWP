@@ -4,11 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DetailMaster.Model;
+using DetailMaster.View;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using DetailMaster.Model;
-using DetailMaster.View;
 
 namespace DetailMaster.ViewModel
 {
@@ -17,7 +17,7 @@ namespace DetailMaster.ViewModel
         public DetailMasterModel()
         {
             SystemNavigationManager.GetForCurrentView().BackRequested += BackRequested;
-           
+
             EccryptAddress = new ObservableCollection<AddressBook>()
             {
                 new AddressBook()

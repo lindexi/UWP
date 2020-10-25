@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
 using lindexi.uwp.Framework.ViewModel;
 using lindexi.uwp.Framework.ViewModel.MasterDetail;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 
 namespace Framework.ViewModel
 {
@@ -44,7 +44,7 @@ namespace Framework.ViewModel
             {
                 ((ISendMessage) temp.ViewModel).SendMessageHandler += (s, e) =>
                 {
-                    ReceiveMessage(this,e);
+                    ReceiveMessage(this, e);
                 };
             }
         }
@@ -80,7 +80,7 @@ namespace Framework.ViewModel
             DetailMaster.Narrow();
             foreach (var temp in ViewModel)
             {
-                temp.ViewModel.OnNavigatedTo(this,null);
+                temp.ViewModel.OnNavigatedTo(this, null);
             }
         }
 

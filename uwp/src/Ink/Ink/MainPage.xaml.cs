@@ -28,7 +28,7 @@ namespace Ink
         public MainPage()
         {
             this.InitializeComponent();
-            ink.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse | CoreInputDeviceTypes.Touch|CoreInputDeviceTypes.Pen;
+            ink.InkPresenter.InputDeviceTypes = CoreInputDeviceTypes.Mouse | CoreInputDeviceTypes.Touch | CoreInputDeviceTypes.Pen;
             var container = new InkRecognizerContainer();
             foreach (var temp in container.GetRecognizers())
             {
@@ -41,7 +41,7 @@ namespace Ink
             //手写识别
 
             var container = new InkRecognizerContainer();
-         
+
             //使用墨迹识别
 
             var result = await container.RecognizeAsync(ink.InkPresenter.StrokeContainer, InkRecognitionTarget.All);
@@ -154,7 +154,7 @@ namespace Ink
                 }
                 stream.Dispose();
             }
-           
+
         }
     }
 }

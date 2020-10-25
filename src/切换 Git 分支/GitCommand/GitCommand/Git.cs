@@ -107,7 +107,7 @@ namespace dotnetCampus.GitCommand
 
             var processStartInfo = new ProcessStartInfo(git, command);
             var process = Process.Start(processStartInfo);
-            process.WaitForExit((int)TimeSpan.FromMinutes(10).TotalMilliseconds);
+            process.WaitForExit((int) TimeSpan.FromMinutes(10).TotalMilliseconds);
 
             return new Git(directory);
         }

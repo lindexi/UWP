@@ -5,7 +5,7 @@ namespace lindexi.uwp.Framework.ViewModel
     /// <summary>
     /// 可跳转
     /// </summary>
-    public interface INavigable: IViewModel
+    public interface INavigable : IViewModel
     {
         /// <summary>
         ///     不使用这个页面

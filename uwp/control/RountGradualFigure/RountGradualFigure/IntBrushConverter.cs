@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Windows.UI;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
@@ -10,11 +10,11 @@ namespace RountGradualFigure
         public object Convert(object value, Type targetType, object parameter, string culture)
         {
             byte r = 0, g = 0xff, b = 0;
-            int n = (int)value;
+            int n = (int) value;
             if (n > 0xff)
                 return new SolidColorBrush(Colors.Red);
-            g -= (byte)n;
-            r += (byte)n;
+            g -= (byte) n;
+            r += (byte) n;
             return new SolidColorBrush(Color.FromArgb(255, r, g, b));
         }
 

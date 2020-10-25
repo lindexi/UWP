@@ -1,10 +1,10 @@
 ﻿using System;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Navigation;
 using lindexi.MVVM.Framework.ViewModel;
 using VarietyHiggstGushed.Model;
 using VarietyHiggstGushed.ViewModel;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 

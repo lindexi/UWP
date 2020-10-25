@@ -2,9 +2,9 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Windows.Storage;
 using Windows.Web.Http;
-using Newtonsoft.Json;
 
 namespace lindexi.Imageshack.Smms
 {

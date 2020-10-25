@@ -47,7 +47,7 @@ namespace lindexi.uwp.Progress
         public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register(
             "Minimum", typeof(double), typeof(Marquez), new PropertyMetadata(default(double), (s, e) =>
             {
-            } ));
+            }));
 
 
         /// <summary>

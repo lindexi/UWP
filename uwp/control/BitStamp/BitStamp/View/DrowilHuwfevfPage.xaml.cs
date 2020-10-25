@@ -1,4 +1,9 @@
 ﻿using System.Collections.Generic;
+using BitStamp.View;
+using BitStamp.ViewModel;
+using lindexi.MVVM.Framework.ViewModel;
+using lindexi.uwp.Framework;
+using lindexi.uwp.Framework.ViewModel;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.UI;
@@ -7,11 +12,6 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using BitStamp.View;
-using BitStamp.ViewModel;
-using lindexi.MVVM.Framework.ViewModel;
-using lindexi.uwp.Framework.ViewModel;
-using lindexi.uwp.Framework;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 

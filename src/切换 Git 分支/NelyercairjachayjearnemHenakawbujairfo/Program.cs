@@ -13,7 +13,7 @@ namespace NelyercairjachayjearnemHenakawbujairfo
 
             var randomIdentifier = new RandomIdentifier();
             randomIdentifier.WordCount = 2;
-            var name =$"t/lindexi/{randomIdentifier.Generate(true)}";
+            var name = $"t/lindexi/{randomIdentifier.Generate(true)}";
 
             git.CheckoutNewBranch(name);
         }

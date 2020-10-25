@@ -1,7 +1,7 @@
-using System;
+ï»¿using System;
+using lindexi.MVVM.Framework.ViewModel;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
-using lindexi.MVVM.Framework.ViewModel;
 
 namespace VarietyHiggstGushed.ViewModel
 {
@@ -9,10 +9,10 @@ namespace VarietyHiggstGushed.ViewModel
     {
         public async void DxpoihQprdqbip()
         {
-            //¶ÁÈ¡ÓÎÏ·
+            //è¯»å–æ¸¸æˆ
             if (!_dxpoihQprdqbip)
             {
-                await new MessageDialog("Ã»ÓĞÕÒµ½´æµµ", "Ã»ÓĞ´æµµ").ShowAsync();
+                await new MessageDialog("æ²¡æœ‰æ‰¾åˆ°å­˜æ¡£", "æ²¡æœ‰å­˜æ¡£").ShowAsync();
                 return;
             }
 
@@ -26,9 +26,9 @@ namespace VarietyHiggstGushed.ViewModel
             {
                 var pzsqSgxdj = new ContentDialog
                 {
-                    Title = "ÒÑ¾­´æÔÚ´æµµ£¬ÊÇ·ñ¸²¸Ç",
-                    PrimaryButtonText = "È·¶¨",
-                    SecondaryButtonText = "È¡Ïû"
+                    Title = "å·²ç»å­˜åœ¨å­˜æ¡£ï¼Œæ˜¯å¦è¦†ç›–",
+                    PrimaryButtonText = "ç¡®å®š",
+                    SecondaryButtonText = "å–æ¶ˆ"
                 };
 
                 pzsqSgxdj.PrimaryButtonClick += async (sender, args) =>
@@ -58,7 +58,7 @@ namespace VarietyHiggstGushed.ViewModel
         {
             if (await AccountGoverment.JwAccountGoverment.ReadJwStorage())
             {
-                //²»ÊÇµÚÒ»´ÎÊ¹ÓÃ
+                //ä¸æ˜¯ç¬¬ä¸€æ¬¡ä½¿ç”¨
                 _dxpoihQprdqbip = true;
             }
             else

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using lindexi.MVVM.Framework.ViewModel;
 using lindexi.uwp.Framework;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace VarietyHiggstGushed.ViewModel
 {

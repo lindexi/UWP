@@ -30,7 +30,7 @@ namespace TpwlxnpDfyecpeoh.View
 
         private void HzmzKgeu_OnClick(object sender, RoutedEventArgs e)
         {
-            var frameworkElement = (FrameworkElement)sender;
+            var frameworkElement = (FrameworkElement) sender;
 
             if (frameworkElement.DataContext is DexqurhctSjyfozae dexqurhctSjyfozae)
             {
@@ -40,7 +40,7 @@ namespace TpwlxnpDfyecpeoh.View
 
         private void DlsuqHmopxh_OnClick(object sender, RoutedEventArgs e)
         {
-            var frameworkElement = (FrameworkElement)sender;
+            var frameworkElement = (FrameworkElement) sender;
 
             if (frameworkElement.DataContext is IKdgvtziaSfs kdgvtziaSfs)
             {

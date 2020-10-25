@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Windows.UI.Xaml.Controls;
 using lindexi.uwp.Framework.ViewModel;
 using lindexi.uwp.Progress.Model;
+using Windows.UI.Xaml.Controls;
 
 namespace lindexi.uwp.Progress.ViewModel
 {

@@ -22,8 +22,8 @@ namespace Simulationq.ViewModel
             Width = 5;
             Height = 5;
 
-            Col = (int)(Window.Current.Bounds.Width / Width) - 10;
-            Row = (int)(Window.Current.Bounds.Height / Height) - 10;
+            Col = (int) (Window.Current.Bounds.Width / Width) - 10;
+            Row = (int) (Window.Current.Bounds.Height / Height) - 10;
 
 
             Solid = new Solid[Row * Col];

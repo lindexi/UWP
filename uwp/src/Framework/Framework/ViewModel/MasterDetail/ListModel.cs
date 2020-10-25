@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using Windows.UI.Xaml.Controls;
 using Framework.Model;
+using Windows.UI.Xaml.Controls;
 
 namespace Framework.ViewModel
 {
     [CodeStorage]
-    public class ListModel : ViewModelBase,ISendMessage
+    public class ListModel : ViewModelBase, ISendMessage
     {
         public ListModel()
         {
@@ -29,7 +29,7 @@ namespace Framework.ViewModel
         public void ListClick(object sender, ItemClickEventArgs e)
         {
             var keySecret = e.ClickedItem as KeySecret;
-            Message temp=new Message(this)
+            Message temp = new Message(this)
             {
                 Content = keySecret,
                 Goal = nameof(ContentModel),
@@ -38,7 +38,7 @@ namespace Framework.ViewModel
             };
 
             //SendMessage?.SendMessage(temp);
-            SendMessageHandler?.Invoke(this,temp);
+            SendMessageHandler?.Invoke(this, temp);
         }
 
         //public ISendMessage SendMessage

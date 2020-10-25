@@ -88,9 +88,9 @@ namespace lindexi.uwp.ImageShack.Model.IO.Resumable
                 {
                     if (i == blockCnt - 1)
                     {
-                        readLen = (int) (fsize - (long) i*BLOCKSIZE);
+                        readLen = (int) (fsize - (long) i * BLOCKSIZE);
                     }
-                    fs.Seek((long) i*BLOCKSIZE, SeekOrigin.Begin);
+                    fs.Seek((long) i * BLOCKSIZE, SeekOrigin.Begin);
                     fs.Read(byteBuf, 0, readLen);
                     BlkputRet blkRet = await ResumableBlockPut(client, byteBuf, i, readLen);
                     if (blkRet == null)
@@ -223,6 +223,6 @@ namespace lindexi.uwp.ImageShack.Model.IO.Resumable
             return (int) ((fsize + BlockMashk) >> BlockBits);
         }
 
-        private static int BLOCKSIZE = 4*1024*1024;
+        private static int BLOCKSIZE = 4 * 1024 * 1024;
     }
 }

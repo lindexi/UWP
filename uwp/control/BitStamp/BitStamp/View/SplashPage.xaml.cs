@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using BitStamp.ViewModel;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -22,7 +23,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using BitStamp.ViewModel;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上有介绍
 
@@ -43,7 +43,7 @@ namespace BitStamp.View
 
             //ApplicationView.GetForCurrentView().TryResizeView(new Size(200, 1000));
 
-            
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

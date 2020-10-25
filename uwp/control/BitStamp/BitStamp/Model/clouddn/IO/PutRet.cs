@@ -54,12 +54,12 @@ namespace lindexi.uwp.ImageShack.Model.IO
                 object temp;
                 if (dict.TryGetValue("hash", out temp))
                 {
-                    Hash = (string)temp;
+                    Hash = (string) temp;
                 }
                 if (dict.TryGetValue("key", out temp))
                 {
                     //中文不能做上传，如果转的话，在最后返回会把转的百分继续转，也就是需要转一次
-                    key = Uri.EscapeDataString((string)temp);
+                    key = Uri.EscapeDataString((string) temp);
                 }
             }
             catch (Exception e)

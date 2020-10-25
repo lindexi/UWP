@@ -1,12 +1,12 @@
 ﻿using System;
+using lindexi.uwp.Framework;
+using VarietyHiggstGushed.Model;
+using VarietyHiggstGushed.ViewModel;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using lindexi.uwp.Framework;
-using VarietyHiggstGushed.Model;
-using VarietyHiggstGushed.ViewModel;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 

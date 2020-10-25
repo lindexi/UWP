@@ -1,7 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BaqulukaNercerewhelbeba.Business;
-using System;
+﻿using System;
 using System.Text;
+using BaqulukaNercerewhelbeba.Business;
 using BaqulukaNercerewhelbeba.Data;
 using BaqulukaNercerewhelbeba.Model;
 using BaqulukaNercerewhelbeba.Util;
@@ -11,8 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MSTest.Extensions.Contracts;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using MSTest.Extensions.Contracts;
 
 namespace BaqulukaNercerewhelbeba.Business.Tests
 {

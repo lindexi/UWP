@@ -1,11 +1,13 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using BaqulukaNercerewhelbeba.Business;
+using BaqulukaNercerewhelbeba.Data;
 using BaqulukaNercerewhelbeba.Model;
+using BaqulukaNercerewhelbeba.Util;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,8 +17,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using BaqulukaNercerewhelbeba.Data;
-using BaqulukaNercerewhelbeba.Util;
 
 namespace BaqulukaNercerewhelbeba
 {
@@ -46,7 +46,7 @@ namespace BaqulukaNercerewhelbeba
 
         private void FindDb(IServiceCollection services)
         {
-            // Èç¹ûÅäÖÃÀïÃæÓĞËµµ½Â·¾¶µÄ»°£¬Ê¹ÓÃÅäÖÃµÄÎÄ¼ş£¬Èç¹ûÃ»ÓĞ³¢ÊÔ´Ó»·¾³±äÁ¿»ñÈ¡
+            // å¦‚æœé…ç½®é‡Œé¢æœ‰è¯´åˆ°è·¯å¾„çš„è¯ï¼Œä½¿ç”¨é…ç½®çš„æ–‡ä»¶ï¼Œå¦‚æœæ²¡æœ‰å°è¯•ä»ç¯å¢ƒå˜é‡è·å–
             const string sqliteFilePath = "SqliteFilePath";
 
             var filePath = Configuration[sqliteFilePath];
@@ -57,7 +57,7 @@ namespace BaqulukaNercerewhelbeba
                 return;
             }
 
-            // ³¢ÊÔ´Ó»·¾³±äÁ¿»ñÈ¡
+            // å°è¯•ä»ç¯å¢ƒå˜é‡è·å–
             filePath = Environment.GetEnvironmentVariable(sqliteFilePath);
             if (!string.IsNullOrEmpty(filePath))
             {

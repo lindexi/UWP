@@ -4,10 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using lindexi.uwp.Framework.ViewModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Controls;
-using lindexi.uwp.Framework.ViewModel;
 
 namespace lindexi.uwp.Progress.ViewModel
 {

@@ -24,7 +24,7 @@ namespace InteresRoller
     {
         public MainPage()
         {
-            View=new ViewModel.ViewModel();
+            View = new ViewModel.ViewModel();
             this.InitializeComponent();
         }
         private ViewModel.ViewModel View
@@ -46,7 +46,7 @@ namespace InteresRoller
 
             //if you only want to show in left or buttom 
             //myFlyout.Placement = FlyoutPlacementMode.Left;
-            
+
             FrameworkElement senderElement = sender as FrameworkElement;
             //the code can show the flyout in your mouse click 
             flyout.ShowAt(sender as UIElement, e.GetPosition(sender as UIElement));

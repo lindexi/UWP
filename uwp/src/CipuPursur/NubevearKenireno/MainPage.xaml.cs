@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using lindexi.MVVM.Framework.ViewModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -19,7 +20,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using lindexi.MVVM.Framework.ViewModel;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
@@ -160,7 +160,7 @@ namespace NubevearKenireno
                         }
                     }
                 }
-                catch (FileNotFoundException )
+                catch (FileNotFoundException)
                 {
                 }
             }
@@ -190,11 +190,11 @@ namespace NubevearKenireno
                         await transaction.CommitAsync();
                     }
                 }
-               
+
             }
-            catch (Exception )
+            catch (Exception)
             {
-                
+
             }
         }
 

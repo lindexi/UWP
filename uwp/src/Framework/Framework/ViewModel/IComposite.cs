@@ -1,14 +1,14 @@
-using lindexi.MVVM.Framework.ViewModel;
+锘縰sing lindexi.MVVM.Framework.ViewModel;
 
 namespace lindexi.uwp.Framework.ViewModel
 {
     /// <summary>
-    /// 表示处理消息
+    /// 琛ㄧず澶勭悊娑堟伅
     /// </summary>
     public interface IComposite
     {
         /// <summary>
-        /// 运行处理方法
+        /// 杩愯澶勭悊鏂规硶
         /// </summary>
         /// <param name="source"></param>
         /// <param name="message"></param>

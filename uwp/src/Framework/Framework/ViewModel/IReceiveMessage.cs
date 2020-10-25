@@ -1,12 +1,12 @@
-namespace lindexi.MVVM.Framework.ViewModel
+锘縩amespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
-    /// 接收信息
+    /// 鎺ユ敹淇℃伅
     /// </summary>
     public interface IReceiveMessage : IViewModel
     {
         /// <summary>
-        /// 接收信息
+        /// 鎺ユ敹淇℃伅
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="message"></param>

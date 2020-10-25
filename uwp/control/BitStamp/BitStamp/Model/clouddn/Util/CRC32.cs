@@ -46,7 +46,7 @@ namespace lindexi.uwp.ImageShack.Model.Util
         public static uint CheckSumFile(string fileName)
         {
             CRC32 crc = new CRC32();
-            int bufferLen = 32*1024;
+            int bufferLen = 32 * 1024;
             using (FileStream stream = File.OpenRead(fileName))
             {
                 byte[] buffer = new byte[bufferLen];

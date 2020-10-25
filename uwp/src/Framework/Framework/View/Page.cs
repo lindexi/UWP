@@ -19,7 +19,7 @@ namespace Framework.View
 #endif
         where T : IViewModel
     {
-        
+
         /// <summary>
         /// 获取设置 ViewModel
         /// </summary>

@@ -41,11 +41,11 @@ namespace ImageMoseClick
 
         private async void Image_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            
+
             var position = e.GetPosition(sender as UIElement);
             //if (View.Image.UriSource == null)
             //{
-                
+
             //}
             WriteableBitmap image = await BitmapFactory.New(1, 1).FromContent((View.Image).UriSource);
             Color temp;

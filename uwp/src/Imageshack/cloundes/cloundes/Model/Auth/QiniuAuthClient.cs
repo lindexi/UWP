@@ -5,11 +5,11 @@ using System;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Security.Cryptography;
-using Windows.Security.Cryptography.Core;
 using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth.digest;
 using lindexi.uwp.ImageShack.Thirdqiniucs.Model.Conf;
 using lindexi.uwp.ImageShack.Thirdqiniucs.Model.RPC;
+using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
 
 namespace lindexi.uwp.ImageShack.Thirdqiniucs.Model.Auth
 {

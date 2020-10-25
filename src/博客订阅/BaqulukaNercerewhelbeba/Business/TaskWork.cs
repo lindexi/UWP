@@ -9,7 +9,7 @@ namespace BaqulukaNercerewhelbeba.Business
         private readonly ITimeDelay _timeDelay;
         private readonly ILogger<TaskWork> _logger;
 
-        public TaskWork(ITimeDelay timeDelay,ILogger<TaskWork> logger)
+        public TaskWork(ITimeDelay timeDelay, ILogger<TaskWork> logger)
         {
             _timeDelay = timeDelay;
             _logger = logger;

@@ -1,6 +1,6 @@
 ﻿namespace lindexi.uwp.control.Button.ViewModel
 {
-   public class ViewModel:NotifyProperty
+    public class ViewModel : NotifyProperty
     {
         public ViewModel()
         {
@@ -20,7 +20,7 @@
             }
         }
 
-        
+
 
         private bool _complete;
     }

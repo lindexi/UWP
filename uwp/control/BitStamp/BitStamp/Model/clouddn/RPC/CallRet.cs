@@ -49,7 +49,7 @@ namespace lindexi.uwp.ImageShack.Model.RPC
         {
             get
             {
-                return (int) StatusCode/100 == 2;
+                return (int) StatusCode / 100 == 2;
             }
         }
     }

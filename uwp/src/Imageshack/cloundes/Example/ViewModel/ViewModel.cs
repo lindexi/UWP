@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using lindexi.uwp.ImageShack.Model;
+using lindexi.uwp.ImageShack.Thirdqiniucs.Model;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using lindexi.uwp.ImageShack.Model;
-using lindexi.uwp.ImageShack.Thirdqiniucs.Model;
 
 namespace cloundes.ViewModel
 {
@@ -21,8 +21,8 @@ namespace cloundes.ViewModel
             Accound = AppId.Accound;
             Accound.UploadFileName = true;
             //获取设备id
-             
-            Accound.Pname= new EasClientDeviceInformation().Id.ToString();
+
+            Accound.Pname = new EasClientDeviceInformation().Id.ToString();
         }
 
         public CloundesAccound Accound

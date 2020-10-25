@@ -1,15 +1,15 @@
-using System;
+ï»¿using System;
 using lindexi.uwp.Framework.ViewModel;
 
 namespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
-    /// Ìá¹©Ìø×ªÏûÏ¢£¬×Ô¶¯ÕÒµ½<see cref="NavigateViewModel"/>ÈÃËûÌø×ª
+    /// æä¾›è·³è½¬æ¶ˆæ¯ï¼Œè‡ªåŠ¨æ‰¾åˆ°<see cref="NavigateViewModel"/>è®©ä»–è·³è½¬
     /// </summary>
     public class NavigateCombinationComposite : CombinationComposite<NavigateViewModel>
     {
         /// <summary>
-        /// Ìá¹©Ìø×ªÏûÏ¢£¬×Ô¶¯ÕÒµ½<see cref="NavigateViewModel"/>ÈÃËûÌø×ª
+        /// æä¾›è·³è½¬æ¶ˆæ¯ï¼Œè‡ªåŠ¨æ‰¾åˆ°<see cref="NavigateViewModel"/>è®©ä»–è·³è½¬
         /// </summary>
         public NavigateCombinationComposite(ViewModelBase source, Type view, object paramter = null) : base(source)
         {
@@ -17,7 +17,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         }
 
         /// <summary>
-        /// Ìá¹©Ìø×ªÏûÏ¢£¬×Ô¶¯ÕÒµ½<see cref="NavigateViewModel"/>ÈÃËûÌø×ª
+        /// æä¾›è·³è½¬æ¶ˆæ¯ï¼Œè‡ªåŠ¨æ‰¾åˆ°<see cref="NavigateViewModel"/>è®©ä»–è·³è½¬
         /// </summary>
         public NavigateCombinationComposite(ViewModelBase source, string key, object paramter = null) : base(source)
         {
@@ -26,7 +26,7 @@ namespace lindexi.MVVM.Framework.ViewModel
     }
 
     /// <summary>
-    /// Ìø×ªµÄÏûÏ¢
+    /// è·³è½¬çš„æ¶ˆæ¯
     /// </summary>
     public class NavigateMessage : Message
     {
@@ -39,13 +39,13 @@ namespace lindexi.MVVM.Framework.ViewModel
         }
 
         /// <summary>
-        /// Ìø×ª²ÎÊı
+        /// è·³è½¬å‚æ•°
         /// </summary>
         public object Parameter { get; }
     }
 
     /// <summary>
-    /// Ìø×ªÏûÏ¢
+    /// è·³è½¬æ¶ˆæ¯
     /// </summary>
     [Composite]
     public class NavigateComposite : Composite
@@ -61,7 +61,7 @@ namespace lindexi.MVVM.Framework.ViewModel
             if (source is IKeyNavigato naviagateViewModel
                 && e is NavigateMessage message)
             {
-                // Ö»ÓĞ¿ÉÒÔÌø×ªµÄ ViewModel ²Å¿ÉÒÔÊ¹ÓÃ
+                // åªæœ‰å¯ä»¥è·³è½¬çš„ ViewModel æ‰å¯ä»¥ä½¿ç”¨
                 naviagateViewModel.Navigate(message.Key, message.Parameter);
             }
         }

@@ -51,6 +51,6 @@ namespace lindexi.uwp.ImageShack.Model.Util
             }
         }
 
-        public static int bufferLen = 32*1024;
+        public static int bufferLen = 32 * 1024;
     }
 }

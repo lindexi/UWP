@@ -32,7 +32,7 @@ namespace lindexi.uwp.control.RountProgress.View
         {
             get
             {
-                return (double)GetValue(ValueProperty);
+                return (double) GetValue(ValueProperty);
             }
             set
             {
@@ -49,7 +49,7 @@ namespace lindexi.uwp.control.RountProgress.View
         {
             double thine = 3;
             double w = 100 - thine;
-            double n = Math.PI * w/thine * (double)value / 100;
+            double n = Math.PI * w / thine * (double) value / 100;
             DoubleCollection temp = new DoubleCollection()
             {
                n,

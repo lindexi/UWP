@@ -24,7 +24,7 @@ namespace NightDayThemeToggleButton
     {
         public MainPage()
         {
-            View=new ViewModel.ViewModel();
+            View = new ViewModel.ViewModel();
             this.InitializeComponent();
         }
 
@@ -35,6 +35,6 @@ namespace NightDayThemeToggleButton
         //    View.Theme = View.Theme == ElementTheme.Light ? ElementTheme.Dark :
         //       ElementTheme.Light; 
         //}
-        
+
     }
 }

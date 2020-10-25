@@ -1,10 +1,10 @@
-namespace lindexi.MVVM.Framework.ViewModel
+锘縩amespace lindexi.MVVM.Framework.ViewModel
 {
     /// <summary>
-    /// 表示接口继承
+    /// 琛ㄧず鎺ュ彛缁ф壙
     /// </summary>
     public interface IViewModel
     {
-       
+
     }
 }

@@ -12,7 +12,7 @@ namespace lindexi.MVVM.Framework.ViewModel
         /// </summary>
         public ViewModelAttribute()
         {
-            
+
         }
 
         /// <summary>

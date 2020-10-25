@@ -37,20 +37,20 @@ namespace lindexi.MVVM.Framework.ViewModel
             OnPropertyChanged(properName);
         }
 
-//        public async void OnPropertyChanged([CallerMemberName] string name = "")
-//        {
-//            PropertyChangedEventHandler handler = PropertyChanged;
-//#if WINDOWS_UWP&&false
-//               await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-//                () => { handler?.Invoke(this, new PropertyChangedEventArgs(name)); });
-//#elif wpf
-//            SynchronizationContext.SetSynchronizationContext(new
-//   DispatcherSynchronizationContext(Application.Current.Dispatcher));
-//            SynchronizationContext.Current.Send(obj =>
-//            {
-//                handler?.Invoke(this, new PropertyChangedEventArgs(name));
-//            }, null);
-//#endif
+        //        public async void OnPropertyChanged([CallerMemberName] string name = "")
+        //        {
+        //            PropertyChangedEventHandler handler = PropertyChanged;
+        //#if WINDOWS_UWP&&false
+        //               await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+        //                () => { handler?.Invoke(this, new PropertyChangedEventArgs(name)); });
+        //#elif wpf
+        //            SynchronizationContext.SetSynchronizationContext(new
+        //   DispatcherSynchronizationContext(Application.Current.Dispatcher));
+        //            SynchronizationContext.Current.Send(obj =>
+        //            {
+        //                handler?.Invoke(this, new PropertyChangedEventArgs(name));
+        //            }, null);
+        //#endif
 
         /// <inheritdoc />
         public event PropertyChangedEventHandler PropertyChanged;

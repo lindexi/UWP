@@ -18,7 +18,7 @@ namespace InteresRoller.ViewModel
         {
             set;
             get;
-        }=new ObservableCollection<string>()
+        } = new ObservableCollection<string>()
         {
             "林德熙",
             "http://blog.csdn.net/lindexi_gd",

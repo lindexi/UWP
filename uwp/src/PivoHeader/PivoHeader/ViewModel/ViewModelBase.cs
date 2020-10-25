@@ -30,7 +30,7 @@ namespace PivoHeader.ViewModel
             await view.Navigate(Content, paramter);
             _viewModel = view.ViewModel;
         }
-        
+
         //当前ViewModel
         private ViewModelBase _viewModel;
     }

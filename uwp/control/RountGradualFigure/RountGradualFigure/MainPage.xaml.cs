@@ -29,7 +29,7 @@ namespace RountGradualFigure
 
         private void Button_OnClick(object sender, RoutedEventArgs e)
         {
-            N+=10;
+            N += 10;
         }
 
         public static readonly DependencyProperty NProperty = DependencyProperty.Register(

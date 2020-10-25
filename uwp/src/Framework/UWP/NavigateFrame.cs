@@ -1,6 +1,6 @@
 ﻿using System;
-using Windows.UI.Xaml.Controls;
 using lindexi.MVVM.Framework.ViewModel;
+using Windows.UI.Xaml.Controls;
 
 namespace lindexi.uwp.Framework
 {

@@ -15,7 +15,6 @@ namespace Lindexi.Src.GitCommand
 #endif
         }
 
-        /// <inheritdoc />
         public Git(DirectoryInfo repo)
         {
             if (ReferenceEquals(repo, null)) throw new ArgumentNullException(nameof(repo));

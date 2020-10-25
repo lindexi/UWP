@@ -3,7 +3,7 @@ name: Code format check
 
 on: 
   push:
-    branches: 
+    branches:
       - master
 jobs:
   dotnet-format:

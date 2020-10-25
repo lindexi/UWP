@@ -9,6 +9,7 @@
     <RepositoryUrl>https://github.com/lindexi/UWP</RepositoryUrl>
     <PackageProjectUrl>https://github.com/lindexi/UWP</PackageProjectUrl>
 
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
     <Copyright>Copyright © 2020 lindexi, All Rights Reserved.</Copyright> 
   </PropertyGroup>

@@ -1,0 +1,19 @@
+<Project>
+  <Import Project="build\Version.props" />
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <PackageOutputPath>$(MSBuildThisFileDirectory)bin\$(Configuration)</PackageOutputPath>
+    <Company>lindexi</Company>
+ 
+    <Authors>dotnet-campus</Authors>
+    <RepositoryUrl>https://github.com/lindexi/UWP</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/lindexi/UWP</PackageProjectUrl>
+
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © 2020 lindexi, All Rights Reserved.</Copyright> 
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+  </ItemGroup>
+</Project>

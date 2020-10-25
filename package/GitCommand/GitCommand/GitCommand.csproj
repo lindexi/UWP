@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>Lindexi.Src.GitCommand</AssemblyName>
+    <RootNamespace>Lindexi.Src.GitCommand</RootNamespace>
+    <Description>通过命令行调用 Git 功能</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dotnetCampus.SourceYard" Version="0.1.19353-alpha">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="LibGit2Sharp" Version="0.27.0-preview-0007" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.1" />
+  </ItemGroup>
+
+</Project>

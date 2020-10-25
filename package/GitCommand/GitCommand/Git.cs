@@ -139,7 +139,7 @@ namespace Lindexi.Src.GitCommand
 
             var processStartInfo = new ProcessStartInfo(git, command);
             var process = Process.Start(processStartInfo);
-            process.WaitForExit((int)TimeSpan.FromMinutes(10).TotalMilliseconds);
+            process.WaitForExit((int) TimeSpan.FromMinutes(10).TotalMilliseconds);
 
             return new Git(directory);
         }
@@ -162,7 +162,7 @@ namespace Lindexi.Src.GitCommand
         {
             str = FileStr() + str;
             WriteLog(str);
-            str = Command(str,Repo.FullName);
+            str = Command(str, Repo.FullName);
 
             WriteLog(str);
             return str;
@@ -178,7 +178,7 @@ namespace Lindexi.Src.GitCommand
             return string.Format(GitStr, Repo.FullName);
         }
 
-        private static string Command(string str,string workingDirectory)
+        private static string Command(string str, string workingDirectory)
         {
             // string str = Console.ReadLine();
             //System.Console.InputEncoding = System.Text.Encoding.UTF8;//乱码

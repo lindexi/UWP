@@ -1,8 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 15.0.26124.0
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitCommand", "GitCommand\GitCommand\GitCommand.csproj", "{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,7 +14,24 @@ Global
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Debug|x64.Build.0 = Debug|Any CPU
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Debug|x86.Build.0 = Debug|Any CPU
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Release|x64.ActiveCfg = Release|Any CPU
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Release|x64.Build.0 = Release|Any CPU
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Release|x86.ActiveCfg = Release|Any CPU
+		{D6967F9E-022B-4B05-A6D2-B02E1AC231FB}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A741636-F3C9-4E62-AC0B-0DF596F3F904}
 	EndGlobalSection
 EndGlobal

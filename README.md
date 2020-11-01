@@ -3,6 +3,14 @@
 [中文](#中文)
 [English](#English)
 
+| Package Name                   | Release (NuGet) | 
+|--------------------------------|-----------------|
+|  `lindexi.uwp.Framework`       |[![NuGet](https://img.shields.io/nuget/v/lindexi.uwp.Framework.svg)](https://www.nuget.org/packages/lindexi.uwp.Framework/)|
+|  `lindexi.MVVM.Framework`      |[![NuGet](https://img.shields.io/nuget/v/lindexi.MVVM.Framework.svg)](https://www.nuget.org/packages/lindexi.MVVM.Framework/)|
+|  `lindexi.wpf.Framework`       |[![NuGet](https://img.shields.io/nuget/v/lindexi.wpf.Framework.svg)](https://www.nuget.org/packages/lindexi.wpf.Framework/)|
+|  `Lindexi.Src.GitCommand`       |[![NuGet](https://img.shields.io/nuget/v/Lindexi.Src.GitCommand.svg)](https://www.nuget.org/packages/Lindexi.Src.GitCommand/)|
+|  `Lindexi.Src.GitCommand.Source`       |[![NuGet](https://img.shields.io/nuget/v/Lindexi.Src.GitCommand.Source.svg)](https://www.nuget.org/packages/Lindexi.Src.GitCommand.Source/)|
+
 # 中文
 
 常用代码和控件

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>AutoSyncGitRepo</ToolCommandName>
+        <AssemblyName>Lindexi.Tool.AutoSyncGitRepo</AssemblyName>
+        <RootNamespace>$(AssemblyName)</RootNamespace>
+        <Description>命令行输入 AutoSyncGitRepo 即可更新当前文件夹内所有 Git 仓库</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Lindexi.Src.GitCommand.Source" Version="1.1.6-alpha01">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+</Project>

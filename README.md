@@ -10,6 +10,7 @@
 |  `lindexi.wpf.Framework`       |[![NuGet](https://img.shields.io/nuget/v/lindexi.wpf.Framework.svg)](https://www.nuget.org/packages/lindexi.wpf.Framework/)|
 |  `Lindexi.Src.GitCommand`       |[![NuGet](https://img.shields.io/nuget/v/Lindexi.Src.GitCommand.svg)](https://www.nuget.org/packages/Lindexi.Src.GitCommand/)|
 |  `Lindexi.Src.GitCommand.Source`       |[![NuGet](https://img.shields.io/nuget/v/Lindexi.Src.GitCommand.Source.svg)](https://www.nuget.org/packages/Lindexi.Src.GitCommand.Source/)|
+|  [`Lindexi.Tool.AutoSyncGitRepo`](package/AutoSyncGitRepo/README.md)       |[![NuGet](https://img.shields.io/nuget/v/Lindexi.Tool.AutoSyncGitRepo.svg)](https://www.nuget.org/packages/Lindexi.Tool.AutoSyncGitRepo/)|
 
 # 中文
 

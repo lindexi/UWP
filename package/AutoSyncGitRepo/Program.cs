@@ -20,11 +20,11 @@ namespace Lindexi.Tool.AutoSyncGitRepo
             {
                 folder = Directory.GetCurrentDirectory();
 
-                if (Directory.GetDirectories(folder).Length < 10)
-                {
-                    folder = Path.Combine(folder, "..\\..\\..\\..\\..\\..\\");
-                    folder = Path.GetFullPath(folder);
-                }
+                //if (Directory.GetDirectories(folder).Length < 10)
+                //{
+                //    //folder = Path.Combine(folder, "..\\..\\..\\..\\..\\..\\");
+                //}
+                folder = Path.GetFullPath(folder);
             }
 
             Sync(folder);

@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.UI.Xaml.Media.Imaging;
 using EncryptionSyncFolder.ViewModel;
 using Newtonsoft.Json;
+using Windows.Storage;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace EncryptionSyncFolder.Model
 {
@@ -28,13 +28,13 @@ namespace EncryptionSyncFolder.Model
 
         public override void Rename()
         {
-            
+
         }
 
 
         public override void ToFolder()
         {
-            
+
         }
 
         private static BitmapImage FolderBitmap
@@ -143,11 +143,11 @@ namespace EncryptionSyncFolder.Model
             {
                 throw new Exception("文件夹存在");
             }
-            VirtualFolder folder=new VirtualFolder()
+            VirtualFolder folder = new VirtualFolder()
             {
                 Name = name,
                 NewTime = DateTime.Now.ToString(CultureInfo.InvariantCulture),
-                Path = Path+"/"+name
+                Path = Path + "/" + name
             };
             Folder.Add(folder);
         }

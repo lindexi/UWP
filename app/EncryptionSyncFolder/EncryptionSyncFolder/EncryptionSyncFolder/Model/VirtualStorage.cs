@@ -1,5 +1,5 @@
+ï»¿using EncryptionSyncFolder.ViewModel;
 using Windows.UI.Xaml.Media.Imaging;
-using EncryptionSyncFolder.ViewModel;
 
 namespace EncryptionSyncFolder.Model
 {
@@ -42,10 +42,10 @@ namespace EncryptionSyncFolder.Model
 
         public abstract void Rename();
         public abstract void ToFolder();
-        
+
 
         /// <summary>
-        ///     ÎÄ¼şÃû
+        ///     æ–‡ä»¶å
         /// </summary>
         public string Name
         {
@@ -61,7 +61,7 @@ namespace EncryptionSyncFolder.Model
         }
 
         /// <summary>
-        ///     ÎÄ¼şÂ·¾¶
+        ///     æ–‡ä»¶è·¯å¾„
         /// </summary>
         public string Path
         {
@@ -77,7 +77,7 @@ namespace EncryptionSyncFolder.Model
         }
 
         /// <summary>
-        ///     ÎÄ¼ş´óĞ¡
+        ///     æ–‡ä»¶å¤§å°
         /// </summary>
         public string Size
         {
@@ -93,7 +93,7 @@ namespace EncryptionSyncFolder.Model
         }
 
         /// <summary>
-        ///     ´´½¨Ê±¼ä
+        ///     åˆ›å»ºæ—¶é—´
         /// </summary>
         public string NewTime
         {

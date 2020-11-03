@@ -1,18 +1,18 @@
-// lindexi
+ï»¿// lindexi
 // 21:07
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
-using Newtonsoft.Json;
 
 namespace EncryptionSyncFolder.Model
 {
     /// <summary>
-    ///     ĞéÄâÎÄ¼ş
+    ///     è™šæ‹Ÿæ–‡ä»¶
     /// </summary>
     public class VirtualFile : VirtualStorage
     {
@@ -24,16 +24,16 @@ namespace EncryptionSyncFolder.Model
 
         public override void Rename()
         {
-            
+
         }
 
         public override void ToFolder()
         {
-            
+
         }
 
         ///// <summary>
-        ///// ´ÓStorageFile×ªVirtualFile
+        ///// ä»StorageFileè½¬VirtualFile
         ///// </summary>
         ///// <param name="file"></param>
         //private void StorageFileVirtualFile(StorageFile file)
@@ -55,7 +55,7 @@ namespace EncryptionSyncFolder.Model
             }
         }
         /// <summary>
-        /// ×Ö·û´®¿ÉÒÔÎÄ¼şÃû
+        /// å­—ç¬¦ä¸²å¯ä»¥æ–‡ä»¶å
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>

@@ -8,13 +8,13 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EncryptionSyncFolder.ViewModel;
+using Newtonsoft.Json;
+using Windows.Security.Credentials;
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using EncryptionSyncFolder.ViewModel;
-using Newtonsoft.Json;
-using Windows.Security.Credentials;
 
 namespace EncryptionSyncFolder.Model
 {

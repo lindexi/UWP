@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml;
 using EncryptionSyncFolder.Model;
+using Windows.UI.Xaml;
 
 namespace EncryptionSyncFolder.ViewModel
 {
@@ -187,7 +187,7 @@ namespace EncryptionSyncFolder.ViewModel
         private Visibility _newAccountVisibility;
 
         private string _reminder;
-         
+
         private void OnConfirm(object sender, Account.ConfirmEnum e)
         {
             switch (e)

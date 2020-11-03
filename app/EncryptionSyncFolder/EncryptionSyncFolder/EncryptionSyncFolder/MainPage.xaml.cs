@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using EncryptionSyncFolder.Model;
+using EncryptionSyncFolder.View;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -12,8 +14,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using EncryptionSyncFolder.Model;
-using EncryptionSyncFolder.View;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -44,14 +44,14 @@ namespace EncryptionSyncFolder
 
             OnNotAccount = () =>
             {
-                Account_OnClick(this,null);
+                Account_OnClick(this, null);
             };
 
             FileVirtualFrame.Navigate(typeof(EncryptionFolderPage));
         }
         private void Account_OnClick(object sender, RoutedEventArgs e)
         {
-            FileVirtualFrame.Navigate(typeof(AccountPage),OnAccountConfim);
+            FileVirtualFrame.Navigate(typeof(AccountPage), OnAccountConfim);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace EncryptionSyncFolder
 
         private void FileVirtual_OnClick(object sender, RoutedEventArgs e)
         {
-            FileVirtualFrame.Navigate(typeof(FileVirtualPage),OnNotAccount);
+            FileVirtualFrame.Navigate(typeof(FileVirtualPage), OnNotAccount);
         }
-    }  
+    }
 }

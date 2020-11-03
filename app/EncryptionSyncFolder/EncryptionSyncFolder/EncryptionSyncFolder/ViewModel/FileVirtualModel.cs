@@ -8,14 +8,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EncryptionSyncFolder.Model;
+using EncryptionSyncFolder.View;
 using Windows.ApplicationModel.Core;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using EncryptionSyncFolder.Model;
-using EncryptionSyncFolder.View;
 
 namespace EncryptionSyncFolder.ViewModel
 {
@@ -78,7 +78,7 @@ namespace EncryptionSyncFolder.ViewModel
 
         //public void WriteFile()
         //{
-            
+
         //}
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace EncryptionSyncFolder.ViewModel
                 PrimaryButtonText = "确定",
                 SecondaryButtonText = "取消"
             };
-           
+
         }
 
         public void Delete()

@@ -49,7 +49,7 @@ namespace EncryptionSyncFolder.View
             }
             get
             {
-                return (string)GetValue(FolderNameProperty);
+                return (string) GetValue(FolderNameProperty);
             }
         }
 

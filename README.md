@@ -180,6 +180,12 @@ Install-Package lindexi.wpf.Framework
 
 参见：[WPF 跨线程 UI 的方法](https://lindexi.github.io/lindexi/post/WPF-%E8%B7%A8%E7%BA%BF%E7%A8%8B-UI-%E7%9A%84%E6%96%B9%E6%B3%95.html )
 
+## 软件
+
+### [EncryptionSyncFolder](app/EncryptionSyncFolder)
+
+win10 uwp 同步文件夹
+
 # English
 
 Some controls and common codes

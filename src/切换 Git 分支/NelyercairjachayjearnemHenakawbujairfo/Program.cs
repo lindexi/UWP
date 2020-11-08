@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using dotnetCampus.GitCommand;
+using Lindexi.Src.GitCommand;
 using Whitman;
 
 namespace NelyercairjachayjearnemHenakawbujairfo

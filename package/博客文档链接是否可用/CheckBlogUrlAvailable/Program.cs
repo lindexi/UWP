@@ -62,8 +62,7 @@ namespace CheckBlogUrlAvailable
                             var httpResponseMessage = httpClient.GetAsync(url).Result;
                             if (httpResponseMessage.StatusCode != HttpStatusCode.OK)
                             {
-                                Log(
-                                    $"{Path.GetFileName(file)} {url} {(int)httpResponseMessage.StatusCode}");
+                                Log($"{Path.GetFileName(file)} {url} {(int)httpResponseMessage.StatusCode}");
                             }
                         }
                         catch (Exception e)

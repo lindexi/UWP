@@ -6,12 +6,22 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ReanuyawnicayhiFawcerecheca
+namespace CheckBlogUrlAvailable
 {
     class Program
     {
         static void Main(string[] args)
         {
+            var blogFolder = Environment.CurrentDirectory;
+
+            if (args.Length > 0)
+            {
+                blogFolder = args[0];
+            }
+
+            blogFolder = Path.GetFullPath(blogFolder);
+            Log($"Blog Folder {blogFolder}");
+
             var httpClient = new HttpClient()
             {
                 Timeout = TimeSpan.FromSeconds(3)
@@ -19,7 +29,7 @@ namespace ReanuyawnicayhiFawcerecheca
 
             var ignoreList = new[] { "http://image.acmx.xyz", "http://creativecommons.org/licenses/", "http://blog.csdn.net", "0.0.0.0", "127.0.0.1", "localhost" };
 
-            foreach (var file in Directory.GetFiles(args[0], "*.md"))
+            foreach (var file in Directory.GetFiles(blogFolder, "*.md"))
             {
                 Log($"[start] {file}");
 

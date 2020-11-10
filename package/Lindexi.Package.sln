@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitCommand", "GitCommand\Gi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSyncGitRepo", "AutoSyncGitRepo\AutoSyncGitRepo.csproj", "{8FCFAB21-BA02-4D96-8A5D-265DFFF69711}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "博客文档链接是否可用", "博客文档链接是否可用", "{A054F8B7-8926-4A79-A97A-3FF4DBF28FE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckBlogUrlAvailable", "博客文档链接是否可用\CheckBlogUrlAvailable\CheckBlogUrlAvailable.csproj", "{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,11 +45,26 @@ Global
 		{8FCFAB21-BA02-4D96-8A5D-265DFFF69711}.Release|x64.Build.0 = Release|Any CPU
 		{8FCFAB21-BA02-4D96-8A5D-265DFFF69711}.Release|x86.ActiveCfg = Release|Any CPU
 		{8FCFAB21-BA02-4D96-8A5D-265DFFF69711}.Release|x86.Build.0 = Release|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Debug|x64.Build.0 = Debug|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Debug|x86.Build.0 = Debug|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Release|x64.ActiveCfg = Release|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Release|x64.Build.0 = Release|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Release|x86.ActiveCfg = Release|Any CPU
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A741636-F3C9-4E62-AC0B-0DF596F3F904}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{60064F7F-6596-4F0C-A0CA-D01ACCF1828D} = {A054F8B7-8926-4A79-A97A-3FF4DBF28FE8}
 	EndGlobalSection
 EndGlobal

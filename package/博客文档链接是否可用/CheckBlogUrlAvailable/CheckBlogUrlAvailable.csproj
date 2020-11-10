@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>CheckBlogUrlAvailable</ToolCommandName>
+        <AssemblyName>Lindexi.Tool.CheckBlogUrlAvailable</AssemblyName>
+        <RootNamespace>$(AssemblyName)</RootNamespace>
+        <Description>博客文档链接是否可用</Description>
+    </PropertyGroup>
+</Project>

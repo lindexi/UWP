@@ -6,10 +6,13 @@ using System.Text;
 namespace Lindexi.Src.WhitmanRandomIdentifier
 {
     /// <summary>
-    /// 
+    /// 随机变量名
     /// </summary>
     public class RandomIdentifier
     {
+        /// <summary>
+        /// 单词数量 必须大于等于 2 个单词
+        /// </summary>
         public int WordCount
         {
             get => _wordCount;
@@ -24,6 +27,11 @@ namespace Lindexi.Src.WhitmanRandomIdentifier
             }
         }
 
+        /// <summary>
+        /// 创建变量名
+        /// </summary>
+        /// <param name="pascal">是否用 Pascal 格式</param>
+        /// <returns></returns>
         public string Generate(bool pascal)
         {
             var builder = new StringBuilder();

@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "博客文档链接是否可
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckBlogUrlAvailable", "博客文档链接是否可用\CheckBlogUrlAvailable\CheckBlogUrlAvailable.csproj", "{3B19BBB6-3786-415D-99A1-34C23BCA9E0D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "切换 Git 分支", "切换 Git 分支", "{BFF8B45E-E029-470C-ABD4-01D89224645C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NelyercairjachayjearnemHenakawbujairfo", "切换 Git 分支\NelyercairjachayjearnemHenakawbujairfo\NelyercairjachayjearnemHenakawbujairfo.csproj", "{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,9 +80,22 @@ Global
 		{3B19BBB6-3786-415D-99A1-34C23BCA9E0D}.Release|x64.Build.0 = Release|Any CPU
 		{3B19BBB6-3786-415D-99A1-34C23BCA9E0D}.Release|x86.ActiveCfg = Release|Any CPU
 		{3B19BBB6-3786-415D-99A1-34C23BCA9E0D}.Release|x86.Build.0 = Release|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Debug|x64.Build.0 = Debug|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Debug|x86.Build.0 = Debug|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Release|x64.ActiveCfg = Release|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Release|x64.Build.0 = Release|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Release|x86.ActiveCfg = Release|Any CPU
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8F70FBD4-9ECC-43DC-A0F1-7D08E4C5C778} = {48665BB8-6F30-4FFA-B836-BCC80F07A53C}
 		{3B19BBB6-3786-415D-99A1-34C23BCA9E0D} = {F87AB188-EB2D-4608-BBC6-4D755869AB12}
+		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E} = {BFF8B45E-E029-470C-ABD4-01D89224645C}
 	EndGlobalSection
 EndGlobal

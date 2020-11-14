@@ -1,12 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>ck</ToolCommandName>
+        <AssemblyName>Lindexi.Tool.CheckoutGitRandomNameBranch</AssemblyName>
+        <RootNamespace>$(AssemblyName)</RootNamespace>
+        <Description>切换一个随机的分支名</Description>
+    </PropertyGroup>
 
-  <ItemGroup>
-      <PackageReference Include="Lindexi.Src.GitCommand" Version="1.1.7"></PackageReference>
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Lindexi.Src.GitCommand" Version="1.1.10"></PackageReference>
+        <PackageReference Include="Lindexi.Src.WhitmanRandomIdentifier" Version="1.1.10"></PackageReference>
+    </ItemGroup>
 
 </Project>

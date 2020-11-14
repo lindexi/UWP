@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using Lindexi.Src.GitCommand;
-using Whitman;
+using Lindexi.Src.WhitmanRandomIdentifier;
 
 namespace NelyercairjachayjearnemHenakawbujairfo
 {

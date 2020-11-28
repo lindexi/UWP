@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="dotnetCampus.SourceYard" Version="0.1.19353-alpha">
+    <PackageReference Include="dotnetCampus.SourceYard" Version="0.1.19359-alpha">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="LibGit2Sharp" Version="0.27.0-preview-0007" />
+    <!--<PackageReference Include="LibGit2Sharp" Version="0.27.0-preview-0007" />-->
     <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.1" />
   </ItemGroup>
 

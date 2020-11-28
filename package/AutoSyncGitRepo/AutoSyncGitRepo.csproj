@@ -11,7 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Lindexi.Src.GitCommand.Source" Version="1.1.6">
+        <PackageReference Include="Lindexi.Src.GitCommand.Source" Version="1.1.11">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>

@@ -11,8 +11,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Lindexi.Src.GitCommand" Version="1.1.10"></PackageReference>
-        <PackageReference Include="Lindexi.Src.WhitmanRandomIdentifier" Version="1.1.10"></PackageReference>
+        <PackageReference Include="Lindexi.Src.GitCommand" Version="1.1.11"></PackageReference>
+        <PackageReference Include="Lindexi.Src.WhitmanRandomIdentifier" Version="1.1.11"></PackageReference>
     </ItemGroup>
 
 </Project>

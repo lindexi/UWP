@@ -13,7 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{9DFB59
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OTAManager.Client.Console", "src\Client\OTAManager.Client.Console\OTAManager.Client.Console.csproj", "{711327D4-F9D8-4EA5-BB18-940FCF044BCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTAManager.ClientUpdateCore", "src\OTAManager.ClientUpdateCore\OTAManager.ClientUpdateCore.csproj", "{437C141A-95A8-4326-A93D-21E710181329}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OTAManager.ClientUpdateCore", "src\OTAManager.ClientUpdateCore\OTAManager.ClientUpdateCore.csproj", "{437C141A-95A8-4326-A93D-21E710181329}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{0E64159C-C6DA-4CCA-B187-231C02515D29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTAManager.Demo.WPF", "demo\OTAManager.Demo.WPF\OTAManager.Demo.WPF.csproj", "{D911021C-9DAA-4F6F-9A81-937392AEEAF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +77,18 @@ Global
 		{437C141A-95A8-4326-A93D-21E710181329}.Release|x64.Build.0 = Release|Any CPU
 		{437C141A-95A8-4326-A93D-21E710181329}.Release|x86.ActiveCfg = Release|Any CPU
 		{437C141A-95A8-4326-A93D-21E710181329}.Release|x86.Build.0 = Release|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Debug|x64.Build.0 = Debug|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Debug|x86.Build.0 = Debug|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Release|x64.ActiveCfg = Release|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Release|x64.Build.0 = Release|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Release|x86.ActiveCfg = Release|Any CPU
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +96,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CDE20C68-E060-4FD4-B6B7-31D34905963A} = {078DB47D-D3B0-4C7A-B6CC-3CCC95BB48D3}
 		{711327D4-F9D8-4EA5-BB18-940FCF044BCB} = {9DFB594D-5F5F-4BF5-A8CA-2E263447B2CC}
+		{D911021C-9DAA-4F6F-9A81-937392AEEAF9} = {0E64159C-C6DA-4CCA-B187-231C02515D29}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66E924DE-6558-4A48-98BD-1551BBAFD11E}

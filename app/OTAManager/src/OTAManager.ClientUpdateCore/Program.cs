@@ -20,7 +20,8 @@ namespace OTAManager.ClientUpdateCore
                         DownloadUrl = $"/download-file?file={ClientUpdateManifest.DefaultInstallerFileName}",
                         Md5 = string.Empty,
                     }
-                }
+                },
+                
             };
 
             var clientUpdateManifestSerializer = new ClientUpdateManifestSerializer();

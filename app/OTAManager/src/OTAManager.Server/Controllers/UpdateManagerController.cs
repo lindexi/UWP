@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OTAManager.Server.Data;
 
@@ -59,6 +60,15 @@ namespace OTAManager.Server.Controllers
                 temp.ApplicationId == applicationUpdateInfo.ApplicationId);
         }
 
+        /// <summary>
+        /// 上传文件，将会返回文件下载链接
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult UploadFile([FromForm] UploadFileRequest request)
+        {
+
+        }
+
         private readonly OTAManagerServerContext _context;
     }
 
@@ -67,5 +77,9 @@ namespace OTAManager.Server.Controllers
         public ApplicationUpdateInfo ApplicationUpdateInfo { get; set; }
     }
 
-
+    public class UploadFileRequest
+    {
+        public IFormFile File { set; get; }
+        public string Name { get; set; }
+    }
 }

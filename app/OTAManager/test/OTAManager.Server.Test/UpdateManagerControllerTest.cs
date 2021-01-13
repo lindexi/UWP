@@ -11,6 +11,18 @@ namespace OTAManager.Server.Test
     public class UpdateManagerControllerTest
     {
         [ContractTestCase]
+        public void GetTest()
+        {
+            "请求应用更新，可以收到应用最新版本".Test(async () =>
+            {
+                var testClient = TestHostBuild.GetTestClient();
+               var appUpdateInfo = await testClient.GetFromJsonAsync<ApplicationUpdateInfo>("/UpdateManager?applicationId=123123123123");
+
+               Assert.AreEqual("123123123123", appUpdateInfo.ApplicationId);
+            });
+        }
+
+        [ContractTestCase]
         public void PostTest()
         {
             "请求更新测试的应用，可以收到应用最新版本".Test(async () =>

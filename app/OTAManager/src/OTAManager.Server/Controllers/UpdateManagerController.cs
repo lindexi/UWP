@@ -25,6 +25,13 @@ namespace OTAManager.Server.Controllers
             }
         }
 
+        [HttpGet]
+        public ApplicationUpdateInfo Get([FromQuery]string applicationId)
+        {
+            return _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
+                temp.ApplicationId == applicationId);
+        }
+
         // POST: /UpdateManager
         [HttpPost]
         public ApplicationUpdateInfo Post([FromBody] ApplicationUpdateRequest request)
@@ -60,17 +67,42 @@ namespace OTAManager.Server.Controllers
                 temp.ApplicationId == applicationUpdateInfo.ApplicationId);
         }
 
-        /// <summary>
-        /// 上传文件，将会返回文件下载链接
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult UploadFile([FromForm] UploadFileRequest request)
-        {
+        ///// <summary>
+        ///// 上传文件，将会返回文件下载链接
+        ///// </summary>
+        ///// <returns></returns>
+        //[HttpPost]
+        //[Route("UploadFile")]
+        //public IActionResult UploadFile([FromForm] UploadFileRequest request)
+        //{
 
-        }
+        //}
+
+        //[HttpGet]
+        //[Route("DownloadFile")]
+        //public IActionResult DownloadFile([FromQuery]string key)
+        //{
+
+        //}
 
         private readonly OTAManagerServerContext _context;
     }
+
+    ///// <summary>
+    ///// 文件存储服务
+    ///// </summary>
+    //public class FileStorage
+    //{
+    //    public string UploadFile(UploadFileRequest request)
+    //    {
+
+    //    }
+
+    //    public IActionResult DownloadFile(string key)
+    //    {
+
+    //    }
+    //}
 
     public class ApplicationUpdateRequest
     {

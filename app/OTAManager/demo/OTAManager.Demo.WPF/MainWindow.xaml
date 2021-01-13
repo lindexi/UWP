@@ -4,16 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OTAManager.Demo.WPF"
+        xmlns:view="clr-namespace:OTAManager.Demo.WPF.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        x:Name="Root"
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel>
+            <StackPanel Margin="10,10,10,10"
+                        DataContext="{Binding ElementName=Root}">
+                <StackPanel.Resources>
+                    <Style TargetType="view:InputText">
+                        <Setter Property="Margin" Value="1,10,1,1"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <view:InputText HeaderText="ApplicationId" Text="{Binding ApplicationId}"></view:InputText>
+                <view:InputText HeaderText="版本号" Text="{Binding Version}"></view:InputText>
+                <view:InputText HeaderText="应用名" Text="{Binding ApplicationName}"></view:InputText>
+                <view:InputText HeaderText="应用安装器的文件名" Text="{Binding InstallerFileName}"></view:InputText>
+                <view:InputText HeaderText="应用安装器的参数" Text="{Binding InstallerArgument}"></view:InputText>
+                <view:InputText HeaderText="客户端应用的文件信息" Text="{Binding ClientApplicationFileInfoText}"  AcceptsReturn="True" TextWrapping="Wrap"></view:InputText>
+            </StackPanel>
             <StackPanel Orientation="Horizontal" >
-
+                <Button x:Name="UploadContextButton" Margin="10,10,10,10" Content="上传更新信息"
+                        Click="UploadContextButton_OnClick"></Button>
+                <Button x:Name="GetContextButton" Margin="10,10,10,10" Content="获取更新信息"
+                        Click="GetContextButton_OnClick" />
             </StackPanel>
         </StackPanel>
         <Grid x:Name="LogGrid" Grid.Row="1" ClipToBounds="True">

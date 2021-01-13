@@ -19,7 +19,7 @@ namespace OTAManager.ClientUpdateCore
         /// 这里会约定存在一个叫 <see cref="InstallerFileName"/> 的文件，这个文件就在下载更新包完成之后被调用
         /// 通过 Installer.exe 这个文件完成所有的更新
         /// 如果是二进制差分的，在 Installer.exe 这个文件里面完成拼装等行为
-        public List<ClientApplicationFileInfo> ClientApplicationFileInfos { get; set; }
+        public List<ClientApplicationFileInfo> ClientApplicationFileInfoList { get; set; }
 
         /// <summary>
         /// 应用安装器的文件名

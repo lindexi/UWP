@@ -12,7 +12,7 @@ namespace OTAManager.ClientUpdateCore
             var clientUpdateManifest = new ClientUpdateManifest()
             {
                 Name = "林德熙应用",
-                ClientApplicationFileInfos = new List<ClientApplicationFileInfo>()
+                ClientApplicationFileInfoList = new List<ClientApplicationFileInfo>()
                 {
                     new ClientApplicationFileInfo()
                     {

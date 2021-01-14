@@ -15,4 +15,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
   </ItemGroup>
 
+  <Import Project="..\OTAManager.UpdateInfoShare\OTAManager.UpdateInfoShare.projitems" Label="Shared" />
+
 </Project>

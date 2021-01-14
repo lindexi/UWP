@@ -9,7 +9,7 @@ namespace OTAManager.ClientUpdateCore
             return JsonSerializer.Serialize(manifest);
         }
 
-        public ClientUpdateManifest Deserialize(string text)
+        public ClientUpdateManifest? Deserialize(string text)
         {
             return JsonSerializer.Deserialize<ClientUpdateManifest>(text);
         }

@@ -19,7 +19,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{0E64159C-C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTAManager.Demo.WPF", "demo\OTAManager.Demo.WPF\OTAManager.Demo.WPF.csproj", "{D911021C-9DAA-4F6F-9A81-937392AEEAF9}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "OTAManager.UpdateInfoShare", "src\OTAManager.UpdateInfoShare\OTAManager.UpdateInfoShare.shproj", "{2453C429-2C65-42CB-820C-197935B9E622}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		src\OTAManager.UpdateInfoShare\OTAManager.UpdateInfoShare.projitems*{00d2c818-0418-403d-83b6-b16fef0e1151}*SharedItemsImports = 5
+		src\OTAManager.UpdateInfoShare\OTAManager.UpdateInfoShare.projitems*{2453c429-2c65-42cb-820c-197935b9e622}*SharedItemsImports = 13
+		src\OTAManager.UpdateInfoShare\OTAManager.UpdateInfoShare.projitems*{437c141a-95a8-4326-a93d-21e710181329}*SharedItemsImports = 5
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64

@@ -76,8 +76,13 @@ namespace OTAManager.Demo.WPF
             set { SetValue(InstallerArgumentProperty, value); }
         }
 
+        /// <summary>
+        /// 下载文件列表内容
+        /// </summary>
+        /// 格式是 文件名|下载链接|md5 这里使用电信的下载链接测试
         public static readonly DependencyProperty ClientApplicationFileInfoTextProperty = DependencyProperty.Register(
-            "ClientApplicationFileInfoText", typeof(string), typeof(MainWindow), new PropertyMetadata(default(string)));
+            "ClientApplicationFileInfoText", typeof(string), typeof(MainWindow), new PropertyMetadata("Installer.exe|https://10000.gd.cn/10000.gd_speedtest.exe|9f650f3eb7be0a8e82efeb822f53f13a"));
+
 
         public string ClientApplicationFileInfoText
         {
@@ -94,47 +99,49 @@ namespace OTAManager.Demo.WPF
             }
         }
 
+        private ApplicationUpdateManager ApplicationUpdateManager { get; } = new ApplicationUpdateManager(Host);
+
         private async void UploadContextButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var httpClient = GetClient();
-
             var clientUpdateManifest = new ClientUpdateManifest()
             {
                 Name = ApplicationName,
                 InstallerArgument = InstallerArgument,
                 InstallerFileName = InstallerFileName,
-                ClientApplicationFileInfoList = new List<ClientApplicationFileInfo>(ParseClientApplicationFileInfoText()),
+                ClientApplicationFileInfoList =
+                    new List<ClientApplicationFileInfo>(ParseClientApplicationFileInfoText()),
             };
 
-            var clientUpdateManifestSerializer = new ClientUpdateManifestSerializer();
-            var serializedClientUpdateManifest = clientUpdateManifestSerializer.Serialize(clientUpdateManifest);
-
-            var applicationUpdateInfo = new ApplicationUpdateInfoModel()
+            if (string.IsNullOrEmpty(Version) || !System.Version.TryParse(Version, out var applicationVersion))
             {
-                ApplicationId = ApplicationId,
-                Version = Version,
-                UpdateContext = serializedClientUpdateManifest
-            };
-
-            var response = await httpClient.PutAsJsonAsync("/UpdateManager", applicationUpdateInfo);
-
-            var responseApplicationUpdateInfoModel = await response.Content.ReadFromJsonAsync<ApplicationUpdateInfoModel>();
-            ParseApplicationUpdateInfoModel(responseApplicationUpdateInfoModel);
-        }
-
-        private void ParseApplicationUpdateInfoModel(ApplicationUpdateInfoModel model)
-        {
-            ApplicationId = model.ApplicationId;
-            Version = model.Version;
-
-            if (string.IsNullOrEmpty(model.UpdateContext))
-            {
-                Log($"没有找到 ApplicationId={ApplicationId} 的 UpdateContext 方法");
+                Log($"无法转换 Version={Version} 为版本号");
                 return;
             }
 
-            var clientUpdateManifestSerializer = new ClientUpdateManifestSerializer();
-            var clientUpdateManifest = clientUpdateManifestSerializer.Deserialize(model.UpdateContext);
+            var responseApplicationUpdateInfoModel = await ApplicationUpdateManager.UpdateServerInfo(
+                new ApplicationUpdateContext()
+                {
+                    ApplicationId = ApplicationId,
+                    ApplicationVersion = applicationVersion,
+                    ClientUpdateManifest = clientUpdateManifest
+                });
+
+
+            ParseApplicationUpdateInfoModel(responseApplicationUpdateInfoModel);
+        }
+
+        private void ParseApplicationUpdateInfoModel(ApplicationUpdateContext model)
+        {
+            ApplicationId = model.ApplicationId;
+            Version = model.ApplicationVersion.ToString();
+
+            var clientUpdateManifest = model.ClientUpdateManifest;
+
+            if (clientUpdateManifest == null)
+            {
+                Log("用户下载信息是空");
+                return;
+            }
 
             ApplicationName = clientUpdateManifest.Name;
             InstallerFileName = clientUpdateManifest.InstallerFileName;
@@ -142,15 +149,6 @@ namespace OTAManager.Demo.WPF
             ClientApplicationFileInfoText = string.Join("\r\n",
                 clientUpdateManifest.ClientApplicationFileInfoList.Select(temp =>
                     $"{temp.FilePath}|{temp.DownloadUrl}|{temp.Md5}"));
-        }
-
-
-        private static HttpClient GetClient()
-        {
-            return new HttpClient()
-            {
-                BaseAddress = new Uri(Host)
-            };
         }
 
         public const string Host = "http://localhost:5000";
@@ -165,33 +163,30 @@ namespace OTAManager.Demo.WPF
                 yield break;
             }
 
-            var list = clientApplicationFileInfoText.Split("\n").Select(temp => temp.Replace("\r", "")).Where(temp => !string.IsNullOrEmpty(temp)).ToList();
+            var list = clientApplicationFileInfoText.Split("\n").Select(temp => temp.Replace("\r", ""))
+                .Where(temp => !string.IsNullOrEmpty(temp)).ToList();
             foreach (var text in list)
             {
                 var textList = text.Split("|");
                 yield return new ClientApplicationFileInfo()
                 {
-                    FilePath = textList[0],
-                    DownloadUrl = textList[1],
-                    Md5 = textList[2],
+                    FilePath = textList[0], DownloadUrl = textList[1], Md5 = textList[2],
                 };
             }
         }
 
         private async void GetContextButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var httpClient = GetClient();
-            var applicationUpdateInfoText = await httpClient.GetStringAsync($"/UpdateManager?applicationId={ApplicationId}");
-
-            if (string.IsNullOrEmpty(applicationUpdateInfoText))
+            if (!System.Version.TryParse(Version, out var currentVersion))
             {
-                Log($"找不到应用为 ApplicationId={ApplicationId} 的信息");
-                return;
+                currentVersion = new Version();
             }
 
-            var applicationUpdateInfoModel = JsonConvert.DeserializeObject<ApplicationUpdateInfoModel>(applicationUpdateInfoText);
+            var applicationUpdateContext =
+                await ApplicationUpdateManager.GetUpdate(
+                    new ApplicationUpdateInfoRequest(ApplicationId, currentVersion));
 
-            ParseApplicationUpdateInfoModel(applicationUpdateInfoModel);
+            ParseApplicationUpdateInfoModel(applicationUpdateContext);
         }
 
         private void Log(string message)

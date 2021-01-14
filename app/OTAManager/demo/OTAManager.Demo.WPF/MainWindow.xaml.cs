@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -41,7 +42,7 @@ namespace OTAManager.Demo.WPF
         }
 
         public static readonly DependencyProperty VersionProperty = DependencyProperty.Register(
-            "Version", typeof(string), typeof(MainWindow), new PropertyMetadata(default(string)));
+            "Version", typeof(string), typeof(MainWindow), new PropertyMetadata("5.3"));
 
         public string Version
         {
@@ -50,7 +51,7 @@ namespace OTAManager.Demo.WPF
         }
 
         public static readonly DependencyProperty ApplicationNameProperty = DependencyProperty.Register(
-            "ApplicationName", typeof(string), typeof(MainWindow), new PropertyMetadata(default(string)));
+            "ApplicationName", typeof(string), typeof(MainWindow), new PropertyMetadata("林德熙是逗比"));
 
         public string ApplicationName
         {
@@ -81,7 +82,7 @@ namespace OTAManager.Demo.WPF
         /// </summary>
         /// 格式是 文件名|下载链接|md5 这里使用电信的下载链接测试
         public static readonly DependencyProperty ClientApplicationFileInfoTextProperty = DependencyProperty.Register(
-            "ClientApplicationFileInfoText", typeof(string), typeof(MainWindow), new PropertyMetadata("Installer.exe|https://10000.gd.cn/10000.gd_speedtest.exe|9f650f3eb7be0a8e82efeb822f53f13a"));
+            "ClientApplicationFileInfoText", typeof(string), typeof(MainWindow), new PropertyMetadata("Installer.exe|https://10000.gd.cn/10000.gd_speedtest.exe|9f650f3eb7be0a8e82efeb822f53f13a\r\nWindows6.1-KB2533623-x86.msu.zip|https://d.o0o0o0o.cn/Windows6.1-KB2533623-x86.msu.zip|dounide0000000000000000000000000"));
 
 
         public string ClientApplicationFileInfoText
@@ -170,12 +171,19 @@ namespace OTAManager.Demo.WPF
                 var textList = text.Split("|");
                 yield return new ClientApplicationFileInfo()
                 {
-                    FilePath = textList[0], DownloadUrl = textList[1], Md5 = textList[2],
+                    FilePath = textList[0],
+                    DownloadUrl = textList[1],
+                    Md5 = textList[2],
                 };
             }
         }
 
         private async void GetContextButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            await GetUpdate();
+        }
+
+        private async Task<ApplicationUpdateContext> GetUpdate()
         {
             if (!System.Version.TryParse(Version, out var currentVersion))
             {
@@ -187,11 +195,29 @@ namespace OTAManager.Demo.WPF
                     new ApplicationUpdateInfoRequest(ApplicationId, currentVersion));
 
             ParseApplicationUpdateInfoModel(applicationUpdateContext);
+
+            return applicationUpdateContext;
         }
+
 
         private void Log(string message)
         {
             Dispatcher.InvokeAsync(() => LogText.Text += message + "\r\n", DispatcherPriority.Send);
+        }
+
+        private async void GetAndUpdateButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var applicationUpdateContext = await GetUpdate();
+            if (applicationUpdateContext.ClientUpdateManifest is null)
+            {
+                return;
+            }
+
+            var clientUpdateDispatcher = new ClientUpdateDispatcher(applicationUpdateContext.ClientUpdateManifest)
+            {
+                TempFolder = Directory.CreateDirectory(System.IO.Path.GetRandomFileName())
+            };
+            await clientUpdateDispatcher.Start();
         }
     }
 }

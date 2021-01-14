@@ -21,7 +21,7 @@ namespace OTAManager.ClientUpdateCore
                         Md5 = string.Empty,
                     }
                 },
-                
+
             };
 
             var clientUpdateManifestSerializer = new ClientUpdateManifestSerializer();
@@ -30,16 +30,13 @@ namespace OTAManager.ClientUpdateCore
             DownloadClientUpdateManifest(text);
         }
 
-        private static void DownloadClientUpdateManifest(string text)
+        private static async void DownloadClientUpdateManifest(string text)
         {
             var clientUpdateManifestSerializer = new ClientUpdateManifestSerializer();
             var clientUpdateManifest = clientUpdateManifestSerializer.Deserialize(text);
 
             var clientUpdateDispatcher = new ClientUpdateDispatcher(clientUpdateManifest);
-            clientUpdateDispatcher.Start();
-
-           
-
+            await clientUpdateDispatcher.Start();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 
 namespace OTAManager.ClientUpdateCore
 {
@@ -14,15 +15,19 @@ namespace OTAManager.ClientUpdateCore
         /// </summary>
         /// 推荐和安装文件放在相同的分区，这样只需做移动文件
         /// 当然了，对于二进制差分来说，下载到哪都差不多
-        public DirectoryInfo TempFolder { get; set; }
+        public DirectoryInfo TempFolder
+        {
+            get => _tempFolder ??= Directory.CreateDirectory("Temp");
+            set => _tempFolder = value;
+        }
 
-        public void Start()
+        public async Task Start()
         {
             // 下载文件
 
             var clientUpdateFileDownloader = new ClientUpdateFileDownloader();
             // 下载这里包含了文件是否正确等的判断
-            clientUpdateFileDownloader.Download(ClientUpdateManifest);
+           await clientUpdateFileDownloader.Download(new ClientUpdateFileDownloadContext(ClientUpdateManifest.ClientApplicationFileInfoList, TempFolder));
 
             // 判断安装器是否存在
             Install();
@@ -37,5 +42,7 @@ namespace OTAManager.ClientUpdateCore
         }
 
         private ClientUpdateManifest ClientUpdateManifest { get; }
+
+        private DirectoryInfo? _tempFolder;
     }
 }

@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTAManager.Demo.WPF", "demo
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "OTAManager.UpdateInfoShare", "src\OTAManager.UpdateInfoShare\OTAManager.UpdateInfoShare.shproj", "{2453C429-2C65-42CB-820C-197935B9E622}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTAManager.ClientUpdateCore.Test", "test\OTAManager.ClientUpdateCore.Test\OTAManager.ClientUpdateCore.Test.csproj", "{D3C68649-D7D7-4FAC-B412-D61164461945}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\OTAManager.UpdateInfoShare\OTAManager.UpdateInfoShare.projitems*{00d2c818-0418-403d-83b6-b16fef0e1151}*SharedItemsImports = 5
@@ -96,6 +98,18 @@ Global
 		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Release|x64.Build.0 = Release|Any CPU
 		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Release|x86.ActiveCfg = Release|Any CPU
 		{D911021C-9DAA-4F6F-9A81-937392AEEAF9}.Release|x86.Build.0 = Release|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Debug|x64.Build.0 = Debug|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Debug|x86.Build.0 = Debug|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Release|x64.ActiveCfg = Release|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Release|x64.Build.0 = Release|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Release|x86.ActiveCfg = Release|Any CPU
+		{D3C68649-D7D7-4FAC-B412-D61164461945}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +118,7 @@ Global
 		{CDE20C68-E060-4FD4-B6B7-31D34905963A} = {078DB47D-D3B0-4C7A-B6CC-3CCC95BB48D3}
 		{711327D4-F9D8-4EA5-BB18-940FCF044BCB} = {9DFB594D-5F5F-4BF5-A8CA-2E263447B2CC}
 		{D911021C-9DAA-4F6F-9A81-937392AEEAF9} = {0E64159C-C6DA-4CCA-B187-231C02515D29}
+		{D3C68649-D7D7-4FAC-B412-D61164461945} = {078DB47D-D3B0-4C7A-B6CC-3CCC95BB48D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66E924DE-6558-4A48-98BD-1551BBAFD11E}

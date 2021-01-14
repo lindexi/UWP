@@ -6,5 +6,8 @@
         <Nullable>enable</Nullable>
                 
     </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="dotnetCampus.FileDownloader" Version="2.1.1" />
+    </ItemGroup>
     <Import Project="..\OTAManager.UpdateInfoShare\OTAManager.UpdateInfoShare.projitems" Label="Shared" />
 </Project>

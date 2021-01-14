@@ -20,7 +20,8 @@ namespace OTAManager.Server.Controllers
                 _context.LatestApplicationUpdateInfo.Add(new ApplicationUpdateInfoModel()
                 {
                     ApplicationId = "123123123123",
-                    Version = "5.1"
+                    Version = "5.1",
+                    UpdateContext = "{\"Name\":\"\\u6797\\u5FB7\\u7199\\u662F\\u9017\\u6BD4\",\"ClientApplicationFileInfoList\":[{\"FilePath\":\"Installer.exe\",\"Md5\":\"9f650f3eb7be0a8e82efeb822f53f13a\",\"DownloadUrl\":\"https://10000.gd.cn/10000.gd_speedtest.exe\"},{\"FilePath\":\"Windows6.1-KB2533623-x86.msu.zip\",\"Md5\":\"dounide0000000000000000000000000\",\"DownloadUrl\":\"https://d.o0o0o0o.cn/Windows6.1-KB2533623-x86.msu.zip\"}],\"InstallerFileName\":null,\"InstallerArgument\":null}"
                 });
                 _context.SaveChanges();
             }

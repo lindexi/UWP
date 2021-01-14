@@ -28,11 +28,17 @@
                 <view:InputText HeaderText="应用安装器的参数" Text="{Binding InstallerArgument}"></view:InputText>
                 <view:InputText HeaderText="客户端应用的文件信息" Text="{Binding ClientApplicationFileInfoText}"  AcceptsReturn="True" TextWrapping="Wrap"></view:InputText>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" >
-                <Button x:Name="UploadContextButton" Margin="10,10,10,10" Content="上传更新信息"
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="10,10,10,10"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <Button x:Name="UploadContextButton" Content="上传更新信息"
                         Click="UploadContextButton_OnClick"></Button>
-                <Button x:Name="GetContextButton" Margin="10,10,10,10" Content="获取更新信息"
+                <Button x:Name="GetContextButton" Content="获取更新信息"
                         Click="GetContextButton_OnClick" />
+                <Button x:Name="GetAndUpdateButton" Content="下载更新" Click="GetAndUpdateButton_OnClick"></Button>
             </StackPanel>
         </StackPanel>
         <Grid x:Name="LogGrid" Grid.Row="1" ClipToBounds="True">

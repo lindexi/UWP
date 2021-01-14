@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using Newtonsoft.Json;
+using OTAManager.ClientUpdateCore;
+using OTAManager.Server.Controllers;
 
 namespace OTAManager.Demo.WPF
 {
@@ -88,14 +94,109 @@ namespace OTAManager.Demo.WPF
             }
         }
 
-        private void UploadContextButton_OnClick(object sender, RoutedEventArgs e)
+        private async void UploadContextButton_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            var httpClient = GetClient();
+
+            var clientUpdateManifest = new ClientUpdateManifest()
+            {
+                Name = ApplicationName,
+                InstallerArgument = InstallerArgument,
+                InstallerFileName = InstallerFileName,
+                ClientApplicationFileInfoList = new List<ClientApplicationFileInfo>(ParseClientApplicationFileInfoText()),
+            };
+
+            var clientUpdateManifestSerializer = new ClientUpdateManifestSerializer();
+            var serializedClientUpdateManifest = clientUpdateManifestSerializer.Serialize(clientUpdateManifest);
+
+            var applicationUpdateInfo = new ApplicationUpdateInfoModel()
+            {
+                ApplicationId = ApplicationId,
+                Version = Version,
+                UpdateContext = serializedClientUpdateManifest
+            };
+
+            var response = await httpClient.PutAsJsonAsync("/UpdateManager", applicationUpdateInfo);
+
+            var responseApplicationUpdateInfoModel = await response.Content.ReadFromJsonAsync<ApplicationUpdateInfoModel>();
+            ParseApplicationUpdateInfoModel(responseApplicationUpdateInfoModel);
         }
 
-        private void GetContextButton_OnClick(object sender, RoutedEventArgs e)
+        private void ParseApplicationUpdateInfoModel(ApplicationUpdateInfoModel model)
         {
-            
+            ApplicationId = model.ApplicationId;
+            Version = model.Version;
+
+            if (string.IsNullOrEmpty(model.UpdateContext))
+            {
+                Log($"没有找到 ApplicationId={ApplicationId} 的 UpdateContext 方法");
+                return;
+            }
+
+            var clientUpdateManifestSerializer = new ClientUpdateManifestSerializer();
+            var clientUpdateManifest = clientUpdateManifestSerializer.Deserialize(model.UpdateContext);
+
+            ApplicationName = clientUpdateManifest.Name;
+            InstallerFileName = clientUpdateManifest.InstallerFileName;
+            InstallerArgument = clientUpdateManifest.InstallerArgument;
+            ClientApplicationFileInfoText = string.Join("\r\n",
+                clientUpdateManifest.ClientApplicationFileInfoList.Select(temp =>
+                    $"{temp.FilePath}|{temp.DownloadUrl}|{temp.Md5}"));
+        }
+
+
+        private static HttpClient GetClient()
+        {
+            return new HttpClient()
+            {
+                BaseAddress = new Uri(Host)
+            };
+        }
+
+        public const string Host = "http://localhost:5000";
+
+        private IEnumerable<ClientApplicationFileInfo> ParseClientApplicationFileInfoText()
+        {
+            var clientApplicationFileInfoText = ClientApplicationFileInfoText;
+
+            if (string.IsNullOrEmpty(clientApplicationFileInfoText))
+            {
+                Log($"没有 ClientApplicationFileInfoText 内容文件");
+                yield break;
+            }
+
+            var list = clientApplicationFileInfoText.Split("\n").Select(temp => temp.Replace("\r", "")).Where(temp => !string.IsNullOrEmpty(temp)).ToList();
+            foreach (var text in list)
+            {
+                var textList = text.Split("|");
+                yield return new ClientApplicationFileInfo()
+                {
+                    FilePath = textList[0],
+                    DownloadUrl = textList[1],
+                    Md5 = textList[2],
+                };
+            }
+        }
+
+        private async void GetContextButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var httpClient = GetClient();
+            var applicationUpdateInfoText = await httpClient.GetStringAsync($"/UpdateManager?applicationId={ApplicationId}");
+
+            if (string.IsNullOrEmpty(applicationUpdateInfoText))
+            {
+                Log($"找不到应用为 ApplicationId={ApplicationId} 的信息");
+                return;
+            }
+
+            var applicationUpdateInfoModel = JsonConvert.DeserializeObject<ApplicationUpdateInfoModel>(applicationUpdateInfoText);
+
+            ParseApplicationUpdateInfoModel(applicationUpdateInfoModel);
+        }
+
+        private void Log(string message)
+        {
+            Dispatcher.InvokeAsync(() => LogText.Text += message + "\r\n", DispatcherPriority.Send);
         }
     }
 }

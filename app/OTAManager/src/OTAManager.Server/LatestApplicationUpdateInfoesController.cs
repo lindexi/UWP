@@ -23,14 +23,14 @@ namespace OTAManager.Server
 
         // GET: api/LatestApplicationUpdateInfoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ApplicationUpdateInfo>>> GetLatestApplicationUpdateInfo()
+        public async Task<ActionResult<IEnumerable<ApplicationUpdateInfoModel>>> GetLatestApplicationUpdateInfo()
         {
             return await _context.LatestApplicationUpdateInfo.ToListAsync();
         }
 
         // GET: api/LatestApplicationUpdateInfoes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ApplicationUpdateInfo>> GetLatestApplicationUpdateInfo(int id)
+        public async Task<ActionResult<ApplicationUpdateInfoModel>> GetLatestApplicationUpdateInfo(int id)
         {
             var latestApplicationUpdateInfo = await _context.LatestApplicationUpdateInfo.FindAsync(id);
 
@@ -45,14 +45,14 @@ namespace OTAManager.Server
         // PUT: api/LatestApplicationUpdateInfoes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLatestApplicationUpdateInfo(int id, ApplicationUpdateInfo applicationUpdateInfo)
+        public async Task<IActionResult> PutLatestApplicationUpdateInfo(int id, ApplicationUpdateInfoModel applicationUpdateInfoModel)
         {
-            if (id != applicationUpdateInfo.Id)
+            if (id != applicationUpdateInfoModel.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(applicationUpdateInfo).State = EntityState.Modified;
+            _context.Entry(applicationUpdateInfoModel).State = EntityState.Modified;
 
             try
             {
@@ -76,12 +76,12 @@ namespace OTAManager.Server
         // POST: api/LatestApplicationUpdateInfoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ApplicationUpdateInfo>> PostLatestApplicationUpdateInfo(ApplicationUpdateInfo applicationUpdateInfo)
+        public async Task<ActionResult<ApplicationUpdateInfoModel>> PostLatestApplicationUpdateInfo(ApplicationUpdateInfoModel applicationUpdateInfoModel)
         {
-            _context.LatestApplicationUpdateInfo.Add(applicationUpdateInfo);
+            _context.LatestApplicationUpdateInfo.Add(applicationUpdateInfoModel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLatestApplicationUpdateInfo", new { id = applicationUpdateInfo.Id }, applicationUpdateInfo);
+            return CreatedAtAction("GetLatestApplicationUpdateInfo", new { id = applicationUpdateInfoModel.Id }, applicationUpdateInfoModel);
         }
 
         // DELETE: api/LatestApplicationUpdateInfoes/5

@@ -17,16 +17,17 @@ namespace OTAManager.Server.Controllers
 
             if (!_context.LatestApplicationUpdateInfo.Any())
             {
-                _context.LatestApplicationUpdateInfo.Add(new ApplicationUpdateInfo()
+                _context.LatestApplicationUpdateInfo.Add(new ApplicationUpdateInfoModel()
                 {
-                    ApplicationId = "123123123123"
+                    ApplicationId = "123123123123",
+                    Version = "5.1"
                 });
                 _context.SaveChanges();
             }
         }
 
         [HttpGet]
-        public ApplicationUpdateInfo Get([FromQuery]string applicationId)
+        public ApplicationUpdateInfoModel Get([FromQuery]string applicationId)
         {
             return _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
                 temp.ApplicationId == applicationId);
@@ -34,37 +35,37 @@ namespace OTAManager.Server.Controllers
 
         // POST: /UpdateManager
         [HttpPost]
-        public ApplicationUpdateInfo Post([FromBody] ApplicationUpdateRequest request)
+        public ApplicationUpdateInfoModel Post([FromBody] ApplicationUpdateRequest request)
         {
             return _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
-                temp.ApplicationId == request.ApplicationUpdateInfo.ApplicationId);
+                temp.ApplicationId == request.ApplicationUpdateInfoModel.ApplicationId);
         }
 
         [HttpPut]
-        public ApplicationUpdateInfo Update([FromBody] ApplicationUpdateInfo applicationUpdateInfo)
+        public ApplicationUpdateInfoModel Update([FromBody] ApplicationUpdateInfoModel applicationUpdateInfoModel)
         {
             // 后续考虑安全性
             var updateInfo = _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
-                temp.ApplicationId == applicationUpdateInfo.ApplicationId);
+                temp.ApplicationId == applicationUpdateInfoModel.ApplicationId);
             if (updateInfo != null)
             {
                 var currentVersion = Version.Parse(updateInfo.Version);
-                var version = Version.Parse(applicationUpdateInfo.Version);
+                var version = Version.Parse(applicationUpdateInfoModel.Version);
                 if (currentVersion < version)
                 {
                     _context.LatestApplicationUpdateInfo.Remove(updateInfo);
-                    _context.LatestApplicationUpdateInfo.Add(applicationUpdateInfo);
+                    _context.LatestApplicationUpdateInfo.Add(applicationUpdateInfoModel);
                     _context.SaveChanges();
                 }
             }
             else
             {
-                _context.LatestApplicationUpdateInfo.Add(applicationUpdateInfo);
+                _context.LatestApplicationUpdateInfo.Add(applicationUpdateInfoModel);
                     _context.SaveChanges();
             }
 
             return _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
-                temp.ApplicationId == applicationUpdateInfo.ApplicationId);
+                temp.ApplicationId == applicationUpdateInfoModel.ApplicationId);
         }
 
         ///// <summary>
@@ -106,7 +107,7 @@ namespace OTAManager.Server.Controllers
 
     public class ApplicationUpdateRequest
     {
-        public ApplicationUpdateInfo ApplicationUpdateInfo { get; set; }
+        public ApplicationUpdateInfoModel ApplicationUpdateInfoModel { get; set; }
     }
 
     public class UploadFileRequest

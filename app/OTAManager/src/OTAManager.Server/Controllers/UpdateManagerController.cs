@@ -43,7 +43,7 @@ namespace OTAManager.Server.Controllers
         }
 
         [HttpPut]
-        public ApplicationUpdateInfoModel Update([FromBody] ApplicationUpdateInfoModel applicationUpdateInfoModel)
+        public ApplicationUpdateInfoModel Put([FromBody] ApplicationUpdateInfoModel applicationUpdateInfoModel)
         {
             // 后续考虑安全性
             var updateInfo = _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>

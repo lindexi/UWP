@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OTAManager.Server.Data;
 
@@ -11,9 +12,10 @@ namespace OTAManager.Server.Controllers
     [Route("[controller]")]
     public class UpdateManagerController : ControllerBase
     {
-        public UpdateManagerController(OTAManagerServerContext context)
+        public UpdateManagerController(OTAManagerServerContext context, IFileStorage fileStorage)
         {
             _context = context;
+            FileStorage = fileStorage;
 
             if (!_context.LatestApplicationUpdateInfo.Any())
             {
@@ -31,7 +33,7 @@ namespace OTAManager.Server.Controllers
 
         // 预计还需要加上 mac 地址信息，以及客户端版本号，这样才足够
         [HttpGet]
-        public ApplicationUpdateInfoModel Get([FromQuery]string applicationId)
+        public ApplicationUpdateInfoModel Get([FromQuery] string applicationId)
         {
             return _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
                 temp.ApplicationId == applicationId);
@@ -65,49 +67,40 @@ namespace OTAManager.Server.Controllers
             else
             {
                 _context.LatestApplicationUpdateInfo.Add(applicationUpdateInfoModel);
-                    _context.SaveChanges();
+                _context.SaveChanges();
             }
 
             return _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
                 temp.ApplicationId == applicationUpdateInfoModel.ApplicationId);
         }
 
-        ///// <summary>
-        ///// 上传文件，将会返回文件下载链接
-        ///// </summary>
-        ///// <returns></returns>
-        //[HttpPost]
-        //[Route("UploadFile")]
-        //public IActionResult UploadFile([FromForm] UploadFileRequest request)
-        //{
+        /// <summary>
+        /// 上传文件，将会返回文件下载链接
+        /// </summary>
+        /// <returns></returns>
+        /// 拆分为另一个服务器，或者不让用户访问
+        [HttpPost]
+        [Route("UploadFile")]
+        public async Task<IActionResult> UploadFile([FromForm] UploadFileRequest request)
+        {
+            var key = await FileStorage.UploadFile(request);
+            return Ok(new UploadFileResponse()
+            {
+                DownloadKey = key
+            });
+        }
 
-        //}
+        [HttpGet]
+        [Route("DownloadFile")]
+        public IActionResult DownloadFile([FromQuery] string key)
+        {
+            return FileStorage.DownloadFile(key);
+        }
 
-        //[HttpGet]
-        //[Route("DownloadFile")]
-        //public IActionResult DownloadFile([FromQuery]string key)
-        //{
-
-        //}
+        private IFileStorage FileStorage { get; }
 
         private readonly OTAManagerServerContext _context;
     }
-
-    ///// <summary>
-    ///// 文件存储服务
-    ///// </summary>
-    //public class FileStorage
-    //{
-    //    public string UploadFile(UploadFileRequest request)
-    //    {
-
-    //    }
-
-    //    public IActionResult DownloadFile(string key)
-    //    {
-
-    //    }
-    //}
 
     public class ApplicationUpdateRequest
     {
@@ -123,11 +116,5 @@ namespace OTAManager.Server.Controllers
         /// 客户端的 mac 地址，可以用来识别这个客户端的标识，例如测试设备等
         /// </summary>
         public string MacAddress { set; get; }
-    }
-
-    public class UploadFileRequest
-    {
-        public IFormFile File { set; get; }
-        public string Name { get; set; }
     }
 }

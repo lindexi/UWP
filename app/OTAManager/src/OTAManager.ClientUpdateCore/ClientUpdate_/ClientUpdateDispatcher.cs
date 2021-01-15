@@ -34,7 +34,7 @@ namespace OTAManager.ClientUpdateCore
             await Download();
 
             // 判断安装器是否存在
-            Install();
+            await Install();
         }
 
         /// <summary>
@@ -50,12 +50,12 @@ namespace OTAManager.ClientUpdateCore
                 new ClientUpdateFileDownloadContext(ClientUpdateManifest.ClientApplicationFileInfoList, TempFolder));
         }
 
-        private void Install()
+        private async Task Install()
         {
             ClientUpdateInstaller??=new DefaultClientUpdateInstaller();
 
             var clientUpdateInstallContext = new ClientUpdateInstallContext(ClientUpdateManifest,TempFolder);
-            ClientUpdateInstaller.Install(clientUpdateInstallContext);
+           await ClientUpdateInstaller.Install(clientUpdateInstallContext);
         }
 
         private ClientUpdateManifest ClientUpdateManifest { get; }

@@ -30,11 +30,8 @@ namespace OTAManager.Server.Test
                 var testClient = TestHostBuild.GetTestClient();
                 var response = await testClient.PostAsJsonAsync("/UpdateManager", new ApplicationUpdateRequest()
                 {
-                    ApplicationUpdateInfoModel = new ApplicationUpdateInfoModel()
-                    {
-                        ApplicationId = "123123123123",
-                        Version = new Version(1, 0).ToString(),
-                    }
+                    ApplicationId = "123123123123",
+                    Version = new Version(1, 0).ToString(),
                 });
 
                 var content = await response.Content.ReadFromJsonAsync<ApplicationUpdateInfoModel>();

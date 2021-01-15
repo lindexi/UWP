@@ -28,55 +28,53 @@ namespace OTAManager.ClientUpdateCore
             }
             else
             {
-                // 是不是只是下载了一个压缩包，如果是的话，那就解压缩一下咯
-                var clientApplicationFileInfoList = context.ClientUpdateManifest.ClientApplicationFileInfoList;
-                if (clientApplicationFileInfoList.Count == 1)
+                if (await FallbackInstall(context, installerFileName))
                 {
-                    var filePath = clientApplicationFileInfoList[0].FilePath;
-                    if (Path.GetExtension(filePath).Equals(".zip", StringComparison.OrdinalIgnoreCase))
-                    {
-                        // 尝试解压缩一下
-                        // 然后再运行
-                        var newWorkFolder = UnzipFile(context.WorkFolder, filePath);
-                        if (newWorkFolder != null)
-                        {
-                            installerFile = Path.Combine(newWorkFolder.FullName, installerFileName);
-                            if (File.Exists(installerFile))
-                            {
-                                // 然后运行安装器
-                                var process = Process.Start(installerFile, context.InstallerArgument ?? string.Empty);
-                                await process.WaitForExitAsync();
-                                return;
-                            }
-                            else
-                            {
-                                // 不知道如何做了
-                                //goto Exception;
-                            }
-                        }
-                        else
-                        {
-                            // 不知道如何做了
-                            //goto Exception;
-                        }
-                    }
-                    else
-                    {
-                        // 不知道如何做了
-                        //goto Exception;
-                    }
-                }
-                else
-                {
-                    // 不知道怎么做了
-                    //goto Exception;
+                    return;
                 }
             }
 
-#pragma warning disable CS0164 // 这个标签尚未被引用
-Exception:
             throw new ArgumentException($"根据传入的参数，无法完成应用更新");
-#pragma warning restore CS0164 // 这个标签尚未被引用
+        }
+
+        private async Task<bool> FallbackInstall(ClientUpdateInstallContext context, string installerFileName)
+        {
+            // 是不是只是下载了一个压缩包，如果是的话，那就解压缩一下咯
+            var clientApplicationFileInfoList = context.ClientUpdateManifest.ClientApplicationFileInfoList;
+            if (clientApplicationFileInfoList.Count != 1)
+            {
+                // 超过一个文件，因此不能支持
+                return false;
+            }
+
+            var filePath = clientApplicationFileInfoList[0].FilePath;
+            if (!Path.GetExtension(filePath).Equals(".zip", StringComparison.OrdinalIgnoreCase))
+            {
+                // 不是压缩文件，不能解压缩
+                return false;
+            }
+
+            // 尝试解压缩一下
+            // 然后再运行
+            var newWorkFolder = UnzipFile(context.WorkFolder, filePath);
+            if (newWorkFolder == null)
+            {
+                // 解压缩失败了
+                return false;
+            }
+
+            string installerFile = Path.Combine(newWorkFolder.FullName, installerFileName);
+            if (!File.Exists(installerFile))
+            {
+                // 解压缩之后，安装器文件依然不存在
+                return false;
+            }
+
+            // 然后运行安装器
+            var process = Process.Start(installerFile, context.InstallerArgument ?? string.Empty);
+            await process.WaitForExitAsync();
+            return true;
+
         }
 
         private DirectoryInfo? UnzipFile(DirectoryInfo workFolder, string filePath)

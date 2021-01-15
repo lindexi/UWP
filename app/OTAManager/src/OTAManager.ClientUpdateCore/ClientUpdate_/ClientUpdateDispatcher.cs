@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace OTAManager.ClientUpdateCore
@@ -46,16 +47,21 @@ namespace OTAManager.ClientUpdateCore
             var clientUpdateFileDownloader = ClientUpdateFileDownloader ?? new ClientUpdateFileDownloader();
 
             // 下载这里包含了文件是否正确等的判断
-            await clientUpdateFileDownloader.Download(
-                new ClientUpdateFileDownloadContext(ClientUpdateManifest.ClientApplicationFileInfoList, TempFolder));
+            var result = await clientUpdateFileDownloader.Download(
+                  new ClientUpdateFileDownloadContext(ClientUpdateManifest.ClientApplicationFileInfoList, TempFolder));
+
+            if (!result.Success)
+            {
+                throw new InvalidOperationException($"文件下载失败");
+            }
         }
 
         private async Task Install()
         {
-            ClientUpdateInstaller??=new DefaultClientUpdateInstaller();
+            ClientUpdateInstaller ??= new DefaultClientUpdateInstaller();
 
-            var clientUpdateInstallContext = new ClientUpdateInstallContext(ClientUpdateManifest,TempFolder);
-           await ClientUpdateInstaller.Install(clientUpdateInstallContext);
+            var clientUpdateInstallContext = new ClientUpdateInstallContext(ClientUpdateManifest, TempFolder);
+            await ClientUpdateInstaller.Install(clientUpdateInstallContext);
         }
 
         private ClientUpdateManifest ClientUpdateManifest { get; }

@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace OTAManager.ClientUpdateCore
 {
+    /// <summary>
+    /// 更新调度器
+    /// </summary>
     public class ClientUpdateDispatcher
     {
         public ClientUpdateDispatcher(ClientUpdateManifest clientUpdateManifest)
@@ -21,24 +24,38 @@ namespace OTAManager.ClientUpdateCore
             set => _tempFolder = value;
         }
 
+        public IClientUpdateFileDownloader? ClientUpdateFileDownloader { set; get; }
+
+        public IClientUpdateInstaller? ClientUpdateInstaller { set; get; }
+
         public async Task Start()
         {
             // 下载文件
-
-            var clientUpdateFileDownloader = new ClientUpdateFileDownloader();
-            // 下载这里包含了文件是否正确等的判断
-           await clientUpdateFileDownloader.Download(new ClientUpdateFileDownloadContext(ClientUpdateManifest.ClientApplicationFileInfoList, TempFolder));
+            await Download();
 
             // 判断安装器是否存在
             Install();
         }
 
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        /// <returns></returns>
+        private async Task Download()
+        {
+            var clientUpdateFileDownloader = ClientUpdateFileDownloader ?? new ClientUpdateFileDownloader();
+
+            // 下载这里包含了文件是否正确等的判断
+            await clientUpdateFileDownloader.Download(
+                new ClientUpdateFileDownloadContext(ClientUpdateManifest.ClientApplicationFileInfoList, TempFolder));
+        }
+
         private void Install()
         {
-            // 先判断安装文件是否存在
+            ClientUpdateInstaller??=new DefaultClientUpdateInstaller();
 
-            // 然后运行安装器
-            //ClientUpdateManifest.InstallerFileName
+            var clientUpdateInstallContext = new ClientUpdateInstallContext(ClientUpdateManifest,TempFolder);
+            ClientUpdateInstaller.Install(clientUpdateInstallContext);
         }
 
         private ClientUpdateManifest ClientUpdateManifest { get; }

@@ -1,0 +1,49 @@
+﻿<Window x:Class="OTAManager.Demo.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OTAManager.Demo.WPF"
+        xmlns:view="clr-namespace:OTAManager.Demo.WPF.View"
+        mc:Ignorable="d"
+        x:Name="Root"
+        Title="MainWindow" Height="600" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <StackPanel Margin="10,10,10,10"
+                        DataContext="{Binding ElementName=Root}">
+                <StackPanel.Resources>
+                    <Style TargetType="view:InputText">
+                        <Setter Property="Margin" Value="1,10,1,1"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <view:InputText HeaderText="ApplicationId" Text="{Binding ApplicationId}"></view:InputText>
+                <view:InputText HeaderText="版本号" Text="{Binding Version}"></view:InputText>
+                <view:InputText HeaderText="应用名" Text="{Binding ApplicationName}"></view:InputText>
+                <view:InputText HeaderText="应用安装器的文件名" Text="{Binding InstallerFileName}"></view:InputText>
+                <view:InputText HeaderText="应用安装器的参数" Text="{Binding InstallerArgument}"></view:InputText>
+                <view:InputText HeaderText="客户端应用的文件信息" Text="{Binding ClientApplicationFileInfoText}"  AcceptsReturn="True" TextWrapping="Wrap"></view:InputText>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="10,10,10,10"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <Button x:Name="UploadContextButton" Content="上传更新信息"
+                        Click="UploadContextButton_OnClick"></Button>
+                <Button x:Name="GetContextButton" Content="获取更新信息"
+                        Click="GetContextButton_OnClick" />
+                <Button x:Name="GetAndUpdateButton" Content="下载更新" Click="GetAndUpdateButton_OnClick"></Button>
+            </StackPanel>
+        </StackPanel>
+        <Grid x:Name="LogGrid" Grid.Row="1" ClipToBounds="True">
+            <TextBlock x:Name="LogText" Margin="10,10,10,10"
+                       TextWrapping="Wrap" VerticalAlignment="Bottom"></TextBlock>
+        </Grid>
+    </Grid>
+</Window>

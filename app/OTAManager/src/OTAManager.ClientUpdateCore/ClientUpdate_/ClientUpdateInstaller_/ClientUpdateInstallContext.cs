@@ -26,12 +26,12 @@ namespace OTAManager.ClientUpdateCore
         /// <summary>
         /// 应用安装器的文件名
         /// </summary>
-        public string InstallerFileName { get;} 
+        public string InstallerFileName { get; }
 
         /// <summary>
         /// 用于传给应用安装器的参数
         /// </summary>
-        public string? InstallerArgument { get;  }
+        public string? InstallerArgument { get; }
 
         public ClientUpdateManifest ClientUpdateManifest { get; }
     }

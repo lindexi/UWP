@@ -9,7 +9,7 @@ namespace OTAManager.Server.Data
 {
     public class OTAManagerServerContext : DbContext
     {
-        public OTAManagerServerContext (DbContextOptions<OTAManagerServerContext> options)
+        public OTAManagerServerContext(DbContextOptions<OTAManagerServerContext> options)
             : base(options)
         {
         }

@@ -7,7 +7,7 @@ namespace OTAManager.Server.Controllers
     /// 最新的应用信息
     /// </summary>
     [Index(nameof(ApplicationId))]
-    public class ApplicationUpdateInfoModel: ApplicationUpdateInfo
+    public class ApplicationUpdateInfoModel : ApplicationUpdateInfo
     {
         public int Id { set; get; }
     }

@@ -53,7 +53,7 @@ namespace OTAManager.Demo.WPF.View
         }
 
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-            "Text", typeof(string), typeof(InputText), new FrameworkPropertyMetadata(default(string),FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+            "Text", typeof(string), typeof(InputText), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public string Text
         {

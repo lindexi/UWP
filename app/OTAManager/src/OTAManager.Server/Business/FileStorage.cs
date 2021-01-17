@@ -45,7 +45,7 @@ namespace OTAManager.Server.Controllers
             var fileStorageFolder = FileStorageFolder ?? Directory.CreateDirectory("FileStorageFolder");
 
             var fileName = key;
-            var file = Path.Combine(fileStorageFolder.FullName,fileName);
+            var file = Path.Combine(fileStorageFolder.FullName, fileName);
             if (File.Exists(file))
             {
                 return new PhysicalFileResult(file, "application/octet-stream");

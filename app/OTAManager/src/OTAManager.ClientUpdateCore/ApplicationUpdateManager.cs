@@ -44,7 +44,7 @@ namespace OTAManager.ClientUpdateCore
             }
 
             var applicationUpdateInfo =
-                JsonSerializer.Deserialize<ApplicationUpdateInfo>(applicationUpdateInfoText,new JsonSerializerOptions()
+                JsonSerializer.Deserialize<ApplicationUpdateInfo>(applicationUpdateInfoText, new JsonSerializerOptions()
                 {
                     PropertyNameCaseInsensitive = true
                 });
@@ -96,9 +96,9 @@ namespace OTAManager.ClientUpdateCore
 
         private ApplicationUpdateContext ParseApplicationUpdateInfoModel(ApplicationUpdateInfo model)
         {
-            if (!Version.TryParse(model.Version,out var applicationVersion))
+            if (!Version.TryParse(model.Version, out var applicationVersion))
             {
-                applicationVersion=new Version();
+                applicationVersion = new Version();
             }
             var applicationUpdateContext = new ApplicationUpdateContext()
             {
@@ -134,7 +134,7 @@ namespace OTAManager.ClientUpdateCore
 
         private HttpClient GetClient()
         {
-            return new HttpClient() {BaseAddress = new Uri(Host)};
+            return new HttpClient() { BaseAddress = new Uri(Host) };
         }
 
         private void Log(string message)

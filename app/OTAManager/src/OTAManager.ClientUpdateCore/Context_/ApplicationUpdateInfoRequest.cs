@@ -13,8 +13,8 @@ namespace OTAManager.ClientUpdateCore
             CurrentApplicationVersion = currentApplicationVersion;
         }
 
-        public string ApplicationId { get;  } 
+        public string ApplicationId { get; }
 
-        public Version CurrentApplicationVersion { get;  } 
+        public Version CurrentApplicationVersion { get; }
     }
 }

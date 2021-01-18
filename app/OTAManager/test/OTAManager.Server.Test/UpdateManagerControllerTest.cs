@@ -16,9 +16,9 @@ namespace OTAManager.Server.Test
             "请求应用更新，可以收到应用最新版本".Test(async () =>
             {
                 var testClient = TestHostBuild.GetTestClient();
-               var appUpdateInfo = await testClient.GetFromJsonAsync<ApplicationUpdateInfoModel>("/UpdateManager?applicationId=123123123123");
+                var appUpdateInfo = await testClient.GetFromJsonAsync<ApplicationUpdateInfoModel>("/UpdateManager?applicationId=123123123123");
 
-               Assert.AreEqual("123123123123", appUpdateInfo.ApplicationId);
+                Assert.AreEqual("123123123123", appUpdateInfo.ApplicationId);
             });
         }
 
@@ -47,7 +47,8 @@ namespace OTAManager.Server.Test
                 var testClient = TestHostBuild.GetTestClient();
                 var applicationUpdateInfo = new ApplicationUpdateInfoModel()
                 {
-                    ApplicationId = "new", Version = new Version(1, 0).ToString()
+                    ApplicationId = "new",
+                    Version = new Version(1, 0).ToString()
                 };
                 var response = await testClient.PutAsJsonAsync("/UpdateManager", applicationUpdateInfo);
                 var latestUpdateInfo = await response.Content.ReadFromJsonAsync<ApplicationUpdateInfoModel>();
@@ -61,7 +62,8 @@ namespace OTAManager.Server.Test
                 var testClient = TestHostBuild.GetTestClient();
                 var applicationUpdateInfo = new ApplicationUpdateInfoModel()
                 {
-                    ApplicationId = "new", Version = new Version(2, 0).ToString()
+                    ApplicationId = "new",
+                    Version = new Version(2, 0).ToString()
                 };
                 var response = await testClient.PutAsJsonAsync("/UpdateManager", applicationUpdateInfo);
                 var latestUpdateInfo = await response.Content.ReadFromJsonAsync<ApplicationUpdateInfoModel>();

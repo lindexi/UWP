@@ -40,7 +40,7 @@ namespace OTAManager.Server.Test
 
                 var downloadResponse = await testClient.GetAsync($"/UpdateManager/DownloadFile?key={key.DownloadKey}");
 
-               var  downloadStream = await downloadResponse.Content.ReadAsStreamAsync();
+                var downloadStream = await downloadResponse.Content.ReadAsStreamAsync();
                 var stream = new MemoryStream();
                 await downloadStream.CopyToAsync(stream);
 

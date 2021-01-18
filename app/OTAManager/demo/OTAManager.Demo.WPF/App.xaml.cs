@@ -24,7 +24,7 @@ namespace OTAManager.Demo.WPF
 
                 host.Run();
             });
-            
+
             base.OnStartup(e);
         }
 

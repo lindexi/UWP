@@ -32,10 +32,12 @@ namespace OTAManager.Server
 
             services.AddControllers();
 
+            const string connect = "Filename=./OTAManager.db";
+
             services.AddDbContext<OTAManagerServerContext>(options =>
-                    options.UseInMemoryDatabase("Foo"));
+                    options.UseSqlite(connect));
             services.AddDbContext<FileStorageContext>(options =>
-                options.UseInMemoryDatabase("Foo"));
+                options.UseSqlite(connect));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

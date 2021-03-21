@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +33,13 @@ namespace OTAManager.Server.Core
             // 不能太长哦
             if (fileName.Length > 100)
             {
+                var extension = Path.GetExtension(fileName);
                 fileName = fileName.Substring(0, 100);
+                fileName += extension;
+                if (fileName.Length > 120)
+                {
+                    fileName = fileName.Substring(0, 100);
+                }
             }
 
             //fileName += $"_{Path.GetRandomFileName()}";
@@ -41,7 +48,7 @@ namespace OTAManager.Server.Core
             var md5 = fileStorageModel.Md5;
             var firstFolder = md5.Substring(0, 2);
             var secondFolder = md5.Substring(2, 2);
-            var lastFolder = md5.Substring(4,8);
+            var lastFolder = md5.Substring(4, 8);
             var filePath = Path.Combine(firstFolder, secondFolder, lastFolder, fileName);
 
             fileStorageModel.FilePath = filePath;
@@ -96,11 +103,40 @@ namespace OTAManager.Server.Core
                 var file = Path.Combine(fileStorageFolder.FullName, fileName);
                 if (File.Exists(file))
                 {
-                    return new PhysicalFileResult(file, "application/octet-stream");
+                    var contentType = GetContentType(file);
+
+                    return new PhysicalFileResult(file, contentType);
                 }
             }
 
             return new NotFoundResult();
+        }
+
+        private static string GetContentType(string file)
+        {
+            var extension = Path.GetExtension(file);
+            if (!string.IsNullOrEmpty(extension))
+            {
+                if (extension.Equals(".png", StringComparison.OrdinalIgnoreCase))
+                {
+                    return "image/png";
+                }
+                if (extension.Equals(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                    extension.Equals(".jpeg", StringComparison.OrdinalIgnoreCase))
+                {
+                    return "image/jpeg";
+                }
+                if (extension.Equals(".gif", StringComparison.OrdinalIgnoreCase))
+                {
+                    return "image/gif";
+                }
+                if (extension.Equals(".svg", StringComparison.OrdinalIgnoreCase))
+                {
+                    return "image/svg+xml";
+                }
+            }
+
+            return "application/octet-stream";
         }
 
         private void GetFileInfo(string filePath, FileStorageModel fileStorageModel)

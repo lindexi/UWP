@@ -16,6 +16,33 @@ namespace OTAManager.Server.Test
         [ContractTestCase]
         public void UploadFileTest()
         {
+            "上传超长的文件名，可以拿到文件下载链接".Test(async () =>
+            {
+                var testClient = TestHostBuild.GetTestClient();
+                // 本地的文件
+                var memoryStream = new MemoryStream();
+                for (int i = 0; i < 1000; i++)
+                {
+                    memoryStream.WriteByte((byte) i);
+                }
+
+                memoryStream.Position = 0;
+
+                var multipartFormDataContent = new MultipartFormDataContent();
+                var stringContent = new StringContent("12312312312312312312312312312312312312312312312312312312312312312312312312312311111111111111111111111.png");
+
+                multipartFormDataContent.Add(stringContent, "Name");
+
+                var streamContent = new StreamContent(memoryStream);
+                multipartFormDataContent.Add(streamContent, "File", "Foo");
+
+                var response = await testClient.PostAsync("/UpdateManager/UploadFile", multipartFormDataContent);
+
+                var key = await response.Content.ReadFromJsonAsync<UploadFileResponse>();
+
+                Assert.AreEqual(true, !string.IsNullOrEmpty(key.DownloadKey));
+            });
+
             "多次上传相同的文件，可以拿到相同的文件下载链接".Test(async () =>
             {
                 var testClient = TestHostBuild.GetTestClient();

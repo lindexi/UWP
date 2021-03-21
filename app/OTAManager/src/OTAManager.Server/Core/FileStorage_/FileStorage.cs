@@ -41,7 +41,7 @@ namespace OTAManager.Server.Core
             var md5 = fileStorageModel.Md5;
             var firstFolder = md5.Substring(0, 2);
             var secondFolder = md5.Substring(2, 2);
-            var lastFolder = md5.Substring(4,8);
+            var lastFolder = md5.Substring(4, 8);
             var filePath = Path.Combine(firstFolder, secondFolder, lastFolder, fileName);
 
             fileStorageModel.FilePath = filePath;

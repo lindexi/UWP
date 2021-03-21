@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using OTAManager.Server.Controllers;
+using OTAManager.UpdateInfoShare.Data;
 
 namespace OTAManager.Server.Model
 {
@@ -11,4 +13,6 @@ namespace OTAManager.Server.Model
     {
         public int Id { set; get; }
     }
+
+
 }

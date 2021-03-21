@@ -6,7 +6,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using OTAManager.Server.Controllers;
+using OTAManager.UpdateInfoShare.Data;
 
 namespace OTAManager.ClientUpdateCore
 {

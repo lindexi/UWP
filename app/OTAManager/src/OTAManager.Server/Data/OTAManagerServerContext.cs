@@ -18,7 +18,7 @@ namespace OTAManager.Server.Data
         /// <summary>
         /// 最新的版本信息
         /// </summary>
-        public DbSet<ApplicationUpdateInfoModel> LatestApplicationUpdateInfo { get; set; }
+        public DbSet<ApplicationUpdateInfoModel> LatestApplicationUpdateInfo { get; set; } = null!;
 
         // 这里还需要一个最新的差分信息表
         // 一个全部版本的表

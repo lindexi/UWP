@@ -1,9 +1,7 @@
 ﻿using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OTAManager.Server.Context;
-using OTAManager.Server.Controllers;
 
 namespace OTAManager.Server.Core
 {
@@ -22,7 +20,7 @@ namespace OTAManager.Server.Core
         {
             var fileStorageFolder = FileStorageFolder ?? Directory.CreateDirectory("FileStorageFolder");
 
-            var fileName = GetSafeFileName(request.Name);
+            var fileName = FileHelper.GetSafeFileName(request.Name);
             // 不能太长哦
             if (fileName.Length > 100)
             {
@@ -55,67 +53,6 @@ namespace OTAManager.Server.Core
             {
                 return new NotFoundResult();
             }
-        }
-
-        static string GetSafeFileName(string arbitraryString)
-        {
-            var invalidChars = System.IO.Path.GetInvalidFileNameChars();
-            var replaceIndex = arbitraryString.IndexOfAny(invalidChars, 0);
-            if (replaceIndex == -1) return arbitraryString;
-
-            var r = new StringBuilder();
-            var i = 0;
-
-            do
-            {
-                r.Append(arbitraryString, i, replaceIndex - i);
-
-                switch (arbitraryString[replaceIndex])
-                {
-                    case '"':
-                        r.Append("''");
-                        break;
-                    case '<':
-                        r.Append('\u02c2'); // '˂' (modifier letter left arrowhead)
-                        break;
-                    case '>':
-                        r.Append('\u02c3'); // '˃' (modifier letter right arrowhead)
-                        break;
-                    case '|':
-                        r.Append('\u2223'); // '∣' (divides)
-                        break;
-                    case ':':
-                        r.Append('-');
-                        break;
-                    case '*':
-                        r.Append('\u2217'); // '∗' (asterisk operator)
-                        break;
-                    case '\\':
-                    case '/':
-                        r.Append('\u2044'); // '⁄' (fraction slash)
-                        break;
-                    case '\0':
-                    case '\f':
-                    case '?':
-                        break;
-                    case '\t':
-                    case '\n':
-                    case '\r':
-                    case '\v':
-                        r.Append(' ');
-                        break;
-                    default:
-                        r.Append('_');
-                        break;
-                }
-
-                i = replaceIndex + 1;
-                replaceIndex = arbitraryString.IndexOfAny(invalidChars, i);
-            } while (replaceIndex != -1);
-
-            r.Append(arbitraryString, i, arbitraryString.Length - i);
-
-            return r.ToString();
         }
     }
 }

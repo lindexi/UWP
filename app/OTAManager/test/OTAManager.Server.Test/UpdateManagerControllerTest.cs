@@ -19,7 +19,7 @@ namespace OTAManager.Server.Test
                 var testClient = TestHostBuild.GetTestClient();
                 var appUpdateInfo = await testClient.GetFromJsonAsync<ApplicationUpdateInfoModel>("/UpdateManager?applicationId=123123123123");
 
-                Assert.AreEqual("123123123123", appUpdateInfo.ApplicationId);
+                Assert.AreEqual("123123123123", appUpdateInfo!.ApplicationId);
             });
         }
 

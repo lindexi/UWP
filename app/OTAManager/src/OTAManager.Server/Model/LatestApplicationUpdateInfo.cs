@@ -13,6 +13,4 @@ namespace OTAManager.Server.Model
     {
         public int Id { set; get; }
     }
-
-
 }

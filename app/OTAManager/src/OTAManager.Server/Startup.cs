@@ -28,12 +28,14 @@ namespace OTAManager.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IFileStorage>(new FileSystemFileStorage());
+            services.AddSingleton<IFileStorage, FileStorage>();
 
             services.AddControllers();
 
             services.AddDbContext<OTAManagerServerContext>(options =>
                     options.UseInMemoryDatabase("Foo"));
+            services.AddDbContext<FileStorageContext>(options =>
+                options.UseInMemoryDatabase("Foo"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

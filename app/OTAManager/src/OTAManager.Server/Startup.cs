@@ -18,10 +18,13 @@ namespace OTAManager.Server
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostEnvironment)
         {
             Configuration = configuration;
+            _hostEnvironment = hostEnvironment;
         }
+
+        private readonly IWebHostEnvironment _hostEnvironment;
 
         public IConfiguration Configuration { get; }
 
@@ -31,13 +34,11 @@ namespace OTAManager.Server
             services.AddSingleton<IFileStorage, FileStorage>();
 
             services.AddControllers();
-
-            const string connect = "Filename=./OTAManager.db";
-
+            
             services.AddDbContext<OTAManagerServerContext>(options =>
-                    options.UseSqlite(connect));
+                    options.UseSqlite($"Data Source={_hostEnvironment.ContentRootPath}/OTAManager.db"));
             services.AddDbContext<FileStorageContext>(options =>
-                options.UseSqlite(connect));
+                options.UseSqlite($"Data Source={_hostEnvironment.ContentRootPath}/FileStorage.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

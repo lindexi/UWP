@@ -4,7 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OTAManager.Server.Context;
+using OTAManager.Server.Core;
 using OTAManager.Server.Data;
+using OTAManager.Server.Model;
 
 namespace OTAManager.Server.Controllers
 {
@@ -33,7 +36,7 @@ namespace OTAManager.Server.Controllers
 
         // 预计还需要加上 mac 地址信息，以及客户端版本号，这样才足够
         [HttpGet]
-        public ApplicationUpdateInfoModel Get([FromQuery] string applicationId)
+        public ApplicationUpdateInfoModel? Get([FromQuery] string applicationId)
         {
             return _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
                 temp.ApplicationId == applicationId);
@@ -41,15 +44,20 @@ namespace OTAManager.Server.Controllers
 
         // POST: /UpdateManager
         [HttpPost]
-        public ApplicationUpdateInfoModel Post([FromBody] ApplicationUpdateRequest request)
+        public ApplicationUpdateInfoModel? Post([FromBody] ApplicationUpdateRequest request)
         {
             return _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
                 temp.ApplicationId == request.ApplicationId);
         }
 
         [HttpPut]
-        public ApplicationUpdateInfoModel Put([FromBody] ApplicationUpdateInfoModel applicationUpdateInfoModel)
+        public IActionResult Put([FromBody] ApplicationUpdateInfoModel applicationUpdateInfoModel)
         {
+            if (string.IsNullOrEmpty(applicationUpdateInfoModel.UpdateContext))
+            {
+                return BadRequest("传入的 UpdateContext 不能是空");
+            }
+
             // 后续考虑安全性
             var updateInfo = _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
                 temp.ApplicationId == applicationUpdateInfoModel.ApplicationId);
@@ -70,8 +78,8 @@ namespace OTAManager.Server.Controllers
                 _context.SaveChanges();
             }
 
-            return _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
-                temp.ApplicationId == applicationUpdateInfoModel.ApplicationId);
+            return Ok(_context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
+                temp.ApplicationId == applicationUpdateInfoModel.ApplicationId));
         }
 
         /// <summary>
@@ -100,21 +108,5 @@ namespace OTAManager.Server.Controllers
         private IFileStorage FileStorage { get; }
 
         private readonly OTAManagerServerContext _context;
-    }
-
-    public class ApplicationUpdateRequest
-    {
-        public string ApplicationId { get; set; }
-
-        /// <summary>
-        /// 客户端的版本号
-        /// </summary>
-        /// 如果客户端的版本号太小了，那就加入到优先级里面去，让这个客户端更新
-        public string Version { get; set; }
-
-        /// <summary>
-        /// 客户端的 mac 地址，可以用来识别这个客户端的标识，例如测试设备等
-        /// </summary>
-        public string MacAddress { set; get; }
     }
 }

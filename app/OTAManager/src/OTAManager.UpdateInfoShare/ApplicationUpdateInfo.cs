@@ -1,4 +1,4 @@
-﻿namespace OTAManager.Server.Controllers
+﻿namespace OTAManager.UpdateInfoShare.Data
 {
     public class ApplicationUpdateInfo
     {

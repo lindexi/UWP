@@ -11,28 +11,34 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OTAManager.Server.Controllers;
+using OTAManager.Server.Core;
 using OTAManager.Server.Data;
 
 namespace OTAManager.Server
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostEnvironment)
         {
             Configuration = configuration;
+            _hostEnvironment = hostEnvironment;
         }
+
+        private readonly IWebHostEnvironment _hostEnvironment;
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IFileStorage>(new FileStorage());
+            services.AddSingleton<IFileStorage, FileStorage>();
 
-            services.AddControllers();
-
+            services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+            
             services.AddDbContext<OTAManagerServerContext>(options =>
-                    options.UseInMemoryDatabase("Foo"));
+                    options.UseSqlite($"Data Source={_hostEnvironment.ContentRootPath}/OTAManager.db"));
+            services.AddDbContext<FileStorageContext>(options =>
+                options.UseSqlite($"Data Source={_hostEnvironment.ContentRootPath}/FileStorage.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

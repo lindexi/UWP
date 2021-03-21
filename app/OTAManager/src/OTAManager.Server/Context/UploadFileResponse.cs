@@ -1,4 +1,4 @@
-﻿namespace OTAManager.Server.Controllers
+﻿namespace OTAManager.Server.Context
 {
     public class UploadFileResponse
     {

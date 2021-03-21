@@ -1,62 +1,46 @@
-﻿#nullable enable
-using System.IO;
+﻿using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 
-namespace OTAManager.Server.Controllers
+namespace OTAManager.Server.Core
 {
-    /// <summary>
-    /// 文件存储服务
-    /// </summary>
-    /// 存放在本地
-    public class FileStorage : IFileStorage
+    public static class FileHelper
     {
-        /// <summary>
-        /// 存放文件的文件夹
-        /// </summary>
-        public DirectoryInfo? FileStorageFolder { set; get; }
-
-        public async Task<string> UploadFile(UploadFileRequest request)
+        public static void MoveFile(string sourceFile, string destFile)
         {
-            var fileStorageFolder = FileStorageFolder ?? Directory.CreateDirectory("FileStorageFolder");
-
-            var fileName = GetSafeFileName(request.Name);
-            // 不能太长哦
-            if (fileName.Length > 100)
+            if (File.Exists(destFile))
             {
-                fileName = fileName.Substring(0, 100);
+                File.Delete(destFile);
             }
 
-            fileName += $"_{Path.GetRandomFileName()}";
-
-            var file = Path.Combine(fileStorageFolder.FullName, fileName);
-            using (var fileStream = File.OpenWrite(file))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                await request.File.CopyToAsync(fileStream);
-            }
-
-            var key = fileName;
-            return key;
-        }
-
-        public IActionResult DownloadFile(string key)
-        {
-            var fileStorageFolder = FileStorageFolder ?? Directory.CreateDirectory("FileStorageFolder");
-
-            var fileName = key;
-            var file = Path.Combine(fileStorageFolder.FullName, fileName);
-            if (File.Exists(file))
-            {
-                return new PhysicalFileResult(file, "application/octet-stream");
+                if (IsSameDrive(sourceFile, destFile))
+                {
+                    File.Move(sourceFile, destFile);
+                }
+                else
+                {
+                    // 先复制再删除
+                    File.Copy(sourceFile, destFile);
+                    File.Delete(sourceFile);
+                }
             }
             else
             {
-                return new NotFoundResult();
+                File.Move(sourceFile, destFile);
             }
         }
 
-        static string GetSafeFileName(string arbitraryString)
+        public static bool IsSameDrive(string file1, string file2)
+        {
+            var driveInfo1 = new DriveInfo(file1);
+            var driveInfo2 = new DriveInfo(file2);
+
+            return driveInfo1.Name == driveInfo2.Name;
+        }
+
+        public static string GetSafeFileName(string arbitraryString)
         {
             var invalidChars = System.IO.Path.GetInvalidFileNameChars();
             var replaceIndex = arbitraryString.IndexOfAny(invalidChars, 0);

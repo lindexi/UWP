@@ -5,6 +5,7 @@ using System.Net.Http.Json;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
+using OTAManager.Server.Context;
 using OTAManager.Server.Controllers;
 
 namespace OTAManager.Server.Test
@@ -15,6 +16,37 @@ namespace OTAManager.Server.Test
         [ContractTestCase]
         public void UploadFileTest()
         {
+            "多次上传相同的文件，可以拿到相同的文件下载链接".Test(async () =>
+            {
+                var testClient = TestHostBuild.GetTestClient();
+                // 本地的文件
+                var memoryStream = new MemoryStream();
+                for (int i = 0; i < 1000; i++)
+                {
+                    memoryStream.WriteByte((byte) i);
+                }
+
+                memoryStream.Position = 0;
+
+                var multipartFormDataContent = new MultipartFormDataContent();
+                var stringContent = new StringContent("文件名");
+                multipartFormDataContent.Add(stringContent, "Name");
+
+                var streamContent = new StreamContent(memoryStream);
+                multipartFormDataContent.Add(streamContent, "File", "Foo");
+
+                var response1 = await testClient.PostAsync("/UpdateManager/UploadFile", multipartFormDataContent);
+
+                var key1 = await response1.Content.ReadFromJsonAsync<UploadFileResponse>();
+
+                memoryStream.Position = 0;
+                var response2 = await testClient.PostAsync("/UpdateManager/UploadFile", multipartFormDataContent);
+
+                var key2 = await response2.Content.ReadFromJsonAsync<UploadFileResponse>();
+
+                Assert.AreEqual(key1.DownloadKey, key2.DownloadKey);
+            });
+
             "将本地的文件上传到服务器上，可以拿到对应的链接，链接可以下载文件".Test(async () =>
             {
                 var testClient = TestHostBuild.GetTestClient();

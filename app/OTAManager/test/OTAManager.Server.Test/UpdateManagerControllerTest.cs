@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
 using OTAManager.Server.Controllers;
@@ -11,6 +12,18 @@ namespace OTAManager.Server.Test
     [TestClass]
     public class UpdateManagerControllerTest
     {
+        [TestInitialize]
+        public async Task Init()
+        {
+            var testClient = TestHostBuild.GetTestClient();
+            var applicationUpdateInfo = new ApplicationUpdateInfoModel()
+            {
+                ApplicationId = "123123123123",
+                Version = new Version(1, 0).ToString()
+            };
+            await testClient.PutAsJsonAsync("/UpdateManager", applicationUpdateInfo);
+        }
+
         [ContractTestCase]
         public void GetTest()
         {

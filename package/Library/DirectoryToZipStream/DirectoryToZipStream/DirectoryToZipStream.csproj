@@ -7,4 +7,11 @@
     <Description>将文件夹内容输出为压缩包文件</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="dotnetCampus.SourceYard" Version="0.1.19369-alpha">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>

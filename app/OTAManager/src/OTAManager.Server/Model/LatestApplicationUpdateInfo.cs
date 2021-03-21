@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using OTAManager.Server.Controllers;
 
-namespace OTAManager.Server.Controllers
+namespace OTAManager.Server.Model
 {
     /// <summary>
     /// 最新的应用信息

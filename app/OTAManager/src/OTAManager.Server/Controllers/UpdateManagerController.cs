@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using OTAManager.Server.Context;
 using OTAManager.Server.Core;
 using OTAManager.Server.Data;
+using OTAManager.Server.Model;
 
 namespace OTAManager.Server.Controllers
 {

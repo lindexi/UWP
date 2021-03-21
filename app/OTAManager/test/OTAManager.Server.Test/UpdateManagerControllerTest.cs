@@ -19,7 +19,8 @@ namespace OTAManager.Server.Test
             var applicationUpdateInfo = new ApplicationUpdateInfoModel()
             {
                 ApplicationId = "123123123123",
-                Version = new Version(1, 0).ToString()
+                Version = new Version(1, 0).ToString(),
+                UpdateContext = "123",
             };
             await testClient.PutAsJsonAsync("/UpdateManager", applicationUpdateInfo);
         }
@@ -62,7 +63,8 @@ namespace OTAManager.Server.Test
                 var applicationUpdateInfo = new ApplicationUpdateInfoModel()
                 {
                     ApplicationId = "new",
-                    Version = new Version(1, 0).ToString()
+                    Version = new Version(1, 0).ToString(),
+                    UpdateContext = "123",
                 };
                 var response = await testClient.PutAsJsonAsync("/UpdateManager", applicationUpdateInfo);
                 var latestUpdateInfo = await response.Content.ReadFromJsonAsync<ApplicationUpdateInfoModel>();

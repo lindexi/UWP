@@ -51,8 +51,13 @@ namespace OTAManager.Server.Controllers
         }
 
         [HttpPut]
-        public ApplicationUpdateInfoModel? Put([FromBody] ApplicationUpdateInfoModel applicationUpdateInfoModel)
+        public IActionResult Put([FromBody] ApplicationUpdateInfoModel applicationUpdateInfoModel)
         {
+            if (string.IsNullOrEmpty(applicationUpdateInfoModel.UpdateContext))
+            {
+                return BadRequest("传入的 UpdateContext 不能是空");
+            }
+
             // 后续考虑安全性
             var updateInfo = _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
                 temp.ApplicationId == applicationUpdateInfoModel.ApplicationId);
@@ -73,8 +78,8 @@ namespace OTAManager.Server.Controllers
                 _context.SaveChanges();
             }
 
-            return _context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
-                temp.ApplicationId == applicationUpdateInfoModel.ApplicationId);
+            return Ok(_context.LatestApplicationUpdateInfo.FirstOrDefault(temp =>
+                temp.ApplicationId == applicationUpdateInfoModel.ApplicationId));
         }
 
         /// <summary>

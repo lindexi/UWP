@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Lindexi.Src.DirectoryToZipStream</AssemblyName>
+    <RootNamespace>Lindexi.Src.DirectoryToZipStream</RootNamespace>
+    <Description>将文件夹内容输出为压缩包文件</Description>
+  </PropertyGroup>
+
+</Project>

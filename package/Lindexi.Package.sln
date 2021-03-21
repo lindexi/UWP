@@ -1,23 +1,33 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoSyncGitRepo", "AutoSyncGitRepo\AutoSyncGitRepo.csproj", "{BA0080B6-DCBF-42E4-AC02-8B3D4B4C93B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoSyncGitRepo", "AutoSyncGitRepo\AutoSyncGitRepo.csproj", "{BA0080B6-DCBF-42E4-AC02-8B3D4B4C93B6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitCommand", "GitCommand", "{48665BB8-6F30-4FFA-B836-BCC80F07A53C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitCommand", "GitCommand\GitCommand\GitCommand.csproj", "{8F70FBD4-9ECC-43DC-A0F1-7D08E4C5C778}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitCommand", "GitCommand\GitCommand\GitCommand.csproj", "{8F70FBD4-9ECC-43DC-A0F1-7D08E4C5C778}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhitmanRandomIdentifier", "WhitmanRandomIdentifier\WhitmanRandomIdentifier.csproj", "{B6DA3033-C028-481B-946C-2C995986CF34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhitmanRandomIdentifier", "WhitmanRandomIdentifier\WhitmanRandomIdentifier.csproj", "{B6DA3033-C028-481B-946C-2C995986CF34}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "博客文档链接是否可用", "博客文档链接是否可用", "{F87AB188-EB2D-4608-BBC6-4D755869AB12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckBlogUrlAvailable", "博客文档链接是否可用\CheckBlogUrlAvailable\CheckBlogUrlAvailable.csproj", "{3B19BBB6-3786-415D-99A1-34C23BCA9E0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckBlogUrlAvailable", "博客文档链接是否可用\CheckBlogUrlAvailable\CheckBlogUrlAvailable.csproj", "{3B19BBB6-3786-415D-99A1-34C23BCA9E0D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "切换 Git 分支", "切换 Git 分支", "{BFF8B45E-E029-470C-ABD4-01D89224645C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NelyercairjachayjearnemHenakawbujairfo", "切换 Git 分支\NelyercairjachayjearnemHenakawbujairfo\NelyercairjachayjearnemHenakawbujairfo.csproj", "{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NelyercairjachayjearnemHenakawbujairfo", "切换 Git 分支\NelyercairjachayjearnemHenakawbujairfo\NelyercairjachayjearnemHenakawbujairfo.csproj", "{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tool", "Tool", "{52D7FBDF-14D4-4A2C-A37C-F92D443EAB1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{76704B0E-D84D-478C-9F21-CC5F358730D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryToZipStream", "Library\DirectoryToZipStream\DirectoryToZipStream\DirectoryToZipStream.csproj", "{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DirectoryToZipStream", "DirectoryToZipStream", "{5ACF5CDD-F7B1-4886-A866-50F95AD4106E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectoryToZipStream.Test", "Library\DirectoryToZipStream\DirectoryToZipStream.Test\DirectoryToZipStream.Test.csproj", "{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +37,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BA0080B6-DCBF-42E4-AC02-8B3D4B4C93B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -92,10 +99,48 @@ Global
 		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Release|x64.Build.0 = Release|Any CPU
 		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Release|x86.ActiveCfg = Release|Any CPU
 		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E}.Release|x86.Build.0 = Release|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Debug|x64.Build.0 = Debug|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Debug|x86.Build.0 = Debug|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Release|x64.ActiveCfg = Release|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Release|x64.Build.0 = Release|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Release|x86.ActiveCfg = Release|Any CPU
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}.Release|x86.Build.0 = Release|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Debug|x64.Build.0 = Debug|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Debug|x86.Build.0 = Debug|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Release|x64.ActiveCfg = Release|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Release|x64.Build.0 = Release|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Release|x86.ActiveCfg = Release|Any CPU
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{BA0080B6-DCBF-42E4-AC02-8B3D4B4C93B6} = {52D7FBDF-14D4-4A2C-A37C-F92D443EAB1E}
+		{48665BB8-6F30-4FFA-B836-BCC80F07A53C} = {76704B0E-D84D-478C-9F21-CC5F358730D5}
 		{8F70FBD4-9ECC-43DC-A0F1-7D08E4C5C778} = {48665BB8-6F30-4FFA-B836-BCC80F07A53C}
+		{B6DA3033-C028-481B-946C-2C995986CF34} = {52D7FBDF-14D4-4A2C-A37C-F92D443EAB1E}
+		{F87AB188-EB2D-4608-BBC6-4D755869AB12} = {52D7FBDF-14D4-4A2C-A37C-F92D443EAB1E}
 		{3B19BBB6-3786-415D-99A1-34C23BCA9E0D} = {F87AB188-EB2D-4608-BBC6-4D755869AB12}
+		{BFF8B45E-E029-470C-ABD4-01D89224645C} = {52D7FBDF-14D4-4A2C-A37C-F92D443EAB1E}
 		{EE2BACF1-BAC7-4A49-80C9-5EA53478217E} = {BFF8B45E-E029-470C-ABD4-01D89224645C}
+		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B} = {5ACF5CDD-F7B1-4886-A866-50F95AD4106E}
+		{5ACF5CDD-F7B1-4886-A866-50F95AD4106E} = {76704B0E-D84D-478C-9F21-CC5F358730D5}
+		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60} = {5ACF5CDD-F7B1-4886-A866-50F95AD4106E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE0F088F-2192-4163-95F2-616433A5DBAE}
 	EndGlobalSection
 EndGlobal

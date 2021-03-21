@@ -52,17 +52,6 @@ namespace BitStamp.Model
             //    imageShack = ImageShackEnum.Qin;
             //}
 
-            var size = (await File.GetBasicPropertiesAsync()).Size;
-
-            //1M
-            //1024k
-            //‪125000‬
-            if (size > 500000)
-            {
-                imageShack = ImageShackEnum.Smms;
-            }
-            //4326  24,447 
-
             imageShack = CheckShack(imageShack);
 
 #if DEBUG

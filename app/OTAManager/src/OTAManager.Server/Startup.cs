@@ -34,7 +34,7 @@ namespace OTAManager.Server
             services.AddSingleton<IFileStorage, FileStorage>();
 
             services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
-            
+
             services.AddDbContext<OTAManagerServerContext>(options =>
                     options.UseSqlite($"Data Source={_hostEnvironment.ContentRootPath}/OTAManager.db"));
             services.AddDbContext<FileStorageContext>(options =>

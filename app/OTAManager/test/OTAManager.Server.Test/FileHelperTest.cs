@@ -25,7 +25,7 @@ namespace OTAManager.Server.Test
                 var file1 = @"C:\lindexi\doubi";
                 var file2 = @"C:\doubi";
 
-              Assert.AreEqual(true, FileHelper.IsSameDrive(file1, file2));
+                Assert.AreEqual(true, FileHelper.IsSameDrive(file1, file2));
             });
         }
     }

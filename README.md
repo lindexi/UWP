@@ -14,6 +14,8 @@
 |  [`Lindexi.Src.WhitmanRandomIdentifier.Source`](package/WhitmanRandomIdentifier)       |[![NuGet](https://img.shields.io/nuget/v/Lindexi.Src.WhitmanRandomIdentifier.Source.svg)](https://www.nuget.org/packages/Lindexi.Src.WhitmanRandomIdentifier.Source/)|
 |  [`Lindexi.Tool.AutoSyncGitRepo`](package/AutoSyncGitRepo/README.md)       |[![NuGet](https://img.shields.io/nuget/v/Lindexi.Tool.AutoSyncGitRepo.svg)](https://www.nuget.org/packages/Lindexi.Tool.AutoSyncGitRepo/)|
 |  [`Lindexi.Control.WPFFlipDrawingCanvas`](wpf/WPFFlipDrawingCanvas)       |[![](https://img.shields.io/nuget/v/Lindexi.Control.WPFFlipDrawingCanvas.svg)](https://www.nuget.org/packages/Lindexi.Control.WPFFlipDrawingCanvas)|
+|  [`Lindexi.Src.DirectoryToZipStream`](https://blog.lindexi.com/post/ASP.NET-Core-%E5%B0%86%E6%96%87%E4%BB%B6%E5%A4%B9%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA%E4%B8%BA%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95.html)       |[![NuGet](https://img.shields.io/nuget/v/Lindexi.Src.DirectoryToZipStream.svg)](https://www.nuget.org/packages/Lindexi.Src.DirectoryToZipStream/)|
+|  [`Lindexi.Src.DirectoryToZipStream.Source`](https://blog.lindexi.com/post/ASP.NET-Core-%E5%B0%86%E6%96%87%E4%BB%B6%E5%A4%B9%E5%86%85%E5%AE%B9%E8%BE%93%E5%87%BA%E4%B8%BA%E5%8E%8B%E7%BC%A9%E5%8C%85%E6%96%87%E4%BB%B6%E6%96%B9%E6%B3%95.html)       |[![NuGet](https://img.shields.io/nuget/v/Lindexi.Src.DirectoryToZipStream.Source.svg)](https://www.nuget.org/packages/Lindexi.Src.DirectoryToZipStream.Source/)|
 
 # 中文
 

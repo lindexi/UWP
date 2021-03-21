@@ -28,9 +28,9 @@
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateKeyFile>BitStamp_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>
-    </PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>
+    </PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>863BA3F1BD463742C4DFA86589CCBE81861BAF4D</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -217,7 +217,6 @@
     </AppxManifest>
     <None Include="Assets\Square71x71Logo.scale-200.psd" />
     <None Include="Assets\Square71x71Logo.scale-400.psd" />
-    <None Include="BitStamp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\cloud_197.09665653495px_1193803_easyicon.png" />

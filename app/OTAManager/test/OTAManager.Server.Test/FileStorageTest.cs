@@ -5,6 +5,7 @@ using System.Net.Http.Json;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTest.Extensions.Contracts;
+using OTAManager.Server.Context;
 using OTAManager.Server.Controllers;
 
 namespace OTAManager.Server.Test

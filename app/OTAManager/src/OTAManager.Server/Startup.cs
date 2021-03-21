@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OTAManager.Server.Controllers;
+using OTAManager.Server.Core;
 using OTAManager.Server.Data;
 
 namespace OTAManager.Server
@@ -27,7 +28,7 @@ namespace OTAManager.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IFileStorage>(new FileStorage());
+            services.AddSingleton<IFileStorage>(new FileSystemFileStorage());
 
             services.AddControllers();
 

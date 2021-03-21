@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using OTAManager.Server.Context;
 
-namespace OTAManager.Server.Controllers
+namespace OTAManager.Server.Core
 {
     /// <summary>
     /// 文件存储服务

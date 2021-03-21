@@ -1,16 +1,17 @@
-﻿#nullable enable
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using OTAManager.Server.Context;
+using OTAManager.Server.Controllers;
 
-namespace OTAManager.Server.Controllers
+namespace OTAManager.Server.Core
 {
     /// <summary>
-    /// 文件存储服务
+    /// 使用本地文件系统的文件存储服务
     /// </summary>
     /// 存放在本地
-    public class FileStorage : IFileStorage
+    public class FileSystemFileStorage : IFileStorage
     {
         /// <summary>
         /// 存放文件的文件夹

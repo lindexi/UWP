@@ -23,11 +23,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tool", "Tool", "{52D7FBDF-1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{76704B0E-D84D-478C-9F21-CC5F358730D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryToZipStream", "Library\DirectoryToZipStream\DirectoryToZipStream\DirectoryToZipStream.csproj", "{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectoryToZipStream", "Library\DirectoryToZipStream\DirectoryToZipStream\DirectoryToZipStream.csproj", "{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DirectoryToZipStream", "DirectoryToZipStream", "{5ACF5CDD-F7B1-4886-A866-50F95AD4106E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectoryToZipStream.Test", "Library\DirectoryToZipStream\DirectoryToZipStream.Test\DirectoryToZipStream.Test.csproj", "{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyToClipboard", "Tool\复制参数到剪贴板\CopyToClipboard\CopyToClipboard.csproj", "{E187883C-CD80-4993-8583-618E01FD6350}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "复制参数到剪贴板", "复制参数到剪贴板", "{D2529355-970C-431E-B89B-8FA770C8D1BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +127,18 @@ Global
 		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Release|x64.Build.0 = Release|Any CPU
 		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Release|x86.ActiveCfg = Release|Any CPU
 		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}.Release|x86.Build.0 = Release|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Debug|x64.Build.0 = Debug|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Debug|x86.Build.0 = Debug|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Release|x64.ActiveCfg = Release|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Release|x64.Build.0 = Release|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Release|x86.ActiveCfg = Release|Any CPU
+		{E187883C-CD80-4993-8583-618E01FD6350}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -139,6 +155,8 @@ Global
 		{98AB9C89-F1AD-4C95-8B35-2E6527C1ED8B} = {5ACF5CDD-F7B1-4886-A866-50F95AD4106E}
 		{5ACF5CDD-F7B1-4886-A866-50F95AD4106E} = {76704B0E-D84D-478C-9F21-CC5F358730D5}
 		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60} = {5ACF5CDD-F7B1-4886-A866-50F95AD4106E}
+		{E187883C-CD80-4993-8583-618E01FD6350} = {D2529355-970C-431E-B89B-8FA770C8D1BC}
+		{D2529355-970C-431E-B89B-8FA770C8D1BC} = {52D7FBDF-14D4-4A2C-A37C-F92D443EAB1E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FE0F088F-2192-4163-95F2-616433A5DBAE}

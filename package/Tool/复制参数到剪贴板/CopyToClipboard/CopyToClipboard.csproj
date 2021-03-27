@@ -1,12 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
+        <OutputType>WinExe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <!-- 引用WPF为了剪贴板 -->
         <UseWPF>true</UseWPF>
-        <!-- dotnet 5 破坏性改动 WPF 和 WinForms 的 OutputType 输出类型重定向为 WinExe 类型 -->
-        <DisableWinExeOutputInference>true</DisableWinExeOutputInference>
         <PackAsTool>true</PackAsTool>
         <ToolCommandName>CopyToClipboard</ToolCommandName>
         <AssemblyName>Lindexi.Tool.CopyToClipboard</AssemblyName>

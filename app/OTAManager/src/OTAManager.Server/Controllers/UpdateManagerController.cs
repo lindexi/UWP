@@ -99,9 +99,19 @@ namespace OTAManager.Server.Controllers
         }
 
         [HttpGet]
-        [Route("DownloadFile")]
-        public IActionResult DownloadFile([FromQuery] string key)
+        [Route("DownloadFile/{key?}")]
+        public IActionResult DownloadFile(string key)
         {
+            if (string.IsNullOrEmpty(key))
+            {
+                // 兼容旧版逻辑
+                key = HttpContext.Request.Query["key"];
+            }
+            if (string.IsNullOrEmpty(key))
+            {
+                return NotFound();
+            }
+
             return FileStorage.DownloadFile(key);
         }
 

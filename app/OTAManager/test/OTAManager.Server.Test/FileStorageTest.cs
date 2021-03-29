@@ -14,6 +14,51 @@ namespace OTAManager.Server.Test
     public class FileStorageTest
     {
         [ContractTestCase]
+        public void DownloadFileTest()
+        {
+            "使用两个不同方式请求文件下载，都可以下载文件".Test(async () =>
+            {
+                var testClient = TestHostBuild.GetTestClient();
+                // 本地的文件
+                var memoryStream = new MemoryStream();
+                var length = 1000;
+                for (int i = 0; i < length; i++)
+                {
+                    memoryStream.WriteByte((byte) i);
+                }
+
+                memoryStream.Position = 0;
+
+                var multipartFormDataContent = new MultipartFormDataContent();
+                var stringContent = new StringContent("1.png");
+
+                multipartFormDataContent.Add(stringContent, "Name");
+
+                var streamContent = new StreamContent(memoryStream);
+                multipartFormDataContent.Add(streamContent, "File", "Foo");
+
+                var response = await testClient.PostAsync("/UpdateManager/UploadFile", multipartFormDataContent);
+
+                var key = await response.Content.ReadFromJsonAsync<UploadFileResponse>();
+
+                var byte1 = await testClient.GetByteArrayAsync($"/UpdateManager/DownloadFile?key={key.DownloadKey}");
+                Assert.AreEqual(length, byte1.Length);
+                for (int i = 0; i < length; i++)
+                {
+                    Assert.AreEqual((byte) i, byte1[i]);
+                }
+
+                var byte2 = await testClient.GetByteArrayAsync($"/UpdateManager/DownloadFile/{key.DownloadKey}");
+                Assert.AreEqual(length, byte2.Length);
+
+                for (int i = 0; i < length; i++)
+                {
+                    Assert.AreEqual((byte) i, byte2[i]);
+                }
+            });
+        }
+
+        [ContractTestCase]
         public void UploadFileTest()
         {
             "上传超长的文件名，可以拿到文件下载链接".Test(async () =>

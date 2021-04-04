@@ -117,7 +117,7 @@ namespace Lindexi.Src.GitCommand
 
         public void FetchAll()
         {
-            Control("fetch --all");
+            Control("fetch --all --tags");
         }
 
         public DirectoryInfo Repo { get; }

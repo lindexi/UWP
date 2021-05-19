@@ -1,5 +1,8 @@
 ﻿<Project>
-    <Target Name="CopyWpfAssetsFile" AfterTargets="AfterBuild">
-        <Copy SourceFiles="$(MSBuildThisFileDirectory)..\Assets\**\*" DestinationFolder="$(OutputPath)\" SkipUnchangedFiles="True"></Copy>
+    <Target Name="CopyWpfAssetsFile" AfterTargets="Publish">
+        <ItemGroup>
+            <_CustomWPFCopyItem Include="$(MSBuildThisFileDirectory)..\Assets\**\*"></_CustomWPFCopyItem>
+        </ItemGroup>
+        <Copy SourceFiles="@(_CustomWPFCopyItem)" DestinationFolder="$(OutputPath)\publish" SkipUnchangedFiles="True"></Copy>
     </Target>
 </Project>

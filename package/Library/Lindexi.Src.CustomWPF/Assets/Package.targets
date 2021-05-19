@@ -1,0 +1,5 @@
+﻿<Project>
+    <Target Name="CopyWpfAssetsFile" AfterTargets="AfterBuild">
+        <Copy SourceFiles="$(MSBuildThisFileDirectory)..\Assets\**\*" DestinationFiles="$(OutputPath)\" SkipUnchangedFiles="True"></Copy>
+    </Target>
+</Project>

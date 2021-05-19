@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="Assets\Lib\**\*" Pack="True" PackagePath="\Assets\" />
+        <None Include="Assets\Package.targets" Pack="True" PackagePath="\build\$(PackageId).targets" />
+    </ItemGroup>
+</Project>

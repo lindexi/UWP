@@ -1,0 +1,18 @@
+﻿<Window x:Class="WordPageToImages.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WordPageToImages"
+        mc:Ignorable="d"
+        Title="将Word文件每个页面单独转换为图片文件" Height="450" Width="800" Icon="Icon.png">
+    <Grid AllowDrop="True" Drop="Grid_OnDrop">
+        <Rectangle Margin="10,10,10,10" Stroke="Black" Fill="Gray"
+                   StrokeThickness="5"
+                   StrokeDashArray="2,2"
+                   RadiusX="5"
+                   RadiusY="5">
+        </Rectangle>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Text="拖入docx文件"></TextBlock>
+    </Grid>
+</Window>

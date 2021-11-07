@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Resource Include="Icon.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Interop.Microsoft.Office.Core" Version="2.8.0" />
+        <PackageReference Include="Microsoft.Office.Interop.Word" Version="15.0.4797.1003" />
+    </ItemGroup>
+</Project>

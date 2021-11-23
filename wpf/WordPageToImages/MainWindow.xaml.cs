@@ -55,6 +55,7 @@ namespace WordPageToImages
             }
 
             document.Close();
+            applicationClass.Quit();
         }
 
         private void Grid_OnDrop(object sender, DragEventArgs e)

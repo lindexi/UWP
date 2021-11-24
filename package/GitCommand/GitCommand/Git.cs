@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Lindexi.Src.GitCommand
@@ -15,83 +16,18 @@ namespace Lindexi.Src.GitCommand
 #endif
         }
 
+        /// <inheritdoc />
         public Git(DirectoryInfo repo)
         {
             if (ReferenceEquals(repo, null)) throw new ArgumentNullException(nameof(repo));
             if (!Directory.Exists(repo.FullName))
             {
                 // 为什么不使用 repo.Exits 因为这个属性默认没有刷新，也就是在创建 DirectoryInfo 的时候文件夹不存在，那么这个值就是 false 即使后续创建了文件夹也不会刷新，需要调用 Refresh 才可以刷新，但是 Refresh 需要修改很多属性
+                // 详细请看 https://blog.walterlv.com/post/file-exists-vs-fileinfo-exists.html
                 throw new ArgumentException("必须传入存在的文件夹", nameof(repo));
             }
 
             Repo = repo;
-        }
-
-        public string Add(string file = ".")
-        {
-            file = file.Replace(Repo.FullName, "");
-            if (file.StartsWith("\\"))
-            {
-                file = file.Substring(1);
-            }
-
-            string str = "add " + file;
-            return Control(str);
-        }
-
-        private string ConvertDate(DateTime time)
-        {
-            //1.  一月     January      （Jan）2.  二月      February   （Feb）
-            //3.  三月      March        （Mar） 
-            //4.  四月      April           （Apr）
-            //5.  五月      May           （May）
-            //6.  六月      June           （Jun）
-            //7.  七月      July             （Jul）
-            //8.  八月      August        （Aug）
-            //9.  九月      September  （Sep）
-            //10.  十月     October      （Oct） 
-            //11.  十一月   November （Nov）12.  十二月   December （Dec）
-            List<string> temp = new List<string>()
-            {
-                "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug",
-                "Sep","Oct","Nov","Dec"
-            };
-
-            //StringBuilder str = new StringBuilder();
-            //            git commit --date = "月 日 时间 年 +0800" - am "提交"
-
-            //git commit --date = "May 7 9:05:20 2016 +0800" - am "提交"
-            return $"--date=\"{temp[time.Month - 1]} {time.Day} {time.Hour}:{time.Minute}:{time.Second} {time.Year} +0800\" ";
-        }
-
-        public string Commit(string str = null, DateTime time = default(DateTime))
-        {
-            string commit = " commit";
-            if (time != (default(DateTime)))
-            {
-                commit += " " + ConvertDate(time);
-            }
-
-            if (string.IsNullOrEmpty(str))
-            {
-                if (time == default(DateTime))
-                {
-                    time = DateTime.Now;
-                }
-                str = time.Year + "年" + time.Month + "月" +
-                      time.Day + "日 " +
-                      time.Hour + ":" +
-                      time.Minute + ":" + time.Second;
-            }
-            commit += " -m " + "\"" + str + "\"";
-            //commit = FileStr() + commit;
-            return Control(commit);
-        }
-
-        public string Tag(string tag)
-        {
-            var str = $"tag {tag}";
-            return Control(str);
         }
 
         /// <summary>
@@ -109,15 +45,45 @@ namespace Lindexi.Src.GitCommand
         public string[] GetLogCommit()
         {
             var file = Path.GetTempFileName();
-            Control($"log --pretty=format:\"%h\" > {file}");
+            Control($"log --pretty=format:\"%H\" > {file}");
 
             return File.ReadAllLines(file);
+        }
+
+        public string GetCurrentCommit()
+        {
+            var file = Path.GetTempFileName();
+            Control($"rev-parse HEAD > \"{file}\"");
+            var commit = File.ReadAllText(file).Trim();
+            try
+            {
+                File.Delete(file);
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return commit;
+        }
+
+        public int GetGitCommitRevisionCount()
+        {
+            var control = Control("rev-list --count HEAD");
+            var str = control.Split("\n", StringSplitOptions.RemoveEmptyEntries).Select(temp => temp.Replace("\r", "")).Where(temp => !string.IsNullOrEmpty(temp)).Reverse().FirstOrDefault();
+
+            if (int.TryParse(str, out var count))
+            {
+                return count;
+            }
+
+            return 0;
         }
 
         public string[] GetLogCommit(string formCommit, string toCommit)
         {
             var file = Path.GetTempFileName();
-            Control($"log --pretty=format:\"%h\" {formCommit}..{toCommit} > {file}");
+            Control($"log --pretty=format:\"%H\" {formCommit}..{toCommit} > {file}");
 
             return File.ReadAllLines(file);
         }
@@ -151,7 +117,7 @@ namespace Lindexi.Src.GitCommand
 
         public void FetchAll()
         {
-            Control("fetch --all");
+            Control("fetch --all --tags");
         }
 
         public DirectoryInfo Repo { get; }
@@ -168,17 +134,25 @@ namespace Lindexi.Src.GitCommand
             return str;
         }
 
-        private static void WriteLog(string str)
+        private void WriteLog(string str)
         {
-            Console.WriteLine(str);
+            if (NeedWriteLog)
+            {
+                Console.WriteLine(str);
+            }
         }
+
+        /// <summary>
+        /// 是否需要写入日志
+        /// </summary>
+        public bool NeedWriteLog { set; get; } = true;
 
         private string FileStr()
         {
             return string.Format(GitStr, Repo.FullName);
         }
 
-        private static string Command(string str, string workingDirectory)
+        private string Command(string str, string workingDirectory)
         {
             // string str = Console.ReadLine();
             //System.Console.InputEncoding = System.Text.Encoding.UTF8;//乱码
@@ -250,7 +224,7 @@ namespace Lindexi.Src.GitCommand
             //    line = reader.ReadLine();
             //}
 
-            p.WaitForExit(TimeSpan.FromMinutes(1).Milliseconds); //等待程序执行完退出进程
+            p.WaitForExit((int) DefaultCommandTimeout.TotalMilliseconds); //等待程序执行完退出进程
             p.Close();
 
             exited = true;
@@ -258,13 +232,39 @@ namespace Lindexi.Src.GitCommand
             return output + "\r\n";
         }
 
+
+        /// <summary>
+        /// 默认命令的超时时间
+        /// </summary>
+        public TimeSpan DefaultCommandTimeout { set; get; } = TimeSpan.FromMinutes(1);
+
+        /// <summary>
+        /// 切换到某个 commit 或分支
+        /// </summary>
         public void Checkout(string commit)
         {
-            Control($"checkout {commit}");
+            Checkout(commit, false);
         }
 
         /// <summary>
-        /// 创建新分支
+        /// 切换到某个 commit 或分支
+        /// </summary>
+        /// <param name="commit"></param>
+        /// <param name="shouldHard">是否需要强行切换，加上 -f 命令</param>
+        public void Checkout(string commit, bool shouldHard)
+        {
+            var command = $"checkout {commit}";
+
+            if (shouldHard)
+            {
+                command += " -f";
+            }
+
+            Control(command);
+        }
+
+        /// <summary>
+        /// 创建新分支，使用 checkout -b <paramref name="branchName"/> 命令
         /// </summary>
         /// <param name="branchName"></param>
         public void CheckoutNewBranch(string branchName)
@@ -272,7 +272,6 @@ namespace Lindexi.Src.GitCommand
             Control($"checkout -b {branchName}");
         }
     }
-
     public class GitDiffFile
     {
         /// <inheritdoc />

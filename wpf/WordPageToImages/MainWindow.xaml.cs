@@ -42,7 +42,7 @@ namespace WordPageToImages
                         Console.WriteLine($"{page.Width};{page.Height}");
                         count++;
                         var file = Path.Combine(folder, $"{count}.png");
-                        
+
                         var bits = page.EnhMetaFileBits;
                         using (var ms = new MemoryStream((byte[]) (bits)))
                         {

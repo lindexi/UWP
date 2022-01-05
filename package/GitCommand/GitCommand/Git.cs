@@ -305,7 +305,58 @@ namespace Lindexi.Src.GitCommand
         {
             Control($"checkout -b {branchName}");
         }
+
+        /// <summary>
+        /// 创建新分支，使用 <code>git checkout -b <paramref name="branchName"/></code> 命令
+        /// </summary>
+        /// <param name="branchName"></param>
+        /// <param name="force">是否需要强行创建，加上 -f 命令</param>
+        public void CheckoutNewBranch(string branchName, bool force)
+        {
+            Control($"checkout -{(force ? "B" : "b")} {branchName}");
+        }
+
+        /// <summary>
+        /// 调用 git add . 命令
+        /// </summary>
+        public void AddAll()
+        {
+            Control("add .");
+        }
+
+        /// <summary>
+        /// 调用 git commit -m message 命令
+        /// </summary>
+        /// <param name="message"></param>
+        public void Commit(string message)
+        {
+            Control($"commit -m \"{message}\"");
+        }
+
+        /// <summary>
+        /// 推送代码到仓库，使用 <code>git push {<paramref name="repository"/>} {<paramref name="branchOrTag"/>}</code> 命令
+        /// </summary>
+        /// <param name="branchOrTag">分支或者是 Tag 号</param>
+        /// <param name="repository">参考名，如 origin 仓库</param>
+        /// <param name="force">是否需要强行推送，加上 -f 命令</param>
+        public string Push(string repository, string branchOrTag, bool force = false)
+        {
+            return Control($"push \"{repository}\" \"{branchOrTag}\" {(force ? "-f" : "")}");
+        }
+
+        /// <summary>
+        /// 获取当前分支名，使用 <code>git branch --show-current</code> 命令
+        /// </summary>
+        /// <returns></returns>
+        public string GetCurrentBranch()
+        {
+            // git rev-parse --abbrev-ref HEAD
+            // git branch --show-current （Git 2.22）
+            var output = Control("branch --show-current");
+            return output.Trim('\n');
+        }
     }
+
     public class GitDiffFile
     {
         /// <inheritdoc />

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoSyncGitRepo", "AutoSyncGitRepo\AutoSyncGitRepo.csproj", "{BA0080B6-DCBF-42E4-AC02-8B3D4B4C93B6}"
 EndProject
@@ -29,9 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DirectoryToZipStream", "Dir
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectoryToZipStream.Test", "Library\DirectoryToZipStream\DirectoryToZipStream.Test\DirectoryToZipStream.Test.csproj", "{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopyToClipboard", "Tool\复制参数到剪贴板\CopyToClipboard\CopyToClipboard.csproj", "{E187883C-CD80-4993-8583-618E01FD6350}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CopyToClipboard", "Tool\复制参数到剪贴板\CopyToClipboard\CopyToClipboard.csproj", "{E187883C-CD80-4993-8583-618E01FD6350}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "复制参数到剪贴板", "复制参数到剪贴板", "{D2529355-970C-431E-B89B-8FA770C8D1BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitCommand.Tests", "GitCommand\GitCommand.Tests\GitCommand.Tests.csproj", "{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,6 +141,18 @@ Global
 		{E187883C-CD80-4993-8583-618E01FD6350}.Release|x64.Build.0 = Release|Any CPU
 		{E187883C-CD80-4993-8583-618E01FD6350}.Release|x86.ActiveCfg = Release|Any CPU
 		{E187883C-CD80-4993-8583-618E01FD6350}.Release|x86.Build.0 = Release|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Debug|x64.Build.0 = Debug|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Debug|x86.Build.0 = Debug|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Release|x64.ActiveCfg = Release|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Release|x64.Build.0 = Release|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Release|x86.ActiveCfg = Release|Any CPU
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -157,6 +171,7 @@ Global
 		{7A2AA5EE-43D8-4AD2-B34F-90AFBBD3FA60} = {5ACF5CDD-F7B1-4886-A866-50F95AD4106E}
 		{E187883C-CD80-4993-8583-618E01FD6350} = {D2529355-970C-431E-B89B-8FA770C8D1BC}
 		{D2529355-970C-431E-B89B-8FA770C8D1BC} = {52D7FBDF-14D4-4A2C-A37C-F92D443EAB1E}
+		{831BB4D5-B7EC-459C-A8CF-AC4EC7B0706F} = {48665BB8-6F30-4FFA-B836-BCC80F07A53C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FE0F088F-2192-4163-95F2-616433A5DBAE}

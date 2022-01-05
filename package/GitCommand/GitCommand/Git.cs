@@ -7,6 +7,9 @@ using System.Text;
 
 namespace Lindexi.Src.GitCommand
 {
+    /// <summary>
+    /// 封装命令行调用 Git 执行 Git 命令
+    /// </summary>
     public class Git
     {
         static Git()
@@ -16,7 +19,10 @@ namespace Lindexi.Src.GitCommand
 #endif
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// 创建对 Git 命令行调用的封装
+        /// </summary>
+        /// <param name="repo"></param>
         public Git(DirectoryInfo repo)
         {
             if (ReferenceEquals(repo, null)) throw new ArgumentNullException(nameof(repo));
@@ -35,6 +41,7 @@ namespace Lindexi.Src.GitCommand
         /// </summary>
         /// <param name="source">可以传入commit或分支</param>
         /// <param name="target">可以传入commit或分支</param>
+        [Obsolete("还没实现")]
         public List<GitDiffFile> DiffFile(string source, string target)
         {
             var gitDiffFileList = new List<GitDiffFile>();
@@ -42,6 +49,10 @@ namespace Lindexi.Src.GitCommand
             return gitDiffFileList;
         }
 
+        /// <summary>
+        /// 获取当前历史记录的 commit 列表，将执行 <code>git log --pretty=format:"%H"</code> 命令
+        /// </summary>
+        /// <returns></returns>
         public string[] GetLogCommit()
         {
             var file = Path.GetTempFileName();
@@ -50,6 +61,10 @@ namespace Lindexi.Src.GitCommand
             return File.ReadAllLines(file);
         }
 
+        /// <summary>
+        /// 获取当前的 commit 号，将执行 <code>git rev-parse HEAD</code> 命令
+        /// </summary>
+        /// <returns></returns>
         public string GetCurrentCommit()
         {
             var file = Path.GetTempFileName();
@@ -59,14 +74,18 @@ namespace Lindexi.Src.GitCommand
             {
                 File.Delete(file);
             }
-            catch (Exception)
+            catch
             {
-
+                // 清掉失败？那啥也不用做
             }
 
             return commit;
         }
 
+        /// <summary>
+        /// 获取当前的 Git 提交数量，将执行 <code>git rev-list --count HEAD</code> 命令
+        /// </summary>
+        /// <returns></returns>
         public int GetGitCommitRevisionCount()
         {
             var control = Control("rev-list --count HEAD");
@@ -80,12 +99,16 @@ namespace Lindexi.Src.GitCommand
             return 0;
         }
 
+        /// <summary>
+        /// 获取两个分支或者两个 commit 之间，相差了哪些 commit 号，将执行 <code>git log --pretty=format:"%H" {formCommit}..{toCommit}</code> 命令
+        /// </summary>
+        /// <param name="formCommit">起始的 commit 或分支</param>
+        /// <param name="toCommit">对比的 commit 或分支</param>
+        /// <returns></returns>
         public string[] GetLogCommit(string formCommit, string toCommit)
         {
-            var file = Path.GetTempFileName();
-            Control($"log --pretty=format:\"%H\" {formCommit}..{toCommit} > {file}");
-
-            return File.ReadAllLines(file);
+            var (_, output) = ExecuteCommandWithOutputToFile($"log --pretty=format:\"%H\" {formCommit}..{toCommit}");
+            return output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
         }
         public void Clone(string repoUrl)
         {
@@ -110,16 +133,25 @@ namespace Lindexi.Src.GitCommand
             return new Git(directory);
         }
 
+        /// <summary>
+        /// 使用 git clean -xdf 清理仓库内容，将清理所有没有被追踪的文件
+        /// </summary>
         public void Clean()
         {
             Control("clean -xdf");
         }
 
+        /// <summary>
+        /// 拉取远程的所有内容，包括了 Tag 号，将执行 <code>git fetch --all --tags</code> 命令
+        /// </summary>
         public void FetchAll()
         {
             Control("fetch --all --tags");
         }
 
+        /// <summary>
+        /// 对应的 Git 仓库文件夹
+        /// </summary>
         public DirectoryInfo Repo { get; }
 
         private const string GitStr = "git ";
@@ -132,6 +164,30 @@ namespace Lindexi.Src.GitCommand
 
             WriteLog(str);
             return str;
+        }
+
+        private (string commandLineOutput, string commandOutput) ExecuteCommandWithOutputToFile(string command)
+        {
+            var file = Path.GetTempFileName();
+            command = "git " + command + $" >\"{file}\"";
+            var commandLineOutput = Command(command, Repo.FullName);
+            var commandOutput = string.Empty;
+
+            if (File.Exists(file))
+            {
+                commandOutput = File.ReadAllText(file);
+
+                try
+                {
+                    File.Delete(file);
+                }
+                catch
+                {
+                    // 清掉失败？那啥也不用做
+                }
+            }
+
+            return (commandLineOutput, commandOutput);
         }
 
         private void WriteLog(string str)
@@ -264,14 +320,65 @@ namespace Lindexi.Src.GitCommand
         }
 
         /// <summary>
-        /// 创建新分支，使用 checkout -b <paramref name="branchName"/> 命令
+        /// 创建新分支，使用 <code>git checkout -b <paramref name="branchName"/></code> 命令
         /// </summary>
         /// <param name="branchName"></param>
         public void CheckoutNewBranch(string branchName)
         {
             Control($"checkout -b {branchName}");
         }
+
+        /// <summary>
+        /// 创建新分支，使用 <code>git checkout -b <paramref name="branchName"/></code> 命令
+        /// </summary>
+        /// <param name="branchName"></param>
+        /// <param name="force">是否需要强行创建，加上 -f 命令</param>
+        public void CheckoutNewBranch(string branchName, bool force)
+        {
+            Control($"checkout -{(force ? "B" : "b")} {branchName}");
+        }
+
+        /// <summary>
+        /// 调用 git add . 命令
+        /// </summary>
+        public void AddAll()
+        {
+            Control("add .");
+        }
+
+        /// <summary>
+        /// 调用 git commit -m message 命令
+        /// </summary>
+        /// <param name="message"></param>
+        public void Commit(string message)
+        {
+            Control($"commit -m \"{message}\"");
+        }
+
+        /// <summary>
+        /// 推送代码到仓库，使用 <code>git push {<paramref name="repository"/>} {<paramref name="branchOrTag"/>}</code> 命令
+        /// </summary>
+        /// <param name="branchOrTag">分支或者是 Tag 号</param>
+        /// <param name="repository">参考名，如 origin 仓库</param>
+        /// <param name="force">是否需要强行推送，加上 -f 命令</param>
+        public string Push(string repository, string branchOrTag, bool force = false)
+        {
+            return Control($"push \"{repository}\" \"{branchOrTag}\" {(force ? "-f" : "")}");
+        }
+
+        /// <summary>
+        /// 获取当前分支名，使用 <code>git branch --show-current</code> 命令
+        /// </summary>
+        /// <returns></returns>
+        public string GetCurrentBranch()
+        {
+            // git rev-parse --abbrev-ref HEAD
+            // git branch --show-current （Git 2.22）
+            var (_, output) = ExecuteCommandWithOutputToFile("branch --show-current");
+            return output.Trim('\n');
+        }
     }
+
     public class GitDiffFile
     {
         /// <inheritdoc />

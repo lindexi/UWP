@@ -107,10 +107,8 @@ namespace Lindexi.Src.GitCommand
         /// <returns></returns>
         public string[] GetLogCommit(string formCommit, string toCommit)
         {
-            var file = Path.GetTempFileName();
-            Control($"log --pretty=format:\"%H\" {formCommit}..{toCommit} > {file}");
-
-            return File.ReadAllLines(file);
+            var (_, output) = ExecuteCommandWithOutputToFile($"log --pretty=format:\"%H\" {formCommit}..{toCommit}");
+            return output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
         }
         public void Clone(string repoUrl)
         {
@@ -166,6 +164,30 @@ namespace Lindexi.Src.GitCommand
 
             WriteLog(str);
             return str;
+        }
+
+        private (string commandLineOutput, string commandOutput) ExecuteCommandWithOutputToFile(string command)
+        {
+            var file = Path.GetTempFileName();
+            command = "git " + command + $" >\"{file}\"";
+            var commandLineOutput = Command(command, Repo.FullName);
+            var commandOutput = string.Empty;
+
+            if (File.Exists(file))
+            {
+                commandOutput = File.ReadAllText(file);
+
+                try
+                {
+                    File.Delete(file);
+                }
+                catch
+                {
+                    // 清掉失败？那啥也不用做
+                }
+            }
+
+            return (commandLineOutput, commandOutput);
         }
 
         private void WriteLog(string str)
@@ -352,7 +374,7 @@ namespace Lindexi.Src.GitCommand
         {
             // git rev-parse --abbrev-ref HEAD
             // git branch --show-current （Git 2.22）
-            var output = Control("branch --show-current");
+            var (_, output) = ExecuteCommandWithOutputToFile("branch --show-current");
             return output.Trim('\n');
         }
     }

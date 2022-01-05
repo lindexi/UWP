@@ -11,7 +11,7 @@
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
-    <Copyright>Copyright © 2021 lindexi, All Rights Reserved.</Copyright> 
+    <Copyright>Copyright © 2022 lindexi, All Rights Reserved.</Copyright> 
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFrameworks>netcoreapp2.2;net6.0</TargetFrameworks>
     <AssemblyName>Lindexi.Src.GitCommand</AssemblyName>
     <RootNamespace>Lindexi.Src.GitCommand</RootNamespace>
-    <Description>通过命令行调用 Git 功能</Description>
+    <Description>Invoke Git commands by running Git process. 通过命令行调用 Git 功能的库。</Description>
   </PropertyGroup>
 
   <ItemGroup>

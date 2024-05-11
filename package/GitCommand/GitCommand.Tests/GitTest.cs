@@ -29,8 +29,14 @@ namespace GitCommand.Tests
             "推送给定仓库，可以推送成功".Test(() =>
             {
                 var git = new Git(new DirectoryInfo("."));
-                git.Push("origin", "master");
+                Push("origin", "master");
             });
+        }
+
+        public string Push(string repository, string branchOrTag, bool force = false)
+        {
+            var args = $"push \"{repository}\" \"{branchOrTag}\" {(force ? "-f" : "")}";
+            return args;
         }
 
         [ContractTestCase]

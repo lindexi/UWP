@@ -58,5 +58,23 @@ namespace GitCommand.Tests
                 Assert.AreNotEqual(0, count);
             });
         }
+
+        [ContractTestCase]
+        public void GetLogCommit()
+        {
+            "获取两个 commit 之间经过的 commit 数量，可以获取成功".Test(() =>
+            {
+                var git = new Git(new DirectoryInfo("."));
+                var commitList = git.GetLogCommit("db25427", "13ca951bb9036999db404991b2ce4c");
+                Assert.AreEqual(12, commitList.Length);
+            });
+
+            "获取当前的历史提交记录，可以获取成功".Test(() =>
+            {
+                var git = new Git(new DirectoryInfo("."));
+                var commitList = git.GetLogCommit();
+                Assert.AreEqual(true, commitList.Length > 0);
+            });
+        }
     }
 }

@@ -56,10 +56,14 @@ namespace Lindexi.Src.GitCommand
         /// <returns></returns>
         public string[] GetLogCommit()
         {
-            var file = Path.GetTempFileName();
-            Control($"log --pretty=format:\"%H\" > {file}");
+            var (success, output) = ExecuteCommand("log --pretty=format:\"%H\"");
 
-            return File.ReadAllLines(file);
+            if (!success)
+            {
+                return Array.Empty<string>();
+            }
+
+            return output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         /// <summary>
@@ -107,28 +111,23 @@ namespace Lindexi.Src.GitCommand
         /// <returns></returns>
         public string[] GetLogCommit(string formCommit, string toCommit)
         {
-            var (_, output) = ExecuteCommandWithOutputToFile($"log --pretty=format:\"%H\" {formCommit}..{toCommit}");
+            var (success, output) = ExecuteCommand($"log --pretty=format:\"%H\" {formCommit}..{toCommit}");
+            if (!success)
+            {
+                return Array.Empty<string>();
+            }
+
             return output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
         }
+
         public void Clone(string repoUrl)
         {
-            Control($"clone {repoUrl}");
+            ExecuteCommand($"clone {repoUrl}");
         }
 
         public static Git Clone(string repoUrl, DirectoryInfo directory)
         {
-            var command = $"clone {repoUrl} \"{directory.FullName}\"";
-            Console.WriteLine(command);
-
-            var git = @"C:\Program Files\Git\bin\git.exe";
-            if (!File.Exists(git))
-            {
-                git = "git";
-            }
-
-            var processStartInfo = new ProcessStartInfo(git, command);
-            var process = Process.Start(processStartInfo);
-            process.WaitForExit((int) TimeSpan.FromMinutes(10).TotalMilliseconds);
+            ExecuteCommand($"clone {repoUrl}", directory.FullName);
 
             return new Git(directory);
         }
@@ -138,7 +137,7 @@ namespace Lindexi.Src.GitCommand
         /// </summary>
         public void Clean()
         {
-            Control("clean -xdf");
+            ExecuteCommand("clean -xdf");
         }
 
         /// <summary>
@@ -146,49 +145,13 @@ namespace Lindexi.Src.GitCommand
         /// </summary>
         public void FetchAll()
         {
-            Control("fetch --all --tags");
+            ExecuteCommand("fetch --all --tags");
         }
 
         /// <summary>
         /// 对应的 Git 仓库文件夹
         /// </summary>
         public DirectoryInfo Repo { get; }
-
-        private const string GitStr = "git ";
-
-        private string Control(string str)
-        {
-            str = FileStr() + str;
-            WriteLog(str);
-            str = Command(str, Repo.FullName);
-
-            WriteLog(str);
-            return str;
-        }
-
-        private (string commandLineOutput, string commandOutput) ExecuteCommandWithOutputToFile(string command)
-        {
-            var file = Path.GetTempFileName();
-            command = "git " + command + $" >\"{file}\"";
-            var commandLineOutput = Command(command, Repo.FullName);
-            var commandOutput = string.Empty;
-
-            if (File.Exists(file))
-            {
-                commandOutput = File.ReadAllText(file);
-
-                try
-                {
-                    File.Delete(file);
-                }
-                catch
-                {
-                    // 清掉失败？那啥也不用做
-                }
-            }
-
-            return (commandLineOutput, commandOutput);
-        }
 
         private void WriteLog(string str)
         {
@@ -202,127 +165,6 @@ namespace Lindexi.Src.GitCommand
         /// 是否需要写入日志
         /// </summary>
         public bool NeedWriteLog { set; get; } = true;
-
-        private string FileStr()
-        {
-            return string.Format(GitStr, Repo.FullName);
-        }
-
-        /// <summary>
-        /// 调用命令行的时候的默认编码格式
-        /// </summary>
-        /// 大部分中文环境开发机上都是用 GBK 编码输出，我这个库也基本上是被我自己使用，设置为 GBK 很合理
-        public Encoding StandardOutputEncoding { set; get; } = Encoding.GetEncoding("GBK");
-
-        /// <summary>
-        /// 使用需要使用 cmd 来调用 git 命令
-        /// </summary>
-        public bool ShouldCallCommandLineWithCmd
-        {
-            set => _shouldCallCommandLineWithCmd = false;
-            get
-            {
-                if (OperatingSystem.IsWindows())
-                {
-                    return _shouldCallCommandLineWithCmd ?? true;
-                }
-
-                // 其他平台也没有 cmd 可以用
-                return false;
-            }
-        }
-
-        private bool? _shouldCallCommandLineWithCmd;
-
-        private string Command(string str, string workingDirectory)
-        {
-            if (!ShouldCallCommandLineWithCmd)
-            {
-                var processStartInfo = new ProcessStartInfo("git");
-            }
-
-            // string str = Console.ReadLine();
-            //System.Console.InputEncoding = System.Text.Encoding.UTF8;//乱码
-
-            Process p = new Process
-            {
-                StartInfo =
-                {
-                    FileName = "cmd.exe",
-                    WorkingDirectory = workingDirectory,
-                    UseShellExecute = false, //是否使用操作系统shell启动
-                    RedirectStandardInput = true, //接受来自调用程序的输入信息
-                    RedirectStandardOutput = true, //由调用程序获取输出信息
-                    RedirectStandardError = true, //重定向标准错误输出
-                    CreateNoWindow = true, //不显示程序窗口
-                    StandardOutputEncoding = StandardOutputEncoding
-                }
-            };
-
-            p.Start(); //启动程序
-
-            //向cmd窗口发送输入信息
-            p.StandardInput.WriteLine(str + "&exit");
-
-            p.StandardInput.AutoFlush = true;
-            //p.StandardInput.WriteLine("exit");
-            //向标准输入写入要执行的命令。这里使用&是批处理命令的符号，表示前面一个命令不管是否执行成功都执行后面(exit)命令，如果不执行exit命令，后面调用ReadToEnd()方法会假死
-            //同类的符号还有&&和||前者表示必须前一个命令执行成功才会执行后面的命令，后者表示必须前一个命令执行失败才会执行后面的命令
-
-            bool exited = false;
-
-            //// 超时
-            //Task.Run(() =>
-            //{
-            //    Task.Delay(TimeSpan.FromMinutes(1)).ContinueWith(_ =>
-            //    {
-            //        if (exited)
-            //        {
-            //            return;
-            //        }
-
-            //        try
-            //        {
-            //            if (!p.HasExited)
-            //            {
-            //                Console.WriteLine($"{str} 超时");
-            //                p.Kill();
-            //            }
-            //        }
-            //        catch (Exception e)
-            //        {
-            //            Console.WriteLine(e);
-            //        }
-            //    });
-            //});
-
-            //获取cmd窗口的输出信息
-            string output = p.StandardOutput.ReadToEnd();
-            //Console.WriteLine(output);
-            output += p.StandardError.ReadToEnd();
-            //Console.WriteLine(output);
-
-            //StreamReader reader = p.StandardOutput;
-            //string line=reader.ReadLine();
-            //while (!reader.EndOfStream)
-            //{
-            //    str += line + "  ";
-            //    line = reader.ReadLine();
-            //}
-
-            p.WaitForExit((int) DefaultCommandTimeout.TotalMilliseconds); //等待程序执行完退出进程
-            p.Close();
-
-            exited = true;
-
-            return output + "\r\n";
-        }
-
-
-        /// <summary>
-        /// 默认命令的超时时间
-        /// </summary>
-        public TimeSpan DefaultCommandTimeout { set; get; } = TimeSpan.FromMinutes(1);
 
         /// <summary>
         /// 切换到某个 commit 或分支
@@ -346,7 +188,7 @@ namespace Lindexi.Src.GitCommand
                 command += " -f";
             }
 
-            Control(command);
+            ExecuteCommand(command);
         }
 
         /// <summary>
@@ -355,7 +197,7 @@ namespace Lindexi.Src.GitCommand
         /// <param name="branchName"></param>
         public void CheckoutNewBranch(string branchName)
         {
-            Control($"checkout -b {branchName}");
+            ExecuteCommand($"checkout -b {branchName}");
         }
 
         /// <summary>
@@ -365,7 +207,7 @@ namespace Lindexi.Src.GitCommand
         /// <param name="force">是否需要强行创建，加上 -f 命令</param>
         public void CheckoutNewBranch(string branchName, bool force)
         {
-            Control($"checkout -{(force ? "B" : "b")} {branchName}");
+            ExecuteCommand($"checkout -{(force ? "B" : "b")} {branchName}");
         }
 
         /// <summary>
@@ -373,7 +215,7 @@ namespace Lindexi.Src.GitCommand
         /// </summary>
         public void AddAll()
         {
-            Control("add .");
+            ExecuteCommand("add .");
         }
 
         /// <summary>
@@ -382,7 +224,7 @@ namespace Lindexi.Src.GitCommand
         /// <param name="message"></param>
         public void Commit(string message)
         {
-            Control($"commit -m \"{message}\"");
+            ExecuteCommand($"commit -m \"{message}\"");
         }
 
         /// <summary>
@@ -394,7 +236,7 @@ namespace Lindexi.Src.GitCommand
         public string Push(string repository, string branchOrTag, bool force = false)
         {
             var args = $"push \"{repository}\" \"{branchOrTag}\" {(force ? "-f" : "")}";
-            var (success, output) = ExecuteCommand(args);
+            var (_, output) = ExecuteCommand(args);
             return output;
         }
 
@@ -415,11 +257,18 @@ namespace Lindexi.Src.GitCommand
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
-        public (bool success, string output) ExecuteCommand(string args)
+        private (bool success, string output) ExecuteCommand(string args)
+        {
+            WriteLog($"git {args}");
+
+            return ExecuteCommand(args, Repo.FullName);
+        }
+
+        private static (bool success, string output) ExecuteCommand(string args, string workingDirectory)
         {
             var processStartInfo = new ProcessStartInfo("git", args)
             {
-                WorkingDirectory = Repo.FullName,
+                WorkingDirectory = workingDirectory,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
 
@@ -477,7 +326,6 @@ namespace Lindexi.Src.GitCommand
 
     public class GitDiffFile
     {
-        /// <inheritdoc />
         public GitDiffFile(DiffType diffType, FileInfo file)
         {
             DiffType = diffType;

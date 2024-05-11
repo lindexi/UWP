@@ -69,6 +69,12 @@ namespace Lindexi.Src.GitCommand
         public string GetCurrentCommit()
         {
             var (success, output) = ExecuteCommand("rev-parse HEAD");
+
+            if (!success)
+            {
+                return string.Empty;
+            }
+
             return output.Trim('\n');
         }
 
@@ -78,10 +84,14 @@ namespace Lindexi.Src.GitCommand
         /// <returns></returns>
         public int GetGitCommitRevisionCount()
         {
-            var control = Control("rev-list --count HEAD");
-            var str = control.Split("\n", StringSplitOptions.RemoveEmptyEntries).Select(temp => temp.Replace("\r", "")).Where(temp => !string.IsNullOrEmpty(temp)).Reverse().FirstOrDefault();
+            var (success, output) = ExecuteCommand("rev-list --count HEAD");
 
-            if (int.TryParse(str, out var count))
+            if (!success)
+            {
+                return -1;
+            }
+
+            if (int.TryParse(output, out var count))
             {
                 return count;
             }
@@ -450,6 +460,14 @@ namespace Lindexi.Src.GitCommand
             {
                 // 也许有些进程拿不到
                 exitCode = errorList.Count > 0 ? -1 : 0;
+            }
+
+            if (outputList.Count > 0)
+            {
+                if (outputList[^1] is null)
+                {
+                    outputList.RemoveAt(outputList.Count - 1);
+                }
             }
 
             var output = string.Join('\n', outputList);

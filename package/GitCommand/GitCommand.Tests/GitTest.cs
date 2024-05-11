@@ -1,7 +1,10 @@
 ﻿using System.IO;
 using System.Threading;
+
 using Lindexi.Src.GitCommand;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using MSTest.Extensions.Contracts;
 
 namespace GitCommand.Tests
@@ -42,6 +45,17 @@ namespace GitCommand.Tests
                 var currentCommit = git.GetCurrentCommit();
                 Assert.IsNotNull(currentCommit);
                 Assert.AreEqual(false, currentCommit.Contains('\n'));
+            });
+        }
+
+        [ContractTestCase]
+        public void GetGitCommitRevisionCount()
+        {
+            "获取当前的 git 的 commit 数量，可以获取成功".Test(() =>
+            {
+                var git = new Git(new DirectoryInfo("."));
+                var count = git.GetGitCommitRevisionCount();
+                Assert.AreNotEqual(0, count);
             });
         }
     }

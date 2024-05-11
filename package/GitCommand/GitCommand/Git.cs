@@ -214,8 +214,33 @@ namespace Lindexi.Src.GitCommand
         /// 大部分中文环境开发机上都是用 GBK 编码输出，我这个库也基本上是被我自己使用，设置为 GBK 很合理
         public Encoding StandardOutputEncoding { set; get; } = Encoding.GetEncoding("GBK");
 
+        /// <summary>
+        /// 使用需要使用 cmd 来调用 git 命令
+        /// </summary>
+        public bool ShouldCallCommandLineWithCmd
+        {
+            set => _shouldCallCommandLineWithCmd = false;
+            get
+            {
+                if (OperatingSystem.IsWindows())
+                {
+                    return _shouldCallCommandLineWithCmd ?? true;
+                }
+
+                // 其他平台也没有 cmd 可以用
+                return false;
+            }
+        }
+
+        private bool? _shouldCallCommandLineWithCmd;
+
         private string Command(string str, string workingDirectory)
         {
+            if (!ShouldCallCommandLineWithCmd)
+            {
+                var processStartInfo = new ProcessStartInfo("git");
+            }
+
             // string str = Console.ReadLine();
             //System.Console.InputEncoding = System.Text.Encoding.UTF8;//乱码
 

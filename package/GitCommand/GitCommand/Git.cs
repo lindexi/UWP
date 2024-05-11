@@ -208,6 +208,12 @@ namespace Lindexi.Src.GitCommand
             return string.Format(GitStr, Repo.FullName);
         }
 
+        /// <summary>
+        /// 调用命令行的时候的默认编码格式
+        /// </summary>
+        /// 大部分中文环境开发机上都是用 GBK 编码输出，我这个库也基本上是被我自己使用，设置为 GBK 很合理
+        public Encoding StandardOutputEncoding { set; get; } = Encoding.GetEncoding("GBK");
+
         private string Command(string str, string workingDirectory)
         {
             // string str = Console.ReadLine();
@@ -224,8 +230,7 @@ namespace Lindexi.Src.GitCommand
                     RedirectStandardOutput = true, //由调用程序获取输出信息
                     RedirectStandardError = true, //重定向标准错误输出
                     CreateNoWindow = true, //不显示程序窗口
-                    StandardOutputEncoding = Encoding.GetEncoding("GBK") //Encoding.UTF8
-                    //Encoding.GetEncoding("GBK");//乱码
+                    StandardOutputEncoding = StandardOutputEncoding
                 }
             };
 

@@ -394,7 +394,9 @@ namespace Lindexi.Src.GitCommand
         /// <param name="force">是否需要强行推送，加上 -f 命令</param>
         public string Push(string repository, string branchOrTag, bool force = false)
         {
-            return Control($"push \"{repository}\" \"{branchOrTag}\" {(force ? "-f" : "")}");
+            var args = $"push \"{repository}\" \"{branchOrTag}\" {(force ? "-f" : "")}";
+            var (success, output) = ExecuteCommand(args);
+            return output;
         }
 
         /// <summary>

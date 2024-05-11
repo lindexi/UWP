@@ -32,5 +32,17 @@ namespace GitCommand.Tests
                 git.Push("origin", "master");
             });
         }
+
+        [ContractTestCase]
+        public void GetCurrentCommit()
+        {
+            "尝试获取当前的 commit 字符串，可以获取成功".Test(() =>
+            {
+                var git = new Git(new DirectoryInfo("."));
+                var currentCommit = git.GetCurrentCommit();
+                Assert.IsNotNull(currentCommit);
+                Assert.AreEqual(false, currentCommit.Contains('\n'));
+            });
+        }
     }
 }

@@ -68,19 +68,8 @@ namespace Lindexi.Src.GitCommand
         /// <returns></returns>
         public string GetCurrentCommit()
         {
-            var file = Path.GetTempFileName();
-            Control($"rev-parse HEAD > \"{file}\"");
-            var commit = File.ReadAllText(file).Trim();
-            try
-            {
-                File.Delete(file);
-            }
-            catch
-            {
-                // 清掉失败？那啥也不用做
-            }
-
-            return commit;
+            var (success, output) = ExecuteCommand("rev-parse HEAD");
+            return output.Trim('\n');
         }
 
         /// <summary>

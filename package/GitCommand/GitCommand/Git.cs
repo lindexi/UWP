@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -404,8 +405,64 @@ namespace Lindexi.Src.GitCommand
         {
             // git rev-parse --abbrev-ref HEAD
             // git branch --show-current （Git 2.22）
-            var (_, output) = ExecuteCommandWithOutputToFile("branch --show-current");
+            var (_, output) = ExecuteCommand("branch --show-current");
             return output.Trim('\n');
+        }
+
+        /// <summary>
+        /// 执行命令
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public (bool success, string output) ExecuteCommand(string args)
+        {
+            var processStartInfo = new ProcessStartInfo("git", args)
+            {
+                WorkingDirectory = Repo.FullName,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+
+                CreateNoWindow = true,
+                UseShellExecute = false,
+            };
+            var process = new Process()
+            {
+                StartInfo = processStartInfo,
+            };
+
+            var outputList = new List<string?>();
+            var errorList = new List<string?>();
+
+            process.OutputDataReceived += (sender, eventArgs) =>
+            {
+                outputList.Add(eventArgs.Data);
+            };
+
+            process.ErrorDataReceived += (sender, eventArgs) =>
+            {
+                errorList.Add(eventArgs.Data);
+            };
+
+            process.Start();
+
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
+
+            process.WaitForExit();
+            int exitCode;
+            try
+            {
+                Debug.Assert(process.HasExited);
+                exitCode = process.ExitCode;
+            }
+            catch (Exception)
+            {
+                // 也许有些进程拿不到
+                exitCode = errorList.Count > 0 ? -1 : 0;
+            }
+
+            var output = string.Join('\n', outputList);
+            return (exitCode == 0, output);
         }
     }
 

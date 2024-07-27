@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Lindexi.Src.GitCommand</AssemblyName>
     <RootNamespace>Lindexi.Src.GitCommand</RootNamespace>
     <Description>通过命令行调用 Git 功能</Description>

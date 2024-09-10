@@ -80,6 +80,27 @@ namespace Lindexi.Src.GitCommand
             return 0;
         }
 
+        #region Log
+
+        public static string GetFileLastModificationDate(FileInfo file)
+        {
+            var processStartInfo = new ProcessStartInfo("git")
+            {
+                RedirectStandardOutput = true,
+                Arguments = $"log -1 --pretty=\"format:%ci\" \"{file.Name}\""
+            };
+
+            using var process = new Process();
+            process.StartInfo = processStartInfo;
+            process.EnableRaisingEvents = true;
+            process.StartInfo.WorkingDirectory = file.Directory!.FullName;
+            process.Start();
+            var output = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+            return output;
+        }
+
+
         public string[] GetLogCommit(string formCommit, string toCommit)
         {
             var file = Path.GetTempFileName();
@@ -87,6 +108,9 @@ namespace Lindexi.Src.GitCommand
 
             return File.ReadAllLines(file);
         }
+        #endregion
+
+
         public void Clone(string repoUrl)
         {
             Control($"clone {repoUrl}");

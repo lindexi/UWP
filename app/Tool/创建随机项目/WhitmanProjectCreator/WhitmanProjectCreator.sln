@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhitmanProjectCreator", "WhitmanProjectCreator.csproj", "{8FBD4516-D5FE-4413-88AA-A8141258A994}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhitmanRandomIdentifier", "..\..\..\..\package\WhitmanRandomIdentifier\WhitmanRandomIdentifier.csproj", "{46C0917E-A95E-4590-824E-60AAB949816B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46C0917E-A95E-4590-824E-60AAB949816B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46C0917E-A95E-4590-824E-60AAB949816B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46C0917E-A95E-4590-824E-60AAB949816B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46C0917E-A95E-4590-824E-60AAB949816B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FBD4516-D5FE-4413-88AA-A8141258A994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBD4516-D5FE-4413-88AA-A8141258A994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBD4516-D5FE-4413-88AA-A8141258A994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBD4516-D5FE-4413-88AA-A8141258A994}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

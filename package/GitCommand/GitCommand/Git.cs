@@ -45,7 +45,7 @@ namespace Lindexi.Src.GitCommand
         public string[] GetLogCommit()
         {
             var file = Path.GetTempFileName();
-            Control($"log --pretty=format:\"%H\" > {file}");
+            RunGitCommand($"log --pretty=format:\"%H\" > {file}");
 
             return File.ReadAllLines(file);
         }
@@ -53,7 +53,7 @@ namespace Lindexi.Src.GitCommand
         public string GetCurrentCommit()
         {
             var file = Path.GetTempFileName();
-            Control($"rev-parse HEAD > \"{file}\"");
+            RunGitCommand($"rev-parse HEAD > \"{file}\"");
             var commit = File.ReadAllText(file).Trim();
             try
             {
@@ -61,7 +61,6 @@ namespace Lindexi.Src.GitCommand
             }
             catch (Exception)
             {
-
             }
 
             return commit;
@@ -69,8 +68,15 @@ namespace Lindexi.Src.GitCommand
 
         public int GetGitCommitRevisionCount()
         {
-            var control = Control("rev-list --count HEAD");
-            var str = control.Split("\n", StringSplitOptions.RemoveEmptyEntries).Select(temp => temp.Replace("\r", "")).Where(temp => !string.IsNullOrEmpty(temp)).Reverse().FirstOrDefault();
+            var (success, control) = RunGitCommand("rev-list --count HEAD");
+
+            if (!success)
+            {
+                return 0;
+            }
+
+            var str = control.Split("\n", StringSplitOptions.RemoveEmptyEntries).Select(temp => temp.Replace("\r", ""))
+                .Where(temp => !string.IsNullOrEmpty(temp)).Reverse().FirstOrDefault();
 
             if (int.TryParse(str, out var count))
             {
@@ -86,8 +92,7 @@ namespace Lindexi.Src.GitCommand
         {
             var processStartInfo = new ProcessStartInfo("git")
             {
-                RedirectStandardOutput = true,
-                Arguments = $"log -1 --pretty=\"format:%ci\" \"{file.Name}\""
+                RedirectStandardOutput = true, Arguments = $"log -1 --pretty=\"format:%ci\" \"{file.Name}\""
             };
 
             using var process = new Process();
@@ -104,16 +109,17 @@ namespace Lindexi.Src.GitCommand
         public string[] GetLogCommit(string formCommit, string toCommit)
         {
             var file = Path.GetTempFileName();
-            Control($"log --pretty=format:\"%H\" {formCommit}..{toCommit} > {file}");
+            RunGitCommand($"log --pretty=format:\"%H\" {formCommit}..{toCommit} > {file}");
 
             return File.ReadAllLines(file);
         }
+
         #endregion
 
 
         public void Clone(string repoUrl)
         {
-            Control($"clone {repoUrl}");
+            RunGitCommand($"clone {repoUrl}");
         }
 
         public static Git Clone(string repoUrl, DirectoryInfo directory)
@@ -136,33 +142,92 @@ namespace Lindexi.Src.GitCommand
 
         public void Clean()
         {
-            Control("clean -xdf");
+            RunGitCommand("clean -xdf");
         }
 
         public void FetchAll()
         {
-            Control("fetch --all --tags");
+            RunGitCommand("fetch --all --tags");
         }
 
         public DirectoryInfo Repo { get; }
 
         private const string GitStr = "git ";
 
-        private string Control(string str)
+        private (bool success, string output) RunGitCommand(string command)
         {
-            str = FileStr() + str;
-            WriteLog(str);
-            str = Command(str, Repo.FullName);
+            WriteLog($"Start run git command: {command}");
+            var result = ExecuteCommand(GetGitPath(), command, Repo.FullName);
+            WriteLog($"Finish run git command: {command} ;Success={result.success} ;Output={result.output}");
 
-            WriteLog(str);
-            return str;
+            return result;
         }
 
-        private void WriteLog(string str)
+        private static string GetGitPath()
+        {
+            if (OperatingSystem.IsWindows())
+            {
+                var git = @"C:\Program Files\Git\bin\git.exe";
+                if (File.Exists(git))
+                {
+                    return git;
+                }
+            }
+
+            return "git";
+        }
+
+        /// <summary>
+        /// 执行命令
+        /// </summary>
+        /// <param name="exeName"></param>
+        /// <param name="arguments"></param>
+        /// <param name="workingDirectory"></param>
+        /// <returns></returns>
+        private static (bool success, string output) ExecuteCommand(string exeName, string arguments,
+            string workingDirectory = "")
+        {
+            if (string.IsNullOrEmpty(workingDirectory))
+            {
+                workingDirectory = Environment.CurrentDirectory;
+            }
+
+            var processStartInfo = new ProcessStartInfo
+            {
+                WorkingDirectory = workingDirectory,
+                FileName = exeName,
+                Arguments = arguments,
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+            };
+            var process = Process.Start(processStartInfo);
+            if (process is null)
+            {
+                return (false, string.Empty);
+            }
+
+            var output = process.StandardOutput.ReadToEnd();
+            bool success = true;
+            if (process.HasExited)
+            {
+                success = process.ExitCode == 0;
+            }
+
+            return (success, output);
+        }
+
+
+        private void WriteLog(string logMessage)
+        {
+            OnWriteLog(logMessage);
+        }
+
+        protected virtual void OnWriteLog(string logMessage)
         {
             if (NeedWriteLog)
             {
-                Console.WriteLine(str);
+                Console.WriteLine(logMessage);
             }
         }
 
@@ -170,92 +235,6 @@ namespace Lindexi.Src.GitCommand
         /// 是否需要写入日志
         /// </summary>
         public bool NeedWriteLog { set; get; } = true;
-
-        private string FileStr()
-        {
-            return string.Format(GitStr, Repo.FullName);
-        }
-
-        private string Command(string str, string workingDirectory)
-        {
-            // string str = Console.ReadLine();
-            //System.Console.InputEncoding = System.Text.Encoding.UTF8;//乱码
-
-            Process p = new Process
-            {
-                StartInfo =
-                {
-                    FileName = "cmd.exe",
-                    WorkingDirectory = workingDirectory,
-                    UseShellExecute = false, //是否使用操作系统shell启动
-                    RedirectStandardInput = true, //接受来自调用程序的输入信息
-                    RedirectStandardOutput = true, //由调用程序获取输出信息
-                    RedirectStandardError = true, //重定向标准错误输出
-                    CreateNoWindow = true, //不显示程序窗口
-                    StandardOutputEncoding = Encoding.GetEncoding("GBK") //Encoding.UTF8
-                    //Encoding.GetEncoding("GBK");//乱码
-                }
-            };
-
-            p.Start(); //启动程序
-
-            //向cmd窗口发送输入信息
-            p.StandardInput.WriteLine(str + "&exit");
-
-            p.StandardInput.AutoFlush = true;
-            //p.StandardInput.WriteLine("exit");
-            //向标准输入写入要执行的命令。这里使用&是批处理命令的符号，表示前面一个命令不管是否执行成功都执行后面(exit)命令，如果不执行exit命令，后面调用ReadToEnd()方法会假死
-            //同类的符号还有&&和||前者表示必须前一个命令执行成功才会执行后面的命令，后者表示必须前一个命令执行失败才会执行后面的命令
-
-            bool exited = false;
-
-            //// 超时
-            //Task.Run(() =>
-            //{
-            //    Task.Delay(TimeSpan.FromMinutes(1)).ContinueWith(_ =>
-            //    {
-            //        if (exited)
-            //        {
-            //            return;
-            //        }
-
-            //        try
-            //        {
-            //            if (!p.HasExited)
-            //            {
-            //                Console.WriteLine($"{str} 超时");
-            //                p.Kill();
-            //            }
-            //        }
-            //        catch (Exception e)
-            //        {
-            //            Console.WriteLine(e);
-            //        }
-            //    });
-            //});
-
-            //获取cmd窗口的输出信息
-            string output = p.StandardOutput.ReadToEnd();
-            //Console.WriteLine(output);
-            output += p.StandardError.ReadToEnd();
-            //Console.WriteLine(output);
-
-            //StreamReader reader = p.StandardOutput;
-            //string line=reader.ReadLine();
-            //while (!reader.EndOfStream)
-            //{
-            //    str += line + "  ";
-            //    line = reader.ReadLine();
-            //}
-
-            p.WaitForExit((int) DefaultCommandTimeout.TotalMilliseconds); //等待程序执行完退出进程
-            p.Close();
-
-            exited = true;
-
-            return output + "\r\n";
-        }
-
 
         /// <summary>
         /// 默认命令的超时时间
@@ -284,7 +263,7 @@ namespace Lindexi.Src.GitCommand
                 command += " -f";
             }
 
-            Control(command);
+            RunGitCommand(command);
         }
 
         /// <summary>
@@ -293,9 +272,10 @@ namespace Lindexi.Src.GitCommand
         /// <param name="branchName"></param>
         public void CheckoutNewBranch(string branchName)
         {
-            Control($"checkout -b {branchName}");
+            RunGitCommand($"checkout -b {branchName}");
         }
     }
+
     public class GitDiffFile
     {
         /// <inheritdoc />
@@ -311,13 +291,13 @@ namespace Lindexi.Src.GitCommand
 
     public enum DiffType
     {
-        Added,// A
-        Copied,// C
-        Deleted,// D
-        Modified,// M
-        Renamed,// R
-        Changed,// T
-        Unmerged,// U
-        Unknown,// X
+        Added, // A
+        Copied, // C
+        Deleted, // D
+        Modified, // M
+        Renamed, // R
+        Changed, // T
+        Unmerged, // U
+        Unknown, // X
     }
 }

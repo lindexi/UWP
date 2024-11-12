@@ -44,10 +44,14 @@ namespace Lindexi.Src.GitCommand
 
         public string[] GetLogCommit()
         {
-            var file = Path.GetTempFileName();
-            RunGitCommand($"log --pretty=format:\"%H\" > {file}");
+            var (success, control) = RunGitCommand($"log --pretty=format:\"%H\"");
 
-            return File.ReadAllLines(file);
+            if (!success)
+            {
+                return Array.Empty<string>();
+            }
+
+            return control.Split('\n');
         }
 
         public string GetCurrentCommit()

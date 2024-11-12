@@ -202,7 +202,7 @@ namespace Lindexi.Src.GitCommand
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
             };
-            var process = Process.Start(processStartInfo);
+            using var process = Process.Start(processStartInfo);
             if (process is null)
             {
                 return (false, string.Empty);

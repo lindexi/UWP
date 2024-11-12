@@ -155,8 +155,6 @@ namespace Lindexi.Src.GitCommand
 
         public DirectoryInfo Repo { get; }
 
-        private const string GitStr = "git ";
-
         private (bool success, string output) RunGitCommand(string command)
         {
             WriteLog($"Start run git command: {command}");

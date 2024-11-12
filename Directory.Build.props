@@ -11,7 +11,9 @@
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
-    <Copyright>Copyright © 2021 lindexi, All Rights Reserved.</Copyright> 
+    <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
+    <ThisYear>$([System.DateTime]::Now.ToString(`yyyy`))</ThisYear>
+    <Copyright>Copyright © 2021-$(ThisYear) lindexi, All Rights Reserved.</Copyright> 
   </PropertyGroup>
 
   <ItemGroup>

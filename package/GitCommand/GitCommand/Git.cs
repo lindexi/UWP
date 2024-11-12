@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Lindexi.Src.GitCommand
@@ -166,7 +167,7 @@ namespace Lindexi.Src.GitCommand
 
         private static string GetGitPath()
         {
-            if (OperatingSystem.IsWindows())
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 var git = @"C:\Program Files\Git\bin\git.exe";
                 if (File.Exists(git))

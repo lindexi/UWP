@@ -52,17 +52,12 @@ namespace Lindexi.Src.GitCommand
 
         public string GetCurrentCommit()
         {
-            var file = Path.GetTempFileName();
-            RunGitCommand($"rev-parse HEAD > \"{file}\"");
-            var commit = File.ReadAllText(file).Trim();
-            try
+            var (success, output) = RunGitCommand($"rev-parse HEAD");
+            if (!success)
             {
-                File.Delete(file);
+                return string.Empty;
             }
-            catch (Exception)
-            {
-            }
-
+            var commit = output.Trim();
             return commit;
         }
 

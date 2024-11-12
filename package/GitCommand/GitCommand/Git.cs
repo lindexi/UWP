@@ -107,10 +107,14 @@ namespace Lindexi.Src.GitCommand
 
         public string[] GetLogCommit(string formCommit, string toCommit)
         {
-            var file = Path.GetTempFileName();
-            RunGitCommand($"log --pretty=format:\"%H\" {formCommit}..{toCommit} > {file}");
+            var (success, control) = RunGitCommand($"log --pretty=format:\"%H\" {formCommit}..{toCommit}");
 
-            return File.ReadAllLines(file);
+            if (!success)
+            {
+                return Array.Empty<string>();
+            }
+
+            return control.Split('\n');
         }
 
         #endregion

@@ -49,7 +49,7 @@ while (true)
         }
         catch (ArgumentException e)
         {
-            Console.WriteLine($"[Guardian] Process HasExited GetProcessById Fail {e.Message}.");
+            Console.WriteLine($"[Guardian] Process HasExited GetProcessById Fail. {e.Message}.");
             break;
         }
     }

@@ -47,6 +47,51 @@ static void CopyFolder(DirectoryInfo originFolder, DirectoryInfo desFolder, Rena
 
         var destFileName = Path.Join(desFolder.FullName, newName);
 
+        bool shouldCopyFile = false;
+
+        var fileExtension = file.Extension;
+        // 将一些非文本文件的扩展名加入到忽略列表中
+        Span<string> ignoreExtensionSpan =
+        [
+            ".png",
+            ".jpg",
+            ".jpeg",
+            ".gif",
+            ".bmp",
+            ".ico",
+            ".webp",
+            ".mp4",
+            ".avi",
+            ".mov",
+            ".mkv",
+            ".mp3",
+            ".wav",
+            ".flac",
+            ".ogg",
+            ".zip",
+            ".rar",
+            ".7z",
+            ".tar",
+            ".gz",
+            ".bz2",
+            ".xz",
+            ".exe",
+            ".dll",
+            ".so",
+            ".dylib",
+            ".apk",
+            ".ipa",
+        ];
+
+        foreach (var ignoreExtension in ignoreExtensionSpan)
+        {
+            if (ignoreExtension.Equals(fileExtension, StringComparison.OrdinalIgnoreCase))
+            {
+                shouldCopyFile = true;
+                break;
+            }
+        }
+
         try
         {
             // 尝试读取文件重写一下
@@ -56,6 +101,12 @@ static void CopyFolder(DirectoryInfo originFolder, DirectoryInfo desFolder, Rena
         }
         catch
         {
+            shouldCopyFile = true;
+        }
+
+        if (shouldCopyFile)
+        {
+            // 复制文件
             file.CopyTo(destFileName, overwrite: true);
         }
     }

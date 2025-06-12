@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+
 using BitStamp.ViewModel;
+
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,6 +29,15 @@ namespace BitStamp.View
         public SaeHqeupqPage()
         {
             this.InitializeComponent();
+
+            try
+            {
+                LogFolderTextBox.Text = ApplicationData.Current.TemporaryFolder.Path;
+            }
+            catch
+            {
+                // 忽略，拿不到就拿不到
+            }
         }
 
         public SaeHqeupqModel ViewModel { get; private set; }

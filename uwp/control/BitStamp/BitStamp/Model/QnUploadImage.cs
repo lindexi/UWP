@@ -83,8 +83,10 @@ namespace lindexi.uwp.ImageShack.Model
 
                 OnUploaded?.Invoke(this, temp.OK);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                _ = LoggerFileProvider.AppendLogMessage($"UploadImage Fail. Exception={e}");
+
                 OnUploaded?.Invoke(this, false);
             }
         }

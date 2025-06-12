@@ -58,7 +58,6 @@
                 <TextBlock Text="可以在设置选择上传的地方" />
                 <TextBlock Text="可以注册账号使用自己服务器" />
                 <TextBlock Text="软件免费使用" />
-                <TextBlock Text="所有上传图片都不会删除" />
                 <TextBlock></TextBlock>
                 <TextBlock Text="点击自动上传"></TextBlock>
             </StackPanel>

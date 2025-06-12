@@ -66,7 +66,7 @@ namespace lindexi.uwp.ImageShack.Model
 
             if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(Accound.Pname))
             {
-                name = Accound.Pname + "/" + Uri.EscapeDataString(name);
+                name = Accound.Pname + "-" + Uri.EscapeDataString(name);
             }
 
             try

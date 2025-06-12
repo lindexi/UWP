@@ -29,7 +29,7 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <PackageCertificateKeyFile>BitStamp_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>3C5617C45FC3580EAFDD8C268FCD3BA32CC087F1</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>A68B8A38C4C42BB4ADAB1F5A517E8732DBDEF2B4</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>

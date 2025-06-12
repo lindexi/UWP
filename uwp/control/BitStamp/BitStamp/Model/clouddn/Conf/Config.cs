@@ -86,21 +86,21 @@ namespace Qiniu.Conf
         /// <summary>
         ///     七牛资源管理服务器地址
         /// </summary>
-        public static string RS_HOST = "http://rs.Qbox.me";
+        public static string RS_HOST = "https://rs.Qbox.me";
 
         /// <summary>
         ///     七牛资源上传服务器地址.
         /// </summary>
-        public static string UP_HOST = "http://up.qiniu.com";
+        public const string UP_HOST = "https://up.qiniu.com";
 
         /// <summary>
         ///     七牛资源列表服务器地址.
         /// </summary>
-        public static string RSF_HOST = "http://rsf.Qbox.me";
+        public static string RSF_HOST = "https://rsf.Qbox.me";
 
-        public static string PREFETCH_HOST = "http://iovip.qbox.me";
+        public static string PREFETCH_HOST = "https://iovip.qbox.me";
 
-        public static string API_HOST = "http://api.qiniu.com";
+        public static string API_HOST = "https://api.qiniu.com";
 
         #endregion
     }

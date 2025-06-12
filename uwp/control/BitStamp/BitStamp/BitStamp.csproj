@@ -23,14 +23,11 @@
     <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
-    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
-    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
-    <GenerateTestArtifacts>True</GenerateTestArtifacts>
-    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
-    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-    <PackageCertificateKeyFile>BitStamp_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <GenerateTestArtifacts>False</GenerateTestArtifacts>
     <PackageCertificateThumbprint>
     </PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>

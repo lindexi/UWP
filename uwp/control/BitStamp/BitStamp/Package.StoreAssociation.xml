@@ -380,42 +380,42 @@
     <MainPackageIdentityName>43179.5635982EE69E1</MainPackageIdentityName>
     <MainPackageIdentityName>43179.408450ADF2314</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH562R2">
+  <PackageInfoList LandingUrl="https://devcenterapi.dce.mp.microsoft.com/dashboard/Application?appId=9NBLGGH562R2">
     <BundleInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>X86</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.7.1.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>2.7.5.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>X64</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.7.1.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>2.7.5.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Arm</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.7.1.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>2.7.5.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.7.1.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>2.7.5.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.7.1.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>2.7.5.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.7.1.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>2.7.5.0</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>0.0.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.7.1.0</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>2.7.5.0</PackageMaxArchitectureVersion>
       </PackageInfo>
     </BundleInfo>
   </PackageInfoList>

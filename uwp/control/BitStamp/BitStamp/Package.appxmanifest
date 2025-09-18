@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="43179.1161685EE70AE" Publisher="CN=227D1644-D24B-430C-AFA3-3FD86CE65409" Version="2.7.6.0" />
+  <Identity Name="43179.1161685EE70AE" Publisher="CN=lindexi" Version="2.7.6.0" />
   <mp:PhoneIdentity PhoneProductId="27323ed4-4fcd-43aa-ab22-5e96acd39830" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>uwp 图床</DisplayName>
@@ -25,5 +25,7 @@
   <Capabilities>
     <Capability Name="internetClient" />
     <uap:Capability Name="picturesLibrary" />
+    <Capability Name="internetClientServer"/>
+    <Capability Name="privateNetworkClientServer"/>
   </Capabilities>
 </Package>

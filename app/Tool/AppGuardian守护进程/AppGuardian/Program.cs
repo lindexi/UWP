@@ -64,5 +64,7 @@ Process? StartProcess()
         processStartInfo.ArgumentList.Add(args[i]);
     }
 
+    processStartInfo.Environment.Add("AppGuardianProcessId", Environment.ProcessId.ToString());
+
     return Process.Start(processStartInfo);
 }

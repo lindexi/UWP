@@ -9,10 +9,18 @@
     <PublishAot>true</PublishAot>
     <PackageIcon>Icon.ico</PackageIcon>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <Version>1.0.1</Version>
+
+    <!-- [dotnet 9 已知问题 默认开启 CET 导致进程崩溃 - lindexi - 博客园](https://www.cnblogs.com/lindexi/p/18700406 )  -->
+    <CETCompat>false</CETCompat>
+
+    <SupportedOSPlatformVersion>5.1</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="10.0.1" />
+    <PackageReference Include="VC-LTL" Version="5.2.1" />
+    <PackageReference Include="YY-Thunks" Version="1.1.7" />
   </ItemGroup>
 
 </Project>

@@ -278,6 +278,7 @@ public struct WORD
     public static implicit operator int(WORD val) => val._value;
 }
 
+// [dotnet6 C# 一个国内还能用的 NTP 时间校准客户端的实现](https://blog.lindexi.com/post/dotnet6-C-%E4%B8%80%E4%B8%AA%E5%9B%BD%E5%86%85%E8%BF%98%E8%83%BD%E7%94%A8%E7%9A%84-NTP-%E6%97%B6%E9%97%B4%E6%A0%A1%E5%87%86%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%AE%9E%E7%8E%B0.html ) 
 // https://github.com/michaelschwarz/NETMF-Toolkit/blob/095b01679945c3f518dd52082eca78bbaff9811f/NTP/NtpClient.cs
 public static class NtpClient
 {

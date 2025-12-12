@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -58,7 +59,10 @@ public class WindowsBackgroundService : BackgroundService
                 var networkTime = await NtpClient.GetChineseNetworkTime();
                 if (networkTime != null)
                 {
-                    if (DateTimeOffset.Now - networkTime.Value > TimeSpan.FromSeconds(5))
+                    TimeSpan gapInTime = DateTimeOffset.Now - networkTime.Value;
+                    var absSeconds = Math.Abs(gapInTime.TotalSeconds);
+                    // 时间差距大于 5 秒才进行校准
+                    if (absSeconds > 5)
                     {
                         Console.WriteLine($"正在将系统时间从 {DateTimeOffset.Now:yyyy-MM-dd HH:mm:ss} 同步到网络时间 {networkTime.Value:yyyy-MM-dd HH:mm:ss} ......");
                         SetNtpTime(networkTime.Value);
@@ -298,7 +302,23 @@ public static class NtpClient
         dateTimeOffset ??= await GetChineseNetworkTimeCore("cn.ntp.org.cn"); // 中国授时
         dateTimeOffset ??= await GetChineseNetworkTimeCore("time.windows.com"); // time.windows.com 微软Windows自带
         // 203.107.6.88 是 ntp.aliyun.com 的 IP 地址之一，作为最后的兜底
-        dateTimeOffset ??= await GetChineseNetworkTimeCore("203.107.6.88");
+        
+        if (dateTimeOffset is null)
+        {
+            var ipEndPoint = new IPEndPoint(IPAddress.Parse("203.107.6.88"), 123);
+
+            try
+            {
+                var cancellationTokenSource = new CancellationTokenSource();
+                cancellationTokenSource.CancelAfter(TimeSpan.FromSeconds(15));
+
+                dateTimeOffset = await GetNetworkUtcTime(ipEndPoint, cancellationTokenSource.Token);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"无法从 {ipEndPoint.Address} 获取时间 {ex}");
+            }
+        }
 
         if (dateTimeOffset is not null)
         {
@@ -332,9 +352,9 @@ public static class NtpClient
 
                         return await GetNetworkUtcTime(ipEndPoint, cancellationTokenSource.Token);
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        // 失败就继续换下一个
+                        Console.WriteLine($"无法从 {address} 获取时间 {ex}");
                     }
 
                     if (!cancellationTokenSource.TryReset())

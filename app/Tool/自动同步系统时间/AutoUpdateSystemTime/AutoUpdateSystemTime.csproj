@@ -9,7 +9,7 @@
     <PublishAot>true</PublishAot>
     <PackageIcon>Icon.ico</PackageIcon>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
 
     <!-- [dotnet 9 已知问题 默认开启 CET 导致进程崩溃 - lindexi - 博客园](https://www.cnblogs.com/lindexi/p/18700406 )  -->
     <CETCompat>false</CETCompat>

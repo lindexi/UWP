@@ -297,6 +297,8 @@ public static class NtpClient
         dateTimeOffset ??= await GetChineseNetworkTimeCore("cn.pool.ntp.org"); // 国家服务器
         dateTimeOffset ??= await GetChineseNetworkTimeCore("cn.ntp.org.cn"); // 中国授时
         dateTimeOffset ??= await GetChineseNetworkTimeCore("time.windows.com"); // time.windows.com 微软Windows自带
+        // 203.107.6.88 是 ntp.aliyun.com 的 IP 地址之一，作为最后的兜底
+        dateTimeOffset ??= await GetChineseNetworkTimeCore("203.107.6.88");
 
         if (dateTimeOffset is not null)
         {

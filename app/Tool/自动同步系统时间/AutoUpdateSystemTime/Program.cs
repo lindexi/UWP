@@ -98,6 +98,7 @@ public class WindowsBackgroundService : BackgroundService
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"设置系统时间失败 {ex}");
             return false;
         }
     }
@@ -341,10 +342,12 @@ public static class NtpClient
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 // 失败就失败
                 // 本来想着异常对外抛出的，但是似乎抛出异常也没啥用
+                Console.WriteLine($"无法从 {ntpServer} 获取时间 Exception: {ex}");
+                Console.WriteLine();
             }
             finally
             {

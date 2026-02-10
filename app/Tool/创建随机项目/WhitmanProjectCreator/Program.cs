@@ -23,6 +23,16 @@ RunCommand($"dotnet new sln", folderPath);
 RunCommand($"dotnet sln add .", folderPath);
 
 var slnFile = Path.Join(folderPath, $"{folderName}.sln");
+if (!File.Exists(slnFile))
+{
+    slnFile = Path.Join(folderPath, $"{folderName}.slnx");
+    if (!File.Exists(slnFile))
+    {
+        Console.WriteLine($"无法找到 '{slnFile}' 文件");
+        return;
+    }
+}
+
 Process.Start(new ProcessStartInfo(slnFile) { UseShellExecute = true });
 
 

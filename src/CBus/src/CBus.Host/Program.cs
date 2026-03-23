@@ -9,7 +9,7 @@ Console.CancelKeyPress += (_, eventArgs) =>
 };
 
 var processPath = Environment.ProcessPath ?? "CBus.Host";
-var host = new CBusHost(
+await using var host = new CBusHost(
     new CBusHostOptions(
         CBusDefaults.DefaultPort,
         CBusDefaults.DefaultPipeAddress,

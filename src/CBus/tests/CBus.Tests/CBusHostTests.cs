@@ -1,4 +1,6 @@
-﻿using CBus.Hosting;
+﻿using System.Net;
+using System.Net.Sockets;
+using CBus.Hosting;
 
 namespace CBus.Tests;
 
@@ -9,13 +11,14 @@ public class CBusHostTests
     {
         var registryStore = new InMemoryRegistryStore();
         var fileStore = new InMemoryFileStore();
-        var host = CreateHost(registryStore, fileStore);
+        var httpPort = GetAvailablePort();
+        await using var host = CreateHost(registryStore, fileStore, httpPort);
         await host.StartAsync();
         var discovery = new CBusEndpointDiscovery(registryStore, fileStore, host.CreateDiscoveryOptions());
 
         var result = await discovery.DiscoverAsync();
 
-        Assert.Equal(new Uri("http://127.0.0.1:4455/"), result.HttpEndpoint);
+        Assert.Equal(new Uri($"http://127.0.0.1:{httpPort}/"), result.HttpEndpoint);
     }
 
     [Fact]
@@ -23,7 +26,7 @@ public class CBusHostTests
     {
         var registryStore = new InMemoryRegistryStore();
         var fileStore = new InMemoryFileStore();
-        var host = CreateHost(registryStore, fileStore);
+        await using var host = CreateHost(registryStore, fileStore, GetAvailablePort());
         await host.StartAsync();
         var discovery = new CBusEndpointDiscovery(registryStore, fileStore, host.CreateDiscoveryOptions());
 
@@ -35,12 +38,15 @@ public class CBusHostTests
     [Fact]
     public async Task WhenHttpListenerReceivesRegisteredRouteThenReturnsHandlerBodyAsync()
     {
-        var host = CreateHost(new InMemoryRegistryStore(), new InMemoryFileStore());
+        await using var host = CreateHost(new InMemoryRegistryStore(), new InMemoryFileStore(), GetAvailablePort());
         host.RegisterService(
             new CBusServiceRegistration("FooService", "FooService.exe", [], [new CBusRouteDefinition("/Foo/Path1")]),
-            static (_, _) => Task.FromResult(CBusResponse.Ok("from-http-listener")));
+            static (request, _) => Task.FromResult(CBusResponse.Ok(request.GetBodyAsString())));
 
-        var response = await host.HttpListener.SendAsync(host.HttpListener.Endpoint, new CBusRequest("GET", "/Foo/Path1"));
+        await host.StartAsync();
+
+        var connector = new HttpConnector(host.HttpListener.Endpoint, new SystemNetHttpTransport());
+        var response = await connector.SendAsync(CBusRequest.CreateText("POST", "/Foo/Path1", "from-http-listener"));
 
         Assert.Equal("from-http-listener", response.GetBodyAsString());
     }
@@ -48,18 +54,25 @@ public class CBusHostTests
     [Fact]
     public async Task WhenPipeListenerReceivesUnknownRouteThenReturnsNotFoundStatusCodeAsync()
     {
-        var host = CreateHost(new InMemoryRegistryStore(), new InMemoryFileStore());
+        await using var host = CreateHost(new InMemoryRegistryStore(), new InMemoryFileStore(), GetAvailablePort());
 
         var response = await host.PipeListener.SendAsync(host.PipeListener.PipeAddress, new CBusRequest("GET", "/Missing/Path"));
 
         Assert.Equal(404, response.StatusCode);
     }
 
-    private static CBusHost CreateHost(ICBusRegistryStore registryStore, ICBusFileStore fileStore)
+    private static CBusHost CreateHost(ICBusRegistryStore registryStore, ICBusFileStore fileStore, int httpPort)
     {
         return new CBusHost(
-            new CBusHostOptions(4455, "cbus-test-pipe", "cbus-host-tests", "Software\\CBus\\HostTests"),
+            new CBusHostOptions(httpPort, "cbus-test-pipe", "cbus-host-tests", "Software\\CBus\\HostTests"),
             registryStore,
             fileStore);
+    }
+
+    private static int GetAvailablePort()
+    {
+        using var listener = new TcpListener(IPAddress.Loopback, 0);
+        listener.Start();
+        return ((IPEndPoint)listener.LocalEndpoint).Port;
     }
 }

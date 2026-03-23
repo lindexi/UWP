@@ -2,11 +2,12 @@
 
 namespace CBus.Hosting;
 
-public sealed class CBusHost
+public sealed class CBusHost : IAsyncDisposable
 {
     private readonly CBusServiceRegistry _serviceRegistry;
     private readonly CBusDispatcher _dispatcher;
     private readonly CBusAddressPublisher _addressPublisher;
+    private bool _isStarted;
 
     public CBusHost(CBusHostOptions options, ICBusRegistryStore registryStore, ICBusFileStore fileStore)
     {
@@ -35,9 +36,34 @@ public sealed class CBusHost
     /// <summary>
     /// 启动宿主并发布监听地址。
     /// </summary>
-    public Task StartAsync(CancellationToken cancellationToken = default)
+    public async Task StartAsync(CancellationToken cancellationToken = default)
     {
-        return _addressPublisher.PublishAsync(Options, cancellationToken);
+        if (_isStarted)
+        {
+            return;
+        }
+
+        await HttpListener.StartAsync(cancellationToken).ConfigureAwait(false);
+
+        try
+        {
+            await _addressPublisher.PublishAsync(Options, cancellationToken).ConfigureAwait(false);
+            _isStarted = true;
+        }
+        catch
+        {
+            await HttpListener.StopAsync(CancellationToken.None).ConfigureAwait(false);
+            throw;
+        }
+    }
+
+    /// <summary>
+    /// 停止宿主监听。
+    /// </summary>
+    public async Task StopAsync(CancellationToken cancellationToken = default)
+    {
+        await HttpListener.StopAsync(cancellationToken).ConfigureAwait(false);
+        _isStarted = false;
     }
 
     /// <summary>
@@ -46,5 +72,10 @@ public sealed class CBusHost
     public CBusDiscoveryOptions CreateDiscoveryOptions()
     {
         return new CBusDiscoveryOptions(Options.PublishDirectory, Options.RegistrySubKey);
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        return HttpListener.DisposeAsync();
     }
 }

@@ -3,8 +3,14 @@ using System.Text;
 
 namespace CBus;
 
+/// <summary>
+/// 表示 CBus 返回的响应。
+/// </summary>
 public sealed class CBusResponse
 {
+    /// <summary>
+    /// 使用状态码、原因短语、头和正文创建响应。
+    /// </summary>
     public CBusResponse(int statusCode, string reasonPhrase, IReadOnlyDictionary<string, string>? headers = null, byte[]? body = null)
     {
         if (string.IsNullOrWhiteSpace(reasonPhrase))
@@ -18,12 +24,24 @@ public sealed class CBusResponse
         Body = body?.ToArray() ?? [];
     }
 
+    /// <summary>
+    /// 获取响应状态码。
+    /// </summary>
     public int StatusCode { get; }
 
+    /// <summary>
+    /// 获取响应原因短语。
+    /// </summary>
     public string ReasonPhrase { get; }
 
+    /// <summary>
+    /// 获取响应头集合。
+    /// </summary>
     public IReadOnlyDictionary<string, string> Headers { get; }
 
+    /// <summary>
+    /// 获取响应正文。
+    /// </summary>
     public byte[] Body { get; }
 
     /// <summary>

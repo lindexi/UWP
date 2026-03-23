@@ -2,11 +2,17 @@
 
 namespace CBus.Hosting;
 
+/// <summary>
+/// 负责将宿主监听地址发布到发现介质。
+/// </summary>
 public sealed class CBusAddressPublisher
 {
     private readonly ICBusRegistryStore _registryStore;
     private readonly ICBusFileStore _fileStore;
 
+    /// <summary>
+    /// 使用指定的注册表和文件存储创建地址发布器。
+    /// </summary>
     public CBusAddressPublisher(ICBusRegistryStore registryStore, ICBusFileStore fileStore)
     {
         _registryStore = registryStore ?? throw new ArgumentNullException(nameof(registryStore));

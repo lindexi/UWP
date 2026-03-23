@@ -2,16 +2,25 @@
 
 namespace CBus;
 
+/// <summary>
+/// 使用系统 HTTP 客户端将请求发送到指定终结点。
+/// </summary>
 public sealed class SystemNetHttpTransport : ICBusHttpTransport, IDisposable
 {
     private readonly HttpClient _httpClient;
     private readonly bool _disposeHttpClient;
 
+    /// <summary>
+    /// 使用默认 <see cref="HttpClient"/> 创建传输实现。
+    /// </summary>
     public SystemNetHttpTransport()
         : this(new HttpClient(), true)
     {
     }
 
+    /// <summary>
+    /// 使用指定的 <see cref="HttpClient"/> 创建传输实现。
+    /// </summary>
     public SystemNetHttpTransport(HttpClient httpClient)
         : this(httpClient, false)
     {
@@ -54,6 +63,9 @@ public sealed class SystemNetHttpTransport : ICBusHttpTransport, IDisposable
         return new CBusResponse((int)response.StatusCode, response.ReasonPhrase ?? response.StatusCode.ToString(), headers, body);
     }
 
+    /// <summary>
+    /// 释放由当前实例创建的 <see cref="HttpClient"/>。
+    /// </summary>
     public void Dispose()
     {
         if (_disposeHttpClient)

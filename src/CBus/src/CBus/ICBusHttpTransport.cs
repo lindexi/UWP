@@ -1,5 +1,8 @@
 ﻿namespace CBus;
 
+/// <summary>
+/// 定义发送 HTTP 请求到 CBus 的传输能力。
+/// </summary>
 public interface ICBusHttpTransport
 {
     /// <summary>

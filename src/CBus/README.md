@@ -1,49 +1,27 @@
 ﻿# CBus
 
-来自于 Linux 的 d-Bus 思想
+`CBus` 是一个面向本机进程间通信的消息总线实验项目，当前基于 `.NET 10` 维护。
 
-提供一个中间平台层，可以给多个应用与服务之间建立联系
+仓库当前包含两个核心项目：
 
-设计上全采用 HTTP 1.1 的结构，包括 Header 头和 Body 内容。其中 Header 头为 Key-Value 对。而 Body 则不加以限制，允许传入表单等格式的内容，甚至直接二进制内容返回
+- `src/CBus`：客户端类库，提供请求/响应模型、消息序列化、终结点发现、连接器以及默认的 HTTP 与命名管道传输实现。
+- `src/CBus.Host`：宿主进程，提供服务注册、路由分发、真实 HTTP 监听、真实命名管道监听以及地址发布能力。
 
-## 连接方式
+## 当前能力
 
-CBus 支持两种连接方式：
+- 使用真实 HTTP 监听接收请求，并将方法、路径、头和正文映射为 `CBusRequest`。
+- 使用真实命名管道接收请求，并通过 `CBusMessageSerializer` 进行请求/响应编解码。
+- 通过 `CBusEndpointDiscovery` 从注册表与文件系统发现宿主终结点。
+- 基于路由根段进行服务注册与请求分发。
 
-- HTTP: 标准 HTTP 用法。内置证书，支持 HTTPS 方式连接
-- Pipe: 本机 IPC 常用的管道。管道传输内容为 HTTP 1.1 的数据格式
+## 快速开始
 
-细节设计如下：
+1. 运行 `src/CBus.Host`。
+2. 使用 `CBusEndpointDiscovery` 获取当前宿主的 `HttpEndpoint` 和 `PipeAddress`。
+3. 通过 `HttpConnector` + `SystemNetHttpTransport` 或 `PipeConnector` + `SystemNamedPipeTransport` 发起调用。
 
-内置约定 3323 为通讯端口，会在启动时在本机文件夹和注册表（仅 Windows 平台） 写入监听的端口号，供其他应用查询使用
+## 文档
 
-## 通讯细节
-
-服务 <===> CBus <===> 客户端
-
-### 面向服务
-
-注册动作有两个方式：
-
-1. 服务安装的时候，先向 CBus 执行注册，注册方式为在指定文件夹写入此服务的配置文件
-
-配置文件包含的内容为：
-
-- 启动的进程所在路径
-- 启动进程时传递的参数
-
-- 服务提供的直接路由的 API 路径们，比如 `/Foo/Path1` 路径
-
-要求 Path 路径的第一节为全局唯一，禁止相同，通常采用服务名
-
-2. 服务启动的时候注册，注册的方式是调用 CBus 的一个 API 进行注册
-
-对于一个服务来说，可以同时使用以上两个方式
-
-### 面向客户端
-
-客户端可以使用 Path 路径直接向 CBus 进行请求，此时 CBus 将会根据请求的内容自动执行分发动作，调用到具体的服务响应内容，再将结果返回给到客户端
-
-在 CBus 内部，将会记录日志，比如哪个 API 的调用频次等。可以对此进行埋点上报，以及拉取后台接口决定有哪个 API 需要被禁用
-
-无论是服务端还是客户端，都可以任选 Pipe 或 Http 方式与 CBus 连接
+- `docs/CBus.Requirements.md`
+- `docs/CBus.ApiDesign.md`
+- `docs/CBus.Usage.md`

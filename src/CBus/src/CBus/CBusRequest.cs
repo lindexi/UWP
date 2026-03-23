@@ -3,8 +3,14 @@ using System.Text;
 
 namespace CBus;
 
+/// <summary>
+/// 表示发送到 CBus 的请求。
+/// </summary>
 public sealed class CBusRequest
 {
+    /// <summary>
+    /// 使用方法、路径、头和正文创建请求。
+    /// </summary>
     public CBusRequest(string method, string path, IReadOnlyDictionary<string, string>? headers = null, byte[]? body = null)
     {
         if (string.IsNullOrWhiteSpace(method))
@@ -18,12 +24,24 @@ public sealed class CBusRequest
         Body = body?.ToArray() ?? [];
     }
 
+    /// <summary>
+    /// 获取请求方法。
+    /// </summary>
     public string Method { get; }
 
+    /// <summary>
+    /// 获取请求路径。
+    /// </summary>
     public string Path { get; }
 
+    /// <summary>
+    /// 获取请求头集合。
+    /// </summary>
     public IReadOnlyDictionary<string, string> Headers { get; }
 
+    /// <summary>
+    /// 获取请求正文。
+    /// </summary>
     public byte[] Body { get; }
 
     /// <summary>

@@ -1,5 +1,8 @@
 ﻿namespace CBus;
 
+/// <summary>
+/// 使用本地文件系统读写文本文件。
+/// </summary>
 public sealed class SystemFileStore : ICBusFileStore
 {
     /// <summary>

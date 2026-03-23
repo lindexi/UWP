@@ -2,6 +2,9 @@
 
 namespace CBus;
 
+/// <summary>
+/// 使用 Windows 注册表读写字符串值。
+/// </summary>
 public sealed class WindowsRegistryStore : ICBusRegistryStore
 {
     /// <summary>

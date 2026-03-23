@@ -1,5 +1,8 @@
 ﻿namespace CBus;
 
+/// <summary>
+/// 定义发现信息使用的文件存储能力。
+/// </summary>
 public interface ICBusFileStore
 {
     /// <summary>

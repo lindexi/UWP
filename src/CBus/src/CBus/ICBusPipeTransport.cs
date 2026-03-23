@@ -1,5 +1,8 @@
 ﻿namespace CBus;
 
+/// <summary>
+/// 定义通过命名管道发送请求到 CBus 的传输能力。
+/// </summary>
 public interface ICBusPipeTransport
 {
     /// <summary>

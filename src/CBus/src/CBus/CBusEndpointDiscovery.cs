@@ -1,11 +1,17 @@
 ﻿namespace CBus;
 
+/// <summary>
+/// 负责从发布信息中发现 CBus 终结点。
+/// </summary>
 public sealed class CBusEndpointDiscovery
 {
     private readonly ICBusRegistryStore _registryStore;
     private readonly ICBusFileStore _fileStore;
     private readonly CBusDiscoveryOptions _options;
 
+    /// <summary>
+    /// 使用指定的注册表和文件存储创建终结点发现器。
+    /// </summary>
     public CBusEndpointDiscovery(ICBusRegistryStore registryStore, ICBusFileStore fileStore, CBusDiscoveryOptions? options = null)
     {
         _registryStore = registryStore ?? throw new ArgumentNullException(nameof(registryStore));

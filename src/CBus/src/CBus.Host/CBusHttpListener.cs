@@ -5,6 +5,9 @@ using CBus;
 
 namespace CBus.Hosting;
 
+/// <summary>
+/// 负责监听 HTTP 请求并将其分发到已注册服务。
+/// </summary>
 public sealed class CBusHttpListener : IAsyncDisposable
 {
     private readonly Uri _endpoint;
@@ -14,6 +17,9 @@ public sealed class CBusHttpListener : IAsyncDisposable
     private CancellationTokenSource? _listeningCancellationTokenSource;
     private Task? _listeningTask;
 
+    /// <summary>
+    /// 使用监听终结点和分发器创建 HTTP 监听器。
+    /// </summary>
     public CBusHttpListener(Uri endpoint, CBusDispatcher dispatcher)
     {
         ArgumentNullException.ThrowIfNull(endpoint);
@@ -26,6 +32,9 @@ public sealed class CBusHttpListener : IAsyncDisposable
         _dispatcher = dispatcher ?? throw new ArgumentNullException(nameof(dispatcher));
     }
 
+    /// <summary>
+    /// 获取当前监听的 HTTP 终结点。
+    /// </summary>
     public Uri Endpoint => _endpoint;
 
     /// <summary>
@@ -98,6 +107,9 @@ public sealed class CBusHttpListener : IAsyncDisposable
         listeningCancellationTokenSource.Dispose();
     }
 
+    /// <summary>
+    /// 释放监听器占用的资源。
+    /// </summary>
     public async ValueTask DisposeAsync()
     {
         await StopAsync().ConfigureAwait(false);

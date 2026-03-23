@@ -2,6 +2,9 @@
 
 namespace CBus;
 
+/// <summary>
+/// 负责在 CBus 请求响应模型与文本协议之间进行转换。
+/// </summary>
 public sealed class CBusMessageSerializer
 {
     /// <summary>

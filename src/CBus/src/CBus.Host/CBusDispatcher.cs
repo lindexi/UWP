@@ -2,10 +2,16 @@
 
 namespace CBus.Hosting;
 
+/// <summary>
+/// 根据请求路径将请求分发到已注册服务。
+/// </summary>
 public sealed class CBusDispatcher
 {
     private readonly CBusServiceRegistry _serviceRegistry;
 
+    /// <summary>
+    /// 使用指定的服务注册表创建分发器。
+    /// </summary>
     public CBusDispatcher(CBusServiceRegistry serviceRegistry)
     {
         _serviceRegistry = serviceRegistry ?? throw new ArgumentNullException(nameof(serviceRegistry));

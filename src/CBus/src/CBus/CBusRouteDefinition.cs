@@ -1,15 +1,27 @@
 ﻿namespace CBus;
 
+/// <summary>
+/// 表示一个可注册的 CBus 路由定义。
+/// </summary>
 public sealed class CBusRouteDefinition
 {
+    /// <summary>
+    /// 使用指定路径创建路由定义。
+    /// </summary>
     public CBusRouteDefinition(string path)
     {
         Path = ValidatePath(path);
         RouteRoot = GetRouteRoot(path);
     }
 
+    /// <summary>
+    /// 获取完整路由路径。
+    /// </summary>
     public string Path { get; }
 
+    /// <summary>
+    /// 获取路由根段。
+    /// </summary>
     public string RouteRoot { get; }
 
     /// <summary>

@@ -2,6 +2,9 @@
 
 namespace CBus.Hosting;
 
+/// <summary>
+/// 负责管理宿主内已注册的服务与路由。
+/// </summary>
 public sealed class CBusServiceRegistry
 {
     private readonly Dictionary<string, RegisteredService> _servicesByRoot = new(StringComparer.OrdinalIgnoreCase);
@@ -75,14 +78,23 @@ public sealed class CBusServiceRegistry
 
     internal sealed class RegisteredService
     {
+        /// <summary>
+        /// 使用注册信息和处理委托创建已注册服务项。
+        /// </summary>
         public RegisteredService(CBusServiceRegistration registration, Func<CBusRequest, CancellationToken, Task<CBusResponse>> handler)
         {
             Registration = registration;
             Handler = handler;
         }
 
+        /// <summary>
+        /// 获取服务注册信息。
+        /// </summary>
         public CBusServiceRegistration Registration { get; }
 
+        /// <summary>
+        /// 获取处理当前服务请求的委托。
+        /// </summary>
         public Func<CBusRequest, CancellationToken, Task<CBusResponse>> Handler { get; }
     }
 }

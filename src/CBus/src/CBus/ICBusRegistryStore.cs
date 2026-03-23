@@ -1,5 +1,8 @@
 ﻿namespace CBus;
 
+/// <summary>
+/// 定义发现信息使用的注册表存储能力。
+/// </summary>
 public interface ICBusRegistryStore
 {
     /// <summary>

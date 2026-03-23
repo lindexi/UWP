@@ -6,4 +6,8 @@
     <Project Path="src/CBus/CBus.csproj" />
     <Project Path="tests/CBus.Tests/CBus.Tests.csproj" />
   </Folder>
+  <Project Path="docs/Docs.csproj">
+    <BuildType Project="Debug" />
+    <Platform Project="x86" />
+  </Project>
 </Solution>

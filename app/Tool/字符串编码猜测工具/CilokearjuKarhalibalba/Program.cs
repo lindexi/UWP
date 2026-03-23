@@ -2,7 +2,10 @@
 
 using System.Text;
 
-var text = "涓浗";
+var text = 
+"""
+宸ュ叿鈥渕icrosoft.dotnet-interactive鈥?鐗堟湰鈥?.0.616301鈥?宸叉垚鍔熷畨瑁呫€傛潯鐩皢娣诲姞鍒版竻鍗曟枃浠
+""";
 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
 var gbkEncoding = Encoding.GetEncoding("GBK");

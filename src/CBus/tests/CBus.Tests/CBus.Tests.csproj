@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\CBus\CBus.csproj" />
+    <ProjectReference Include="..\..\src\CBus.Host\CBus.Host.csproj" />
   </ItemGroup>
 
 </Project>

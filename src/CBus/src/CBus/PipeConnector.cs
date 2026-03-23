@@ -2,29 +2,36 @@
 
 public sealed class PipeConnector
 {
-    private readonly CBusDispatcher _dispatcher;
+    private readonly string _pipeAddress;
+    private readonly ICBusPipeTransport _transport;
     private readonly CBusMessageSerializer _serializer;
 
-    public PipeConnector(CBusDispatcher dispatcher)
-        : this(dispatcher, new CBusMessageSerializer())
+    public PipeConnector(string pipeAddress, ICBusPipeTransport transport)
+        : this(pipeAddress, transport, new CBusMessageSerializer())
     {
     }
 
-    public PipeConnector(CBusDispatcher dispatcher, CBusMessageSerializer serializer)
+    public PipeConnector(string pipeAddress, ICBusPipeTransport transport, CBusMessageSerializer serializer)
     {
-        _dispatcher = dispatcher ?? throw new ArgumentNullException(nameof(dispatcher));
+        if (string.IsNullOrWhiteSpace(pipeAddress))
+        {
+            throw new ArgumentException("Pipe address cannot be null or whitespace.", nameof(pipeAddress));
+        }
+
+        _pipeAddress = pipeAddress;
+        _transport = transport ?? throw new ArgumentNullException(nameof(transport));
         _serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
     }
+
+    public string PipeAddress => _pipeAddress;
 
     /// <summary>
     /// 使用 Pipe 风格连接发送请求。
     /// </summary>
-    public async Task<CBusResponse> SendAsync(CBusRequest request, CancellationToken cancellationToken = default)
+    public Task<CBusResponse> SendAsync(CBusRequest request, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
-
-        var result = await _dispatcher.DispatchAsync(request, cancellationToken).ConfigureAwait(false);
-        return result.Response;
+        return _transport.SendAsync(_pipeAddress, request, cancellationToken);
     }
 
     /// <summary>

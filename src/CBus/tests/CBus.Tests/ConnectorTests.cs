@@ -3,20 +3,45 @@
 public class ConnectorTests
 {
     [Fact]
-    public async Task WhenSendingSameRequestThenHttpConnectorAndPipeConnectorReturnSameBodyAsync()
+    public async Task WhenHttpConnectorSendsRequestThenTransportReceivesConfiguredEndpointAsync()
     {
-        var registry = new CBusServiceRegistry();
-        registry.Register(
-            new CBusServiceRegistration("FooService", "FooService.exe", [], [new CBusRouteDefinition("/Foo/Path1")]),
-            static (request, _) => Task.FromResult(CBusResponse.Ok($"handled:{request.Path}")));
-        var dispatcher = new CBusDispatcher(registry);
-        var httpConnector = new HttpConnector(dispatcher);
-        var pipeConnector = new PipeConnector(dispatcher);
-        var request = new CBusRequest("GET", "/Foo/Path1");
+        var transport = new CapturingHttpTransport();
+        var endpoint = new Uri("http://127.0.0.1:3323/");
+        var connector = new HttpConnector(endpoint, transport);
 
-        var httpResponse = await httpConnector.SendAsync(request);
-        var pipeResponse = await pipeConnector.SendAsync(request);
+        await connector.SendAsync(new CBusRequest("GET", "/Foo/Path1"));
 
-        Assert.Equal(httpResponse.GetBodyAsString(), pipeResponse.GetBodyAsString());
+        Assert.Equal(endpoint, transport.LastEndpoint);
+    }
+
+    [Fact]
+    public async Task WhenHttpConnectorSendsRequestThenTransportResponseIsReturnedAsync()
+    {
+        var connector = new HttpConnector(new Uri("http://127.0.0.1:3323/"), new CapturingHttpTransport());
+
+        var response = await connector.SendAsync(new CBusRequest("GET", "/Foo/Path1"));
+
+        Assert.Equal("http-transport", response.GetBodyAsString());
+    }
+
+    [Fact]
+    public async Task WhenPipeConnectorSendsRequestThenTransportReceivesConfiguredPipeAddressAsync()
+    {
+        var transport = new CapturingPipeTransport();
+        var connector = new PipeConnector("cbus.pipe", transport);
+
+        await connector.SendAsync(new CBusRequest("GET", "/Foo/Path1"));
+
+        Assert.Equal("cbus.pipe", transport.LastPipeAddress);
+    }
+
+    [Fact]
+    public async Task WhenPipeConnectorSendsRequestThenTransportResponseIsReturnedAsync()
+    {
+        var connector = new PipeConnector("cbus.pipe", new CapturingPipeTransport());
+
+        var response = await connector.SendAsync(new CBusRequest("GET", "/Foo/Path1"));
+
+        Assert.Equal("pipe-transport", response.GetBodyAsString());
     }
 }

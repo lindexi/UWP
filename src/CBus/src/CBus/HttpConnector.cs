@@ -2,29 +2,37 @@
 
 public sealed class HttpConnector
 {
-    private readonly CBusDispatcher _dispatcher;
+    private readonly Uri _endpoint;
+    private readonly ICBusHttpTransport _transport;
     private readonly CBusMessageSerializer _serializer;
 
-    public HttpConnector(CBusDispatcher dispatcher)
-        : this(dispatcher, new CBusMessageSerializer())
+    public HttpConnector(Uri endpoint, ICBusHttpTransport transport)
+        : this(endpoint, transport, new CBusMessageSerializer())
     {
     }
 
-    public HttpConnector(CBusDispatcher dispatcher, CBusMessageSerializer serializer)
+    public HttpConnector(Uri endpoint, ICBusHttpTransport transport, CBusMessageSerializer serializer)
     {
-        _dispatcher = dispatcher ?? throw new ArgumentNullException(nameof(dispatcher));
+        ArgumentNullException.ThrowIfNull(endpoint);
+        if (!endpoint.IsAbsoluteUri)
+        {
+            throw new ArgumentException("Endpoint must be an absolute URI.", nameof(endpoint));
+        }
+
+        _endpoint = endpoint;
+        _transport = transport ?? throw new ArgumentNullException(nameof(transport));
         _serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
     }
+
+    public Uri Endpoint => _endpoint;
 
     /// <summary>
     /// 使用 HTTP 风格连接发送请求。
     /// </summary>
-    public async Task<CBusResponse> SendAsync(CBusRequest request, CancellationToken cancellationToken = default)
+    public Task<CBusResponse> SendAsync(CBusRequest request, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(request);
-
-        var result = await _dispatcher.DispatchAsync(request, cancellationToken).ConfigureAwait(false);
-        return result.Response;
+        return _transport.SendAsync(_endpoint, request, cancellationToken);
     }
 
     /// <summary>

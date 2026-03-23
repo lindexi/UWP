@@ -1,4 +1,6 @@
-﻿namespace CBus.Tests;
+﻿using CBus.Hosting;
+
+namespace CBus.Tests;
 
 public class CBusServiceRegistryTests
 {
@@ -13,6 +15,17 @@ public class CBusServiceRegistryTests
         var result = registry.TryGetRegistrationByPath("/Foo/Path1", out var resolvedRegistration);
 
         Assert.True(result);
+    }
+
+    [Fact]
+    public void WhenRegistrationIsResolvedThenResolvedRegistrationMatchesInput()
+    {
+        var registry = new CBusServiceRegistry();
+        var registration = CreateRegistration("FooService", "/Foo/Path1");
+        registry.Register(registration, static (_, _) => Task.FromResult(CBusResponse.Ok("handled")));
+
+        registry.TryGetRegistrationByPath("/Foo/Path1", out var resolvedRegistration);
+
         Assert.Same(registration, resolvedRegistration);
     }
 

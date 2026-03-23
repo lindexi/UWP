@@ -1,4 +1,6 @@
-﻿namespace CBus;
+﻿using CBus;
+
+namespace CBus.Hosting;
 
 public sealed class CBusDispatchResult
 {

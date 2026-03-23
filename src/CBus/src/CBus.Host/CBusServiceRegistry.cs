@@ -1,4 +1,6 @@
-﻿namespace CBus;
+﻿using CBus;
+
+namespace CBus.Hosting;
 
 public sealed class CBusServiceRegistry
 {
@@ -40,7 +42,7 @@ public sealed class CBusServiceRegistry
     /// </summary>
     public bool TryGetRegistrationByPath(string path, out CBusServiceRegistration? registration)
     {
-        if (TryGetRegisteredServiceByPath(path, out var service))
+        if (TryGetRegisteredServiceByPath(path, out var service) && service is not null)
         {
             registration = service.Registration;
             return true;

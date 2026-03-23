@@ -1,4 +1,6 @@
-﻿namespace CBus;
+﻿using CBus;
+
+namespace CBus.Hosting;
 
 public sealed class CBusDispatcher
 {
@@ -16,7 +18,7 @@ public sealed class CBusDispatcher
     {
         ArgumentNullException.ThrowIfNull(request);
 
-        if (!_serviceRegistry.TryGetRegisteredServiceByPath(request.Path, out var service))
+        if (!_serviceRegistry.TryGetRegisteredServiceByPath(request.Path, out var service) || service is null)
         {
             return CBusDispatchResult.NotFound(CBusResponse.NotFound($"No service registered for path '{request.Path}'."));
         }

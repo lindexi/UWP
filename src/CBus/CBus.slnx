@@ -3,6 +3,7 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/src/">
+    <Project Path="src/CBus.Host/CBus.Host.csproj" />
     <Project Path="src/CBus/CBus.csproj" />
     <Project Path="tests/CBus.Tests/CBus.Tests.csproj" />
   </Folder>

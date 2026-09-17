@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Usage" xml:space="preserve"><value>Usage: GitHubInfo &lt;GitHub PR or Issue URL&gt; [output path]</value></data>
+  <data name="InvalidGitHubUrl" xml:space="preserve"><value>The URL must be an HTTPS github.com pull request or issue URL.</value></data>
+  <data name="OutputWritten" xml:space="preserve"><value>Output written to: {0}</value></data>
+  <data name="IssueTitle" xml:space="preserve"><value>Issue</value></data>
+  <data name="UrlLabel" xml:space="preserve"><value>URL</value></data>
+  <data name="StateLabel" xml:space="preserve"><value>State</value></data>
+  <data name="SaidAt" xml:space="preserve"><value>{0} said at {1}:</value></data>
+</root>
